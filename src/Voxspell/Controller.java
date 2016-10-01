@@ -1,4 +1,4 @@
-package sample;
+package Voxspell;
 
 public class Controller {
 }
