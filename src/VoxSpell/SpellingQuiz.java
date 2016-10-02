@@ -1,5 +1,6 @@
 package VoxSpell;
 
+import VoxSpell.tools.CustomFileReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceDialog;
@@ -22,33 +23,53 @@ public class SpellingQuiz {
     private Text levelText;
 
     // Game logic
-    private int level;
+    private int level, wordsCorrectFirstAttempt, wordAttempt;
+    private boolean firstAttempt;
+    private List<String> wordList;
 
-    @FXML
+    // Tools
+    private CustomFileReader fileReader = new CustomFileReader();
+
     public void newQuiz() {
         level = promptUserForInitialLevel();
         levelText.setText("Level " + level);
 
+        resetFields();
+        readWordsFromFile();
+        continueSpellingQuiz();
     }
 
     private int promptUserForInitialLevel() {
-        List<String> levelOptions = new ArrayList<>();
+        List<Integer> levelOptions = new ArrayList<>();
         for (int i = 1; i <= NUM_LEVELS; i++) {
-            levelOptions.add(i + "");
+            levelOptions.add(i);
         }
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("1", levelOptions);
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(1, levelOptions);
         dialog.setTitle("Starting Level");
         dialog.setHeaderText("Please choose a starting level.");
         dialog.setContentText("Levels: ");
 
-        Optional<String> result = dialog.showAndWait();
+        Optional<Integer> result = dialog.showAndWait();
         int number = 1;
         if (result.isPresent()) {
-            number = Integer.parseInt(result.get());
+            number = result.get();
         }
 
         return number;
+    }
+
+    private void resetFields() {
+        wordsCorrectFirstAttempt = 0;
+        wordAttempt = 0;
+        firstAttempt = true;
+    }
+
+    private void readWordsFromFile() {
+        wordList = fileReader.getWordList(level);
+    }
+
+    private void continueSpellingQuiz() {
     }
 
     @FXML
