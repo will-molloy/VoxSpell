@@ -1,13 +1,14 @@
 package voxspell;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import voxspell.game.SpellingQuiz;
+import voxspell.quiz.SpellingQuiz;
 
 import java.io.IOException;
 
@@ -20,8 +21,9 @@ public class Main extends Application {
 
     // Overall window
     private static Stage window;
+
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz;
+    private static Scene mainMenu, spellingQuiz, reportCard;
     private static SpellingQuiz spellingQuizInstance;
 
     /**
@@ -31,8 +33,20 @@ public class Main extends Application {
         window.setScene(mainMenu);
     }
 
+    /**
+     * Make more general method - it was working before. ????? - e.g. ShowScene method.
+     */
+    public static void showReportCard() {
+        Platform.runLater(() -> window.setScene(reportCard));
+    }
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void newQuizLevel(int level) {
+        spellingQuizInstance.newQuiz(level);
+        window.setScene(spellingQuiz);
     }
 
     @Override
@@ -42,7 +56,10 @@ public class Main extends Application {
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
 
-        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("game/Spelling_Quiz.fxml"));
+        Parent reportCardRoot = FXMLLoader.load(getClass().getResource("quiz/reportCard/Passed_Quiz_Report.fxml"));
+        reportCard = new Scene(reportCardRoot);
+
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("quiz/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
         spellingQuizInstance = spellingQuizLoader.getController();
 
@@ -56,7 +73,8 @@ public class Main extends Application {
     @FXML
     private void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
-        spellingQuizInstance.newQuiz();
+        int level = spellingQuizInstance.promptUserForInitialLevel();
+        spellingQuizInstance.newQuiz(level);
     }
 
     @FXML
@@ -66,5 +84,4 @@ public class Main extends Application {
     @FXML
     private void handleSettingsButton(ActionEvent actionEvent) {
     }
-
 }

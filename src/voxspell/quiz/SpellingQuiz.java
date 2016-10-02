@@ -1,13 +1,15 @@
-package voxspell.game;
+package voxspell.quiz;
 
-import javafx.scene.control.TextField;
-import voxspell.Main;
-import voxspell.tools.CustomFileReader;
-import voxspell.tools.TextToSpeech;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import voxspell.Main;
+import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
+import voxspell.quiz.reportCard.ReportCardFactory;
+import voxspell.tools.CustomFileReader;
+import voxspell.tools.TextToSpeech;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,33 +23,26 @@ import java.util.Optional;
 public class SpellingQuiz {
 
     private static final int NUM_LEVELS = 11;
-
-    @FXML
-    private Text levelText, wordsToSpellText;
-
-    @FXML
-    private TextField wordEntryField;
-
     // Game logic
-    private int level, wordsCorrectFirstAttempt, wordAttempt;
+    private static int _level;
+    private int wordsCorrectFirstAttempt, wordAttempt;
     private boolean firstAttempt;
     private List<String> wordList;
     private String word;
-
+    private TextToSpeech textToSpeech = TextToSpeech.getInstance();
+    @FXML
+    private Text levelText, wordsToSpellText;
+    @FXML
+    private TextField wordEntryField;
     // Tools
     private CustomFileReader fileReader = new CustomFileReader();
-    private TextToSpeech textToSpeech = TextToSpeech.getInstance();
+    // Reportcard shown after quiz
+    private ReportCardFactory reportCardFactory;
+    private ArrayList<String> wordsCopy;
+    private ArrayList<String> wordFirstAttempts;
+    private ArrayList<String> wordSecondAttempts;
 
-    public void newQuiz() {
-        resetFields();
-
-        level = promptUserForInitialLevel();
-        levelText.setText("Level " + level);
-        readWordsFromFile();
-        continueSpellingQuiz();
-    }
-
-    private int promptUserForInitialLevel() {
+    public static int promptUserForInitialLevel() {
         List<Integer> levelOptions = new ArrayList<>();
         for (int i = 1; i <= NUM_LEVELS; i++) {
             levelOptions.add(i);
@@ -67,26 +62,38 @@ public class SpellingQuiz {
         return number;
     }
 
+    public void newQuiz(int level) {
+        resetFields();
+
+        _level = level;
+        levelText.setText("Level " + level);
+        readWordsFromFile();
+        continueSpellingQuiz();
+    }
+
     private void resetFields() {
         levelText.setText("Level ?");
         wordsToSpellText.setText("Spell word 1 of 10");
         wordsCorrectFirstAttempt = 0;
         wordAttempt = 0;
         firstAttempt = true;
+        wordFirstAttempts = new ArrayList<>();
+        wordSecondAttempts = new ArrayList<>();
     }
 
     private void readWordsFromFile() {
-        wordList = fileReader.getWordList(level);
+        wordList = fileReader.getWordList(_level);
+        wordsCopy = new ArrayList<>(wordList);
     }
 
     public void continueSpellingQuiz() {
         // Quiz is finished when the wordlist is empty
-        if (wordList.size() > 0){
+        if (wordList.size() > 9) {
             word = wordList.get(0);
             int wordNumber = 11 - wordList.size();
             String line;
 
-            if (firstAttempt){
+            if (firstAttempt) {
                 line = "Please spell ... " + word;
                 wordsToSpellText.setText("Spell word " + wordNumber + " of 10");
                 textToSpeech.readSentence(line);
@@ -96,11 +103,14 @@ public class SpellingQuiz {
                 firstAttempt = false;
             }
         } else { /* Quiz Completed */
-            if (wordsCorrectFirstAttempt < 9){
+            if (wordsCorrectFirstAttempt < 1) {
                 /* Failed */
 
             } else {
                 /* Passed */
+                reportCardFactory = new PassedQuizReportCardFactory();
+                reportCardFactory.setValues(this, wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+                reportCardFactory.showScene();
             }
         }
     }
@@ -117,17 +127,19 @@ public class SpellingQuiz {
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
-        if (wordList.size() > 0){
+        if (wordList.size() > 0) {
 
-            if (attempt.equals(word)){ /* Correct */
+            if (attempt.equals(word)) { /* Correct */
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
                 wordList.remove(word);
 
-                if (firstAttempt){
+                if (firstAttempt) {
                     /* First attempt correct */
+                    wordFirstAttempts.add(word);
                     wordsCorrectFirstAttempt++;
                 } else {
                     /* Second attempt correct */
+                    wordSecondAttempts.add(word);
                     firstAttempt = true;
                 }
                 wordAttempt++;
@@ -136,17 +148,25 @@ public class SpellingQuiz {
 
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
 
-                if(firstAttempt){
+                if (firstAttempt) {
                     /* First attempt incorrect */
+                    wordFirstAttempts.add(word);
                     firstAttempt = false;
                 } else {
                     /* Second attempt incorrect */
+                    wordSecondAttempts.add(word);
                     wordList.remove(word);
                     firstAttempt = true;
                     wordAttempt++;
                 }
             }
         }
+    }
+
+    public void restartLevel() {
+        resetFields();
+        readWordsFromFile();
+        continueSpellingQuiz();
     }
 
     @FXML
@@ -159,7 +179,8 @@ public class SpellingQuiz {
     }
 
     @FXML
-    private void handleRepeatWordBtn(ActionEvent actionEvent) { textToSpeech.readSentenceSlowly(word);
+    private void handleRepeatWordBtn(ActionEvent actionEvent) {
+        textToSpeech.readSentenceSlowly(word);
     }
 
 
