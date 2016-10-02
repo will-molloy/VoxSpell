@@ -2,33 +2,99 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10.0" prefHeight="540.0" prefWidth="960.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Voxspell.SpellingQuiz">
-    <padding><Insets bottom="10.0" left="25.0" right="25.0" top="25.0" /></padding>
-
-    <Text text="GG" wrappingWidth="350.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
-        <font>
-            <Font name="KacstOne" size="80.0" />
-        </font></Text>
-
-    <Button onAction="#handleQuizButton" prefHeight="50.0" prefWidth="350.0" text="Spelling Quiz" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-    <Button onAction="#handleSettingsButton" prefHeight="50.0" prefWidth="350.0" text="Settings" GridPane.rowIndex="2" />
-    <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-    </rowConstraints>
-
-
-</GridPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" textAlignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <Text layoutX="60.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Word 1 of 10" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </Text>
+         </children>
+      </GridPane>
+   </top>
+   <center>
+      <GridPane alignment="CENTER" prefHeight="300.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="900.0" minWidth="50.0" prefWidth="480.0" />
+          <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="492.0" minWidth="10.0" prefWidth="480.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField prefWidth="855.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets left="50.0" right="50.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="50.0" right="50.0" />
+               </GridPane.margin></TextField>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Enter" textAlignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="200.0" />
+               </GridPane.margin></Button>
+            <Button layoutX="10.0" layoutY="397.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Repeat Word" textAlignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="200.0" />
+               </GridPane.margin></Button>
+            <Button layoutX="10.0" layoutY="77.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Hear Definition" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="50.0" right="50.0" />
+               </GridPane.margin></Button>
+            <Button layoutX="210.0" layoutY="383.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Back" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
