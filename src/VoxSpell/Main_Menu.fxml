@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10.0" prefHeight="540.0" prefWidth="960.0"
-          vgap="10.0" xmlns="http://javafx.com/javafx/8.0.102-ea" fx:controller="Voxspell.Main">
+          vgap="10.0" xmlns="http://javafx.com/javafx/8.0.102-ea" fx:controller="VoxSpell.Main">
     <padding>
         <Insets bottom="10.0" left="25.0" right="25.0" top="25.0"/>
     </padding>

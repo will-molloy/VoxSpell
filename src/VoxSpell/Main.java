@@ -1,4 +1,4 @@
-package Voxspell;
+package VoxSpell;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -21,16 +21,17 @@ public class Main extends Application {
     private static Stage window;
     // Scenes accessed by the main menu
     private static Scene mainMenu, spellingQuiz;
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    private static SpellingQuiz spellingQuizInstance;
 
     /**
      * Shows the Main Menu - used by back buttons throughout the application.
      */
     public static void showMainMenu() {
         window.setScene(mainMenu);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
@@ -40,7 +41,10 @@ public class Main extends Application {
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
 
-        Parent spellingQuizRoot = FXMLLoader.load(getClass().getResource("Spelling_Quiz.fxml"));
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("Spelling_Quiz.fxml"));
+        Parent spellingQuizRoot = spellingQuizLoader.load();
+        spellingQuizInstance = spellingQuizLoader.getController();
+
         spellingQuiz = new Scene(spellingQuizRoot);
 
         window.setTitle("VoxSpell");
@@ -51,6 +55,7 @@ public class Main extends Application {
     @FXML
     private void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
+        spellingQuizInstance.newQuiz();
     }
 
     @FXML
@@ -60,4 +65,5 @@ public class Main extends Application {
     @FXML
     private void handleSettingsButton(ActionEvent actionEvent) {
     }
+
 }
