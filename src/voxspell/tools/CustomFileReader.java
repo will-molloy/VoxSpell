@@ -1,4 +1,4 @@
-package VoxSpell.tools;
+package voxspell.tools;
 
 import java.io.*;
 import java.util.ArrayList;

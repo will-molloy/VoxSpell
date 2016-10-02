@@ -1,2 +1,2 @@
-# VoxSpell
+# voxspell
 se206_project

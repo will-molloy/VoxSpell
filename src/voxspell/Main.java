@@ -1,4 +1,4 @@
-package VoxSpell;
+package voxspell;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
