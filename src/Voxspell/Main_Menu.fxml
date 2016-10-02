@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10.0" prefHeight="540.0" prefWidth="960.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Voxspell.Main">
+    <padding><Insets bottom="10.0" left="25.0" right="25.0" top="25.0" /></padding>
+
+    <Button onAction="#handleQuizButton" prefHeight="50.0" prefWidth="350.0" text="Spelling Quiz" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <font>
+         <Font size="28.0" />
+      </font></Button>
+
+    <Button onAction="#handleStatisticsButton" prefHeight="50.0" prefWidth="350.0" text="Statistics" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <font>
+         <Font size="28.0" />
+      </font></Button>
+
+          <Text text="VoxSpell" textAlignment="CENTER" wrappingWidth="350.0">
+            <font>
+               <Font name="KacstOne" size="80.0" />
+            </font>
+         </Text>
+   <Button layoutX="310.0" layoutY="266.0" onAction="#handleSettingsButton" prefHeight="50.0" prefWidth="350.0" text="Settings" GridPane.rowIndex="3">
+      <font>
+         <Font size="28.0" />
+      </font>
+   </Button>
+
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+   </rowConstraints>
 
 
-<Button mnemonicParsing="false" text="Spelling Quiz" xmlns="http://javafx.com/javafx/8.0.102-ea"
-        xmlns:fx="http://javafx.com/fxml/1" />
+</GridPane>
