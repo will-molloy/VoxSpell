@@ -1,6 +1,7 @@
-package voxspell;
+package voxspell.game;
 
 import javafx.scene.control.TextField;
+import voxspell.Main;
 import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
 import javafx.event.ActionEvent;
@@ -97,6 +98,7 @@ public class SpellingQuiz {
         } else { /* Quiz Completed */
             if (wordsCorrectFirstAttempt < 9){
                 /* Failed */
+
             } else {
                 /* Passed */
             }

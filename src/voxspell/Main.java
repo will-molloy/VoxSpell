@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import voxspell.game.SpellingQuiz;
 
 import java.io.IOException;
 
@@ -41,7 +42,7 @@ public class Main extends Application {
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
 
-        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("Spelling_Quiz.fxml"));
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("game/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
         spellingQuizInstance = spellingQuizLoader.getController();
 

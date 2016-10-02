@@ -1,6 +1,6 @@
 package voxspell.tools;
 
-import voxspell.SpellingQuiz;
+import voxspell.game.SpellingQuiz;
 
 import java.io.IOException;
 
