@@ -6,7 +6,7 @@ package voxspell.quiz.reportCard;
 public class FailedQuizReportCardController extends ReportCardController {
 
     @Override
-    public void generateScene() {
-
+    protected void setLevelText() {
+        passedOrFailedLevelText.setText("Failed level " + level + ".");
     }
 }

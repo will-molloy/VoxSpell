@@ -114,7 +114,7 @@ public class SpellingQuiz {
                 reportCardFactory = new PassedQuizReportCardFactory();
             }
             ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-            controller.setValues(this, wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+            controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
             controller.generateScene();
         }
     }
@@ -139,11 +139,12 @@ public class SpellingQuiz {
 
                 if (firstAttempt) {
                     /* First attempt correct */
-                    wordFirstAttempts.add(word);
+                    wordFirstAttempts.add(attempt);
+                    wordSecondAttempts.add(attempt); // adding word here too to maintain indexing
                     wordsCorrectFirstAttempt++;
                 } else {
                     /* Second attempt correct */
-                    wordSecondAttempts.add(word);
+                    wordSecondAttempts.add(attempt);
                     firstAttempt = true;
                 }
                 wordAttempt++;
@@ -154,11 +155,11 @@ public class SpellingQuiz {
 
                 if (firstAttempt) {
                     /* First attempt incorrect */
-                    wordFirstAttempts.add(word);
+                    wordFirstAttempts.add(attempt);
                     firstAttempt = false;
                 } else {
                     /* Second attempt incorrect */
-                    wordSecondAttempts.add(word);
+                    wordSecondAttempts.add(attempt);
                     wordList.remove(word);
                     firstAttempt = true;
                     wordAttempt++;

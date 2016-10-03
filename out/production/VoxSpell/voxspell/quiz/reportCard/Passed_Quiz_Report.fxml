@@ -19,7 +19,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text fx:id="passedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!"
+                <Text fx:id="passedOrFailedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!"
                       textAlignment="CENTER">
                     <GridPane.margin>
                         <Insets left="50.0"/>

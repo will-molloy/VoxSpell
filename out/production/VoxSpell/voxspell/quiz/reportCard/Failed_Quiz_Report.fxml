@@ -19,7 +19,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text fx:id="passedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!"
+                <Text fx:id="passedOrFailedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!"
                       textAlignment="CENTER">
                     <GridPane.margin>
                         <Insets left="50.0"/>
@@ -65,8 +65,6 @@
                         <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#handleNextLevelBtn"
-                                text="Next Level" GridPane.rowIndex="1"/>
                         <Button layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleRetryLevelBtn"
                                 text="Retry Level x" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                         <Button layoutX="250.0" layoutY="295.0" mnemonicParsing="false"
