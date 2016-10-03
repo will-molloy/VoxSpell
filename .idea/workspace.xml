@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="332e8d45-ca5e-4580-a913-4bd781e8b2a9" name="Default" comment="">
+    <list default="true" id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/Main_Menu.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/Spelling_Quiz.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VoxSpell.iml" afterPath="$PROJECT_DIR$/VoxSpell.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/Main_Menu.fxml" afterPath="$PROJECT_DIR$/src/voxspell/Main_Menu.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java" />
     </list>
     <ignored path="VoxSpell.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -20,6 +30,11 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/VoxSpell$Main.coverage" NAME="Main Coverage Results" MODIFIED="1475487478541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>voxspell.*</FILTER>
+    </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -33,8 +48,18 @@
       <file leaf-file-name="SpellingQuiz.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+            <state relative-caret-position="324">
+              <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportCardController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,11 +67,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportCardFactory.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PassedQuizReportCardController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportCardFactory.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,59 +94,17 @@
       <file leaf-file-name="PassedQuizReportCardFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="54">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextToSpeech.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FailedQuizReportCardController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding>
-                <element signature="e#198#199#0" expanded="true" />
-                <element signature="e#276#277#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FailedQuizReportCardFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#186#187#0" expanded="true" />
+                <element signature="e#234#235#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="XSLT Stylesheet" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -122,60 +117,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Voxspell/Controller.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/MainMenuController.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/Main_Menu.fxml" />
-        <option value="$PROJECT_DIR$/src/Voxspell/LevelSelectionPopup.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/LevelSelectorPopup.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/Main.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/SpellingQuiz.java" />
-        <option value="$PROJECT_DIR$/src/Voxspell/Spelling_Quiz.fxml" />
-        <option value="$PROJECT_DIR$/src/VoxSpell/Spelling_Quiz.fxml" />
-        <option value="$PROJECT_DIR$/src/VoxSpell/Main.java" />
-        <option value="$PROJECT_DIR$/src/VoxSpell/tools/CustomFileReader.java" />
-        <option value="$PROJECT_DIR$/src/VoxSpell/SpellingQuiz.java" />
-        <option value="$PROJECT_DIR$/src/VoxSpell/tools/TextToSpeech.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/Spelling_Quiz.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/Main_Menu.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/PassedQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/SpellingQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/Passed_Quiz_Report.fxml.xsl" />
+        <option value="$PROJECT_DIR$/src/voxspell/niggers.fxml" />
         <option value="$PROJECT_DIR$/src/voxspell/Passed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/PassedQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/game/reportcard/Passed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/SpellingQuizReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportCardController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/Passed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/ReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/ReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/SpellingQuiz.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/PassedQuizReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/PassedQuizReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/Main_Menu.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/tools/TextToSpeech.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCard.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="21" />
-    <option name="width" value="1366" />
-    <option name="height" value="747" />
+    <option name="x" value="53" />
+    <option name="y" value="24" />
+    <option name="width" value="1867" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -184,7 +143,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -202,8 +161,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -258,28 +218,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VoxSpell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VoxSpell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="voxspell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="quiz" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -312,35 +250,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="/opt/SceneBuilder/SceneBuilder" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-  </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="voxspell.quiz.reportCard" />
-      <recent name="VoxSpell.tools" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/voxspell/quiz/reportCard" />
-      <recent name="$PROJECT_DIR$/src/voxspell/tools" />
-      <recent name="$PROJECT_DIR$/.." />
-      <recent name="$PROJECT_DIR$/src/voxspell/quiz" />
-      <recent name="$PROJECT_DIR$/src/voxspell" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/voxspell/quiz/reportCard" />
-      <recent name="$PROJECT_DIR$/src/voxspell/quiz" />
       <recent name="$PROJECT_DIR$/src/voxspell" />
-      <recent name="$PROJECT_DIR$/src/voxspell/game/" />
-      <recent name="$PROJECT_DIR$/src/voxspell/game/reportcard" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -352,26 +267,6 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="voxspell.Main" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="VoxSpell" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="LevelSelectionPopup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="voxspell.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="Voxspell.LevelSelectionPopup" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -628,14 +523,12 @@
       <listeners />
       <method />
     </configuration>
-    <list size="2">
+    <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.LevelSelectionPopup" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="1">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.LevelSelectionPopup" />
       </list>
     </recent_temporary>
   </component>
@@ -644,69 +537,44 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="332e8d45-ca5e-4580-a913-4bd781e8b2a9" name="Default" comment="" />
-      <created>1475367301616</created>
+      <changelist id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="" />
+      <created>1475484185988</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1475367301616</updated>
+      <updated>1475484185988</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="21" width="1366" height="747" extended-state="6" />
-    <editor active="true" />
+    <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794118" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29411766" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2203514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794118" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25388324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32647058" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959225" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24057084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22067487" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959225" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -722,35 +590,13 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java</url>
-          <line>66</line>
-          <properties class="voxspell.quiz.SpellingQuiz" method="newQuiz" />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java</url>
-          <line>90</line>
-          <properties class="voxspell.quiz.SpellingQuiz" method="continueSpellingQuiz" />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java</url>
-          <line>42</line>
-          <properties class="voxspell.quiz.reportCard.ReportCardController" method="generateScene" />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java</url>
-          <line>108</line>
-          <properties />
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java</url>
+          <line>16</line>
+          <properties class="voxspell.quiz.reportCard.ReportCardFactory" method="getControllerAndShowScene" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <option name="time" value="27" />
+      <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -759,38 +605,28 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Voxspell/MainMenuController.java" />
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/application/Application.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="304" column="25" selection-start-line="304" selection-start-column="25" selection-end-line="304" selection-end-column="25" />
+        <state relative-caret-position="1134">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Voxspell/LevelSelectionPopup.java" />
-    <entry file="file://$PROJECT_DIR$/src/Voxspell/LevelSelectorPopup.java" />
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="1602">
+          <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NZCER-spelling-lists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -798,11 +634,38 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Passed_Quiz_Report" />
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1602">
+          <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="1476">
+          <caret line="82" column="22" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -810,926 +673,59 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PassedQuizReportCard.java" />
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportController.java" />
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportcard/PassedQuizReportCardController.java" />
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Runnable.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Main_Menu.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/control/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2412">
-          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="e#0#6886#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2115#2116#0" expanded="false" />
-            <element signature="e#2143#2144#0" expanded="false" />
-            <element signature="e#3528#3529#0" expanded="false" />
-            <element signature="e#3578#3579#0" expanded="false" />
-            <element signature="e#3623#3624#0" expanded="false" />
-            <element signature="e#3697#3698#0" expanded="false" />
-            <element signature="e#3912#3913#0" expanded="false" />
-            <element signature="e#4004#4005#0" expanded="false" />
-            <element signature="e#4073#4074#0" expanded="false" />
-            <element signature="e#4131#4132#0" expanded="false" />
-            <element signature="e#4200#4201#0" expanded="false" />
-            <element signature="e#4262#4263#0" expanded="false" />
-            <element signature="e#4564#4565#0" expanded="false" />
-            <element signature="e#4613#4614#0" expanded="false" />
-            <element signature="e#4657#4658#0" expanded="false" />
-            <element signature="e#4729#4730#0" expanded="false" />
-            <element signature="e#4941#4942#0" expanded="false" />
-            <element signature="e#5032#5033#0" expanded="false" />
-            <element signature="e#5101#5102#0" expanded="false" />
-            <element signature="e#5159#5160#0" expanded="false" />
-            <element signature="e#5228#5229#0" expanded="false" />
-            <element signature="e#5289#5290#0" expanded="false" />
-            <element signature="e#5984#5985#0" expanded="false" />
-            <element signature="e#6027#6028#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="8411" column="0" selection-start-line="8411" selection-start-column="0" selection-end-line="8411" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#390047#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#20473#20474#0" expanded="false" />
-            <element signature="e#20533#20534#0" expanded="false" />
-            <element signature="e#20830#20831#0" expanded="false" />
-            <element signature="e#20878#20879#0" expanded="false" />
-            <element signature="e#20951#20952#0" expanded="false" />
-            <element signature="e#20981#20982#0" expanded="false" />
-            <element signature="e#21058#21059#0" expanded="false" />
-            <element signature="e#21087#21088#0" expanded="false" />
-            <element signature="e#21385#21386#0" expanded="false" />
-            <element signature="e#21422#21423#0" expanded="false" />
-            <element signature="e#29714#29715#0" expanded="false" />
-            <element signature="e#29780#29781#0" expanded="false" />
-            <element signature="e#30267#30268#0" expanded="false" />
-            <element signature="e#30324#30325#0" expanded="false" />
-            <element signature="e#30663#30664#0" expanded="false" />
-            <element signature="e#30720#30721#0" expanded="false" />
-            <element signature="e#31321#31322#0" expanded="false" />
-            <element signature="e#31368#31369#0" expanded="false" />
-            <element signature="e#31407#31408#0" expanded="false" />
-            <element signature="e#31466#31467#0" expanded="false" />
-            <element signature="e#31534#31535#0" expanded="false" />
-            <element signature="e#31599#31600#0" expanded="false" />
-            <element signature="e#34358#34359#0" expanded="false" />
-            <element signature="e#34414#34415#0" expanded="false" />
-            <element signature="e#34483#34484#0" expanded="false" />
-            <element signature="e#34538#34539#0" expanded="false" />
-            <element signature="e#35131#35138#0" expanded="false" />
-            <element signature="e#35281#35282#0" expanded="false" />
-            <element signature="e#35321#35322#0" expanded="false" />
-            <element signature="e#35374#35375#0" expanded="false" />
-            <element signature="e#35412#35413#0" expanded="false" />
-            <element signature="e#36070#36071#0" expanded="false" />
-            <element signature="e#36123#36124#0" expanded="false" />
-            <element signature="e#40426#40427#0" expanded="false" />
-            <element signature="e#40457#40458#0" expanded="false" />
-            <element signature="e#40494#40495#0" expanded="false" />
-            <element signature="e#40528#40529#0" expanded="false" />
-            <element signature="e#40594#40595#0" expanded="false" />
-            <element signature="e#40644#40645#0" expanded="false" />
-            <element signature="e#41654#41655#0" expanded="false" />
-            <element signature="e#41693#41694#0" expanded="false" />
-            <element signature="e#42567#42568#0" expanded="false" />
-            <element signature="e#42618#42619#0" expanded="false" />
-            <element signature="e#43073#43074#0" expanded="false" />
-            <element signature="e#43129#43130#0" expanded="false" />
-            <element signature="e#43198#43199#0" expanded="false" />
-            <element signature="e#43249#43250#0" expanded="false" />
-            <element signature="e#43971#43972#0" expanded="false" />
-            <element signature="e#44012#44013#0" expanded="false" />
-            <element signature="e#44628#44629#0" expanded="false" />
-            <element signature="e#44661#44662#0" expanded="false" />
-            <element signature="e#45769#45770#0" expanded="false" />
-            <element signature="e#45811#45812#0" expanded="false" />
-            <element signature="e#46561#46562#0" expanded="false" />
-            <element signature="e#46616#46617#0" expanded="false" />
-            <element signature="e#47451#47452#0" expanded="false" />
-            <element signature="e#47507#47508#0" expanded="false" />
-            <element signature="e#47576#47577#0" expanded="false" />
-            <element signature="e#47630#47631#0" expanded="false" />
-            <element signature="e#48219#48220#0" expanded="false" />
-            <element signature="e#48263#48264#0" expanded="false" />
-            <element signature="e#48303#48304#0" expanded="false" />
-            <element signature="e#48364#48365#0" expanded="false" />
-            <element signature="e#49354#49355#0" expanded="false" />
-            <element signature="e#49431#49432#0" expanded="false" />
-            <element signature="e#49500#49501#0" expanded="false" />
-            <element signature="e#49556#49557#0" expanded="false" />
-            <element signature="e#49625#49626#0" expanded="false" />
-            <element signature="e#49681#49682#0" expanded="false" />
-            <element signature="e#49785#49786#0" expanded="false" />
-            <element signature="e#49828#49829#0" expanded="false" />
-            <element signature="e#50384#50385#0" expanded="false" />
-            <element signature="e#50443#50444#0" expanded="false" />
-            <element signature="e#52103#52104#0" expanded="false" />
-            <element signature="e#52147#52148#0" expanded="false" />
-            <element signature="e#52186#52187#0" expanded="false" />
-            <element signature="e#52244#52245#0" expanded="false" />
-            <element signature="e#52454#52455#0" expanded="false" />
-            <element signature="e#52532#52533#0" expanded="false" />
-            <element signature="e#52613#52614#0" expanded="false" />
-            <element signature="e#52687#52688#0" expanded="false" />
-            <element signature="e#52756#52757#0" expanded="false" />
-            <element signature="e#52812#52813#0" expanded="false" />
-            <element signature="e#52881#52882#0" expanded="false" />
-            <element signature="e#52937#52938#0" expanded="false" />
-            <element signature="e#53717#53718#0" expanded="false" />
-            <element signature="e#53763#53764#0" expanded="false" />
-            <element signature="e#53807#53808#0" expanded="false" />
-            <element signature="e#53872#53873#0" expanded="false" />
-            <element signature="e#54096#54097#0" expanded="false" />
-            <element signature="e#54176#54177#0" expanded="false" />
-            <element signature="e#54257#54258#0" expanded="false" />
-            <element signature="e#54334#54335#0" expanded="false" />
-            <element signature="e#54403#54404#0" expanded="false" />
-            <element signature="e#54459#54460#0" expanded="false" />
-            <element signature="e#54528#54529#0" expanded="false" />
-            <element signature="e#54586#54587#0" expanded="false" />
-            <element signature="e#54688#54689#0" expanded="false" />
-            <element signature="e#54729#54730#0" expanded="false" />
-            <element signature="e#56413#56414#0" expanded="false" />
-            <element signature="e#56470#56471#0" expanded="false" />
-            <element signature="e#56519#56520#0" expanded="false" />
-            <element signature="e#56561#56562#0" expanded="false" />
-            <element signature="e#57840#57841#0" expanded="false" />
-            <element signature="e#57898#57899#0" expanded="false" />
-            <element signature="e#57953#57954#0" expanded="false" />
-            <element signature="e#57999#58000#0" expanded="false" />
-            <element signature="e#60285#60286#0" expanded="false" />
-            <element signature="e#60347#60348#0" expanded="false" />
-            <element signature="e#60396#60397#0" expanded="false" />
-            <element signature="e#60439#60440#0" expanded="false" />
-            <element signature="e#61300#61301#0" expanded="false" />
-            <element signature="e#61359#61360#0" expanded="false" />
-            <element signature="e#61414#61415#0" expanded="false" />
-            <element signature="e#61460#61461#0" expanded="false" />
-            <element signature="e#63011#63012#0" expanded="false" />
-            <element signature="e#63073#63074#0" expanded="false" />
-            <element signature="e#64185#64186#0" expanded="false" />
-            <element signature="e#64225#64226#0" expanded="false" />
-            <element signature="e#64261#64262#0" expanded="false" />
-            <element signature="e#64300#64301#0" expanded="false" />
-            <element signature="e#64351#64352#0" expanded="false" />
-            <element signature="e#64395#64396#0" expanded="false" />
-            <element signature="e#65270#65271#0" expanded="false" />
-            <element signature="e#65330#65331#0" expanded="false" />
-            <element signature="e#66166#66167#0" expanded="false" />
-            <element signature="e#66215#66216#0" expanded="false" />
-            <element signature="e#66260#66261#0" expanded="false" />
-            <element signature="e#66332#66333#0" expanded="false" />
-            <element signature="e#67605#67606#0" expanded="false" />
-            <element signature="e#67654#67655#0" expanded="false" />
-            <element signature="e#67695#67696#0" expanded="false" />
-            <element signature="e#67759#67760#0" expanded="false" />
-            <element signature="e#67822#67823#0" expanded="false" />
-            <element signature="e#67889#67890#0" expanded="false" />
-            <element signature="e#68369#68370#0" expanded="false" />
-            <element signature="e#68425#68426#0" expanded="false" />
-            <element signature="e#68494#68495#0" expanded="false" />
-            <element signature="e#68551#68552#0" expanded="false" />
-            <element signature="e#85371#85372#0" expanded="false" />
-            <element signature="e#85445#85446#0" expanded="false" />
-            <element signature="e#85986#85987#0" expanded="false" />
-            <element signature="e#86059#86060#0" expanded="false" />
-            <element signature="e#86602#86603#0" expanded="false" />
-            <element signature="e#86673#86674#0" expanded="false" />
-            <element signature="e#88385#88386#0" expanded="false" />
-            <element signature="e#88459#88460#0" expanded="false" />
-            <element signature="e#89535#89536#0" expanded="false" />
-            <element signature="e#89606#89607#0" expanded="false" />
-            <element signature="e#92249#92250#0" expanded="false" />
-            <element signature="e#92282#92283#0" expanded="false" />
-            <element signature="e#97725#97726#0" expanded="false" />
-            <element signature="e#97769#97770#0" expanded="false" />
-            <element signature="e#97809#97810#0" expanded="false" />
-            <element signature="e#97870#97871#0" expanded="false" />
-            <element signature="e#98387#98388#0" expanded="false" />
-            <element signature="e#98443#98444#0" expanded="false" />
-            <element signature="e#98512#98513#0" expanded="false" />
-            <element signature="e#98568#98569#0" expanded="false" />
-            <element signature="e#100523#100524#0" expanded="false" />
-            <element signature="e#100567#100568#0" expanded="false" />
-            <element signature="e#100607#100608#0" expanded="false" />
-            <element signature="e#100667#100668#0" expanded="false" />
-            <element signature="e#101541#101542#0" expanded="false" />
-            <element signature="e#101597#101598#0" expanded="false" />
-            <element signature="e#101666#101667#0" expanded="false" />
-            <element signature="e#101722#101723#0" expanded="false" />
-            <element signature="e#103425#103426#0" expanded="false" />
-            <element signature="e#103469#103470#0" expanded="false" />
-            <element signature="e#103509#103510#0" expanded="false" />
-            <element signature="e#103569#103570#0" expanded="false" />
-            <element signature="e#104443#104444#0" expanded="false" />
-            <element signature="e#104499#104500#0" expanded="false" />
-            <element signature="e#104568#104569#0" expanded="false" />
-            <element signature="e#104624#104625#0" expanded="false" />
-            <element signature="e#106873#106874#0" expanded="false" />
-            <element signature="e#106901#106902#0" expanded="false" />
-            <element signature="e#107657#107658#0" expanded="false" />
-            <element signature="e#107684#107685#0" expanded="false" />
-            <element signature="e#109079#109080#0" expanded="false" />
-            <element signature="e#109119#109120#0" expanded="false" />
-            <element signature="e#110519#110520#0" expanded="false" />
-            <element signature="e#110559#110560#0" expanded="false" />
-            <element signature="e#114957#114958#0" expanded="false" />
-            <element signature="e#114997#114998#0" expanded="false" />
-            <element signature="e#116533#116534#0" expanded="false" />
-            <element signature="e#116573#116574#0" expanded="false" />
-            <element signature="e#122385#122386#0" expanded="false" />
-            <element signature="e#122434#122435#0" expanded="false" />
-            <element signature="e#129041#129042#0" expanded="false" />
-            <element signature="e#129094#129095#0" expanded="false" />
-            <element signature="e#131165#131166#0" expanded="false" />
-            <element signature="e#131217#131218#0" expanded="false" />
-            <element signature="e#134595#134596#0" expanded="false" />
-            <element signature="e#134652#134653#0" expanded="false" />
-            <element signature="e#134705#134706#0" expanded="false" />
-            <element signature="e#134745#134746#0" expanded="false" />
-            <element signature="e#134798#134799#0" expanded="false" />
-            <element signature="e#134843#134844#0" expanded="false" />
-            <element signature="e#134895#134896#0" expanded="false" />
-            <element signature="e#134946#134947#0" expanded="false" />
-            <element signature="e#135020#135021#0" expanded="false" />
-            <element signature="e#135055#135056#0" expanded="false" />
-            <element signature="e#166736#166737#0" expanded="false" />
-            <element signature="e#166805#166806#0" expanded="false" />
-            <element signature="e#170608#170609#0" expanded="false" />
-            <element signature="e#170684#170685#0" expanded="false" />
-            <element signature="e#177116#177117#0" expanded="false" />
-            <element signature="e#177189#177190#0" expanded="false" />
-            <element signature="e#182076#182077#0" expanded="false" />
-            <element signature="e#182133#182134#0" expanded="false" />
-            <element signature="e#182517#182518#0" expanded="false" />
-            <element signature="e#182591#182592#0" expanded="false" />
-            <element signature="e#186906#186907#0" expanded="false" />
-            <element signature="e#186979#186980#0" expanded="false" />
-            <element signature="e#197048#197049#0" expanded="false" />
-            <element signature="e#197124#197125#0" expanded="false" />
-            <element signature="e#200539#200540#0" expanded="false" />
-            <element signature="e#200613#200614#0" expanded="false" />
-            <element signature="e#223338#223339#0" expanded="false" />
-            <element signature="e#223412#223413#0" expanded="false" />
-            <element signature="e#224314#224315#0" expanded="false" />
-            <element signature="e#224357#224358#0" expanded="false" />
-            <element signature="e#224419#224420#0" expanded="false" />
-            <element signature="e#224481#224482#0" expanded="false" />
-            <element signature="e#224534#224535#0" expanded="false" />
-            <element signature="e#224581#224582#0" expanded="false" />
-            <element signature="e#225453#225454#0" expanded="false" />
-            <element signature="e#225520#225521#0" expanded="false" />
-            <element signature="e#225573#225574#0" expanded="false" />
-            <element signature="e#225620#225621#0" expanded="false" />
-            <element signature="e#226492#226493#0" expanded="false" />
-            <element signature="e#226559#226560#0" expanded="false" />
-            <element signature="e#226612#226613#0" expanded="false" />
-            <element signature="e#226659#226660#0" expanded="false" />
-            <element signature="e#227562#227563#0" expanded="false" />
-            <element signature="e#227629#227630#0" expanded="false" />
-            <element signature="e#227678#227679#0" expanded="false" />
-            <element signature="e#227721#227722#0" expanded="false" />
-            <element signature="e#228619#228620#0" expanded="false" />
-            <element signature="e#228682#228683#0" expanded="false" />
-            <element signature="e#228731#228732#0" expanded="false" />
-            <element signature="e#228774#228775#0" expanded="false" />
-            <element signature="e#229672#229673#0" expanded="false" />
-            <element signature="e#229735#229736#0" expanded="false" />
-            <element signature="e#229784#229785#0" expanded="false" />
-            <element signature="e#229827#229828#0" expanded="false" />
-            <element signature="e#231024#231025#0" expanded="false" />
-            <element signature="e#231087#231088#0" expanded="false" />
-            <element signature="e#231136#231137#0" expanded="false" />
-            <element signature="e#231179#231180#0" expanded="false" />
-            <element signature="e#232797#232798#0" expanded="false" />
-            <element signature="e#232860#232861#0" expanded="false" />
-            <element signature="e#232916#232917#0" expanded="false" />
-            <element signature="e#232965#232966#0" expanded="false" />
-            <element signature="e#234229#234230#0" expanded="false" />
-            <element signature="e#234290#234291#0" expanded="false" />
-            <element signature="e#235478#235479#0" expanded="false" />
-            <element signature="e#235538#235539#0" expanded="false" />
-            <element signature="e#238774#238775#0" expanded="false" />
-            <element signature="e#238843#238844#0" expanded="false" />
-            <element signature="e#239807#239808#0" expanded="false" />
-            <element signature="e#239866#239867#0" expanded="false" />
-            <element signature="e#239951#239952#0" expanded="false" />
-            <element signature="e#240011#240012#0" expanded="false" />
-            <element signature="e#240088#240089#0" expanded="false" />
-            <element signature="e#240152#240153#0" expanded="false" />
-            <element signature="e#240229#240230#0" expanded="false" />
-            <element signature="e#240308#240309#0" expanded="false" />
-            <element signature="e#240641#240642#0" expanded="false" />
-            <element signature="e#240709#240710#0" expanded="false" />
-            <element signature="e#242136#242137#0" expanded="false" />
-            <element signature="e#242184#242185#0" expanded="false" />
-            <element signature="e#242245#242246#0" expanded="false" />
-            <element signature="e#242307#242308#0" expanded="false" />
-            <element signature="e#242378#242379#0" expanded="false" />
-            <element signature="e#242436#242437#0" expanded="false" />
-            <element signature="e#245794#245795#0" expanded="false" />
-            <element signature="e#245866#245867#0" expanded="false" />
-            <element signature="e#245955#245956#0" expanded="false" />
-            <element signature="e#246041#246042#0" expanded="false" />
-            <element signature="e#246118#246119#0" expanded="false" />
-            <element signature="e#246182#246183#0" expanded="false" />
-            <element signature="e#246259#246260#0" expanded="false" />
-            <element signature="e#246326#246327#0" expanded="false" />
-            <element signature="e#246441#246442#0" expanded="false" />
-            <element signature="e#246533#246534#0" expanded="false" />
-            <element signature="e#246789#246790#0" expanded="false" />
-            <element signature="e#246861#246862#0" expanded="false" />
-            <element signature="e#246950#246951#0" expanded="false" />
-            <element signature="e#247036#247037#0" expanded="false" />
-            <element signature="e#247113#247114#0" expanded="false" />
-            <element signature="e#247177#247178#0" expanded="false" />
-            <element signature="e#247254#247255#0" expanded="false" />
-            <element signature="e#247321#247322#0" expanded="false" />
-            <element signature="e#247436#247437#0" expanded="false" />
-            <element signature="e#247528#247529#0" expanded="false" />
-            <element signature="e#247784#247785#0" expanded="false" />
-            <element signature="e#247856#247857#0" expanded="false" />
-            <element signature="e#247945#247946#0" expanded="false" />
-            <element signature="e#248031#248032#0" expanded="false" />
-            <element signature="e#248108#248109#0" expanded="false" />
-            <element signature="e#248172#248173#0" expanded="false" />
-            <element signature="e#248249#248250#0" expanded="false" />
-            <element signature="e#248316#248317#0" expanded="false" />
-            <element signature="e#248427#248428#0" expanded="false" />
-            <element signature="e#248507#248508#0" expanded="false" />
-            <element signature="e#248747#248748#0" expanded="false" />
-            <element signature="e#248819#248820#0" expanded="false" />
-            <element signature="e#248908#248909#0" expanded="false" />
-            <element signature="e#248990#248991#0" expanded="false" />
-            <element signature="e#249067#249068#0" expanded="false" />
-            <element signature="e#249131#249132#0" expanded="false" />
-            <element signature="e#249208#249209#0" expanded="false" />
-            <element signature="e#249271#249272#0" expanded="false" />
-            <element signature="e#249378#249379#0" expanded="false" />
-            <element signature="e#249458#249459#0" expanded="false" />
-            <element signature="e#249698#249699#0" expanded="false" />
-            <element signature="e#249770#249771#0" expanded="false" />
-            <element signature="e#249859#249860#0" expanded="false" />
-            <element signature="e#249941#249942#0" expanded="false" />
-            <element signature="e#250018#250019#0" expanded="false" />
-            <element signature="e#250082#250083#0" expanded="false" />
-            <element signature="e#250159#250160#0" expanded="false" />
-            <element signature="e#250222#250223#0" expanded="false" />
-            <element signature="e#250329#250330#0" expanded="false" />
-            <element signature="e#250409#250410#0" expanded="false" />
-            <element signature="e#250649#250650#0" expanded="false" />
-            <element signature="e#250721#250722#0" expanded="false" />
-            <element signature="e#250810#250811#0" expanded="false" />
-            <element signature="e#250892#250893#0" expanded="false" />
-            <element signature="e#250969#250970#0" expanded="false" />
-            <element signature="e#251033#251034#0" expanded="false" />
-            <element signature="e#251110#251111#0" expanded="false" />
-            <element signature="e#251173#251174#0" expanded="false" />
-            <element signature="e#251280#251281#0" expanded="false" />
-            <element signature="e#251359#251360#0" expanded="false" />
-            <element signature="e#251598#251599#0" expanded="false" />
-            <element signature="e#251670#251671#0" expanded="false" />
-            <element signature="e#251759#251760#0" expanded="false" />
-            <element signature="e#251840#251841#0" expanded="false" />
-            <element signature="e#251917#251918#0" expanded="false" />
-            <element signature="e#251981#251982#0" expanded="false" />
-            <element signature="e#252058#252059#0" expanded="false" />
-            <element signature="e#252121#252122#0" expanded="false" />
-            <element signature="e#252699#252700#0" expanded="false" />
-            <element signature="e#252771#252772#0" expanded="false" />
-            <element signature="e#252848#252849#0" expanded="false" />
-            <element signature="e#252912#252913#0" expanded="false" />
-            <element signature="e#252989#252990#0" expanded="false" />
-            <element signature="e#253058#253059#0" expanded="false" />
-            <element signature="e#253263#253871#0" expanded="false" />
-            <element signature="e#253870#253871#0" expanded="false" />
-            <element signature="e#253972#253973#0" expanded="false" />
-            <element signature="e#254048#254049#0" expanded="false" />
-            <element signature="e#254093#254094#0" expanded="false" />
-            <element signature="e#254169#254170#0" expanded="false" />
-            <element signature="e#254214#254215#0" expanded="false" />
-            <element signature="e#254290#254291#0" expanded="false" />
-            <element signature="e#254331#254332#0" expanded="false" />
-            <element signature="e#254399#254400#0" expanded="false" />
-            <element signature="e#254440#254441#0" expanded="false" />
-            <element signature="e#254508#254509#0" expanded="false" />
-            <element signature="e#254549#254550#0" expanded="false" />
-            <element signature="e#254617#254618#0" expanded="false" />
-            <element signature="e#254658#254659#0" expanded="false" />
-            <element signature="e#254726#254727#0" expanded="false" />
-            <element signature="e#254768#254769#0" expanded="false" />
-            <element signature="e#254844#254845#0" expanded="false" />
-            <element signature="e#257402#257403#0" expanded="false" />
-            <element signature="e#257460#257461#0" expanded="false" />
-            <element signature="e#258398#258399#0" expanded="false" />
-            <element signature="e#258474#258475#0" expanded="false" />
-            <element signature="e#258543#258544#0" expanded="false" />
-            <element signature="e#258599#258600#0" expanded="false" />
-            <element signature="e#258668#258669#0" expanded="false" />
-            <element signature="e#258732#258733#0" expanded="false" />
-            <element signature="e#260469#260470#0" expanded="false" />
-            <element signature="e#260496#260497#0" expanded="false" />
-            <element signature="e#265638#265639#0" expanded="false" />
-            <element signature="e#265698#265699#0" expanded="false" />
-            <element signature="e#265751#265752#0" expanded="false" />
-            <element signature="e#265791#265792#0" expanded="false" />
-            <element signature="e#265844#265845#0" expanded="false" />
-            <element signature="e#265901#265902#0" expanded="false" />
-            <element signature="e#265937#265938#0" expanded="false" />
-            <element signature="e#265984#265985#0" expanded="false" />
-            <element signature="e#267856#267857#0" expanded="false" />
-            <element signature="e#267917#267918#0" expanded="false" />
-            <element signature="e#269370#269371#0" expanded="false" />
-            <element signature="e#269434#269435#0" expanded="false" />
-            <element signature="e#269511#269512#0" expanded="false" />
-            <element signature="e#269582#269583#0" expanded="false" />
-            <element signature="e#269872#269873#0" expanded="false" />
-            <element signature="e#269932#269933#0" expanded="false" />
-            <element signature="e#270984#270985#0" expanded="false" />
-            <element signature="e#271048#271049#0" expanded="false" />
-            <element signature="e#271125#271126#0" expanded="false" />
-            <element signature="e#271195#271196#0" expanded="false" />
-            <element signature="e#271819#271820#0" expanded="false" />
-            <element signature="e#271903#271904#0" expanded="false" />
-            <element signature="e#271980#271981#0" expanded="false" />
-            <element signature="e#272044#272045#0" expanded="false" />
-            <element signature="e#272121#272122#0" expanded="false" />
-            <element signature="e#272183#272184#0" expanded="false" />
-            <element signature="e#272701#272702#0" expanded="false" />
-            <element signature="e#272785#272786#0" expanded="false" />
-            <element signature="e#272862#272863#0" expanded="false" />
-            <element signature="e#272926#272927#0" expanded="false" />
-            <element signature="e#273003#273004#0" expanded="false" />
-            <element signature="e#273069#273070#0" expanded="false" />
-            <element signature="e#273181#273182#0" expanded="false" />
-            <element signature="e#273254#273255#0" expanded="false" />
-            <element signature="e#276605#276606#0" expanded="false" />
-            <element signature="e#276669#276670#0" expanded="false" />
-            <element signature="e#276746#276747#0" expanded="false" />
-            <element signature="e#276807#276808#0" expanded="false" />
-            <element signature="e#276918#276919#0" expanded="false" />
-            <element signature="e#276997#276998#0" expanded="false" />
-            <element signature="e#277562#277563#0" expanded="false" />
-            <element signature="e#277643#277644#0" expanded="false" />
-            <element signature="e#277720#277721#0" expanded="false" />
-            <element signature="e#277784#277785#0" expanded="false" />
-            <element signature="e#277861#277862#0" expanded="false" />
-            <element signature="e#277924#277925#0" expanded="false" />
-            <element signature="e#278424#278425#0" expanded="false" />
-            <element signature="e#278497#278498#0" expanded="false" />
-            <element signature="e#278574#278575#0" expanded="false" />
-            <element signature="e#278638#278639#0" expanded="false" />
-            <element signature="e#278715#278716#0" expanded="false" />
-            <element signature="e#278781#278782#0" expanded="false" />
-            <element signature="e#278898#278899#0" expanded="false" />
-            <element signature="e#278980#278981#0" expanded="false" />
-            <element signature="e#279223#279224#0" expanded="false" />
-            <element signature="e#279287#279288#0" expanded="false" />
-            <element signature="e#279364#279365#0" expanded="false" />
-            <element signature="e#279428#279429#0" expanded="false" />
-            <element signature="e#279505#279506#0" expanded="false" />
-            <element signature="e#279569#279570#0" expanded="false" />
-            <element signature="e#279683#279684#0" expanded="false" />
-            <element signature="e#279762#279763#0" expanded="false" />
-            <element signature="e#280144#281232#0" expanded="false" />
-            <element signature="e#281231#281232#0" expanded="false" />
-            <element signature="e#282504#282505#0" expanded="false" />
-            <element signature="e#282585#282586#0" expanded="false" />
-            <element signature="e#282662#282663#0" expanded="false" />
-            <element signature="e#282726#282727#0" expanded="false" />
-            <element signature="e#282803#282804#0" expanded="false" />
-            <element signature="e#282866#282867#0" expanded="false" />
-            <element signature="e#284319#284320#0" expanded="false" />
-            <element signature="e#284387#284388#0" expanded="false" />
-            <element signature="e#284428#284429#0" expanded="false" />
-            <element signature="e#284496#284497#0" expanded="false" />
-            <element signature="e#284968#284969#0" expanded="false" />
-            <element signature="e#285021#285022#0" expanded="false" />
-            <element signature="e#285575#285576#0" expanded="false" />
-            <element signature="e#285644#285645#0" expanded="false" />
-            <element signature="e#286348#286349#0" expanded="false" />
-            <element signature="e#286394#286395#0" expanded="false" />
-            <element signature="e#286432#286433#0" expanded="false" />
-            <element signature="e#286490#286491#0" expanded="false" />
-            <element signature="e#286550#286551#0" expanded="false" />
-            <element signature="e#286614#286615#0" expanded="false" />
-            <element signature="e#287204#287205#0" expanded="false" />
-            <element signature="e#287260#287261#0" expanded="false" />
-            <element signature="e#287329#287330#0" expanded="false" />
-            <element signature="e#287383#287384#0" expanded="false" />
-            <element signature="e#287814#287815#0" expanded="false" />
-            <element signature="e#287862#287863#0" expanded="false" />
-            <element signature="e#287902#287903#0" expanded="false" />
-            <element signature="e#287964#287965#0" expanded="false" />
-            <element signature="e#288026#288027#0" expanded="false" />
-            <element signature="e#288092#288093#0" expanded="false" />
-            <element signature="e#288692#288693#0" expanded="false" />
-            <element signature="e#288748#288749#0" expanded="false" />
-            <element signature="e#288817#288818#0" expanded="false" />
-            <element signature="e#288873#288874#0" expanded="false" />
-            <element signature="e#289580#289581#0" expanded="false" />
-            <element signature="e#289663#289664#0" expanded="false" />
-            <element signature="e#290256#290257#0" expanded="false" />
-            <element signature="e#290331#290332#0" expanded="false" />
-            <element signature="e#290912#290913#0" expanded="false" />
-            <element signature="e#290987#290988#0" expanded="false" />
-            <element signature="e#291532#291533#0" expanded="false" />
-            <element signature="e#291607#291608#0" expanded="false" />
-            <element signature="e#292146#292147#0" expanded="false" />
-            <element signature="e#292220#292221#0" expanded="false" />
-            <element signature="e#292803#292804#0" expanded="false" />
-            <element signature="e#292876#292877#0" expanded="false" />
-            <element signature="e#293446#293447#0" expanded="false" />
-            <element signature="e#293521#293522#0" expanded="false" />
-            <element signature="e#294097#294098#0" expanded="false" />
-            <element signature="e#294173#294174#0" expanded="false" />
-            <element signature="e#294779#294780#0" expanded="false" />
-            <element signature="e#294854#294855#0" expanded="false" />
-            <element signature="e#295483#295484#0" expanded="false" />
-            <element signature="e#295559#295560#0" expanded="false" />
-            <element signature="e#296230#296231#0" expanded="false" />
-            <element signature="e#296310#296311#0" expanded="false" />
-            <element signature="e#296943#296944#0" expanded="false" />
-            <element signature="e#297022#297023#0" expanded="false" />
-            <element signature="e#297650#297651#0" expanded="false" />
-            <element signature="e#297728#297729#0" expanded="false" />
-            <element signature="e#298710#298711#0" expanded="false" />
-            <element signature="e#298786#298787#0" expanded="false" />
-            <element signature="e#299302#299303#0" expanded="false" />
-            <element signature="e#299371#299372#0" expanded="false" />
-            <element signature="e#299944#299945#0" expanded="false" />
-            <element signature="e#300021#300022#0" expanded="false" />
-            <element signature="e#300605#300606#0" expanded="false" />
-            <element signature="e#300683#300684#0" expanded="false" />
-            <element signature="e#301223#301224#0" expanded="false" />
-            <element signature="e#301292#301293#0" expanded="false" />
-            <element signature="e#301874#301875#0" expanded="false" />
-            <element signature="e#301953#301954#0" expanded="false" />
-            <element signature="e#302510#302511#0" expanded="false" />
-            <element signature="e#302584#302585#0" expanded="false" />
-            <element signature="e#303107#303108#0" expanded="false" />
-            <element signature="e#303174#303175#0" expanded="false" />
-            <element signature="e#303729#303730#0" expanded="false" />
-            <element signature="e#303804#303805#0" expanded="false" />
-            <element signature="e#304377#304378#0" expanded="false" />
-            <element signature="e#304447#304448#0" expanded="false" />
-            <element signature="e#305031#305032#0" expanded="false" />
-            <element signature="e#305103#305104#0" expanded="false" />
-            <element signature="e#305687#305688#0" expanded="false" />
-            <element signature="e#305759#305760#0" expanded="false" />
-            <element signature="e#306350#306351#0" expanded="false" />
-            <element signature="e#306423#306424#0" expanded="false" />
-            <element signature="e#307394#307395#0" expanded="false" />
-            <element signature="e#307469#307470#0" expanded="false" />
-            <element signature="e#308017#308018#0" expanded="false" />
-            <element signature="e#308090#308091#0" expanded="false" />
-            <element signature="e#308656#308657#0" expanded="false" />
-            <element signature="e#308732#308733#0" expanded="false" />
-            <element signature="e#309327#309328#0" expanded="false" />
-            <element signature="e#309405#309406#0" expanded="false" />
-            <element signature="e#310523#310524#0" expanded="false" />
-            <element signature="e#310596#310597#0" expanded="false" />
-            <element signature="e#311314#311315#0" expanded="false" />
-            <element signature="e#311388#311389#0" expanded="false" />
-            <element signature="e#312088#312089#0" expanded="false" />
-            <element signature="e#312159#312160#0" expanded="false" />
-            <element signature="e#313734#313735#0" expanded="false" />
-            <element signature="e#313790#313791#0" expanded="false" />
-            <element signature="e#316671#316672#0" expanded="false" />
-            <element signature="e#316711#316712#0" expanded="false" />
-            <element signature="e#316764#316765#0" expanded="false" />
-            <element signature="e#316804#316805#0" expanded="false" />
-            <element signature="e#317471#317472#0" expanded="false" />
-            <element signature="e#317533#317534#0" expanded="false" />
-            <element signature="e#317595#317596#0" expanded="false" />
-            <element signature="e#317639#317640#0" expanded="false" />
-            <element signature="e#318653#318654#0" expanded="false" />
-            <element signature="e#318706#318707#0" expanded="false" />
-            <element signature="e#318754#318755#0" expanded="false" />
-            <element signature="e#318834#318835#0" expanded="false" />
-            <element signature="e#319469#319470#0" expanded="false" />
-            <element signature="e#319553#319554#0" expanded="false" />
-            <element signature="e#319622#319623#0" expanded="false" />
-            <element signature="e#319678#319679#0" expanded="false" />
-            <element signature="e#319747#319748#0" expanded="false" />
-            <element signature="e#319812#319813#0" expanded="false" />
-            <element signature="e#326885#326886#0" expanded="false" />
-            <element signature="e#326940#326941#0" expanded="false" />
-            <element signature="e#328608#328609#0" expanded="false" />
-            <element signature="e#328647#328648#0" expanded="false" />
-            <element signature="e#328688#328689#0" expanded="false" />
-            <element signature="e#328726#328727#0" expanded="false" />
-            <element signature="e#329706#329707#0" expanded="false" />
-            <element signature="e#329761#329762#0" expanded="false" />
-            <element signature="e#330521#330522#0" expanded="false" />
-            <element signature="e#330625#330626#0" expanded="false" />
-            <element signature="e#330694#330695#0" expanded="false" />
-            <element signature="e#330750#330751#0" expanded="false" />
-            <element signature="e#330819#330820#0" expanded="false" />
-            <element signature="e#330881#330882#0" expanded="false" />
-            <element signature="e#332070#332071#0" expanded="false" />
-            <element signature="e#332122#332123#0" expanded="false" />
-            <element signature="e#332179#332180#0" expanded="false" />
-            <element signature="e#332233#332234#0" expanded="false" />
-            <element signature="e#337380#337381#0" expanded="false" />
-            <element signature="e#337432#337433#0" expanded="false" />
-            <element signature="e#341930#341931#0" expanded="false" />
-            <element signature="e#341964#341965#0" expanded="false" />
-            <element signature="e#342293#342294#0" expanded="false" />
-            <element signature="e#342329#342330#0" expanded="false" />
-            <element signature="e#342635#342636#0" expanded="false" />
-            <element signature="e#342662#342663#0" expanded="false" />
-            <element signature="e#345505#345506#0" expanded="false" />
-            <element signature="e#345599#345600#0" expanded="false" />
-            <element signature="e#346083#346084#0" expanded="false" />
-            <element signature="e#346181#346182#0" expanded="false" />
-            <element signature="e#351929#351930#0" expanded="false" />
-            <element signature="e#352023#352024#0" expanded="false" />
-            <element signature="e#352461#352498#0" expanded="false" />
-            <element signature="e#354192#354193#0" expanded="false" />
-            <element signature="e#354236#354237#0" expanded="false" />
-            <element signature="e#355643#355678#0" expanded="false" />
-            <element signature="e#357384#357419#0" expanded="false" />
-            <element signature="e#367508#367509#0" expanded="false" />
-            <element signature="e#367536#367537#0" expanded="false" />
-            <element signature="e#377952#377953#0" expanded="false" />
-            <element signature="e#378017#378018#0" expanded="false" />
-            <element signature="e#378099#378100#0" expanded="false" />
-            <element signature="e#378163#378164#0" expanded="false" />
-            <element signature="e#378239#378240#0" expanded="false" />
-            <element signature="e#378296#378297#0" expanded="false" />
-            <element signature="e#378385#378386#0" expanded="false" />
-            <element signature="e#378443#378444#0" expanded="false" />
-            <element signature="e#378523#378524#0" expanded="false" />
-            <element signature="e#378582#378583#0" expanded="false" />
-            <element signature="e#379658#379659#0" expanded="false" />
-            <element signature="e#379720#379721#0" expanded="false" />
-            <element signature="e#380745#380746#0" expanded="false" />
-            <element signature="e#380796#380797#0" expanded="false" />
-            <element signature="e#381650#381651#0" expanded="false" />
-            <element signature="e#381701#381702#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#5920#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1925#1926#0" expanded="false" />
-            <element signature="e#1968#1969#0" expanded="false" />
-            <element signature="e#2975#2976#0" expanded="false" />
-            <element signature="e#3004#3005#0" expanded="false" />
-            <element signature="e#3304#3305#0" expanded="false" />
-            <element signature="e#3336#3337#0" expanded="false" />
-            <element signature="e#4362#4363#0" expanded="false" />
-            <element signature="e#4393#4394#0" expanded="false" />
-            <element signature="e#4519#4520#0" expanded="false" />
-            <element signature="e#4550#4551#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="2510" column="28" selection-start-line="2510" selection-start-column="28" selection-end-line="2510" selection-end-column="28" />
-          <folding>
-            <element signature="e#92623#92624#0" expanded="false" />
-            <element signature="e#92677#92678#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/tools/CustomFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/quiz/SpellingQuiz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/tools/TextToSpeech.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/quiz/reportCard/ReportCardFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/quiz/Spelling_Quiz.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/src/voxspell/Main_Menu.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/tools/CustomFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/tools/TextToSpeech.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/reportCard/ReportCardFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/SpellingQuiz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/quiz/SpellingQuiz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/quiz/reportCard/ReportCardFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/tools/TextToSpeech.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/src/voxspell/quiz/src/voxspell/tools/CustomFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#1024#1025#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        <state relative-caret-position="1134">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="55" column="68" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="68" />
+        <state relative-caret-position="1602">
+          <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1476">
+          <caret line="82" column="22" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main_Menu.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1737,21 +733,73 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/niggers.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        <state relative-caret-position="372">
+          <caret line="99" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="78" column="53" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
           <folding>
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1760,157 +808,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuiz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="324">
+          <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="2600" column="0" selection-start-line="2600" selection-start-column="0" selection-end-line="2600" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>VoxSpell</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package voxspell.quiz;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceDialog;
@@ -24,9 +25,12 @@ import java.util.Optional;
  */
 public class SpellingQuiz {
 
+
     private static final int NUM_LEVELS = 11;
     // Game logic
     private static int _level;
+    // Reportcard shown after quiz
+    private static ReportCardFactory reportCardFactory;
     private int wordsCorrectFirstAttempt, wordAttempt;
     private boolean firstAttempt;
     private List<String> wordList;
@@ -38,8 +42,6 @@ public class SpellingQuiz {
     private TextField wordEntryField;
     // Tools
     private CustomFileReader fileReader = new CustomFileReader();
-    // Reportcard shown after quiz
-    private ReportCardFactory reportCardFactory;
     private ArrayList<String> wordsCopy;
     private ArrayList<String> wordFirstAttempts;
     private ArrayList<String> wordSecondAttempts;
@@ -90,7 +92,7 @@ public class SpellingQuiz {
 
     public void continueSpellingQuiz() {
         // Quiz is finished when the wordlist is empty
-        if (wordList.size() > 9) {
+        if (wordList.size() > 9) { // TODO
             word = wordList.get(0);
             System.out.println(word);
             int wordNumber = 11 - wordList.size();
@@ -106,16 +108,22 @@ public class SpellingQuiz {
                 firstAttempt = false;
             }
         } else { /* Quiz Completed */
-            if (wordsCorrectFirstAttempt < 1) {
+            if (wordsCorrectFirstAttempt < 1) { // TODO
                 /* Failed */
                 reportCardFactory = new FailedQuizReportCardFactory();
             } else {
                 /* Passed */
                 reportCardFactory = new PassedQuizReportCardFactory();
             }
-            ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-            controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
-            controller.generateScene();
+            /*
+             * continueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
+             * and need to run this code on an FX thread. Platform.runLater() achieves this.
+             */
+            Platform.runLater(() -> {
+                ReportCardController controller = reportCardFactory.getControllerAndShowScene();
+                controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+                controller.generateScene();
+            });
         }
     }
 
@@ -175,6 +183,7 @@ public class SpellingQuiz {
 
     @FXML
     private void handleDefinitionBtn(ActionEvent actionEvent) {
+        // TODO
     }
 
     @FXML

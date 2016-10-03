@@ -6,9 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import voxspell.Main;
 
 import java.util.ArrayList;
@@ -18,15 +17,20 @@ import java.util.ArrayList;
  */
 public abstract class ReportCardController {
 
-    static final int NUMWORDS = 1;
+    private static final int NUMWORDS = 1;
 
     @FXML
     protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
+
     @FXML
-    protected WebView wordComparisonView;
+    protected Text wordComparisonView;
+
+    @FXML
+    protected Button retryLevelBtn, proceedToLevelBtn;
 
     @FXML
     protected PieChart pieChart;
+
     int level;
     private ArrayList words;
     private ArrayList wordFirstAttempts;
@@ -41,11 +45,14 @@ public abstract class ReportCardController {
     }
 
     public final void generateScene() {
-        setLevelText();
-        generateStatistics();
-        setWordsCorrectText();
-        setWordComparisonsText();
-        generatePieChart();
+        Platform.runLater(() -> {
+            setLevelText();
+            generateStatistics();
+            setWordsCorrectText();
+            setWordComparisonsText();
+            generatePieChart();
+            retryLevelBtn.setText("Retry Level " + level);
+        });
     }
 
     protected abstract void setLevelText();
@@ -63,39 +70,37 @@ public abstract class ReportCardController {
     }
 
     private void setWordsCorrectText() {
-        wordsSpeltCorrectlyText.setText("You spelt " + mastered + " words correct on the first attempt.");
+        wordsSpeltCorrectlyText.setText("You mastered " + mastered + " words!");
     }
 
     private void setWordComparisonsText() {
         String text = "";
         StringBuilder stringBuilder = new StringBuilder(text);
-        if (failed == 0){
+        if (failed == 0) {
             stringBuilder.append("Nothing to correct!");
         } else {
             /* Only showing comparisons for failed words */
-            for (int i = 0; i < NUMWORDS; i++){
-                if (!words.get(i).equals(wordSecondAttempts.get(i))){
+            for (int i = 0; i < NUMWORDS; i++) {
+                if (!words.get(i).equals(wordSecondAttempts.get(i))) {
                     stringBuilder.append("<strike>").append(wordFirstAttempts.get(i)).append("</strike> ");
                     stringBuilder.append("<strike>").append(wordSecondAttempts.get(i)).append("</strike> ");
-                    stringBuilder.append(words.get(0)).append("\n");
+                    stringBuilder.append(words.get(i)).append("\n");
                 }
             }
         }
         text = stringBuilder.toString();
-        WebEngine webEngine = wordComparisonView.getEngine();
-        webEngine.loadContent(text);
+        //     WebEngine webEngine = wordComparisonView.getEngine();
+        //   webEngine.loadContent(text);
+        wordComparisonView.setText(text);
     }
 
     private void generatePieChart() {
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Words correct first attempt", mastered),
-                        new PieChart.Data("Words correct second attempt", faulted),
-                        new PieChart.Data("Words incorrect", failed));
-        Platform.runLater(() -> { // need to get off AWT thread - why not for setting text ?
-            pieChart.setData(pieChartData);
-            pieChart.setTitle("Your statistics");
-        });
+                        new PieChart.Data("Words Correct First Attempt", mastered),
+                        new PieChart.Data("Words Correct Second Attempt", faulted),
+                        new PieChart.Data("Words Incorrect", failed));
+        pieChart.setData(pieChartData);
     }
 
     @FXML

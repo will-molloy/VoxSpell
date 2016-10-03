@@ -9,15 +9,14 @@ import voxspell.Main;
  */
 public class PassedQuizReportCardController extends ReportCardController {
 
-
     public void setLevelText() {
         passedOrFailedLevelText.setText("Passed level " + level + "!");
+        proceedToLevelBtn.setText("Proceed to Level " + (level + 1));
     }
 
     @FXML
     private void handleNextLevelBtn(ActionEvent actionEvent) {
-        Main.newQuizLevel(++level);
+        Main.newQuizLevel(1 + level);
     }
-
 
 }
