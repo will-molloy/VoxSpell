@@ -14,7 +14,7 @@ public class PassedQuizReportCardFactory extends ReportCardFactory {
     protected Parent getRootAndLoadLoader(FXMLLoader loader) {
         Parent root = null;
         try {
-            root = loader.load(getClass().getResource("Passed_Quiz_Report.fxml").openStream());
+            root = loader.load(getClass().getResource("voxspell/quiz/reportCard/Passed_Quiz_Report.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

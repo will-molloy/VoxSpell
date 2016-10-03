@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import voxspell.Main;
 
 import java.util.ArrayList;
@@ -19,7 +21,10 @@ public abstract class ReportCardController {
     static final int NUMWORDS = 1;
 
     @FXML
-    protected Text wordComparisonsText, passedOrFailedLevelText, wordsSpeltCorrectlyText;
+    protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
+    @FXML
+    protected WebView wordComparisonView;
+
     @FXML
     protected PieChart pieChart;
     int level;
@@ -63,18 +68,22 @@ public abstract class ReportCardController {
 
     private void setWordComparisonsText() {
         String text = "";
+        StringBuilder stringBuilder = new StringBuilder(text);
         if (failed == 0){
-            text += ("Nothing to correct!");
+            stringBuilder.append("Nothing to correct!");
         } else {
             /* Only showing comparisons for failed words */
             for (int i = 0; i < NUMWORDS; i++){
                 if (!words.get(i).equals(wordSecondAttempts.get(i))){
-                    text += wordFirstAttempts.get(i) + " " + wordSecondAttempts.get(i) + " " + words.get(i) + "\n";
+                    stringBuilder.append("<strike>").append(wordFirstAttempts.get(i)).append("</strike> ");
+                    stringBuilder.append("<strike>").append(wordSecondAttempts.get(i)).append("</strike> ");
+                    stringBuilder.append(words.get(0)).append("\n");
                 }
             }
         }
-        wordComparisonsText.setText(text);
-        wordComparisonsText.setStrikethrough(true);
+        text = stringBuilder.toString();
+        WebEngine webEngine = wordComparisonView.getEngine();
+        webEngine.loadContent(text);
     }
 
     private void generatePieChart() {
