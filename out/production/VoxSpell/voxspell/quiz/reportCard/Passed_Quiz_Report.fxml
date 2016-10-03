@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="540.0" prefWidth="960.0"
-            xmlns="http://javafx.com/javafx/8.0.102-ea" fx:controller="voxspell.quiz.reportCard.PassedQuizReportCardFactory">
+            xmlns="http://javafx.com/javafx/8.0.102-ea" fx:controller="voxspell.quiz.reportCard.PassedQuizReportCardController">
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -19,7 +19,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!" textAlignment="CENTER">
+                <Text fx:id="passedLevelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passed!"
+                      textAlignment="CENTER">
                     <GridPane.margin>
                         <Insets left="50.0"/>
                     </GridPane.margin>
@@ -71,7 +72,7 @@
                         <Button layoutX="250.0" layoutY="295.0" mnemonicParsing="false"
                                 onAction="#handleReturnToMainMenuBtn" text="Return to the Main Menu"
                                 GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <PieChart GridPane.columnSpan="2"/>
+                        <PieChart fx:id="pieChart" GridPane.columnSpan="2"/>
                     </children>
                 </GridPane>
                 <Text fx:id="wordComparisonsText" strokeType="OUTSIDE" strokeWidth="0.0" text="words go here"

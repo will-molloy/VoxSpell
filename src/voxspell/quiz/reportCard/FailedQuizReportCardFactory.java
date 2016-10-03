@@ -8,16 +8,18 @@ import java.io.IOException;
 /**
  * Created by will on 3/10/16.
  */
-public class PassedQuizReportCardFactory extends ReportCardFactory {
+public class FailedQuizReportCardFactory extends ReportCardFactory {
 
     @Override
     protected Parent getRootAndLoadLoader(FXMLLoader loader) {
         Parent root = null;
         try {
-            root = loader.load(getClass().getResource("Passed_Quiz_Report.fxml").openStream());
+            root = loader.load(getClass().getResource("Failed_Quiz_Report.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return root;
     }
+
+
 }

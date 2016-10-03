@@ -23,7 +23,7 @@ public class Main extends Application {
     private static Stage window;
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz, reportCard;
+    private static Scene mainMenu, spellingQuiz;
     private static SpellingQuiz spellingQuizInstance;
 
     /**
@@ -34,10 +34,10 @@ public class Main extends Application {
     }
 
     /**
-     * Make more general method - it was working before. ????? - e.g. ShowScene method.
+     * The application wil show the given scene
      */
-    public static void showReportCard() {
-        Platform.runLater(() -> window.setScene(reportCard));
+    public static void setAndShowScene(Scene scene) {
+        Platform.runLater(() -> window.setScene(scene));
     }
 
     public static void main(String[] args) {
@@ -55,9 +55,6 @@ public class Main extends Application {
 
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
-
-        Parent reportCardRoot = FXMLLoader.load(getClass().getResource("quiz/reportCard/Passed_Quiz_Report.fxml"));
-        reportCard = new Scene(reportCardRoot);
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("quiz/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();

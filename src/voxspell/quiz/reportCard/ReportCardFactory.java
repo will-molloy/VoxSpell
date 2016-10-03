@@ -1,11 +1,9 @@
 package voxspell.quiz.reportCard;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import voxspell.Main;
-import voxspell.quiz.SpellingQuiz;
-
-import java.util.ArrayList;
 
 /**
  * Represents a report card once finishing a spelling quiz.
@@ -14,30 +12,16 @@ import java.util.ArrayList;
  */
 public abstract class ReportCardFactory {
 
-    protected static int level;
-    protected ArrayList words;
-    protected ArrayList wordFirstAttempts;
-    protected ArrayList wordSecondAttempts;
-    protected SpellingQuiz spellingQuiz;
+    public final ReportCardController getControllerAndShowScene() {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = getRootAndLoadLoader(loader);
+        ReportCardController controller = loader.getController();
 
-    public final void setValues(SpellingQuiz spellingQuiz, ArrayList<String> words, ArrayList<String> wordFirstAttempts, ArrayList<String> wordSecondAttempts, int level) {
-        this.spellingQuiz = spellingQuiz;
-        this.words = words;
-        this.wordFirstAttempts = wordFirstAttempts;
-        this.wordSecondAttempts = wordSecondAttempts;
-        ReportCardFactory.level = level;
+        Scene reportCard = new Scene(root);
+        Main.setAndShowScene(reportCard);
+
+        return controller;
     }
 
-    public abstract void showScene();
-
-    @FXML
-    private void handleRetryLevelBtn(ActionEvent actionEvent) {
-        Main.newQuizLevel(level);
-    }
-
-    @FXML
-    private void handleReturnToMainMenuBtn(ActionEvent actionEvent) {
-        Main.showMainMenu();
-    }
-
+    protected abstract Parent getRootAndLoadLoader(FXMLLoader loader);
 }

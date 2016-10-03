@@ -6,7 +6,9 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.quiz.reportCard.FailedQuizReportCardFactory;
 import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
+import voxspell.quiz.reportCard.ReportCardController;
 import voxspell.quiz.reportCard.ReportCardFactory;
 import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
@@ -42,7 +44,7 @@ public class SpellingQuiz {
     private ArrayList<String> wordFirstAttempts;
     private ArrayList<String> wordSecondAttempts;
 
-    public static int promptUserForInitialLevel() {
+    public int promptUserForInitialLevel() {
         List<Integer> levelOptions = new ArrayList<>();
         for (int i = 1; i <= NUM_LEVELS; i++) {
             levelOptions.add(i);
@@ -90,6 +92,7 @@ public class SpellingQuiz {
         // Quiz is finished when the wordlist is empty
         if (wordList.size() > 9) {
             word = wordList.get(0);
+            System.out.println(word);
             int wordNumber = 11 - wordList.size();
             String line;
 
@@ -105,13 +108,14 @@ public class SpellingQuiz {
         } else { /* Quiz Completed */
             if (wordsCorrectFirstAttempt < 1) {
                 /* Failed */
-
+                reportCardFactory = new FailedQuizReportCardFactory();
             } else {
                 /* Passed */
                 reportCardFactory = new PassedQuizReportCardFactory();
-                reportCardFactory.setValues(this, wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
-                reportCardFactory.showScene();
             }
+            ReportCardController controller = reportCardFactory.getControllerAndShowScene();
+            controller.setValues(this, wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+            controller.generateScene();
         }
     }
 
@@ -161,12 +165,6 @@ public class SpellingQuiz {
                 }
             }
         }
-    }
-
-    public void restartLevel() {
-        resetFields();
-        readWordsFromFile();
-        continueSpellingQuiz();
     }
 
     @FXML

@@ -1,0 +1,12 @@
+package voxspell.quiz.reportCard;
+
+/**
+ * Created by will on 3/10/16.
+ */
+public class FailedQuizReportCardController extends ReportCardController {
+
+    @Override
+    public void generateScene() {
+
+    }
+}

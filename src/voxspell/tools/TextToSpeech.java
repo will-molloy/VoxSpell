@@ -14,6 +14,7 @@ public class TextToSpeech {
 
     // Singleton
     private static final TextToSpeech instance = new TextToSpeech();
+
     // voice
     private static String voice = "voice_kal_diphone";
     private FestivalWorker festivalWorker;
