@@ -3,8 +3,12 @@ package voxspell.quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import voxspell.Main;
 import voxspell.quiz.reportCard.FailedQuizReportCardFactory;
@@ -17,18 +21,21 @@ import voxspell.tools.TextToSpeech;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
- * Controller for the SpellingQuiz.
+ * Controller for the SpellingQuizController.
  *
  * @author Will Molloy
  */
-public class SpellingQuiz {
+public class SpellingQuizController {
 
 
     private static final int NUM_LEVELS = 11;
     // Game logic
     private static int _level;
+    private int wordNumber;
+
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
     private int wordsCorrectFirstAttempt, wordAttempt;
@@ -45,6 +52,16 @@ public class SpellingQuiz {
     private ArrayList<String> wordsCopy;
     private ArrayList<String> wordFirstAttempts;
     private ArrayList<String> wordSecondAttempts;
+
+    @FXML
+    private Parent imageHBox;
+    private Image wordCorrect, wordIncorrect; // TODO
+    private List<ImageView> images = new ArrayList<>();
+
+    {
+        images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(n -> n instanceof ImageView).map(n -> (ImageView) n).collect(Collectors.toList()));
+    }
+
 
     public int promptUserForInitialLevel() {
         List<Integer> levelOptions = new ArrayList<>();
@@ -95,7 +112,7 @@ public class SpellingQuiz {
         if (wordList.size() > 9) { // TODO
             word = wordList.get(0);
             System.out.println(word);
-            int wordNumber = 11 - wordList.size();
+            wordNumber = 11 - wordList.size();
             String line;
 
             if (firstAttempt) {
@@ -150,6 +167,7 @@ public class SpellingQuiz {
                     wordFirstAttempts.add(attempt);
                     wordSecondAttempts.add(attempt); // adding word here too to maintain indexing
                     wordsCorrectFirstAttempt++;
+                    images.get(wordNumber).setImage(wordCorrect);
                 } else {
                     /* Second attempt correct */
                     wordSecondAttempts.add(attempt);
@@ -168,6 +186,7 @@ public class SpellingQuiz {
                 } else {
                     /* Second attempt incorrect */
                     wordSecondAttempts.add(attempt);
+                    images.get(wordNumber).setImage(wordIncorrect);
                     wordList.remove(word);
                     firstAttempt = true;
                     wordAttempt++;

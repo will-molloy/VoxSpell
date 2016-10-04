@@ -8,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import voxspell.quiz.SpellingQuiz;
+import voxspell.quiz.SpellingQuizController;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class Main extends Application {
 
     // Scenes accessed by the main menu
     private static Scene mainMenu, spellingQuiz;
-    private static SpellingQuiz spellingQuizInstance;
+    private static SpellingQuizController spellingQuizControllerInstance;
 
     /**
      * Shows the Main Menu - used by back buttons throughout the application.
@@ -45,7 +45,7 @@ public class Main extends Application {
     }
 
     public static void newQuizLevel(int level) {
-        spellingQuizInstance.newQuiz(level);
+        spellingQuizControllerInstance.newQuiz(level);
         window.setScene(spellingQuiz);
     }
 
@@ -58,7 +58,7 @@ public class Main extends Application {
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("quiz/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
-        spellingQuizInstance = spellingQuizLoader.getController();
+        spellingQuizControllerInstance = spellingQuizLoader.getController();
 
         spellingQuiz = new Scene(spellingQuizRoot);
 
@@ -70,8 +70,8 @@ public class Main extends Application {
     @FXML
     private void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
-        int level = spellingQuizInstance.promptUserForInitialLevel();
-        spellingQuizInstance.newQuiz(level);
+        int level = spellingQuizControllerInstance.promptUserForInitialLevel();
+        spellingQuizControllerInstance.newQuiz(level);
     }
 
     @FXML

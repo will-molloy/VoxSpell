@@ -1,6 +1,6 @@
 package voxspell.tools;
 
-import voxspell.quiz.SpellingQuiz;
+import voxspell.quiz.SpellingQuizController;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class TextToSpeech {
     private FestivalWorker festivalWorker;
     private boolean _continueSpellingQuiz = false;
     private boolean _slowerVoice = false;
-    private SpellingQuiz _spellingQuiz;
+    private SpellingQuizController _spellingQuizController;
 
     private TextToSpeech() {
     }
@@ -41,9 +41,9 @@ public class TextToSpeech {
     /**
      * Reads a sentence and continues the spelling quiz once done.
      */
-    public void readSentenceAndContinueSpellingQuiz(String sentence, SpellingQuiz spellingQuiz) {
+    public void readSentenceAndContinueSpellingQuiz(String sentence, SpellingQuizController spellingQuizController) {
         _continueSpellingQuiz = true;
-        _spellingQuiz = spellingQuiz;
+        _spellingQuizController = spellingQuizController;
         readSentence(sentence);
     }
 
@@ -132,7 +132,7 @@ public class TextToSpeech {
         @Override
         public void done() {
             if (_continueSpellingQuiz) {
-                _spellingQuiz.continueSpellingQuiz();
+                _spellingQuizController.continueSpellingQuiz();
                 _continueSpellingQuiz = false;
             }
         }
