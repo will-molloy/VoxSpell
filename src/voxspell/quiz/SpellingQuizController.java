@@ -18,6 +18,7 @@ import voxspell.quiz.reportCard.ReportCardFactory;
 import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,12 +56,10 @@ public class SpellingQuizController {
 
     @FXML
     private Parent imageHBox;
-    private Image wordCorrect, wordIncorrect; // TODO
+    private Image wordCorrect = new Image(new File("src/media/images/tick_80.jpg").toURI().toString());
+    private Image wordIncorrect= new Image(new File("src/media/images/cross_80.jpg").toURI().toString());
+    private Image wordFaulted = new Image(new File("src/media/images/square_80.jpg").toURI().toString());
     private List<ImageView> images = new ArrayList<>();
-
-    {
-        images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(n -> n instanceof ImageView).map(n -> (ImageView) n).collect(Collectors.toList()));
-    }
 
 
     public int promptUserForInitialLevel() {
@@ -85,7 +84,6 @@ public class SpellingQuizController {
 
     public void newQuiz(int level) {
         resetFields();
-
         _level = level;
         levelText.setText("Level " + level);
         readWordsFromFile();
@@ -93,8 +91,16 @@ public class SpellingQuizController {
     }
 
     private void resetFields() {
+        // Add ImageViews inside imageHBox to the ArrayList images
+        images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
+        // Blank out all images
+        for (ImageView imageView : images){
+            imageView.setImage(null);
+        }
+        // Reset text views
         levelText.setText("Level ?");
         wordsToSpellText.setText("Spell word 1 of 10");
+        // Reset game logic
         wordsCorrectFirstAttempt = 0;
         wordAttempt = 0;
         firstAttempt = true;
@@ -109,7 +115,7 @@ public class SpellingQuizController {
 
     public void continueSpellingQuiz() {
         // Quiz is finished when the wordlist is empty
-        if (wordList.size() > 9) { // TODO
+        if (wordList.size() > 0) {
             word = wordList.get(0);
             System.out.println(word);
             wordNumber = 11 - wordList.size();
@@ -125,7 +131,7 @@ public class SpellingQuizController {
                 firstAttempt = false;
             }
         } else { /* Quiz Completed */
-            if (wordsCorrectFirstAttempt < 1) { // TODO
+            if (wordsCorrectFirstAttempt < 9) {
                 /* Failed */
                 reportCardFactory = new FailedQuizReportCardFactory();
             } else {
@@ -153,44 +159,60 @@ public class SpellingQuizController {
     }
 
     private void checkInputWord() {
+        int imageIndex = wordNumber-1;
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
         if (wordList.size() > 0) {
 
+            /*********************** DEBUG **********************/
+            if (attempt.equals("skip_")) {
+                ReportCardController.setNumWords(wordNumber-1); // avoid array index oob
+                reportCardFactory = new PassedQuizReportCardFactory();
+                Platform.runLater(() -> {
+                    ReportCardController controller = reportCardFactory.getControllerAndShowScene();
+                    controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+                    controller.generateScene();
+                });
+                return;
+            }
+            /*********************** DEBUG **********************/
+
+
             if (attempt.equals(word)) { /* Correct */
-                textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
-                wordList.remove(word);
 
                 if (firstAttempt) {
                     /* First attempt correct */
                     wordFirstAttempts.add(attempt);
                     wordSecondAttempts.add(attempt); // adding word here too to maintain indexing
                     wordsCorrectFirstAttempt++;
-                    images.get(wordNumber).setImage(wordCorrect);
+                    images.get(imageIndex).setImage(wordCorrect);
                 } else {
                     /* Second attempt correct */
                     wordSecondAttempts.add(attempt);
                     firstAttempt = true;
+                    images.get(imageIndex).setImage(wordCorrect);
                 }
+                wordList.remove(word);
                 wordAttempt++;
+                textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
             } else { /* Incorrect */
-
-                textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
 
                 if (firstAttempt) {
                     /* First attempt incorrect */
                     wordFirstAttempts.add(attempt);
+                    images.get(imageIndex).setImage(wordFaulted);
                     firstAttempt = false;
                 } else {
                     /* Second attempt incorrect */
                     wordSecondAttempts.add(attempt);
-                    images.get(wordNumber).setImage(wordIncorrect);
+                    images.get(imageIndex).setImage(wordIncorrect);
                     wordList.remove(word);
                     firstAttempt = true;
                     wordAttempt++;
                 }
+                textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
             }
         }
     }

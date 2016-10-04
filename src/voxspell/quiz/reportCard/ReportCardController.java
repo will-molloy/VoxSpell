@@ -17,7 +17,10 @@ import java.util.ArrayList;
  */
 public abstract class ReportCardController {
 
-    private static final int NUMWORDS = 1;
+    private static int NUMWORDS = 10;
+    public static void setNumWords(int i){
+        NUMWORDS=i;
+    }
 
     @FXML
     protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
