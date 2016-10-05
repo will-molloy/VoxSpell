@@ -18,27 +18,23 @@ import java.util.ArrayList;
 public abstract class ReportCardController {
 
     private static int NUMWORDS = 10;
-    public static void setNumWords(int i){
-        NUMWORDS=i;
-    }
-
     @FXML
     protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
-
     @FXML
     protected Text wordComparisonView;
-
     @FXML
     protected Button retryLevelBtn, proceedToLevelBtn;
-
     @FXML
     protected PieChart pieChart;
-
     int level;
     private ArrayList words;
     private ArrayList wordFirstAttempts;
     private ArrayList wordSecondAttempts;
     private int mastered, faulted, failed;
+
+    public static void setNumWords(int i) {
+        NUMWORDS = i;
+    }
 
     public final void setValues(ArrayList<String> words, ArrayList<String> wordFirstAttempts, ArrayList<String> wordSecondAttempts, int level) {
         this.words = words;
@@ -92,8 +88,6 @@ public abstract class ReportCardController {
             }
         }
         text = stringBuilder.toString();
-        //     WebEngine webEngine = wordComparisonView.getEngine();
-        //   webEngine.loadContent(text);
         wordComparisonView.setText(text);
     }
 

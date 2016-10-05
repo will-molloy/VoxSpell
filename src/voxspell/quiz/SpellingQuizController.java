@@ -3,7 +3,6 @@ package voxspell.quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
@@ -17,6 +16,7 @@ import voxspell.quiz.reportCard.ReportCardController;
 import voxspell.quiz.reportCard.ReportCardFactory;
 import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
+import voxspell.tools.WordDefinitionFinder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,18 +27,16 @@ import java.util.stream.Collectors;
 /**
  * Controller for the SpellingQuizController.
  *
- * @author Will Molloy
+ * @author Karim Cisse - implemented Spelling Quiz logic
+ * @author Will Molloy - convert to JavaFX, adding ImageViews
  */
 public class SpellingQuizController {
-
-
     private static final int NUM_LEVELS = 11;
     // Game logic
     private static int _level;
-    private int wordNumber;
-
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
+    private int wordNumber;
     private int wordsCorrectFirstAttempt, wordAttempt;
     private boolean firstAttempt;
     private List<String> wordList;
@@ -57,7 +55,7 @@ public class SpellingQuizController {
     @FXML
     private Parent imageHBox;
     private Image wordCorrect = new Image(new File("src/media/images/tick_80.jpg").toURI().toString());
-    private Image wordIncorrect= new Image(new File("src/media/images/cross_80.jpg").toURI().toString());
+    private Image wordIncorrect = new Image(new File("src/media/images/cross_80.jpg").toURI().toString());
     private Image wordFaulted = new Image(new File("src/media/images/square_80.jpg").toURI().toString());
     private List<ImageView> images = new ArrayList<>();
 
@@ -94,7 +92,7 @@ public class SpellingQuizController {
         // Add ImageViews inside imageHBox to the ArrayList images
         images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
         // Blank out all images
-        for (ImageView imageView : images){
+        for (ImageView imageView : images) {
             imageView.setImage(null);
         }
         // Reset text views
@@ -126,7 +124,7 @@ public class SpellingQuizController {
                 wordsToSpellText.setText("Spell word " + wordNumber + " of 10");
                 textToSpeech.readSentence(line);
             } else { /* Second Attempt */
-                line = "Try once more. " + word + " ... " + word;
+                line = "Try once more. " + word + ". ... " + word;
                 textToSpeech.readSentence(line);
                 firstAttempt = false;
             }
@@ -159,7 +157,7 @@ public class SpellingQuizController {
     }
 
     private void checkInputWord() {
-        int imageIndex = wordNumber-1;
+        int imageIndex = wordNumber - 1;
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
@@ -167,7 +165,7 @@ public class SpellingQuizController {
 
             /*********************** DEBUG **********************/
             if (attempt.equals("skip_")) {
-                ReportCardController.setNumWords(wordNumber-1); // avoid array index oob
+                ReportCardController.setNumWords(wordNumber - 1); // avoid array index oob
                 reportCardFactory = new PassedQuizReportCardFactory();
                 Platform.runLater(() -> {
                     ReportCardController controller = reportCardFactory.getControllerAndShowScene();
@@ -224,7 +222,10 @@ public class SpellingQuizController {
 
     @FXML
     private void handleDefinitionBtn(ActionEvent actionEvent) {
-        // TODO
+        WordDefinitionFinder wordDefinitionFinder = new WordDefinitionFinder();
+        String definition = wordDefinitionFinder.getDefinition(word);
+        System.out.println(definition);
+        textToSpeech.readSentence(definition);
     }
 
     @FXML
