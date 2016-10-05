@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Contains a few methods to read files for statistics/words from the wordlist.
+ * Contains a few methods to read files for statistics/words from the wordList.
  *
  * @author Karim Cisse
  * @author Will Molloy
@@ -17,7 +17,7 @@ public class CustomFileReader {
     private BufferedReader bufferedReader;
 
     /**
-     * Reads a set of 10 words from the wordlist file based on the level provided.
+     * Reads a set of 10 words from the wordList file based on the level provided.
      *
      * @author Karim Cisse
      */
@@ -43,7 +43,7 @@ public class CustomFileReader {
     }
 
     /**
-     * Read words in from wordlist file.
+     * Read words in from wordList file.
      *
      * @author Karim Cisse - implemented logic
      * @author Will Molloy - changed to user buffered readers

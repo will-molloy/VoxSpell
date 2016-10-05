@@ -1,11 +1,20 @@
 package voxspell.wordlistEditor;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -22,21 +31,29 @@ import java.util.ResourceBundle;
  *
  * @author Will Molloy
  */
-public class WordListEditorController implements Initializable{
+public class WordListEditorController implements Initializable {
 
-    private static final String WORD_LIST_NAME = ".wordlist";
+    private static final String WORD_LIST_NAME = ".wordList";
     private static final File wordListFile = new File(WORD_LIST_NAME);
+    private static List<WordList> wordLists = new ArrayList<>();
 
-    private List<WordList> wordLists = new ArrayList<>();
+    @FXML
+    private Accordion wordListsView;
+
 
     /**
-     * Parse hidden wordlist file and add words to view.
+     * Parse hidden wordList file and add words to view.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (!wordListFile.exists()){
+        if (!wordListFile.exists()) {
             makeHiddenWordListFile();
         }
+        readWordListFileIntoList();
+        updateGUI();
+        pointLists();
+
+        System.out.println("WOW");
     }
 
     private void makeHiddenWordListFile() {
@@ -46,6 +63,69 @@ public class WordListEditorController implements Initializable{
             Files.write(file, lines, Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void readWordListFileIntoList() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(WORD_LIST_NAME));
+            String line;
+            WordList wordList = null;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] wordAndDef = line.split("\\t+"); // word and definition are seperated by a tab within the hidden file.
+
+                if (line.startsWith("%")) {
+                    if (wordList != null) { // null check for first iteration
+                        wordLists.add(wordList);
+                    }
+                    wordList = new WordList(line.substring(1, line.length())); // set name of wordList
+                } else {
+                    Word word = new Word(wordAndDef[0]);
+                    if (wordAndDef.length > 1) { // definition detected
+                        word.setDefinition(wordAndDef[1]);
+                    }
+                    wordList.addWord(word);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateGUI() {
+        final TableView[] tableViews = new TableView[wordLists.size()];
+        final TitledPane[] tiltedPanes = new TitledPane[wordLists.size()];
+
+        for (int i = 0; i < wordLists.size(); i++) {
+            tableViews[i] = new TableView();
+            tableViews[i].setEditable(true);
+            tiltedPanes[i] = new TitledPane();
+
+            final ObservableList<Word> data = FXCollections.observableArrayList(wordLists.get(i).wordList());
+
+            TableColumn<Word, String> wordCol = new TableColumn<>("Word");
+            wordCol.setMinWidth(150);
+            wordCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+            TableColumn<Word, String> defCol = new TableColumn<>("Definition");
+            defCol.setMinWidth(450);
+            defCol.setCellValueFactory(new PropertyValueFactory<>("definition"));
+
+            tableViews[i].setItems(data);
+            tableViews[i].getColumns().addAll(wordCol, defCol);
+
+            tiltedPanes[i].setText(wordLists.get(i).toString());
+            tiltedPanes[i].setContent(tableViews[i]);
+        }
+
+        wordListsView.getPanes().addAll(tiltedPanes);
+        wordListsView.setExpandedPane(tiltedPanes[0]);
+    }
+
+    private void pointLists() {
+        for (int i = 0; i < wordLists.size()-1; i++){
+            wordLists.get(i).setNextList(wordLists.get(i+1));
         }
     }
 
@@ -64,5 +144,9 @@ public class WordListEditorController implements Initializable{
     @FXML
     private void handleBackBtn(ActionEvent actionEvent) {
         Main.showMainMenu();
+    }
+
+    @FXML
+    private void handleGenerateDefBtn(ActionEvent actionEvent) {
     }
 }

@@ -1,5 +1,6 @@
 package voxspell.wordlistEditor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,24 +9,30 @@ import java.util.List;
  *
  * @author Will Molloy
  */
-public class WordList implements Iterator{
+public class WordList implements Iterator {
 
-    private List<Word> words;
+    private List<Word> words = new ArrayList<>();
     private String name;
     private WordList nextList;
 
-    public WordList(List<Word> words, String name, WordList nextList){
-        this.words = words;
+    public WordList(String name) {
         this.name = name;
-        this.nextList = nextList;
     }
 
-    public int size(){
+    public void addWord(Word word) {
+        words.add(word);
+    }
+
+    public void setNextList(WordList wordList) {
+        this.nextList = wordList;
+    }
+
+    public int size() {
         return words.size();
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
@@ -37,5 +44,9 @@ public class WordList implements Iterator{
     @Override
     public WordList next() {
         return nextList;
+    }
+
+    public List<Word> wordList() {
+        return words;
     }
 }

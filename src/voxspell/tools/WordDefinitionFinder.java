@@ -7,9 +7,9 @@ import java.io.IOException;
 
 /**
  * Finds the definition for a given word using sdcv bash calls and a WebSter 1913 dictionary.
- *
+ * <p>
  * Both the dictionary and sdcv needs to be installed on your system for this to work.
- *
+ * <p>
  * Install sdcv using sudo apt-get install sdcv
  * And extract the dictionary inside Voxspell/Dictionary to /usr/share/stardict/dic
  *
@@ -21,18 +21,18 @@ public class WordDefinitionFinder {
     private static final File definitionFile = new File(definitionFileName);
     private String word;
 
+    public WordDefinitionFinder(String word) {
+        this.word = word;
+    }
+
     public static void main(String[] args) {
         WordDefinitionFinder wordDefinitionFinder = new WordDefinitionFinder("new zealand");
         System.out.println(wordDefinitionFinder.getDefinition());
     }
 
-    public WordDefinitionFinder(String word){
-        this.word = word;
-    }
-
     /**
      * Returns the definition for the supplied word.
-     *
+     * <p>
      * Note: does not work for every word. E.g. 'got', sdcv will lookup 'get' instead..
      */
     public String getDefinition() {
@@ -40,7 +40,7 @@ public class WordDefinitionFinder {
         String definition;
 
         // Run the sdcv command and print the output to a hidden file '.definition'
-        command = "sdcv " + "\"" + word + "\"" + " > "  + definitionFileName ;
+        command = "sdcv " + "\"" + word + "\"" + " > " + definitionFileName;
         runBashCommand(command);
 
         // Extract the first definition only (sdcv may print ~10+ definitions for a word)
@@ -64,19 +64,19 @@ public class WordDefinitionFinder {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(definitionFile));
 
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.trim().equals("")){
+                if (line.trim().equals("")) {
                     continue; // avoid AIOOB with empty lines
                 }
                 if (defFound && wordFound) {
-                        line = line.trim();
-                        // keep adding to definition until "[1913 Webster]" or "[Webster 1913 ...]"
-                        if (line.contains("[1913") || line.contains("[Webster")) {
-                            break;
+                    line = line.trim();
+                    // keep adding to definition until "[1913 Webster]" or "[Webster 1913 ...]"
+                    if (line.contains("[1913") || line.contains("[Webster")) {
+                        break;
                         // Ignore starting lines with [], () or {} , definition begins with a capital letter.
-                        } else if (( line.contains("(") || line.contains("[") || line.contains("{") || !Character.isUpperCase(line.charAt(0)) ) && def.equals("")) {
-                            continue;
-                        }
-                        def += line;
+                    } else if ((line.contains("(") || line.contains("[") || line.contains("{") || !Character.isUpperCase(line.charAt(0))) && def.equals("")) {
+                        continue;
+                    }
+                    def += line;
                 }
                 if (!wordFound) {
                     wordFound = lineContainsWord(line);
@@ -94,17 +94,17 @@ public class WordDefinitionFinder {
         }
 
         // special case if word is found but definition isn't (def didn't begin with a number i.e. sdcv only found one definition)
-        if (wordFound && !defFound){
+        if (wordFound && !defFound) {
             def = extractDefinition(true);
-        } else if (!wordFound){
+        } else if (!wordFound) {
             return "Definition not found."; // 'word' not found in dictionary
         }
         return def;
     }
 
     private boolean lineContainsWord(String line) {
-        for (int i = 0; i < word.split("\\s+").length; i++){
-            if (!(line.split("\\s+")[i].toLowerCase().equals(word.split("\\s+")[i].toLowerCase()))){
+        for (int i = 0; i < word.split("\\s+").length; i++) {
+            if (!(line.split("\\s+")[i].toLowerCase().equals(word.split("\\s+")[i].toLowerCase()))) {
                 return false;
             }
         }

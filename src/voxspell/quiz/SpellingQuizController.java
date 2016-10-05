@@ -112,7 +112,7 @@ public class SpellingQuizController {
     }
 
     public void continueSpellingQuiz() {
-        // Quiz is finished when the wordlist is empty
+        // Quiz is finished when the wordList is empty
         if (wordList.size() > 0) {
             word = wordList.get(0);
             System.out.println(word);
