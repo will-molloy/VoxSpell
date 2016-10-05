@@ -1,6 +1,7 @@
 package voxspell.wordlistEditor;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,4 +50,5 @@ public class WordList implements Iterator {
     public List<Word> wordList() {
         return words;
     }
+
 }

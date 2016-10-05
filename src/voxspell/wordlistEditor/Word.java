@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author Will Molloy
  */
-public class Word {
+public class Word implements Comparable<Word> {
 
     private SimpleStringProperty name;
     private SimpleStringProperty definition;
@@ -41,4 +41,8 @@ public class Word {
         this.definition.set(definition);
     }
 
+    @Override
+    public int compareTo(Word o) {
+        return name.get().toLowerCase().compareTo(o.name.get().toLowerCase());
+    }
 }

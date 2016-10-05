@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Finds the definition for a given word using sdcv bash calls and a WebSter 1913 dictionary.
@@ -19,15 +20,17 @@ public class WordDefinitionFinder {
 
     private static final String definitionFileName = ".definition";
     private static final File definitionFile = new File(definitionFileName);
-    private String word;
-
-    public WordDefinitionFinder(String word) {
-        this.word = word;
-    }
+    private static String word;
 
     public static void main(String[] args) {
-        WordDefinitionFinder wordDefinitionFinder = new WordDefinitionFinder("new zealand");
-        System.out.println(wordDefinitionFinder.getDefinition());
+        /*
+         TEST WITH:
+         New Zealand - no numbers
+         to - finds other words
+         you - difficult lookup
+         eyes - timeout
+         */
+        System.out.println(getDefinition("knew"));
     }
 
     /**
@@ -35,7 +38,8 @@ public class WordDefinitionFinder {
      * <p>
      * Note: does not work for every word. E.g. 'got', sdcv will lookup 'get' instead..
      */
-    public String getDefinition() {
+    public static String getDefinition(String word) {
+        WordDefinitionFinder.word = word;
         String command;
         String definition;
 
@@ -56,7 +60,7 @@ public class WordDefinitionFinder {
         return definition;
     }
 
-    private String extractDefinition(boolean defFound) {
+    private static String extractDefinition(boolean defFound) {
         String def = "";
         boolean wordFound = false;
         String line;
@@ -96,13 +100,13 @@ public class WordDefinitionFinder {
         // special case if word is found but definition isn't (def didn't begin with a number i.e. sdcv only found one definition)
         if (wordFound && !defFound) {
             def = extractDefinition(true);
-        } else if (!wordFound) {
+        } else if (!wordFound || def.trim().equals("")) {
             return "Definition not found."; // 'word' not found in dictionary
         }
         return def;
     }
 
-    private boolean lineContainsWord(String line) {
+    private static boolean lineContainsWord(String line) {
         for (int i = 0; i < word.split("\\s+").length; i++) {
             if (!(line.split("\\s+")[i].toLowerCase().equals(word.split("\\s+")[i].toLowerCase()))) {
                 return false;
@@ -111,7 +115,7 @@ public class WordDefinitionFinder {
         return true;
     }
 
-    private String trimDefinition(String definition) {
+    private static String trimDefinition(String definition) {
         String output = "";
         for (String s : definition.split("\\s+")) {
             if (s.equals("1.")) {
@@ -126,11 +130,11 @@ public class WordDefinitionFinder {
         return output;
     }
 
-    private void runBashCommand(String command) {
+    private static void runBashCommand(String command) {
         try {
             ProcessBuilder _processBuilder = new ProcessBuilder("bash", "-c", command);
             Process _process = _processBuilder.start();
-            _process.waitFor();
+            _process.waitFor(100, TimeUnit.MILLISECONDS); // Sometimes sdcv gives an option if word is vague, timeout if this happens
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

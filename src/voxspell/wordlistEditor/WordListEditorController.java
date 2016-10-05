@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
+import voxspell.tools.WordDefinitionFinder;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,10 +22,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Controls the Word List Editor.
@@ -50,10 +48,17 @@ public class WordListEditorController implements Initializable {
             makeHiddenWordListFile();
         }
         readWordListFileIntoList();
-        updateGUI();
+        sortLists();
+        createGUI();
         pointLists();
 
         System.out.println("WOW");
+    }
+
+    private void sortLists() {
+        for (WordList s : wordLists){
+            Collections.sort(s.wordList());
+        }
     }
 
     private void makeHiddenWordListFile() {
@@ -93,7 +98,7 @@ public class WordListEditorController implements Initializable {
         }
     }
 
-    private void updateGUI() {
+    private void createGUI() {
         final TableView[] tableViews = new TableView[wordLists.size()];
         final TitledPane[] tiltedPanes = new TitledPane[wordLists.size()];
 
@@ -105,10 +110,12 @@ public class WordListEditorController implements Initializable {
             final ObservableList<Word> data = FXCollections.observableArrayList(wordLists.get(i).wordList());
 
             TableColumn<Word, String> wordCol = new TableColumn<>("Word");
+            wordCol.setSortable(false);
             wordCol.setMinWidth(150);
             wordCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
             TableColumn<Word, String> defCol = new TableColumn<>("Definition");
+            defCol.setSortable(false);
             defCol.setMinWidth(450);
             defCol.setCellValueFactory(new PropertyValueFactory<>("definition"));
 
@@ -148,5 +155,14 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleGenerateDefBtn(ActionEvent actionEvent) {
+        for (WordList wordList : wordLists){
+            System.out.println("List: " + wordList.toString());
+            for (Word word : wordList.wordList()){
+                if (word.getDefinition().equals("")) {
+                    word.setDefinition(WordDefinitionFinder.getDefinition(word.toString())); // TODO MUTLI THREAD IT
+                }
+                System.out.println("Word: " + word + " Def: " + word.getDefinition());
+            }
+        }
     }
 }
