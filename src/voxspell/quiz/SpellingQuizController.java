@@ -222,8 +222,8 @@ public class SpellingQuizController {
 
     @FXML
     private void handleDefinitionBtn(ActionEvent actionEvent) {
-        WordDefinitionFinder wordDefinitionFinder = new WordDefinitionFinder();
-        String definition = wordDefinitionFinder.getDefinition(word);
+        WordDefinitionFinder wordDefinitionFinder = new WordDefinitionFinder(word);
+        String definition = wordDefinitionFinder.getDefinition();
         System.out.println(definition);
         textToSpeech.readSentence(definition);
     }
