@@ -23,7 +23,7 @@ public class Main extends Application {
     private static Stage window;
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz;
+    private static Scene mainMenu, spellingQuiz, wordListEditor;
     private static SpellingQuizController spellingQuizControllerInstance;
 
     /**
@@ -59,8 +59,10 @@ public class Main extends Application {
         FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("quiz/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
         spellingQuizControllerInstance = spellingQuizLoader.getController();
-
         spellingQuiz = new Scene(spellingQuizRoot);
+
+        Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/Word_List_Editor.fxml"));
+        wordListEditor = new Scene(wordListRoot);
 
         window.setTitle("VoxSpell");
         window.setScene(mainMenu);
@@ -79,6 +81,7 @@ public class Main extends Application {
     }
 
     @FXML
-    private void handleSettingsButton(ActionEvent actionEvent) {
+    private void handleWordListEditorButton(ActionEvent actionEvent) {
+        window.setScene(wordListEditor);
     }
 }
