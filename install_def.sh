@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Install sdcv
 sudo apt-get install sdcv

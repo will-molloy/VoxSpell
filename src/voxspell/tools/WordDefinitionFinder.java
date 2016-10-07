@@ -1,9 +1,12 @@
 package voxspell.tools;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,8 +22,17 @@ import java.util.concurrent.TimeUnit;
 public class WordDefinitionFinder {
 
     private static final String definitionFileName = ".definition";
-    private static final File definitionFile = new File(definitionFileName);
+    private static File definitionFile = new File(definitionFileName);
     private static String word;
+    private static BufferedReader bufferedReader;
+
+    static {
+        try {
+            bufferedReader = new BufferedReader(new FileReader(definitionFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         /*
@@ -30,8 +42,10 @@ public class WordDefinitionFinder {
          you - difficult lookup
          eyes - timeout
          */
-        System.out.println(getDefinition("knew"));
+      //  System.out.println(getDefinition("knew"));
     }
+
+
 
     /**
      * Returns the definition for the supplied word.
@@ -44,6 +58,16 @@ public class WordDefinitionFinder {
         String definition;
 
         // Run the sdcv command and print the output to a hidden file '.definition'
+        if (!definitionFile.exists()) {
+            List<String> lines = Collections.singletonList("");
+            Path file = Paths.get(definitionFileName);
+            try {
+                Files.write(file, lines, Charset.forName("UTF-8"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         command = "sdcv " + "\"" + word + "\"" + " > " + definitionFileName;
         runBashCommand(command);
 
@@ -53,9 +77,6 @@ public class WordDefinitionFinder {
         // Trim defintion - remove numbers and dates etc
         definition = trimDefinition(definition);
 
-        // Delete hidden file
-        command = "rm -f " + definitionFileName;
-        runBashCommand(command);
 
         return definition;
     }
@@ -64,8 +85,8 @@ public class WordDefinitionFinder {
         String def = "";
         boolean wordFound = false;
         String line;
+
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(definitionFile));
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.trim().equals("")) {
@@ -92,6 +113,7 @@ public class WordDefinitionFinder {
                         defFound = true;
                     }
                 }
+                bufferedReader.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

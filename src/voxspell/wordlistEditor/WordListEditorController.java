@@ -2,13 +2,11 @@ package voxspell.wordlistEditor;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
 import voxspell.tools.WordDefinitionFinder;
@@ -155,14 +153,36 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleGenerateDefBtn(ActionEvent actionEvent) {
-        for (WordList wordList : wordLists){
-            System.out.println("List: " + wordList.toString());
-            for (Word word : wordList.wordList()){
-                if (word.getDefinition().equals("")) {
-                    word.setDefinition(WordDefinitionFinder.getDefinition(word.toString())); // TODO MUTLI THREAD IT
+        Task<Void> task = new Task<Void>(){
+
+            @Override
+            protected Void call() throws Exception {
+                int max = 0;
+                int current = 0;
+                for (WordList wordList : wordLists){
+                    max += wordList.size();
                 }
-                System.out.println("Word: " + word + " Def: " + word.getDefinition());
+                for (WordList wordList : wordLists){
+                    System.out.println("List: " + wordList.toString());
+                    for (Word word : wordList.wordList()){
+                        if (isCancelled()){
+                            break;
+                        }
+                        if (word.getDefinition().equals("")) {
+                            word.setDefinition(WordDefinitionFinder.getDefinition(word.toString()));
+                        }
+                        updateProgress(++current, max);
+                        System.out.println("Word: " + word + " Def: " + word.getDefinition());
+                    }
+                }
+                return null;
             }
-        }
+        };
+
+        Thread thread = new Thread(task);
+        ProgressBar bar = new ProgressBar();
+        bar.progressProperty().bind(task.progressProperty());
+        thread.setDaemon(true);
+        thread.start();
     }
 }
