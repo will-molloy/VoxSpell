@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sun.reflect.CallerSensitive;
 import voxspell.quiz.SpellingQuizController;
 
 import java.io.IOException;
@@ -22,8 +24,11 @@ public class Main extends Application {
     // Overall window
     private static Stage window;
 
+    // Popup window
+    private static Stage popup;
+
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz, wordListEditor;
+    public static Scene mainMenu, spellingQuiz, wordListEditor;
     private static SpellingQuizController spellingQuizControllerInstance;
 
     /**
@@ -38,6 +43,21 @@ public class Main extends Application {
      */
     public static void setAndShowScene(Scene scene) {
         Platform.runLater(() -> window.setScene(scene));
+    }
+
+    /**
+     * Shows the given scene as a popup.
+     * Prevents the user from accessing the primary stage until closing the popup.
+     */
+    public static void showPopup(Scene scene){
+        Platform.runLater(() -> {
+            popup.setScene(scene);
+            popup.show();
+        });
+    }
+
+    public static void hidePopup(){
+        popup.hide();
     }
 
     public static void main(String[] args) {
@@ -68,6 +88,12 @@ public class Main extends Application {
         window.setScene(mainMenu);
         window.setResizable(false);
         window.show();
+
+        // Popups to be used later
+        popup = new Stage();
+        hidePopup();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initOwner(window.getScene().getWindow());
     }
 
     @FXML

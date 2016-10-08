@@ -5,16 +5,16 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
 import voxspell.tools.WordDefinitionFinder;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -59,12 +59,6 @@ public class WordListEditorController implements Initializable {
         System.out.println("WOW");
     }
 
-    private void sortLists() {
-        for (WordList s : wordLists) {
-            Collections.sort(s.wordList());
-        }
-    }
-
     private void makeHiddenWordListFile() {
         List<String> lines = Collections.singletonList("");
         Path file = Paths.get(WORD_LIST_NAME);
@@ -102,36 +96,39 @@ public class WordListEditorController implements Initializable {
         }
     }
 
-    private void createGUI() {
-        final TableView[] tableViews = new TableView[wordLists.size()];
-        final TitledPane[] tiltedPanes = new TitledPane[wordLists.size()];
-
-        for (int i = 0; i < wordLists.size(); i++) {
-            tableViews[i] = new TableView();
-            tableViews[i].setEditable(true);
-            tiltedPanes[i] = new TitledPane();
-
-            final ObservableList<Word> data = FXCollections.observableArrayList(wordLists.get(i).wordList());
-
-            TableColumn<Word, String> wordCol = new TableColumn<>("Word");
-            wordCol.setSortable(false);
-            wordCol.setMinWidth(150);
-            wordCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-            TableColumn<Word, String> defCol = new TableColumn<>("Definition");
-            defCol.setSortable(false);
-            defCol.setMinWidth(450);
-            defCol.setCellValueFactory(new PropertyValueFactory<>("definition"));
-
-            tableViews[i].setItems(data);
-            tableViews[i].getColumns().addAll(wordCol, defCol);
-
-            tiltedPanes[i].setText(wordLists.get(i).toString());
-            tiltedPanes[i].setContent(tableViews[i]);
+    private void sortLists() {
+        for (WordList s : wordLists) {
+            Collections.sort(s.wordList());
         }
+    }
 
-        wordListsView.getPanes().addAll(tiltedPanes);
-        wordListsView.setExpandedPane(tiltedPanes[0]);
+    private void createGUI() {
+        wordLists.forEach(this::addWordListToTableInTitledView);
+    }
+
+    private void addWordListToTableInTitledView(WordList wordList) {
+        TableView tableView = new TableView();
+        TitledPane titledPane = new TitledPane();
+
+        final ObservableList<Word> data = FXCollections.observableArrayList(wordList.wordList());
+
+        TableColumn<Word, String> wordCol = new TableColumn<>("Word");
+        wordCol.setSortable(false);
+        wordCol.setMinWidth(150);
+        wordCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Word, String> defCol = new TableColumn<>("Definition");
+        defCol.setSortable(false);
+        defCol.setMinWidth(450);
+        defCol.setCellValueFactory(new PropertyValueFactory<>("definition"));
+
+        tableView.setItems(data);
+        tableView.getColumns().addAll(wordCol, defCol);
+
+        titledPane.setText(wordList.toString());
+        titledPane.setContent(tableView);
+
+        wordListsView.getPanes().addAll(titledPane);
     }
 
     private void pointLists() {
@@ -146,6 +143,14 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleAddBtn(ActionEvent actionEvent) {
+        try {
+            Parent addWordListPopupRoot = FXMLLoader.load(getClass().getResource("Add_Word_List.fxml"));
+            Scene scene = new Scene(addWordListPopupRoot);
+            AddWordListPopupController.setWordListEditorInstance(this);
+            Main.showPopup(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -193,5 +198,30 @@ public class WordListEditorController implements Initializable {
         bar.progressProperty().bind(task.progressProperty());
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void addWordList(String category, List<Word> wordList){
+        WordList newList = new WordList(category);
+        newList.wordList().addAll(wordList);
+
+        // Add list to file
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(wordListFile, true));
+            bufferedWriter.write("%" + category);
+            bufferedWriter.newLine();
+            for (Word word : wordList){
+                bufferedWriter.write(word + "\t" + word.getDefinition());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Add list to data
+        wordLists.add(newList);
+
+        // Add list to GUI
+        addWordListToTableInTitledView(newList);
     }
 }
