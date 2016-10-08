@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 public class AddWordListPopupController implements Initializable {
 
     private static String categoryText;
+    private static ObservableList<Word> data;
+    private static WordListEditorController wordListEditorInstance;
     @FXML
     private TextField wordField;
     @FXML
@@ -34,9 +36,6 @@ public class AddWordListPopupController implements Initializable {
     @FXML
     private TableView<Word> wordListTableView;
 
-    private static ObservableList<Word> data;
-
-    private static WordListEditorController wordListEditorInstance;
     static void setWordListEditorInstance(WordListEditorController wordListEditorInstance) {
         AddWordListPopupController.wordListEditorInstance = wordListEditorInstance;
     }
@@ -72,7 +71,6 @@ public class AddWordListPopupController implements Initializable {
     }
 
 
-
     @FXML
     private void handleCancelBtn(ActionEvent actionEvent) {
         Main.hidePopup();
@@ -80,7 +78,7 @@ public class AddWordListPopupController implements Initializable {
 
     @FXML
     private void handleAddWordBtn(ActionEvent actionEvent) {
-        if (wordField.getText().trim().equals("")){
+        if (wordField.getText().trim().equals("")) {
             // TODO Let user know no word is entered.. Fine is definition is blank
         } else {
             String name = wordField.getText();

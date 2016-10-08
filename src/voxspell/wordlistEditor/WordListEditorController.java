@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import voxspell.Main;
 import voxspell.tools.WordDefinitionFinder;
 
@@ -154,13 +154,13 @@ public class WordListEditorController implements Initializable {
         wordLists.remove(tableData);
     }
 
-    private void removeWordListFromFile(String wordListTitle){ // TODO NEED TO MUTLITHREAD, fails if removing too quickly
+    private void removeWordListFromFile(String wordListTitle) { // TODO NEED TO MUTLITHREAD, fails if removing too quickly
         try {
             File tempFile = new File(".wordListCopy");
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
             BufferedReader bufferedReader = new BufferedReader(new FileReader(wordListFile));
             String line;
-            while ((line = bufferedReader.readLine()) != null){
+            while ((line = bufferedReader.readLine()) != null) {
                 readCategory:
                 {
                     if (line.equals("%" + wordListTitle)) {
@@ -200,7 +200,6 @@ public class WordListEditorController implements Initializable {
     @FXML
     private void handleModifyBtn(ActionEvent actionEvent) {
         TitledPane expandedPane = wordListsView.getExpandedPane();
-
         try {
             FXMLLoader loader = new FXMLLoader();
             Parent addWordListPopupRoot = loader.load(getClass().getResource("Add_Word_List.fxml").openStream());
@@ -217,8 +216,16 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleImportFileBtn(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a word list");
+        File file = Main.showFileChooserAndReturnChosenFile(fileChooser);
+
+        System.out.println(file.getName());
+
+        //      File file = new File(chosenFile);
 
     }
+
 
     @FXML
     private void handleBackBtn(ActionEvent actionEvent) {
@@ -263,7 +270,7 @@ public class WordListEditorController implements Initializable {
         thread.start();
     }
 
-    public void addWordList(String category, List<Word> wordList){
+    public void addWordList(String category, List<Word> wordList) {
         WordList newList = new WordList(category);
         newList.wordList().addAll(wordList);
 
@@ -272,7 +279,7 @@ public class WordListEditorController implements Initializable {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(wordListFile, true));
             bufferedWriter.write("%" + category);
             bufferedWriter.newLine();
-            for (Word word : wordList){
+            for (Word word : wordList) {
                 bufferedWriter.write(word + "\t" + word.getDefinition());
                 bufferedWriter.newLine();
             }

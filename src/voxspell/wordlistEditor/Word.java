@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
  * Words have a definition and a Name.
  *
  * @author Will Molloy
- *
  */
 public class Word implements Comparable<Word> {
 
@@ -19,7 +18,7 @@ public class Word implements Comparable<Word> {
         this.definition = new SimpleStringProperty("");
     }
 
-    public Word(String name, String definition){
+    public Word(String name, String definition) {
         this.name = new SimpleStringProperty(name);
         this.definition = new SimpleStringProperty(definition);
     }

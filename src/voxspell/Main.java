@@ -7,11 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sun.reflect.CallerSensitive;
 import voxspell.quiz.SpellingQuizController;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -21,14 +22,12 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
-    // Overall window
-    private static Stage window;
-
-    // Popup window
-    private static Stage popup;
-
     // Scenes accessed by the main menu
     public static Scene mainMenu, spellingQuiz, wordListEditor;
+    // Overall window
+    private static Stage window;
+    // Popup window
+    private static Stage popup;
     private static SpellingQuizController spellingQuizControllerInstance;
 
     /**
@@ -49,15 +48,19 @@ public class Main extends Application {
      * Shows the given scene as a popup.
      * Prevents the user from accessing the primary stage until closing the popup.
      */
-    public static void showPopup(Scene scene){
+    public static void showPopup(Scene scene) {
         Platform.runLater(() -> {
             popup.setScene(scene);
             popup.show();
         });
     }
 
-    public static void hidePopup(){
+    public static void hidePopup() {
         popup.hide();
+    }
+
+    public static File showFileChooserAndReturnChosenFile(FileChooser fileChooser) {
+        return fileChooser.showOpenDialog(window);
     }
 
     public static void main(String[] args) {
@@ -111,4 +114,6 @@ public class Main extends Application {
     private void handleWordListEditorButton(ActionEvent actionEvent) {
         window.setScene(wordListEditor);
     }
+
+
 }
