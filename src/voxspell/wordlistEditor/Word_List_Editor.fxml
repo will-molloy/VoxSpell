@@ -47,7 +47,7 @@
                 </Button>
                 <Button layoutX="10.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back to Main Menu" GridPane.rowIndex="5" />
                 <Button layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleGenerateDefBtn" text="Generate Definitions" GridPane.rowIndex="4" />
-            <Button layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Modify" GridPane.rowIndex="1" />
+            <Button layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleModifyBtn" text="Modify" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </children>

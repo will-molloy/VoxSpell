@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
 
@@ -23,12 +24,17 @@ import java.util.ResourceBundle;
  */
 public class AddWordListPopupController implements Initializable {
 
+    private static String categoryText;
     @FXML
-    private TextField wordField, definitionField, categoryNameField;
+    private TextField wordField;
+    @FXML
+    private TextField definitionField;
+    @FXML
+    private TextField categoryNameField;
     @FXML
     private TableView<Word> wordListTableView;
 
-    private ObservableList<Word> data;
+    private static ObservableList<Word> data;
 
     private static WordListEditorController wordListEditorInstance;
     static void setWordListEditorInstance(WordListEditorController wordListEditorInstance) {
@@ -61,8 +67,11 @@ public class AddWordListPopupController implements Initializable {
         String category = categoryNameField.getText();
         List<Word> words = new ArrayList<>(data);
         wordListEditorInstance.addWordList(category, words);
+        // TODO error if list is less than 10 in size
         Main.hidePopup();
     }
+
+
 
     @FXML
     private void handleCancelBtn(ActionEvent actionEvent) {
@@ -91,4 +100,10 @@ public class AddWordListPopupController implements Initializable {
         data.remove(highlightedWord);
     }
 
+    public void setData(TitledPane expandedPane) {
+        TableView selectedTable = (TableView) expandedPane.getContent();
+        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
+        categoryNameField.setText(expandedPane.getText());
+        data.addAll(tableData);
+    }
 }

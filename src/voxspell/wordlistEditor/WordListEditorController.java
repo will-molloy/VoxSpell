@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import voxspell.Main;
 import voxspell.tools.WordDefinitionFinder;
 
@@ -78,7 +79,7 @@ public class WordListEditorController implements Initializable {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] wordAndDef = line.split("\\t+"); // word and definition are seperated by a tab within the hidden file.
 
-                if (line.startsWith("%")) {
+                if (line.startsWith("%")) { // TODO messes up if last list in file. . .
                     if (wordList != null) { // null check for first iteration
                         wordLists.add(wordList);
                     }
@@ -128,7 +129,7 @@ public class WordListEditorController implements Initializable {
         titledPane.setText(wordList.toString());
         titledPane.setContent(tableView);
 
-        wordListsView.getPanes().addAll(titledPane);
+        wordListsView.getPanes().add(titledPane);
     }
 
     private void pointLists() {
@@ -139,14 +140,57 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleRmvBtn(ActionEvent actionEvent) {
+        TitledPane expandedPane = wordListsView.getExpandedPane();
+        TableView selectedTable = (TableView) expandedPane.getContent();
+        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
+
+        // Remove from GUI
+        wordListsView.getPanes().remove(expandedPane);
+
+        // Remove from file
+        removeWordListFromFile(expandedPane.getText());
+
+        // Remove from data
+        wordLists.remove(tableData);
+    }
+
+    private void removeWordListFromFile(String wordListTitle){ // TODO NEED TO MUTLITHREAD, fails if removing too quickly
+        try {
+            File tempFile = new File(".wordListCopy");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(wordListFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                readCategory:
+                {
+                    if (line.equals("%" + wordListTitle)) {
+                        // Found category to remove, don't copy it to the temp file
+                        while ((line = bufferedReader.readLine()) != null) {
+                            if (line.startsWith("%")) { // TODO fails if EOF .. (won't remove last list?) maybe it will .. . TEST
+                                break readCategory;
+                            }
+                        }
+                    }
+                }
+                // Copy over lines from original file to temp file
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+
+            // Rename files
+            tempFile.renameTo(wordListFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleAddBtn(ActionEvent actionEvent) {
         try {
             Parent addWordListPopupRoot = FXMLLoader.load(getClass().getResource("Add_Word_List.fxml"));
-            Scene scene = new Scene(addWordListPopupRoot);
             AddWordListPopupController.setWordListEditorInstance(this);
+            Scene scene = new Scene(addWordListPopupRoot);
             Main.showPopup(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,7 +198,26 @@ public class WordListEditorController implements Initializable {
     }
 
     @FXML
+    private void handleModifyBtn(ActionEvent actionEvent) {
+        TitledPane expandedPane = wordListsView.getExpandedPane();
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            Parent addWordListPopupRoot = loader.load(getClass().getResource("Add_Word_List.fxml").openStream());
+            AddWordListPopupController controller = loader.getController();
+            controller.setData(expandedPane);
+            AddWordListPopupController.setWordListEditorInstance(this);
+            Scene scene = new Scene(addWordListPopupRoot);
+            Main.showPopup(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
     private void handleImportFileBtn(ActionEvent actionEvent) {
+
     }
 
     @FXML
@@ -224,4 +287,6 @@ public class WordListEditorController implements Initializable {
         // Add list to GUI
         addWordListToTableInTitledView(newList);
     }
+
+
 }
