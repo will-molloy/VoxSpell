@@ -9,15 +9,16 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.wordlistEditor.WordList;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by will on 3/10/16.
  */
 public abstract class ReportCardController {
 
-    private static int NUMWORDS = 10;
+    private static int NUM_WORDS = 10;
     @FXML
     protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
     @FXML
@@ -26,21 +27,22 @@ public abstract class ReportCardController {
     protected Button retryLevelBtn, proceedToLevelBtn;
     @FXML
     protected PieChart pieChart;
-    int level;
-    private ArrayList words;
-    private ArrayList wordFirstAttempts;
-    private ArrayList wordSecondAttempts;
+    protected WordList wordList;
+
+    private List words;
+    private List wordFirstAttempts;
+    private List wordSecondAttempts;
     private int mastered, faulted, failed;
 
-    public static void setNumWords(int i) {
-        NUMWORDS = i;
+    public static void setNumWords(int numWords) {
+        ReportCardController.NUM_WORDS = numWords;
     }
 
-    public final void setValues(ArrayList<String> words, ArrayList<String> wordFirstAttempts, ArrayList<String> wordSecondAttempts, int level) {
+    public final void setValues(List<String> words, List<String> wordFirstAttempts, List<String> wordSecondAttempts, WordList wordList) {
         this.words = words;
         this.wordFirstAttempts = wordFirstAttempts;
         this.wordSecondAttempts = wordSecondAttempts;
-        this.level = level;
+        this.wordList = wordList;
     }
 
     public final void generateScene() {
@@ -50,14 +52,14 @@ public abstract class ReportCardController {
             setWordsCorrectText();
             setWordComparisonsText();
             generatePieChart();
-            retryLevelBtn.setText("Retry Level " + level);
+            retryLevelBtn.setText("Retry " + wordList.toString());
         });
     }
 
     protected abstract void setLevelText();
 
     private void generateStatistics() {
-        for (int i = 0; i < NUMWORDS; i++) {
+        for (int i = 0; i < NUM_WORDS; i++) {
             if (words.get(i).equals(wordFirstAttempts.get(i))) {
                 mastered++;
             } else if (words.get(i).equals(wordSecondAttempts.get(i))) {
@@ -79,7 +81,7 @@ public abstract class ReportCardController {
             stringBuilder.append("Nothing to correct!");
         } else {
             /* Only showing comparisons for failed words */
-            for (int i = 0; i < NUMWORDS; i++) {
+            for (int i = 0; i < NUM_WORDS; i++) {
                 if (!words.get(i).equals(wordSecondAttempts.get(i))) {
                     stringBuilder.append("<strike>").append(wordFirstAttempts.get(i)).append("</strike> ");
                     stringBuilder.append("<strike>").append(wordSecondAttempts.get(i)).append("</strike> ");
@@ -102,7 +104,7 @@ public abstract class ReportCardController {
 
     @FXML
     private void handleRetryLevelBtn(ActionEvent actionEvent) {
-        Main.newQuizLevel(level);
+        Main.newQuizLevel(wordList.toString());
     }
 
     @FXML

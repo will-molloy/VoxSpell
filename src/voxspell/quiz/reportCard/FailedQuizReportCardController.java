@@ -7,6 +7,6 @@ public class FailedQuizReportCardController extends ReportCardController {
 
     @Override
     protected void setLevelText() {
-        passedOrFailedLevelText.setText("Failed level " + level + ".");
+        passedOrFailedLevelText.setText("Failed " + wordList.toString());
     }
 }

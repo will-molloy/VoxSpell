@@ -44,8 +44,8 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static void newQuizLevel(int level) {
-        spellingQuizControllerInstance.newQuiz(level);
+    public static void newQuizLevel(String quizName) {
+        spellingQuizControllerInstance.newQuiz(quizName);
         window.setScene(spellingQuiz);
     }
 
@@ -66,14 +66,15 @@ public class Main extends Application {
 
         window.setTitle("VoxSpell");
         window.setScene(mainMenu);
+        window.setResizable(false);
         window.show();
     }
 
     @FXML
     private void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
-        int level = spellingQuizControllerInstance.promptUserForInitialLevel();
-        spellingQuizControllerInstance.newQuiz(level);
+        String category = spellingQuizControllerInstance.promptUserForInitialLevel();
+        spellingQuizControllerInstance.newQuiz(category);
     }
 
     @FXML

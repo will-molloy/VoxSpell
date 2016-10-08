@@ -14,13 +14,14 @@ import voxspell.quiz.reportCard.FailedQuizReportCardFactory;
 import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
 import voxspell.quiz.reportCard.ReportCardController;
 import voxspell.quiz.reportCard.ReportCardFactory;
-import voxspell.tools.CustomFileReader;
 import voxspell.tools.TextToSpeech;
-import voxspell.tools.WordDefinitionFinder;
+import voxspell.wordlistEditor.Word;
+import voxspell.wordlistEditor.WordList;
+import voxspell.wordlistEditor.WordListEditorController;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,30 +30,31 @@ import java.util.stream.Collectors;
  * Controller for the SpellingQuizController.
  *
  * @author Karim Cisse - implemented Spelling Quiz logic
- * @author Will Molloy - convert to JavaFX, adding ImageViews
+ * @author Will Molloy - convert to JavaFX, adding ImageViews, using WordList/Word object.
  */
 public class SpellingQuizController {
     private static final int NUM_LEVELS = 11;
+
     // Game logic
-    private static int _level;
+    private static List<WordList> wordLists = WordListEditorController.getWordLists();
+    private static WordList entireWordListForCategory;
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
+    private List<Word> quizWordList;
     private int wordNumber;
-    private int wordsCorrectFirstAttempt, wordAttempt;
+    private int wordsCorrectFirstAttempt;
     private boolean firstAttempt;
-    private List<String> wordList;
-    private String word;
+    private Word word;
     private TextToSpeech textToSpeech = TextToSpeech.getInstance();
     @FXML
-    private Text levelText, wordsToSpellText;
+    private Text categoryText, wordsToSpellText;
     @FXML
     private TextField wordEntryField;
-    // Tools
-    private CustomFileReader fileReader = new CustomFileReader();
-    private ArrayList<String> wordsCopy;
-    private ArrayList<String> wordFirstAttempts;
-    private ArrayList<String> wordSecondAttempts;
+    private List<String> quizWordListCopy;
+    private List<String> wordFirstAttempts;
+    private List<String> wordSecondAttempts;
 
+    // Images
     @FXML
     private Parent imageHBox;
     private Image wordCorrect = new Image(new File("src/media/images/tick_80.jpg").toURI().toString());
@@ -60,36 +62,52 @@ public class SpellingQuizController {
     private Image wordFaulted = new Image(new File("src/media/images/square_80.jpg").toURI().toString());
     private List<ImageView> images = new ArrayList<>();
 
+    public String promptUserForInitialLevel() {
+        // Get wordlist names
+        List<String> options = wordLists.stream().map(WordList::toString).collect(Collectors.toList());
 
-    public int promptUserForInitialLevel() {
-        List<Integer> levelOptions = new ArrayList<>();
-        for (int i = 1; i <= NUM_LEVELS; i++) {
-            levelOptions.add(i);
-        }
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(options.get(0), options);
+        dialog.setTitle("Choose a category");
+        dialog.setHeaderText("Please choose a word list.");
+        dialog.setContentText("Options: ");
 
-        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(1, levelOptions);
-        dialog.setTitle("Starting Level");
-        dialog.setHeaderText("Please choose a starting level.");
-        dialog.setContentText("Levels: ");
-
-        Optional<Integer> result = dialog.showAndWait();
-        int number = 1;
+        Optional<String> result = dialog.showAndWait();
+        String option = null;
         if (result.isPresent()) {
-            number = result.get();
+            option = result.get();
         }
 
-        return number;
+        return option;
     }
 
-    public void newQuiz(int level) {
+    public void newQuiz(String category) {
         resetFields();
-        _level = level;
-        levelText.setText("Level " + level);
-        readWordsFromFile();
+        // Get chosen wordlist
+        for (WordList wordList : wordLists) {
+            if (wordList.toString().equals(category)) {
+                entireWordListForCategory = wordList;
+                break;
+            }
+        }
+        // Get 10 random words from the wordlist for a quiz
+        quizWordList = new ArrayList<>(entireWordListForCategory.wordList());
+        Collections.shuffle(quizWordList);
+        quizWordList = new ArrayList<>(quizWordList.subList(0, 10));
+        quizWordListCopy = quizWordList.stream().map(Word::toString).collect(Collectors.toList());
+        categoryText.setText(entireWordListForCategory.toString());
         continueSpellingQuiz();
     }
 
+    public void nextQuiz() {
+        if (entireWordListForCategory.hasNext()) {
+            newQuiz(entireWordListForCategory.next().toString());
+        } else {
+            /* final quiz CHOSE A NEW CATEGORY? */
+        }
+    }
+
     private void resetFields() {
+
         // Add ImageViews inside imageHBox to the ArrayList images
         images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
         // Blank out all images
@@ -97,27 +115,21 @@ public class SpellingQuizController {
             imageView.setImage(null);
         }
         // Reset text views
-        levelText.setText("Level ?");
+        categoryText.setText("Level ?");
         wordsToSpellText.setText("Spell word 1 of 10");
         // Reset game logic
         wordsCorrectFirstAttempt = 0;
-        wordAttempt = 0;
         firstAttempt = true;
         wordFirstAttempts = new ArrayList<>();
         wordSecondAttempts = new ArrayList<>();
     }
 
-    private void readWordsFromFile() {
-        wordList = fileReader.getWordList(_level);
-        wordsCopy = new ArrayList<>(wordList);
-    }
-
     public void continueSpellingQuiz() {
-        // Quiz is finished when the wordList is empty
-        if (wordList.size() > 0) {
-            word = wordList.get(0);
+        // Quiz is finished when the quizWordList is empty
+        if (quizWordList.size() > 0) {
+            word = quizWordList.get(0);
             System.out.println(word);
-            wordNumber = 11 - wordList.size();
+            wordNumber = 11 - quizWordList.size();
             String line;
 
             if (firstAttempt) {
@@ -143,7 +155,7 @@ public class SpellingQuizController {
              */
             Platform.runLater(() -> {
                 ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-                controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+                controller.setValues(quizWordListCopy, wordFirstAttempts, wordSecondAttempts, entireWordListForCategory);
                 controller.generateScene();
             });
         }
@@ -162,7 +174,7 @@ public class SpellingQuizController {
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
-        if (wordList.size() > 0) {
+        if (quizWordList.size() > 0) {
 
             /*********************** DEBUG **********************/
             if (attempt.equals("skip_")) {
@@ -170,7 +182,7 @@ public class SpellingQuizController {
                 reportCardFactory = new PassedQuizReportCardFactory();
                 Platform.runLater(() -> {
                     ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-                    controller.setValues(wordsCopy, wordFirstAttempts, wordSecondAttempts, _level);
+                    controller.setValues(quizWordListCopy, wordFirstAttempts, wordSecondAttempts, entireWordListForCategory);
                     controller.generateScene();
                 });
                 return;
@@ -178,7 +190,7 @@ public class SpellingQuizController {
             /*********************** DEBUG **********************/
 
 
-            if (attempt.equals(word)) { /* Correct */
+            if (attempt.equals(word.toString())) { /* Correct */
 
                 if (firstAttempt) {
                     /* First attempt correct */
@@ -192,8 +204,7 @@ public class SpellingQuizController {
                     firstAttempt = true;
                     images.get(imageIndex).setImage(wordCorrect);
                 }
-                wordList.remove(word);
-                wordAttempt++;
+                quizWordList.remove(word);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
             } else { /* Incorrect */
@@ -207,9 +218,8 @@ public class SpellingQuizController {
                     /* Second attempt incorrect */
                     wordSecondAttempts.add(attempt);
                     images.get(imageIndex).setImage(wordIncorrect);
-                    wordList.remove(word);
+                    quizWordList.remove(word);
                     firstAttempt = true;
-                    wordAttempt++;
                 }
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
             }
@@ -223,14 +233,14 @@ public class SpellingQuizController {
 
     @FXML
     private void handleDefinitionBtn(ActionEvent actionEvent) {
-        String definition = WordDefinitionFinder.getDefinition(word);
+        String definition = word.getDefinition();
         System.out.println(definition);
         textToSpeech.readSentence(definition);
     }
 
     @FXML
     private void handleRepeatWordBtn(ActionEvent actionEvent) {
-        textToSpeech.readSentenceSlowly(word);
+        textToSpeech.readSentenceSlowly(word.toString());
     }
 
 

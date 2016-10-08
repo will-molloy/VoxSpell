@@ -20,7 +20,10 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Controls the Word List Editor.
@@ -36,6 +39,9 @@ public class WordListEditorController implements Initializable {
     @FXML
     private Accordion wordListsView;
 
+    public static List<WordList> getWordLists() {
+        return wordLists;
+    }
 
     /**
      * Parse hidden wordList file and add words to view.
@@ -54,7 +60,7 @@ public class WordListEditorController implements Initializable {
     }
 
     private void sortLists() {
-        for (WordList s : wordLists){
+        for (WordList s : wordLists) {
             Collections.sort(s.wordList());
         }
     }
@@ -129,8 +135,8 @@ public class WordListEditorController implements Initializable {
     }
 
     private void pointLists() {
-        for (int i = 0; i < wordLists.size()-1; i++){
-            wordLists.get(i).setNextList(wordLists.get(i+1));
+        for (int i = 0; i < wordLists.size() - 1; i++) {
+            wordLists.get(i).setNextList(wordLists.get(i + 1));
         }
     }
 
@@ -151,21 +157,24 @@ public class WordListEditorController implements Initializable {
         Main.showMainMenu();
     }
 
+    /*
+     * Generate definitions for all words on a background thread.
+     */
     @FXML
     private void handleGenerateDefBtn(ActionEvent actionEvent) {
-        Task<Void> task = new Task<Void>(){
+        Task<Void> task = new Task<Void>() {
 
             @Override
             protected Void call() throws Exception {
                 int max = 0;
                 int current = 0;
-                for (WordList wordList : wordLists){
+                for (WordList wordList : wordLists) {
                     max += wordList.size();
                 }
-                for (WordList wordList : wordLists){
+                for (WordList wordList : wordLists) {
                     System.out.println("List: " + wordList.toString());
-                    for (Word word : wordList.wordList()){
-                        if (isCancelled()){
+                    for (Word word : wordList.wordList()) {
+                        if (isCancelled()) {
                             break;
                         }
                         if (word.getDefinition().equals("")) {
@@ -174,7 +183,7 @@ public class WordListEditorController implements Initializable {
                         updateProgress(++current, max);
                         System.out.println("Word: " + word + " Def: " + word.getDefinition());
                     }
-                }
+                } // TODO progress bar
                 return null;
             }
         };

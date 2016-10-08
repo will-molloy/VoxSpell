@@ -31,7 +31,7 @@ public class WordDefinitionFinder {
         WordDefinitionFinder.word = word;
         String definition;
 
-         // Run sdcv process (generate definition into a file)
+        // Run sdcv process (generate definition into a file)
         runBashCommand("sdcv " + "\"" + word + "\"" + " > " + definitionFileName);
 
         // Extract the first definition only (sdcv may print ~10+ definitions for a word)
