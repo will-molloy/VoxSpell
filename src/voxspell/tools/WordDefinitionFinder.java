@@ -1,12 +1,9 @@
 package voxspell.tools;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,52 +21,18 @@ public class WordDefinitionFinder {
     private static final String definitionFileName = ".definition";
     private static File definitionFile = new File(definitionFileName);
     private static String word;
-    private static BufferedReader bufferedReader;
-
-    static {
-        try {
-            bufferedReader = new BufferedReader(new FileReader(definitionFile));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        /*
-         TEST WITH:
-         New Zealand - no numbers
-         to - finds other words
-         you - difficult lookup
-         eyes - timeout
-         */
-      //  System.out.println(getDefinition("knew"));
-    }
-
-
 
     /**
      * Returns the definition for the supplied word.
      * <p>
-     * Note: does not work for every word. E.g. 'got', sdcv will lookup 'get' instead..
+     * Note: does not work for every word. E.g. 'cannon', sdcv will lookup 'gun' instead..
      */
     public static String getDefinition(String word) {
         WordDefinitionFinder.word = word;
-        String command;
         String definition;
 
-        // Run the sdcv command and print the output to a hidden file '.definition'
-        if (!definitionFile.exists()) {
-            List<String> lines = Collections.singletonList("");
-            Path file = Paths.get(definitionFileName);
-            try {
-                Files.write(file, lines, Charset.forName("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        command = "sdcv " + "\"" + word + "\"" + " > " + definitionFileName;
-        runBashCommand(command);
+         // Run sdcv process (generate definition into a file)
+        runBashCommand("sdcv " + "\"" + word + "\"" + " > " + definitionFileName);
 
         // Extract the first definition only (sdcv may print ~10+ definitions for a word)
         definition = extractDefinition(false);
@@ -77,6 +40,9 @@ public class WordDefinitionFinder {
         // Trim defintion - remove numbers and dates etc
         definition = trimDefinition(definition);
 
+        // Kill sdcv process
+        runBashCommand("killall sdcv");
+        definitionFile.delete();
 
         return definition;
     }
@@ -85,8 +51,8 @@ public class WordDefinitionFinder {
         String def = "";
         boolean wordFound = false;
         String line;
-
         try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(definitionFile));
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.trim().equals("")) {
@@ -113,7 +79,6 @@ public class WordDefinitionFinder {
                         defFound = true;
                     }
                 }
-                bufferedReader.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -156,7 +121,7 @@ public class WordDefinitionFinder {
         try {
             ProcessBuilder _processBuilder = new ProcessBuilder("bash", "-c", command);
             Process _process = _processBuilder.start();
-            _process.waitFor(100, TimeUnit.MILLISECONDS); // Sometimes sdcv gives an option if word is vague, timeout if this happens
+            _process.waitFor(100, TimeUnit.MILLISECONDS); // Sometimes sdcv gives an option menu if word is vague, timeout if this happens
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
