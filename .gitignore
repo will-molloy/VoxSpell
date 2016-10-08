@@ -1,2 +1,6 @@
 *.class
-WordNet-3.0
+/Dictionary/
+/out/
+.wordList
+.definition
+*.scm
