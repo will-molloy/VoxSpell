@@ -16,7 +16,7 @@ public class PassedQuizReportCardController extends ReportCardController {
 
     @FXML
     private void handleNextLevelBtn(ActionEvent actionEvent) {
-        Main.newQuizLevel(wordList.next().toString());
+        Main.newSpellingQuiz(wordList.next().toString());
     }
 
 }

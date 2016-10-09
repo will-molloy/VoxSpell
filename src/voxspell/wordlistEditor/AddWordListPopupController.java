@@ -24,8 +24,7 @@ import java.util.ResourceBundle;
  */
 public class AddWordListPopupController implements Initializable {
 
-    private static String categoryText;
-    private static ObservableList<Word> data;
+    private ObservableList<Word> data;
     private static WordListEditorController wordListEditorInstance;
     @FXML
     private TextField wordField;

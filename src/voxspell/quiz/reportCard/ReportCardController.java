@@ -104,7 +104,7 @@ public abstract class ReportCardController {
 
     @FXML
     private void handleRetryLevelBtn(ActionEvent actionEvent) {
-        Main.newQuizLevel(wordList.toString());
+        Main.newSpellingQuiz(wordList.toString());
     }
 
     @FXML
