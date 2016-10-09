@@ -9,13 +9,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import voxspell.Main;
+import voxspell.tools.CustomFileReader;
 import voxspell.tools.WordDefinitionFinder;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -37,8 +42,11 @@ public class WordListEditorController implements Initializable {
     private static final File wordListFile = new File(WORD_LIST_NAME);
     private static List<WordList> wordLists = new ArrayList<>();
 
+    private CustomFileReader fileReader = new CustomFileReader();
+
     @FXML
     private Accordion wordListsView;
+    private Thread thread;
 
     public static List<WordList> getWordLists() {
         return wordLists;
@@ -53,9 +61,8 @@ public class WordListEditorController implements Initializable {
             makeHiddenWordListFile();
         }
         readWordListFileIntoList();
-        sortLists();
+        sortAndPointLists();
         createGUI();
-        pointLists();
 
         System.out.println("WOW");
     }
@@ -71,35 +78,23 @@ public class WordListEditorController implements Initializable {
     }
 
     private void readWordListFileIntoList() {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(WORD_LIST_NAME));
-            String line;
-            WordList wordList = null;
+        wordLists = fileReader.readWordListFileIntoList(wordListFile);
+    }
 
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] wordAndDef = line.split("\\t+"); // word and definition are seperated by a tab within the hidden file.
-
-                if (line.startsWith("%")) { // TODO messes up if last list in file. . .
-                    if (wordList != null) { // null check for first iteration
-                        wordLists.add(wordList);
-                    }
-                    wordList = new WordList(line.substring(1, line.length())); // set name of wordList
-                } else {
-                    Word word = new Word(wordAndDef[0]);
-                    if (wordAndDef.length > 1) { // definition detected
-                        word.setDefinition(wordAndDef[1]);
-                    }
-                    wordList.addWord(word);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void sortAndPointLists(){
+        sortLists();
+        pointLists();
     }
 
     private void sortLists() {
-        for (WordList s : wordLists) {
-            Collections.sort(s.wordList());
+        for (WordList wordList : wordLists) {
+            Collections.sort(wordList.wordList());
+        }
+    }
+
+    private void pointLists() {
+        for (int i = 0; i < wordLists.size() - 1; i++) {
+            wordLists.get(i).setNextList(wordLists.get(i + 1));
         }
     }
 
@@ -132,63 +127,49 @@ public class WordListEditorController implements Initializable {
         wordListsView.getPanes().add(titledPane);
     }
 
-    private void pointLists() {
-        for (int i = 0; i < wordLists.size() - 1; i++) {
-            wordLists.get(i).setNextList(wordLists.get(i + 1));
-        }
-    }
-
     @FXML
     private void handleRmvBtn(ActionEvent actionEvent) {
         TitledPane expandedPane = wordListsView.getExpandedPane();
-        TableView selectedTable = (TableView) expandedPane.getContent();
+        removeListFromDataGUIAndFile(expandedPane);
+    }
+
+    private void removeListFromDataGUIAndFile(TitledPane wordListShownInGUI){
+        TableView selectedTable = (TableView) wordListShownInGUI.getContent();
         List<Word> tableData = new ArrayList<>(selectedTable.getItems());
-
-        // Remove from GUI
-        wordListsView.getPanes().remove(expandedPane);
-
-        // Remove from file
-        removeWordListFromFile(expandedPane.getText());
 
         // Remove from data
         wordLists.remove(tableData);
+
+        // Remove from GUI
+        wordListsView.getPanes().remove(wordListShownInGUI);
+
+        // Remove from file
+        removeWordListFromFile(wordListShownInGUI.getText());
     }
 
-    private void removeWordListFromFile(String wordListTitle) { // TODO NEED TO MUTLITHREAD, fails if removing too quickly
-        try {
-            File tempFile = new File(".wordListCopy");
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(wordListFile));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                readCategory:
-                {
-                    if (line.equals("%" + wordListTitle)) {
-                        // Found category to remove, don't copy it to the temp file
-                        while ((line = bufferedReader.readLine()) != null) {
-                            if (line.startsWith("%")) { // TODO fails if EOF .. (won't remove last list?) maybe it will .. . TEST
-                                break readCategory;
-                            }
-                        }
-                    }
-                }
-                // Copy over lines from original file to temp file
-                bufferedWriter.write(line);
-                bufferedWriter.newLine();
+    private void removeWordListFromFile(String wordListTitle) {
+        // Need to run on background thread, otherwise it doesn't work if user rapidly deletes lists.
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                fileReader.removeWordListFromFile(wordListTitle, wordListFile);
+                return null;
             }
-            bufferedWriter.flush();
+        };
+        thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+    }
 
-            // Rename files
-            tempFile.renameTo(wordListFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @FXML
+    private void handleRmvAllBtn(ActionEvent actionEvent){
+        wordListsView.getPanes().forEach(this::removeListFromDataGUIAndFile); // TODO fix CME
     }
 
     @FXML
     private void handleAddBtn(ActionEvent actionEvent) {
         try {
-            Parent addWordListPopupRoot = FXMLLoader.load(getClass().getResource("Add_Word_List.fxml"));
+            Parent addWordListPopupRoot = FXMLLoader.load(getClass().getResource("../fxml/Add_Word_List.fxml"));
             AddWordListPopupController.setWordListEditorInstance(this);
             Scene scene = new Scene(addWordListPopupRoot);
             Main.showPopup(scene);
@@ -218,12 +199,13 @@ public class WordListEditorController implements Initializable {
     private void handleImportFileBtn(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a word list");
-        File file = Main.showFileChooserAndReturnChosenFile(fileChooser);
+        File chosenFile = Main.showFileChooserAndReturnChosenFile(fileChooser);
 
-        System.out.println(file.getName());
+        // Read in new lists
+        List<WordList> newLists = fileReader.readWordListFileIntoList(chosenFile);
 
-        //      File file = new File(chosenFile);
-
+        // Append to file
+        newLists.forEach(this::addWordListToDataGUIAndFile);
     }
 
 
@@ -232,13 +214,31 @@ public class WordListEditorController implements Initializable {
         Main.showMainMenu();
     }
 
+    public void addWordList(String category, List<Word> wordList) {
+        WordList newList = new WordList(category);
+        newList.wordList().addAll(wordList);
+
+        addWordListToDataGUIAndFile(newList);
+    }
+
+    private void addWordListToDataGUIAndFile(WordList wordList){
+        // Data
+        wordLists.add(wordList);
+        sortAndPointLists();
+
+        // GUI
+        addWordListToTableInTitledView(wordList);
+
+        // File
+        fileReader.addWordListToFile(wordList, wordListFile);
+    }
+
     /*
-     * Generate definitions for all words on a background thread.
-     */
+ * Generate definitions for all words on a background thread.
+ */
     @FXML
     private void handleGenerateDefBtn(ActionEvent actionEvent) {
         Task<Void> task = new Task<Void>() {
-
             @Override
             protected Void call() throws Exception {
                 int max = 0;
@@ -258,42 +258,18 @@ public class WordListEditorController implements Initializable {
                         updateProgress(++current, max);
                         System.out.println("Word: " + word + " Def: " + word.getDefinition());
                     }
-                } // TODO progress bar
+                } // TODO fix ?progress bar
+
+                // Sync wordlist data with word list file (add in defintions)
+                fileReader.syncWordListDataWithFile(wordLists, wordListFile);
                 return null;
             }
         };
-
-        Thread thread = new Thread(task);
-        ProgressBar bar = new ProgressBar();
-        bar.progressProperty().bind(task.progressProperty());
+        thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
     }
 
-    public void addWordList(String category, List<Word> wordList) {
-        WordList newList = new WordList(category);
-        newList.wordList().addAll(wordList);
-
-        // Add list to file
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(wordListFile, true));
-            bufferedWriter.write("%" + category);
-            bufferedWriter.newLine();
-            for (Word word : wordList) {
-                bufferedWriter.write(word + "\t" + word.getDefinition());
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Add list to data
-        wordLists.add(newList);
-
-        // Add list to GUI
-        addWordListToTableInTitledView(newList);
-    }
 
 
 }

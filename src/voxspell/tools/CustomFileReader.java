@@ -1,136 +1,125 @@
 package voxspell.tools;
 
+import voxspell.wordlistEditor.Word;
+import voxspell.wordlistEditor.WordList;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
 
 /**
- * Contains a few methods to read files for statistics/words from the wordList.
+ * Contains a few methods to read word list / statistic files.
  *
  * @author Karim Cisse
  * @author Will Molloy
  */
 public class CustomFileReader {
 
-    private static final String WORD_LIST_FILE_NAME = "NZCER-spelling-lists.txt";
+    private Scanner scanner;
+    private BufferedWriter bufferedWriter;
 
-    private BufferedReader bufferedReader;
-
-    /**
-     * Reads a set of 10 words from the wordList file based on the level provided.
-     *
-     * @author Karim Cisse
-     */
-    public ArrayList<String> getWordList(int level) {
-        ArrayList<String> wordList = null;
+    public List<WordList> readWordListFileIntoList(File file) {
+        List<WordList> wordLists = new ArrayList<>();
         try {
-            wordList = readInWords(level);
+            scanner = new Scanner(new FileReader(file)); // need scanner hasNext()
+            String line;
+            WordList wordList = null;
+
+            while ((line = scannerReadLine()) != null) {
+                // word and definition are seperated by a tab within the hidden file.
+                String[] wordAndDef = line.split("\\t+");
+
+                // Found next category OR eof, copy over the wordlist
+                if (line.startsWith("%") || !scanner.hasNextLine()) {
+                    if (wordList != null) { // null check for first iteration
+                        wordLists.add(wordList);
+                    }
+                    wordList = new WordList(line.substring(1, line.length())); // set name of wordList
+                } else {
+                    Word word = new Word(wordAndDef[0]);
+                    if (wordAndDef.length > 1) { // definition detected
+                        word.setDefinition(wordAndDef[1]);
+                    }
+                    wordList.addWord(word);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ArrayList<String> returnWords = new ArrayList<>();
-        int wordsNum = wordList.size();
-
-        // the condition in the for loop allows for 10 words or less than 10 if
-        // there are less than 10 words in the list
-        for (int i = 0; i < (wordsNum) && (i < 10); i++) {
-            int randomNum = (int) (Math.random() * wordList.size());
-            returnWords.add(wordList.get(randomNum));
-            wordList.remove(randomNum);
-        }
-        return returnWords;
+        return wordLists;
     }
 
-    /**
-     * Read words in from wordList file.
-     *
-     * @author Karim Cisse - implemented logic
-     * @author Will Molloy - changed to user buffered readers
-     */
-    private ArrayList<String> readInWords(int level) throws IOException {
-
-        ArrayList<String> wordList = new ArrayList<>();
-        String levelID = "%Level " + level;
-
-        // The file is read into standard in
-        String temp;
-        bufferedReader = new BufferedReader(new FileReader(WORD_LIST_FILE_NAME));
-
-        while ((temp = bufferedReader.readLine()) != null) {
-
-            // a check is performed to see whether the desired level words have
-            // been reached
-            if (temp.equals(levelID)) {
-                levelID = "%Level " + (level + 1);
-                while ((temp = bufferedReader.readLine()) != null) {
-
-                    // when the the next level words in the list is reached it
-                    // stops adding words to the list
-                    if (temp.equals(levelID)) {
-                        break;
-                    }
-                    wordList.add(temp);
-                }
-            }
+    private String scannerReadLine() {
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
         }
-        bufferedReader.close();
-
-        return wordList;
+        return null;
     }
 
-    /**
-     * Appends a word to a file.
-     *
-     * @author Will Molloy
-     */
-    public void appendWordToFile(String word, File file) {
+    public void removeWordListFromFile(String wordListTitle, File wordListFile) {
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
-            bufferedWriter.write(word);
+            File tempFile = new File(".wordListCopy");
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
+            scanner = new Scanner(new FileReader(wordListFile));
+            String line;
+            while ((line = scannerReadLine()) != null) {
+                readCategory:
+                {
+                    if (line.equals("%" + wordListTitle)) {
+                        // Found category to remove, don't copy it to the temp file
+                        while ((line = scannerReadLine()) != null) {
+                            // Found next category OR eof, can stop not copying
+                            if (line.startsWith("%") || !scanner.hasNextLine()) {
+                                break readCategory;
+                            }
+                        }
+                    }
+                }
+                // Copy over lines from original file to temp file
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+
+            // Rename files
+            tempFile.renameTo(wordListFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addWordListToFile(WordList wordList, File file) {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(file, true));
+            bufferedWriter.write("%" + wordList.toString());
             bufferedWriter.newLine();
+            printWordList(wordList);
+
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Reads words line by line from a file into a HashSet.
-     *
-     * @author Will Molloy
-     */
-    public void readFileByLineIntoSet(File file, HashSet<String> words) {
-        String word;
+    private void printWordList(WordList wordList) throws IOException {
+        for (Word word : wordList.wordList()) {
+            bufferedWriter.write(word + "\t" + word.getDefinition());
+            bufferedWriter.newLine();
+        }
+    }
+
+    public void syncWordListDataWithFile(List<WordList> wordLists, File wordListFile) {
         try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-            while ((word = bufferedReader.readLine()) != null) {
-                words.add(word);
+            bufferedWriter = new BufferedWriter(new FileWriter(wordListFile, false));
+            for (WordList wordList : wordLists) {
+                bufferedWriter.write("%" + wordList.toString());
+                bufferedWriter.newLine();
+                printWordList(wordList);
             }
+            bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Gets a count of lines containing 'word' in 'file'
-     *
-     * @author Will Molloy
-     */
-    public int getWordCountFromFile(String word, File file) {
-        String temp;
-        int count = 0;
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-            while ((temp = bufferedReader.readLine()) != null) {
-                if (temp.equals(word)) {
-                    count++;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return count;
-    }
-
 }

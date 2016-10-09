@@ -34,34 +34,6 @@ public class Main extends Application {
         launch(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        window = primaryStage;
-
-        Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("Main_Menu.fxml"));
-        mainMenu = new Scene(mainMenuRoot);
-
-        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("quiz/Spelling_Quiz.fxml"));
-        Parent spellingQuizRoot = spellingQuizLoader.load();
-        spellingQuizControllerInstance = spellingQuizLoader.getController();
-        spellingQuiz = new Scene(spellingQuizRoot);
-
-        Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/Word_List_Editor.fxml"));
-        wordListEditor = new Scene(wordListRoot);
-
-        window.setTitle("VoxSpell");
-        window.setScene(mainMenu);
-        window.setResizable(false);
-        window.show();
-
-        // Popups to be used later
-        popup = new Stage();
-        hidePopup();
-        popup.initModality(Modality.APPLICATION_MODAL);
-        popup.initOwner(window.getScene().getWindow());
-    }
-
-
     /**
      * Shows the Main Menu - used by back buttons throughout the application.
      */
@@ -98,6 +70,33 @@ public class Main extends Application {
     public static void newSpellingQuiz(String quizName) {
         spellingQuizControllerInstance.newQuiz(quizName);
         window.setScene(spellingQuiz);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        window = primaryStage;
+
+        Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
+        mainMenu = new Scene(mainMenuRoot);
+
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("fxml/Spelling_Quiz.fxml"));
+        Parent spellingQuizRoot = spellingQuizLoader.load();
+        spellingQuizControllerInstance = spellingQuizLoader.getController();
+        spellingQuiz = new Scene(spellingQuizRoot);
+
+        Parent wordListRoot = FXMLLoader.load(getClass().getResource("fxml/Word_List_Editor.fxml"));
+        wordListEditor = new Scene(wordListRoot);
+
+        window.setTitle("VoxSpell");
+        window.setScene(mainMenu);
+        window.setResizable(false);
+        window.show();
+
+        // Popups to be used later
+        popup = new Stage();
+        hidePopup();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initOwner(window.getScene().getWindow());
     }
 
     @FXML

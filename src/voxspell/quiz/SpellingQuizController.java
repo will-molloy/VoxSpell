@@ -33,10 +33,9 @@ import java.util.stream.Collectors;
  * @author Will Molloy - convert to JavaFX, adding ImageViews, using WordList/Word object.
  */
 public class SpellingQuizController {
-    private static final int NUM_LEVELS = 11;
 
     // Game logic
-    private static List<WordList> wordLists = WordListEditorController.getWordLists();
+    private static List<WordList> wordLists;
     private static WordList entireWordListForCategory;
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
@@ -63,7 +62,9 @@ public class SpellingQuizController {
     private List<ImageView> images = new ArrayList<>();
 
     public String promptUserForInitialLevel() {
-        // Get wordlist names
+        // Get word lists from editor.
+        wordLists = WordListEditorController.getWordLists();
+        // Get word list/category names (wordlist.toString() does this)
         List<String> options = wordLists.stream().map(WordList::toString).collect(Collectors.toList());
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>(options.get(0), options);
@@ -102,7 +103,7 @@ public class SpellingQuizController {
         if (entireWordListForCategory.hasNext()) {
             newQuiz(entireWordListForCategory.next().toString());
         } else {
-            /* final quiz CHOSE A NEW CATEGORY? */
+            /* final quiz  */
         }
     }
 

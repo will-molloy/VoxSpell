@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/VoxSpell/voxspell/wordlistEditor/Word_List_Editor.fxml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/Main_Menu.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Main_Menu.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Spelling_Quiz.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Failed_Quiz_Report.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Passed_Quiz_Report.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/Add_Word_List.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Add_Word_List.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/Word_List_Editor.fxml" afterPath="$PROJECT_DIR$/src/voxspell/fxml/Word_List_Editor.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.wordList" afterPath="$PROJECT_DIR$/.wordList" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/Main.java" afterPath="$PROJECT_DIR$/src/voxspell/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java" afterPath="$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" afterPath="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" afterPath="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" />
     </list>
     <ignored path="VoxSpell.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -20,7 +28,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/VoxSpell$Main.coverage" NAME="Main Coverage Results" MODIFIED="1475487478541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/VoxSpell$Main.coverage" NAME="Main Coverage Results" MODIFIED="1475997778139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>voxspell.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/VoxSpell$WordDefinitionFinder.coverage" NAME="WordDefinitionFinder Coverage Results" MODIFIED="1475638110227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -36,27 +44,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <file leaf-file-name="WordListEditorController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+            <state relative-caret-position="480">
+              <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
               <folding>
-                <element signature="e#2691#2692#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2779#2780#0" expanded="true" />
+                <element signature="e#2850#2851#0" expanded="true" />
+                <element signature="method#addWordListToTableInTitledView#0;class#WordListEditorController#0" expanded="false" />
+                <element signature="e#6828#6829#0" expanded="true" />
+                <element signature="e#6863#6864#0" expanded="true" />
+                <element signature="method#handleGenerateDefBtn#0;class#WordListEditorController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WordListEditorController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java">
+      <file leaf-file-name="Word_List_Editor.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Word_List_Editor.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1524">
-              <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
-              <folding>
-                <element signature="method#removeWordListFromFile#0;class#WordListEditorController#0" expanded="false" />
-                <element signature="method#handleGenerateDefBtn#0;class#WordListEditorController#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="456">
+              <caret line="51" column="95" selection-start-line="51" selection-start-column="95" selection-end-line="51" selection-end-column="95" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -64,8 +78,8 @@
       <file leaf-file-name="AddWordListPopupController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-444">
-              <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="604">
+              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,31 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".wordList" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.wordList">
+      <file leaf-file-name="CustomFileReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="602" column="0" selection-start-line="602" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NZCER-spelling-lists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NZCER-spelling-lists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FXMLLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29736">
-              <caret line="1772" column="0" selection-start-line="1772" selection-start-column="0" selection-end-line="1772" selection-end-column="0" />
+            <state relative-caret-position="-1296">
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -143,16 +137,19 @@
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" />
         <option value="$PROJECT_DIR$/src/addWordListPopupController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/addWordListPopupController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/Add_Word_List.fxml" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/Word.java" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/Word_List_Editor.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/tools/BackGroundThread.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" />
         <option value="$PROJECT_DIR$/.wordList" />
+        <option value="$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/fxml/Word_List_Editor.fxml" />
+        <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" />
       </list>
     </option>
   </component>
@@ -313,11 +310,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reportCard" />
+              <option name="myItemId" value="fxml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,14 +343,15 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/libraries" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/voxspell/fxml" />
       <recent name="$PROJECT_DIR$/src/voxspell/wordlistEditor" />
       <recent name="$PROJECT_DIR$/src/media/images" />
       <recent name="$PROJECT_DIR$/src/voxspell/quiz/reportCard" />
       <recent name="$PROJECT_DIR$/src/voxspell" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/libraries" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -665,20 +659,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32721713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24362895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24362895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299411" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20192823" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3133369" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -688,10 +685,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32721713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299411" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -715,7 +709,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java</url>
-          <line>171</line>
+          <line>172</line>
           <properties class="voxspell.quiz.SpellingQuizController" method="checkInputWord" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -725,8 +719,26 @@
           <properties class="voxspell.wordlistEditor.AddWordListPopupController" method="setData" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java</url>
+          <line>111</line>
+          <properties class="voxspell.tools.CustomFileReader" method="syncWordListDataWithFile" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/Main.java</url>
+          <line>102</line>
+          <properties class="voxspell.Main" method="handleQuizButton" />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java</url>
+          <line>213</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -735,19 +747,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6438#6439#0" expanded="true" />
-            <element signature="e#6470#6471#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Spelling_Quiz.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -764,8 +764,6 @@
           <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6438#6439#0" expanded="true" />
-            <element signature="e#6470#6471#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -815,7 +813,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Passed_Quiz_Report.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -849,7 +847,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Passed_Quiz_Report.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -883,7 +881,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Passed_Quiz_Report.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -904,7 +902,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/niggers.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Failed_Quiz_Report.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -938,7 +936,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Passed_Quiz_Report.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -948,7 +946,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/Spelling_Quiz.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Spelling_Quiz.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -992,7 +990,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Main_Menu.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Main_Menu.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -1048,18 +1046,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/Add_Word_List.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Add_Word_List.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -1078,88 +1065,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6438#6439#0" expanded="true" />
-            <element signature="e#6470#6471#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="88" column="12" selection-start-line="88" selection-start-column="12" selection-end-line="91" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/Word_List_Editor.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="49" column="97" selection-start-line="49" selection-start-column="97" selection-end-line="49" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29736">
+        <state relative-caret-position="666">
           <caret line="1772" column="0" selection-start-line="1772" selection-start-column="0" selection-end-line="1772" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+        <state relative-caret-position="271">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding>
-            <element signature="e#2691#2692#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="false" />
+            <element signature="e#625#626#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/BackGroundThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1524">
-          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
-          <folding>
-            <element signature="method#removeWordListFromFile#0;class#WordListEditorController#0" expanded="false" />
-            <element signature="method#handleGenerateDefBtn#0;class#WordListEditorController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-444">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NZCER-spelling-lists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.wordList">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="602" column="0" selection-start-line="602" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1296">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+          <folding>
+            <element signature="e#1618#1619#0" expanded="true" />
+            <element signature="e#1646#1647#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/fxml/Word_List_Editor.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="51" column="95" selection-start-line="51" selection-start-column="95" selection-end-line="51" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2779#2780#0" expanded="true" />
+            <element signature="e#2850#2851#0" expanded="true" />
+            <element signature="method#addWordListToTableInTitledView#0;class#WordListEditorController#0" expanded="false" />
+            <element signature="e#6828#6829#0" expanded="true" />
+            <element signature="e#6863#6864#0" expanded="true" />
+            <element signature="method#handleGenerateDefBtn#0;class#WordListEditorController#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
