@@ -68,10 +68,8 @@ public class WordListEditorController implements Initializable {
     }
 
     private void makeHiddenWordListFile() {
-        List<String> lines = Collections.singletonList("");
-        Path file = Paths.get(WORD_LIST_NAME);
         try {
-            Files.write(file, lines, Charset.forName("UTF-8"));
+            wordListFile.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,11 +132,8 @@ public class WordListEditorController implements Initializable {
     }
 
     private void removeListFromDataGUIAndFile(TitledPane wordListShownInGUI){
-        TableView selectedTable = (TableView) wordListShownInGUI.getContent();
-        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
-
         // Remove from data
-        wordLists.remove(tableData);
+        wordLists.remove(wordListsView.getPanes().indexOf(wordListShownInGUI));
 
         // Remove from GUI
         wordListsView.getPanes().remove(wordListShownInGUI);
@@ -163,7 +158,10 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleRmvAllBtn(ActionEvent actionEvent){
-        wordListsView.getPanes().forEach(this::removeListFromDataGUIAndFile); // TODO fix CME
+        wordLists = new ArrayList<>(); // delete data
+        wordListsView.getPanes().removeAll(wordListsView.getPanes()); // delete panes
+        wordListFile.delete(); // remake file
+        makeHiddenWordListFile();
     }
 
     @FXML

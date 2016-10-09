@@ -63,22 +63,24 @@ public class CustomFileReader {
             bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
             scanner = new Scanner(new FileReader(wordListFile));
             String line;
-            while ((line = scannerReadLine()) != null) {
-                readCategory:
-                {
+            outer:
+            {
+                while ((line = scannerReadLine()) != null) {
                     if (line.equals("%" + wordListTitle)) {
                         // Found category to remove, don't copy it to the temp file
                         while ((line = scannerReadLine()) != null) {
                             // Found next category OR eof, can stop not copying
-                            if (line.startsWith("%") || !scanner.hasNextLine()) {
-                                break readCategory;
+                            if (line.startsWith("%")) {
+                                break;
+                            } else if (!scanner.hasNext()) {
+                                break outer; // EOF, nothing to write to file
                             }
                         }
                     }
+                    // Copy over lines from original file to temp file
+                    bufferedWriter.write(line);
+                    bufferedWriter.newLine();
                 }
-                // Copy over lines from original file to temp file
-                bufferedWriter.write(line);
-                bufferedWriter.newLine();
             }
             bufferedWriter.flush();
 
@@ -111,6 +113,7 @@ public class CustomFileReader {
 
     public void syncWordListDataWithFile(List<WordList> wordLists, File wordListFile) {
         try {
+            // Overwrite wordlist file with data
             bufferedWriter = new BufferedWriter(new FileWriter(wordListFile, false));
             for (WordList wordList : wordLists) {
                 bufferedWriter.write("%" + wordList.toString());
