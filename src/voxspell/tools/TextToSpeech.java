@@ -35,7 +35,20 @@ public class TextToSpeech {
      * E.g. "(voice_kal_diphone)" or "(voice_rab_diphone)"
      */
     public static void setVoice(String newVoice) {
-        voice = newVoice;
+        String scmFileVoice;
+        switch (newVoice){
+            case "US English":
+                scmFileVoice = "(voice_kal_diphone)";
+                break;
+            case "UK English":
+                scmFileVoice = "(voice_rab_diphone)";
+                break;
+            default:
+                scmFileVoice = "(voice_rab_diphone)";
+                break;
+        }
+
+        voice = scmFileVoice;
     }
 
     /**

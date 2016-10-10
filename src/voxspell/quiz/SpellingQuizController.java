@@ -3,7 +3,9 @@ package voxspell.quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
@@ -16,11 +18,13 @@ import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
 import voxspell.quiz.reportCard.ReportCardController;
 import voxspell.quiz.reportCard.ReportCardFactory;
 import voxspell.tools.TextToSpeech;
+import voxspell.wordlistEditor.AddWordListPopupController;
 import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -252,4 +256,13 @@ public class SpellingQuizController {
     }
 
 
+    public void handleSettingsBtn(ActionEvent actionEvent) {
+        try {
+            Parent settingsRoot = FXMLLoader.load(getClass().getResource("../fxml/Settings.fxml"));
+            Scene scene = new Scene(settingsRoot);
+            Main.showPopup(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
