@@ -94,6 +94,7 @@ public class Main extends Application {
 
         // Popups to be used later
         popup = new Stage();
+        popup.setResizable(false);
         hidePopup();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.initOwner(window.getScene().getWindow());

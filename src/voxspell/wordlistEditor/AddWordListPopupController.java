@@ -39,6 +39,14 @@ public class AddWordListPopupController implements Initializable {
         AddWordListPopupController.wordListEditorInstance = wordListEditorInstance;
     }
 
+    public void setData(TitledPane expandedPane, boolean modify) {
+        TableView selectedTable = (TableView) expandedPane.getContent();
+        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
+        categoryNameField.setText(expandedPane.getText());
+        categoryNameField.setEditable(!modify);
+        data.addAll(tableData);
+    }
+
     /**
      * Bind data in table to an ObservableList
      */
@@ -62,10 +70,10 @@ public class AddWordListPopupController implements Initializable {
 
     @FXML
     private void handleAddListBtn(ActionEvent actionEvent) {
-        String category = categoryNameField.getText();
+        String category = categoryNameField.getText().trim();
         List<Word> words = new ArrayList<>(data);
-        wordListEditorInstance.addWordList(category, words);
-        // TODO error if list is less than 10 in size
+        wordListEditorInstance.addCategory(category, words);
+        // ERROR if no words in list OR category name is blank
         Main.hidePopup();
     }
 
@@ -78,7 +86,7 @@ public class AddWordListPopupController implements Initializable {
     @FXML
     private void handleAddWordBtn(ActionEvent actionEvent) {
         if (wordField.getText().trim().equals("")) {
-            // TODO Let user know no word is entered.. Fine is definition is blank
+            // TODO Let user know no word is entered.. Fine if definition is blank
         } else {
             String name = wordField.getText();
             String definition = definitionField.getText();
@@ -97,10 +105,5 @@ public class AddWordListPopupController implements Initializable {
         data.remove(highlightedWord);
     }
 
-    public void setData(TitledPane expandedPane) {
-        TableView selectedTable = (TableView) expandedPane.getContent();
-        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
-        categoryNameField.setText(expandedPane.getText());
-        data.addAll(tableData);
-    }
+
 }

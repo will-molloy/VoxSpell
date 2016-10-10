@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import voxspell.Main;
@@ -22,14 +19,7 @@ import voxspell.tools.WordDefinitionFinder;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Controls the Word List Editor.
@@ -43,6 +33,9 @@ public class WordListEditorController implements Initializable {
     private static List<WordList> wordLists = new ArrayList<>();
 
     private CustomFileReader fileReader = new CustomFileReader();
+
+    @FXML
+    private Button importFileBtn, generateDefBtn;
 
     @FXML
     private Accordion wordListsView;
@@ -63,8 +56,19 @@ public class WordListEditorController implements Initializable {
         readWordListFileIntoList();
         sortAndPointLists();
         createGUI();
+        // Open first category by default
+        if (wordListsView.getPanes().size() > 0){
+            wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
+        }
 
-        System.out.println("WOW");
+        addButtonToolTips();
+    }
+
+    private void addButtonToolTips() {
+        importFileBtn.setTooltip(new Tooltip("Import a txt file containing the following format:\n" +
+                "Begin new categories with '%'.\n" +
+                "Begin words on a new line, separating definition by a tab."));
+        generateDefBtn.setTooltip(new Tooltip("You must have sdcv installed for this to work, may take a few moments."));
     }
 
     private void makeHiddenWordListFile() {
@@ -98,13 +102,22 @@ public class WordListEditorController implements Initializable {
 
     private void createGUI() {
         wordLists.forEach(this::addWordListToTableInTitledView);
+        resizeWordListView();
+    }
+
+    private void resizeWordListView(){
+        int minSize = wordListsView.getPanes().size() * 48; // 2 * font size * number of headers
+        if (minSize < 540){ // height of GUI
+            minSize = 540;
+        }
+        wordListsView.setPrefHeight(minSize);
     }
 
     private void addWordListToTableInTitledView(WordList wordList) {
         TableView tableView = new TableView();
         TitledPane titledPane = new TitledPane();
 
-        final ObservableList<Word> data = FXCollections.observableArrayList(wordList.wordList());
+        ObservableList<Word> data = FXCollections.observableArrayList(wordList.wordList());
 
         TableColumn<Word, String> wordCol = new TableColumn<>("Word");
         wordCol.setSortable(false);
@@ -113,8 +126,10 @@ public class WordListEditorController implements Initializable {
 
         TableColumn<Word, String> defCol = new TableColumn<>("Definition");
         defCol.setSortable(false);
-        defCol.setMinWidth(450);
+        defCol.setMinWidth(430);
         defCol.setCellValueFactory(new PropertyValueFactory<>("definition"));
+
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // no horizontal scroll
 
         tableView.setItems(data);
         tableView.getColumns().addAll(wordCol, defCol);
@@ -127,8 +142,16 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleRmvBtn(ActionEvent actionEvent) {
-        TitledPane expandedPane = wordListsView.getExpandedPane();
-        removeListFromDataGUIAndFile(expandedPane);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Remove Category?");
+        alert.setHeaderText("Remove the expanded category?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            TitledPane expandedPane = wordListsView.getExpandedPane();
+            removeListFromDataGUIAndFile(expandedPane);
+            resizeWordListView();
+        }
     }
 
     private void removeListFromDataGUIAndFile(TitledPane wordListShownInGUI){
@@ -158,10 +181,18 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleRmvAllBtn(ActionEvent actionEvent){
-        wordLists = new ArrayList<>(); // delete data
-        wordListsView.getPanes().removeAll(wordListsView.getPanes()); // delete panes
-        wordListFile.delete(); // remake file
-        makeHiddenWordListFile();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Remove Categories?");
+        alert.setHeaderText("Remove all categories?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            wordLists = new ArrayList<>(); // delete data
+            wordListsView.getPanes().removeAll(wordListsView.getPanes()); // delete panes
+            wordListFile.delete(); // remake file
+            resizeWordListView();
+            makeHiddenWordListFile();
+        }
     }
 
     @FXML
@@ -174,6 +205,7 @@ public class WordListEditorController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        resizeWordListView();
     }
 
     @FXML
@@ -181,16 +213,16 @@ public class WordListEditorController implements Initializable {
         TitledPane expandedPane = wordListsView.getExpandedPane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            Parent addWordListPopupRoot = loader.load(getClass().getResource("Add_Word_List.fxml").openStream());
+            Parent addWordListPopupRoot = loader.load(getClass().getResource("../fxml/Add_Word_List.fxml").openStream());
             AddWordListPopupController controller = loader.getController();
-            controller.setData(expandedPane);
+            controller.setData(expandedPane, true);
             AddWordListPopupController.setWordListEditorInstance(this);
             Scene scene = new Scene(addWordListPopupRoot);
             Main.showPopup(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        resizeWordListView();
     }
 
     @FXML
@@ -204,23 +236,34 @@ public class WordListEditorController implements Initializable {
 
         // Append to file
         newLists.forEach(this::addWordListToDataGUIAndFile);
+        resizeWordListView();
     }
-
 
     @FXML
     private void handleBackBtn(ActionEvent actionEvent) {
         Main.showMainMenu();
     }
 
-    public void addWordList(String category, List<Word> wordList) {
+    /**
+     * Adds the given Category and associated word list.
+     */
+    public void addCategory(String category, List<Word> wordList) {
         WordList newList = new WordList(category);
         newList.wordList().addAll(wordList);
-
-        addWordListToDataGUIAndFile(newList);
     }
 
+    /**
+     * Adds the given word list to the Data, GUI and File.
+     * If the category already exists, it overwrites.
+     */
     private void addWordListToDataGUIAndFile(WordList wordList){
-        // Data
+        /*
+         * Check category does not already exist
+         */
+        if (overWriteExistingWordList(wordList)){
+            return;
+        }
+        // Add to data
         wordLists.add(wordList);
         sortAndPointLists();
 
@@ -231,41 +274,71 @@ public class WordListEditorController implements Initializable {
         fileReader.addWordListToFile(wordList, wordListFile);
     }
 
-    /*
- * Generate definitions for all words on a background thread.
- */
+    /**
+     * Overwrite existing word list
+     */
+    private boolean overWriteExistingWordList(WordList wordList) {
+        for (WordList wl : wordLists){
+            if (wl.toString().equals(wordList.toString())){
+                // Change data
+                wl.wordList().removeAll(wl.wordList());
+                wl.wordList().addAll(wordList.wordList());
+
+                // recreate GUI - need to do this so order of panes is maintained
+                wordListsView.getPanes().removeAll(wordListsView.getPanes());
+                createGUI();
+
+                // need to rewrite entire file, no way to insert lines into files
+                fileReader.syncWordListDataWithFile(wordLists, wordListFile);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Generate definitions for all words on a background thread.
+     */
     @FXML
     private void handleGenerateDefBtn(ActionEvent actionEvent) {
+        ProgressBarPopup progressBar = new ProgressBarPopup();
+
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                int max = 0;
                 int current = 0;
-                for (WordList wordList : wordLists) {
-                    max += wordList.size();
+                int max = 0;
+                for (WordList wL : wordLists){
+                    max += wL.size();
                 }
+
                 for (WordList wordList : wordLists) {
-                    System.out.println("List: " + wordList.toString());
                     for (Word word : wordList.wordList()) {
-                        if (isCancelled()) {
-                            break;
-                        }
                         if (word.getDefinition().equals("")) {
                             word.setDefinition(WordDefinitionFinder.getDefinition(word.toString()));
                         }
                         updateProgress(++current, max);
-                        System.out.println("Word: " + word + " Def: " + word.getDefinition());
                     }
                 } // TODO fix ?progress bar
 
-                // Sync wordlist data with word list file (add in defintions)
+                // Sync wordlist data with word list file (add in definitions)
                 fileReader.syncWordListDataWithFile(wordLists, wordListFile);
                 return null;
             }
         };
+
+        progressBar.activateProgressBar(task);
+
+        task.setOnSucceeded(event -> {
+            progressBar.getPopup().close();
+        });
+        progressBar.getPopup().show();
+
         thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+
+        wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
     }
 
 
