@@ -18,7 +18,7 @@ import java.util.List;
  */
 public abstract class ReportCardController {
 
-    private static int NUM_WORDS = 10;
+    private static int NUM_WORDS;
     @FXML
     protected Text passedOrFailedLevelText, wordsSpeltCorrectlyText;
     @FXML
@@ -34,15 +34,12 @@ public abstract class ReportCardController {
     private List wordSecondAttempts;
     private int mastered, faulted, failed;
 
-    public static void setNumWords(int numWords) {
-        ReportCardController.NUM_WORDS = numWords;
-    }
-
-    public final void setValues(List<String> words, List<String> wordFirstAttempts, List<String> wordSecondAttempts, WordList wordList) {
+    public final void setValues(List<String> words, List<String> wordFirstAttempts, List<String> wordSecondAttempts, WordList wordList, int quizSize) {
         this.words = words;
         this.wordFirstAttempts = wordFirstAttempts;
         this.wordSecondAttempts = wordSecondAttempts;
         this.wordList = wordList;
+        NUM_WORDS = quizSize;
     }
 
     public final void generateScene() {

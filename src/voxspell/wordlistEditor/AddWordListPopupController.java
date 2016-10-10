@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
 
@@ -71,12 +68,22 @@ public class AddWordListPopupController implements Initializable {
     @FXML
     private void handleAddListBtn(ActionEvent actionEvent) {
         String category = categoryNameField.getText().trim();
+        if (category.equals("")){
+            showCategoryFieldIsEmptyPopup();
+            return;
+        }
         List<Word> words = new ArrayList<>(data);
         wordListEditorInstance.addCategory(category, words);
         // ERROR if no words in list OR category name is blank
         Main.hidePopup();
     }
 
+    private void showCategoryFieldIsEmptyPopup() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Category Name Not Set");
+        alert.setHeaderText("Please set a category name.");
+        alert.showAndWait();
+    }
 
     @FXML
     private void handleCancelBtn(ActionEvent actionEvent) {
@@ -85,18 +92,24 @@ public class AddWordListPopupController implements Initializable {
 
     @FXML
     private void handleAddWordBtn(ActionEvent actionEvent) {
-        if (wordField.getText().trim().equals("")) {
-            // TODO Let user know no word is entered.. Fine if definition is blank
+        String name = wordField.getText().trim();
+        if (name.equals("")) {
+            showWordFieldIsEmptyPopup();
+            return;
         } else {
-            String name = wordField.getText();
-            String definition = definitionField.getText();
-
+            String definition = definitionField.getText().trim();
             Word word = new Word(name, definition);
             data.add(word);
         }
-
         wordField.clear();
         definitionField.clear();
+    }
+
+    private void showWordFieldIsEmptyPopup() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Word Field Is Empty");
+        alert.setHeaderText("Cannot add an empty word.");
+        alert.showAndWait();
     }
 
     @FXML

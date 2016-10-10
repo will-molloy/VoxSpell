@@ -21,33 +21,39 @@ public class CustomFileReader {
 
     public List<WordList> readWordListFileIntoList(File file) {
         List<WordList> wordLists = new ArrayList<>();
+        WordList wordList = null;
         try {
             scanner = new Scanner(new FileReader(file)); // need scanner hasNext()
             String line;
-            WordList wordList = null;
 
             while ((line = scannerReadLine()) != null) {
                 // word and definition are seperated by a tab within the hidden file.
                 String[] wordAndDef = line.split("\\t+");
 
                 // Found next category OR eof, copy over the wordlist
-                if (line.startsWith("%") || !scanner.hasNextLine()) {
+                if (line.startsWith("%")) {
                     if (wordList != null) { // null check for first iteration
                         wordLists.add(wordList);
                     }
                     wordList = new WordList(line.substring(1, line.length())); // set name of wordList
                 } else {
-                    Word word = new Word(wordAndDef[0]);
-                    if (wordAndDef.length > 1) { // definition detected
-                        word.setDefinition(wordAndDef[1]);
-                    }
+                    Word word = createWord(wordAndDef);
                     wordList.addWord(word);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        wordLists.add(wordList); // add final list
         return wordLists;
+    }
+
+    private Word createWord(String[] wordAndDef) {
+        Word word = new Word(wordAndDef[0]);
+        if (wordAndDef.length > 1) { // definition detected
+            word.setDefinition(wordAndDef[1]);
+        }
+        return word;
     }
 
     private String scannerReadLine() {

@@ -104,7 +104,11 @@ public class Main extends Application {
     private void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
         String category = spellingQuizControllerInstance.promptUserForInitialLevel();
-        spellingQuizControllerInstance.newQuiz(category);
+        if (category == null) {
+            window.setScene(mainMenu);
+        } else {
+            spellingQuizControllerInstance.newQuiz(category);
+        }
     }
 
     @FXML

@@ -250,6 +250,7 @@ public class WordListEditorController implements Initializable {
     public void addCategory(String category, List<Word> wordList) {
         WordList newList = new WordList(category);
         newList.wordList().addAll(wordList);
+        addWordListToDataGUIAndFile(newList);
     }
 
     /**
