@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import voxspell.Main;
 import voxspell.tools.CustomFileReader;
@@ -35,8 +37,10 @@ public class WordListEditorController implements Initializable {
     private CustomFileReader fileReader = new CustomFileReader();
 
     @FXML
+    private ImageView imageView;
+    private Image imageOfAScroll = new Image(new File("src/media/images/scroll.png").toURI().toString());
+    @FXML
     private Button importFileBtn, generateDefBtn;
-
     @FXML
     private Accordion wordListsView;
     private Thread thread;
@@ -60,7 +64,7 @@ public class WordListEditorController implements Initializable {
         if (wordListsView.getPanes().size() > 0) {
             wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
         }
-
+        imageView.setImage(imageOfAScroll);
         addButtonToolTips();
     }
 

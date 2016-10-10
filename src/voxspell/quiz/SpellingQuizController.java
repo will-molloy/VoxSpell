@@ -64,9 +64,9 @@ public class SpellingQuizController {
     // Images
     @FXML
     private Parent imageHBox;
-    private Image wordCorrect = new Image(new File("src/media/images/tick_80.jpg").toURI().toString());
-    private Image wordIncorrect = new Image(new File("src/media/images/cross_80.jpg").toURI().toString());
-    private Image wordFaulted = new Image(new File("src/media/images/square_80.jpg").toURI().toString());
+    private Image wordCorrect = new Image(new File("src/media/images/tick.png").toURI().toString());
+    private Image wordIncorrect = new Image(new File("src/media/images/cross.png").toURI().toString());
+    private Image wordFaulted = new Image(new File("src/media/images/warning.png").toURI().toString());
     private List<ImageView> images = new ArrayList<>();
 
     public String promptUserForInitialLevel() {
