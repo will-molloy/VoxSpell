@@ -30,7 +30,13 @@
         </font>
     </Text>
     <Button layoutX="310.0" layoutY="266.0" onAction="#handleWordListEditorButton" prefHeight="50.0" prefWidth="350.0"
-            text="Word List Editor" GridPane.rowIndex="3">
+            text="Word List Editor" GridPane.rowIndex="4">
+        <font>
+            <Font size="28.0"/>
+        </font>
+    </Button>
+    <Button layoutX="310.0" layoutY="343.0" onAction="#handleDailyChallengeBtn" prefHeight="50.0" prefWidth="350.0"
+            text="Daily Challenge" GridPane.rowIndex="3">
         <font>
             <Font size="28.0"/>
         </font>
@@ -44,8 +50,9 @@
         <RowConstraints/>
         <RowConstraints/>
         <RowConstraints/>
+        <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="57.0"/>
         <RowConstraints/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+        <RowConstraints maxHeight="24.0" minHeight="3.0" prefHeight="3.0"/>
     </rowConstraints>
 
 

@@ -57,7 +57,7 @@ public class WordListEditorController implements Initializable {
         sortAndPointLists();
         createGUI();
         // Open first category by default
-        if (wordListsView.getPanes().size() > 0){
+        if (wordListsView.getPanes().size() > 0) {
             wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
         }
 
@@ -83,7 +83,7 @@ public class WordListEditorController implements Initializable {
         wordLists = fileReader.readWordListFileIntoList(wordListFile);
     }
 
-    private void sortAndPointLists(){
+    private void sortAndPointLists() {
         sortLists();
         pointLists();
     }
@@ -98,6 +98,7 @@ public class WordListEditorController implements Initializable {
         for (int i = 0; i < wordLists.size() - 1; i++) {
             wordLists.get(i).setNextList(wordLists.get(i + 1));
         }
+        wordLists.get(wordLists.size() - 1).setNextList(wordLists.get(0)); // TODO change this ???
     }
 
     private void createGUI() {
@@ -105,9 +106,9 @@ public class WordListEditorController implements Initializable {
         resizeWordListView();
     }
 
-    private void resizeWordListView(){
+    private void resizeWordListView() {
         int minSize = wordListsView.getPanes().size() * 48; // 2 * font size * number of headers
-        if (minSize < 540){ // height of GUI
+        if (minSize < 540) { // height of GUI
             minSize = 540;
         }
         wordListsView.setPrefHeight(minSize);
@@ -147,14 +148,14 @@ public class WordListEditorController implements Initializable {
         alert.setHeaderText("Remove the expanded category?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             TitledPane expandedPane = wordListsView.getExpandedPane();
             removeListFromDataGUIAndFile(expandedPane);
             resizeWordListView();
         }
     }
 
-    private void removeListFromDataGUIAndFile(TitledPane wordListShownInGUI){
+    private void removeListFromDataGUIAndFile(TitledPane wordListShownInGUI) {
         // Remove from data
         wordLists.remove(wordListsView.getPanes().indexOf(wordListShownInGUI));
 
@@ -180,13 +181,13 @@ public class WordListEditorController implements Initializable {
     }
 
     @FXML
-    private void handleRmvAllBtn(ActionEvent actionEvent){
+    private void handleRmvAllBtn(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Remove Categories?");
         alert.setHeaderText("Remove all categories?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             wordLists = new ArrayList<>(); // delete data
             wordListsView.getPanes().removeAll(wordListsView.getPanes()); // delete panes
             wordListFile.delete(); // remake file
@@ -257,11 +258,11 @@ public class WordListEditorController implements Initializable {
      * Adds the given word list to the Data, GUI and File.
      * If the category already exists, it overwrites.
      */
-    private void addWordListToDataGUIAndFile(WordList wordList){
+    private void addWordListToDataGUIAndFile(WordList wordList) {
         /*
          * Check category does not already exist
          */
-        if (overWriteExistingWordList(wordList)){
+        if (overWriteExistingWordList(wordList)) {
             return;
         }
         // Add to data
@@ -279,8 +280,8 @@ public class WordListEditorController implements Initializable {
      * Overwrite existing word list
      */
     private boolean overWriteExistingWordList(WordList wordList) {
-        for (WordList wl : wordLists){
-            if (wl.toString().equals(wordList.toString())){
+        for (WordList wl : wordLists) {
+            if (wl.toString().equals(wordList.toString())) {
                 // Change data
                 wl.wordList().removeAll(wl.wordList());
                 wl.wordList().addAll(wordList.wordList());
@@ -309,7 +310,7 @@ public class WordListEditorController implements Initializable {
             protected Void call() throws Exception {
                 int current = 0;
                 int max = 0;
-                for (WordList wL : wordLists){
+                for (WordList wL : wordLists) {
                     max += wL.size();
                 }
 
@@ -341,7 +342,6 @@ public class WordListEditorController implements Initializable {
 
         wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
     }
-
 
 
 }

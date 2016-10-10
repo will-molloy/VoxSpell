@@ -18,7 +18,6 @@ import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
 import voxspell.quiz.reportCard.ReportCardController;
 import voxspell.quiz.reportCard.ReportCardFactory;
 import voxspell.tools.TextToSpeech;
-import voxspell.wordlistEditor.AddWordListPopupController;
 import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
@@ -42,16 +41,14 @@ public class SpellingQuizController {
     // Game logic
     private static List<WordList> wordLists;
     private static WordList categoryWordList;
+    // Reportcard shown after quiz
+    private static ReportCardFactory reportCardFactory;
     private List<Word> quizWordList;
     private int wordNumber;
     private int wordsCorrectFirstAttempt;
     private int quizSize;
     private boolean firstAttempt;
     private Word word;
-
-    // Reportcard shown after quiz
-    private static ReportCardFactory reportCardFactory;
-
     // Tools
     private TextToSpeech textToSpeech = TextToSpeech.getInstance();
 
@@ -75,8 +72,8 @@ public class SpellingQuizController {
     public String promptUserForInitialLevel() {
         // Get word lists from editor.
         wordLists = WordListEditorController.getWordLists();
-        if (!(wordLists.size() > 0)){
-           showNoWordListsDialog();
+        if (!(wordLists.size() > 0)) {
+            showNoWordListsDialog();
             return null;
         }
         // Get word list/category names (wordlist.toString() does this)
@@ -96,7 +93,7 @@ public class SpellingQuizController {
         return option;
     }
 
-    private void showNoWordListsDialog(){
+    private void showNoWordListsDialog() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No Categories");
         alert.setHeaderText("VoxSpell currently has no categories");
@@ -117,7 +114,7 @@ public class SpellingQuizController {
         // Get 10 (or word list size) random words from the word list for a quiz
         quizWordList = new ArrayList<>(categoryWordList.wordList());
         Collections.shuffle(quizWordList);
-        quizSize = Math.min(10,quizWordList.size());
+        quizSize = Math.min(10, quizWordList.size());
         quizWordList = new ArrayList<>(quizWordList.subList(0, quizSize));
         quizWordListCopy = quizWordList.stream().map(Word::toString).collect(Collectors.toList());
 
@@ -155,7 +152,7 @@ public class SpellingQuizController {
         if (quizWordList.size() > 0) {
             word = quizWordList.get(0);
             System.out.println(word);
-            wordNumber = quizSize+1 - quizWordList.size();
+            wordNumber = quizSize + 1 - quizWordList.size();
             String line;
 
             if (firstAttempt) {
@@ -181,7 +178,7 @@ public class SpellingQuizController {
              */
             Platform.runLater(() -> {
                 ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-                controller.setValues(quizWordListCopy, wordFirstAttempts, wordSecondAttempts, categoryWordList, quizSize);
+                controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList);
                 controller.generateScene();
             });
         }

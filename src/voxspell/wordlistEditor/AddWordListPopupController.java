@@ -68,7 +68,7 @@ public class AddWordListPopupController implements Initializable {
     @FXML
     private void handleAddListBtn(ActionEvent actionEvent) {
         String category = categoryNameField.getText().trim();
-        if (category.equals("")){
+        if (category.equals("")) {
             showCategoryFieldIsEmptyPopup();
             return;
         }

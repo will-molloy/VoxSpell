@@ -13,7 +13,7 @@ import javafx.stage.StageStyle;
 
 /**
  * Contains a ProgressBar for running background tasks.
- *
+ * <p>
  * Found the base code here: http://stackoverflow.com/a/29628430/6122976
  *
  * @author Will Molloy
@@ -45,7 +45,7 @@ public class ProgressBarPopup {
         popup.setScene(scene);
     }
 
-    public void activateProgressBar(final Task<?> task)  {
+    public void activateProgressBar(final Task<?> task) {
         progressBar.progressProperty().bind(task.progressProperty());
         indicator.progressProperty().bind(task.progressProperty());
         popup.show();

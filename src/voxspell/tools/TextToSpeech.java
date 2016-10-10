@@ -36,7 +36,7 @@ public class TextToSpeech {
      */
     public static void setVoice(String newVoice) {
         String scmFileVoice;
-        switch (newVoice){
+        switch (newVoice) {
             case "US English":
                 scmFileVoice = "(voice_kal_diphone)";
                 break;

@@ -112,13 +112,15 @@ public class Main extends Application {
     }
 
     @FXML
-    private void handleStatisticsButton(ActionEvent actionEvent) {
-    }
-
-    @FXML
     private void handleWordListEditorButton(ActionEvent actionEvent) {
         window.setScene(wordListEditor);
     }
 
+    @FXML
+    private void handleStatisticsButton(ActionEvent actionEvent) {
+    }
 
+    @FXML
+    private void handleDailyChallengeBtn(ActionEvent actionEvent) {
+    }
 }

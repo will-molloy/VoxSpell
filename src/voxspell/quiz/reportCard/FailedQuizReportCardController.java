@@ -1,12 +1,17 @@
 package voxspell.quiz.reportCard;
 
 /**
- * Created by will on 3/10/16.
+ * Controller for the report card shown when the user fails a quiz.
+ *
+ * @author Will Molloy
  */
 public class FailedQuizReportCardController extends ReportCardController {
 
+    /*
+    I had stuff here but changed the implementation later on..
+     */
     @Override
-    protected void setLevelText() {
-        passedOrFailedLevelText.setText("Failed " + wordList.toString());
+    public void createGUI() {
     }
+
 }

@@ -1,22 +1,31 @@
 package voxspell.quiz.reportCard;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import voxspell.Main;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Created by will on 3/10/16.
+ * Controller for the report card shown when the user passes a spelling quiz.
  */
 public class PassedQuizReportCardController extends ReportCardController {
 
-    public void setLevelText() {
-        passedOrFailedLevelText.setText("Passed " + wordList.toString() + " !");
-        proceedToLevelBtn.setText("Proceed to " + wordList.next().toString());
+    @FXML
+    public Button viewVideoBtn;
+    @FXML
+    private Text wellDoneTextView;
+
+    public void createGUI() {
+        List<String> congratulations = new ArrayList<>();
+        congratulations.add("Good Job!");
+        congratulations.add("Well Done!");
+        congratulations.add("Congratulations!");
+        Collections.shuffle(congratulations);
+        wellDoneTextView.setText(congratulations.get(0));
     }
 
-    @FXML
-    private void handleNextLevelBtn(ActionEvent actionEvent) {
-        Main.newSpellingQuiz(wordList.next().toString());
-    }
 
 }
