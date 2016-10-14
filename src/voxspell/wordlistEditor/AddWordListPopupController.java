@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  *
  * @author Will Molloy
  */
-public class AddWordListPopupController extends WordListEditorController implements Initializable  {
+public class AddWordListPopupController extends WordListEditorController implements Initializable {
 
     private static WordListEditorController wordListEditorInstance;
     private ObservableList<Word> data;
@@ -42,7 +42,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
         categoryNameField.setEditable(!modify);
         data.addAll(tableData);
         categoryNameField.requestFocus();
-        
+
     }
 
     /**
@@ -72,7 +72,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
         if (category.equals("")) {
             showCategoryFieldIsEmptyPopup();
         } else {
-            if (!categoryIsValid(category) && !modify){
+            if (!categoryIsValid(category) && !modify) {
                 showCategoryAlreadyExistsPopup(category);
             } else {
                 List<Word> words = new ArrayList<>(data);
@@ -95,8 +95,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
      * A category is valid if it doesn't already exist.
      */
     private boolean categoryIsValid(String candidate) {
-        for (WordList wordList : WordListEditorController.getWordLists()){
-            if (wordList.toString().equals(candidate)){
+        for (WordList wordList : WordListEditorController.getWordLists()) {
+            if (wordList.toString().equals(candidate)) {
                 return false;
             }
         }
@@ -110,7 +110,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
         alert.setContentText("Overwrite " + category + "?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             modify = true; // switch to modifying mode
             handleAddListBtn(null);
         }
@@ -138,7 +138,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
     }
 
     @FXML
-    private  void handleWordField(ActionEvent actionEvent) {
+    private void handleWordField(ActionEvent actionEvent) {
         if (wordFieldIsValid()) {
             definitionField.requestFocus();
         } else {
@@ -146,7 +146,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
         }
     }
 
-    private boolean wordFieldIsValid(){
+    private boolean wordFieldIsValid() {
         return !wordField.getText().trim().equals("");
     }
 

@@ -2,13 +2,11 @@ package voxspell.reportCard.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
 
 /**
  * Controller for the report card shown when the user fails a quiz.
@@ -17,23 +15,39 @@ import java.util.List;
  */
 public class FailedQuizReportCardController extends ReportCardController {
     @FXML
-    private Text failedTextView;
+    private Pane failurePane;
+    private Node textOnlyRoot, textAndCorrectionsRoot;
 
     @Override
     public void createGUI() {
-        List<String> failed = new ArrayList<>();
-        failed.add("That's Unfortunate");
-        failed.add("Better Luck Next Time!");
-        failed.add("You Have Been Unsuccessful");
-        Collections.shuffle(failed);
-        failedTextView.setText(failed.get(0));
+        loadSubScenes();
+        failurePane.getChildren().add(textOnlyRoot);
+    }
+
+    private void loadSubScenes() {
+        try {
+            // Load 'text only' view initially displayed
+            FXMLLoader textLoader = new FXMLLoader(getClass().getResource("../fxml/Failed_Text.fxml"));
+            textOnlyRoot = textLoader.load();
+            FailedTextController failedTextControllerInstance = textLoader.getController();
+
+            // Load 'corrections' view displayed if user presses 'view mistakes' btn
+            FXMLLoader correctionsLoader = new FXMLLoader(getClass().getResource("../fxml/Failed_Text_And_Corrections.fxml"));
+            textAndCorrectionsRoot = correctionsLoader.load();
+            FailedTextAndCorrectionsController failedTextAndCorrectionsController = correctionsLoader.getController();
+
+            // Ensure both views have the same text
+            failedTextAndCorrectionsController.setTextViewText(failedTextControllerInstance.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    final void handleMistakesBtn(ActionEvent actionEvent) {
-
+    private void handleMistakesBtn(ActionEvent actionEvent) {
+        failurePane.getChildren().removeAll(failurePane.getChildren());
+        failurePane.getChildren().add(textAndCorrectionsRoot);
     }
-
 
 
 }

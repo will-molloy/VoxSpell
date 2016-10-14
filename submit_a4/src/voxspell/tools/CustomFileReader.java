@@ -3,7 +3,6 @@ package voxspell.tools;
 import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

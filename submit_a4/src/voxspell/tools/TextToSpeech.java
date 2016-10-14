@@ -2,7 +2,6 @@ package voxspell.tools;
 
 import voxspell.quiz.SpellingQuizController;
 
-import javax.swing.*;
 import java.io.IOException;
 
 /**

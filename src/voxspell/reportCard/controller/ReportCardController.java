@@ -3,18 +3,12 @@ package voxspell.reportCard.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import voxspell.Main;
-import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,11 +24,11 @@ public abstract class ReportCardController {
     protected Button retryLevelBtn;
     @FXML
     protected WordList wordList;
+    protected List<String> words;
+    int mastered;
     @FXML
     private Text accuracyTextView;
-    protected List<String> words;
     private List<String> wordFirstAttempts;
-    int mastered;
     private List<String[]> incorrectWords = new ArrayList<>();
 
     public final void setValues(List<String> words, List<String> wordFirstAttempts, WordList wordList) {

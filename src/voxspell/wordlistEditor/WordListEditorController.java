@@ -73,11 +73,11 @@ public class WordListEditorController implements Initializable {
         addButtonToolTips();
     }
 
-    private void setNoWordListsText(){
+    private void setNoWordListsText() {
         categoriesTextField.setText("VoxSpell currently has no categories.");
     }
 
-    private void setThereAreWordListsText(){
+    private void setThereAreWordListsText() {
         categoriesTextField.setText("VoxSpell has loaded these categories:");
     }
 
@@ -188,7 +188,7 @@ public class WordListEditorController implements Initializable {
         removeWordListFromFile(wordListShownInGUI.getText());
 
         // Set explanation text
-        if (wordLists.size() == 0){
+        if (wordLists.size() == 0) {
             setNoWordListsText();
         }
     }
