@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VoxSpell:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/VoxSpell_jar</output-path>
+    <root id="archive" name="VoxSpell.jar">
+      <element id="module-output" name="VoxSpell" />
+    </root>
+  </artifact>
+</component>

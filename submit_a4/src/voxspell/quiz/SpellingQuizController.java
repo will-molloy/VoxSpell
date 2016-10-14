@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +15,7 @@ import javafx.scene.text.Text;
 import voxspell.Main;
 import voxspell.reportCard.FailedQuizReportCardFactory;
 import voxspell.reportCard.PassedQuizReportCardFactory;
-import voxspell.reportCard.controller.ReportCardController;
+import voxspell.reportCard.ReportCardController;
 import voxspell.reportCard.ReportCardFactory;
 import voxspell.tools.TextToSpeech;
 import voxspell.wordlistEditor.Word;
@@ -43,29 +42,30 @@ public class SpellingQuizController {
     private static WordList categoryWordList;
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
-    @FXML
-    private ProgressBar quizProgressBar;
     private List<Word> quizWordList;
     private int wordNumber;
     private int wordsCorrectFirstAttempt;
     private int quizSize;
+    private boolean firstAttempt;
     private Word word;
     // Tools
     private TextToSpeech textToSpeech = TextToSpeech.getInstance();
 
     // FXML
     @FXML
-    private Text categoryText;
+    private Text categoryText, wordsToSpellText;
     @FXML
     private TextField wordEntryField;
     private List<String> quizWordListCopy;
     private List<String> wordFirstAttempts;
+    private List<String> wordSecondAttempts;
 
     // Images
     @FXML
     private Parent imageHBox;
     private Image wordCorrect = new Image(Main.class.getResourceAsStream("media/images/tick.png"));
     private Image wordIncorrect = new Image(Main.class.getResourceAsStream("media/images/cross.png"));
+    private Image wordFaulted = new Image(Main.class.getResourceAsStream("media/images/warning.png"));
 
     private List<ImageView> images = new ArrayList<>();
 
@@ -131,12 +131,7 @@ public class SpellingQuizController {
     }
 
     private void resetFields() {
-        clearGUI();
-        resetGameLogic();
-    }
-
-    private void clearGUI() {
-        // Add ImageViews inside imageHBox to the ArrayList of images
+        // Add ImageViews inside imageHBox to the ArrayList images
         images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
         // Blank out all images
         for (ImageView imageView : images) {
@@ -144,12 +139,12 @@ public class SpellingQuizController {
         }
         // Reset text views
         categoryText.setText("");
-        quizProgressBar.setProgress(0);
-    }
-
-    private void resetGameLogic() {
+        wordsToSpellText.setText("");
+        // Reset game logic
         wordsCorrectFirstAttempt = 0;
+        firstAttempt = true;
         wordFirstAttempts = new ArrayList<>();
+        wordSecondAttempts = new ArrayList<>();
     }
 
     public void continueSpellingQuiz() {
@@ -158,9 +153,17 @@ public class SpellingQuizController {
             word = quizWordList.get(0);
             System.out.println(word);
             wordNumber = quizSize + 1 - quizWordList.size();
+            String line;
 
-            textToSpeech.readSentence("Please spell ... " + word);
-
+            if (firstAttempt) {
+                line = "Please spell ... " + word;
+                wordsToSpellText.setText("Spell word " + wordNumber + " of " + quizSize);
+                textToSpeech.readSentence(line);
+            } else { /* Second Attempt */
+                line = "Try once more. " + word + ". ... " + word;
+                textToSpeech.readSentence(line);
+                firstAttempt = false;
+            }
         } else { /* Quiz Completed */
             if (wordsCorrectFirstAttempt >= 9 || wordsCorrectFirstAttempt == quizSize) {
                 /* Passed */
@@ -170,7 +173,7 @@ public class SpellingQuizController {
                 reportCardFactory = new FailedQuizReportCardFactory();
             }
             /*
-             * ContinueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
+             * continueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
              * and need to run this code on an FX thread. Platform.runLater() achieves this.
              */
             Platform.runLater(() -> {
@@ -178,7 +181,6 @@ public class SpellingQuizController {
                 controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList);
                 controller.generateScene();
             });
-            clearGUI();
         }
     }
 
@@ -199,19 +201,37 @@ public class SpellingQuizController {
 
             if (attempt.equals(word.toString())) { /* Correct */
 
-                wordFirstAttempts.add(attempt);
-                wordsCorrectFirstAttempt++;
-                images.get(imageIndex).setImage(wordCorrect);
-
+                if (firstAttempt) {
+                    /* First attempt correct */
+                    wordFirstAttempts.add(attempt);
+                    wordSecondAttempts.add(attempt); // adding word here too to maintain indexing
+                    wordsCorrectFirstAttempt++;
+                    images.get(imageIndex).setImage(wordCorrect);
+                } else {
+                    /* Second attempt correct */
+                    wordSecondAttempts.add(attempt);
+                    firstAttempt = true;
+                    images.get(imageIndex).setImage(wordCorrect);
+                }
+                quizWordList.remove(word);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
             } else { /* Incorrect */
-                wordFirstAttempts.add(attempt);
-                images.get(imageIndex).setImage(wordIncorrect);
+
+                if (firstAttempt) {
+                    /* First attempt incorrect */
+                    wordFirstAttempts.add(attempt);
+                    images.get(imageIndex).setImage(wordFaulted);
+                    firstAttempt = false;
+                } else {
+                    /* Second attempt incorrect */
+                    wordSecondAttempts.add(attempt);
+                    images.get(imageIndex).setImage(wordIncorrect);
+                    quizWordList.remove(word);
+                    firstAttempt = true;
+                }
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
             }
-            quizProgressBar.setProgress(wordNumber * 1.0 / quizSize);
-            quizWordList.remove(word);
         }
     }
 

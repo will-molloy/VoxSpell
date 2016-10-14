@@ -23,7 +23,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz, wordListEditor;
+    public static Scene mainMenu, spellingQuiz, wordListEditor;
     // Overall window
     private static Stage window;
     // Popup window
@@ -79,12 +79,12 @@ public class Main extends Application {
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
 
-        FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("fxml/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
         spellingQuizControllerInstance = spellingQuizLoader.getController();
         spellingQuiz = new Scene(spellingQuizRoot);
 
-        Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
+        Parent wordListRoot = FXMLLoader.load(getClass().getResource("fxml/Word_List_Editor.fxml"));
         wordListEditor = new Scene(wordListRoot);
 
         window.setTitle("VoxSpell");

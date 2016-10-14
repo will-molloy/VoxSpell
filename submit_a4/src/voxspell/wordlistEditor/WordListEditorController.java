@@ -1,6 +1,5 @@
 package voxspell.wordlistEditor;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import voxspell.Main;
 import voxspell.tools.CustomFileReader;
@@ -36,9 +34,8 @@ public class WordListEditorController implements Initializable {
     private static final File wordListFile = new File(WORD_LIST_NAME);
     private static List<WordList> wordLists = new ArrayList<>();
 
-    @FXML
-    private Text categoriesTextField;
     private CustomFileReader fileReader = new CustomFileReader();
+
     @FXML
     private ImageView imageView;
     private Image imageOfAScroll = new Image(Main.class.getResourceAsStream("media/images/scroll.png"));
@@ -66,19 +63,9 @@ public class WordListEditorController implements Initializable {
         // Open first category by default
         if (wordListsView.getPanes().size() > 0) {
             wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
-        } else {
-            setNoWordListsText();
         }
         imageView.setImage(imageOfAScroll);
         addButtonToolTips();
-    }
-
-    private void setNoWordListsText(){
-        categoriesTextField.setText("VoxSpell currently has no categories.");
-    }
-
-    private void setThereAreWordListsText(){
-        categoriesTextField.setText("VoxSpell has loaded these categories:");
     }
 
     private void addButtonToolTips() {
@@ -117,7 +104,7 @@ public class WordListEditorController implements Initializable {
         for (int i = 0; i < wordLists.size() - 1; i++) {
             wordLists.get(i).setNextList(wordLists.get(i + 1));
         }
-        wordLists.get(wordLists.size() - 1).setNextList(wordLists.get(0)); // wrap back to beginning
+        wordLists.get(wordLists.size() - 1).setNextList(wordLists.get(0)); // wrap around - not sure what I want TODO
     }
 
     private void createGUI() {
@@ -126,7 +113,10 @@ public class WordListEditorController implements Initializable {
     }
 
     private void resizeWordListView() {
-        int minSize = wordListsView.getPanes().size() * 48 + 30; //  number of headers * 2 * font size + header size
+        int minSize = wordListsView.getPanes().size() * 48; // 2 * font size * number of headers
+        if (minSize < 540) { // height of GUI
+            minSize = 540;
+        }
         wordListsView.setPrefHeight(minSize);
     }
 
@@ -148,9 +138,6 @@ public class WordListEditorController implements Initializable {
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // no horizontal scroll
 
-        tableView.setFixedCellSize(25);
-        tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(30));
-
         tableView.setItems(data);
         tableView.getColumns().addAll(wordCol, defCol);
 
@@ -158,9 +145,6 @@ public class WordListEditorController implements Initializable {
         titledPane.setContent(tableView);
 
         wordListsView.getPanes().add(titledPane);
-
-        // Set explanation text
-        setThereAreWordListsText();
     }
 
     @FXML
@@ -186,11 +170,6 @@ public class WordListEditorController implements Initializable {
 
         // Remove from file
         removeWordListFromFile(wordListShownInGUI.getText());
-
-        // Set explanation text
-        if (wordLists.size() == 0){
-            setNoWordListsText();
-        }
     }
 
     private void removeWordListFromFile(String wordListTitle) {
@@ -221,19 +200,19 @@ public class WordListEditorController implements Initializable {
             resizeWordListView();
             makeHiddenWordListFile();
         }
-        setNoWordListsText();
     }
 
     @FXML
     private void handleAddBtn(ActionEvent actionEvent) {
         try {
-            Parent addWordListPopupRoot = FXMLLoader.load(getClass().getResource("fxml/Add_Word_List.fxml"));
+            Parent addWordListPopupRoot = FXMLLoader.load(Main.class.getResource("fxml/Add_Word_List.fxml"));
             AddWordListPopupController.setWordListEditorInstance(this);
             Scene scene = new Scene(addWordListPopupRoot);
             Main.showPopup(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        resizeWordListView();
     }
 
     @FXML
@@ -241,7 +220,7 @@ public class WordListEditorController implements Initializable {
         TitledPane expandedPane = wordListsView.getExpandedPane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            Parent addWordListPopupRoot = loader.load(getClass().getResource("fxml/Add_Word_List.fxml").openStream());
+            Parent addWordListPopupRoot = loader.load(Main.class.getResource("fxml/Add_Word_List.fxml").openStream());
             AddWordListPopupController controller = loader.getController();
             controller.setData(expandedPane, true);
             AddWordListPopupController.setWordListEditorInstance(this);
@@ -250,6 +229,7 @@ public class WordListEditorController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        resizeWordListView();
     }
 
     @FXML
@@ -347,7 +327,8 @@ public class WordListEditorController implements Initializable {
                         }
                         updateProgress(++current, max);
                     }
-                }
+                } // TODO fix ?progress bar
+
                 // Sync wordlist data with word list file (add in definitions)
                 fileReader.syncWordListDataWithFile(wordLists, wordListFile);
                 return null;
@@ -368,7 +349,5 @@ public class WordListEditorController implements Initializable {
         wordListsView.setExpandedPane(wordListsView.getPanes().get(0));
     }
 
-    @FXML
-    private void handleHelpBtn(ActionEvent actionEvent) {
-    }
+
 }

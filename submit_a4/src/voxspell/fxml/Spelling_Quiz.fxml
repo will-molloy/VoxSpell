@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="540.0" prefWidth="960.0"
+            xmlns="http://javafx.com/javafx/8.0.102-ea" fx:controller="voxspell.quiz.SpellingQuizController">
+    <top>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Text fx:id="categoryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Level ?" textAlignment="CENTER">
+                    <GridPane.margin>
+                        <Insets left="50.0"/>
+                    </GridPane.margin>
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="wordsToSpellText" layoutX="60.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Spell Word 1 of 10" textAlignment="CENTER" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="50.0"/>
+                    </GridPane.margin>
+                </Text>
+            </children>
+        </GridPane>
+    </top>
+    <center>
+        <GridPane alignment="CENTER" prefHeight="300.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="900.0" minWidth="50.0" prefWidth="480.0"/>
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="492.0" minWidth="10.0"
+                                   prefWidth="480.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextField fx:id="wordEntryField" alignment="CENTER" onAction="#handleEnterWordBtn" prefHeight="55.0"
+                           prefWidth="700.0" promptText="Enter the words here." GridPane.columnSpan="2"
+                           GridPane.rowIndex="2">
+                    <font>
+                        <Font size="45.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets left="200.0" right="50.0"/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets left="200.0" right="200.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Button layoutX="10.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleRepeatWordBtn"
+                        prefHeight="50.0" prefWidth="250.0" text="Repeat Word" textAlignment="CENTER"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets left="200.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Button layoutX="10.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleDefinitionBtn"
+                        prefHeight="50.0" prefWidth="250.0" text="Hear Definition" textAlignment="CENTER"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="30.0" right="50.0"/>
+                    </GridPane.margin>
+                </Button>
+                <HBox fx:id="imageHBox" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2">
+                    <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                            <HBox.margin>
+                                <Insets left="80.0" top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="90.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="250.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="330.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="490.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="570.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="650.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="80.0"/>
+                            </HBox.margin>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <HBox prefHeight="90.0" prefWidth="485.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="50.0"
+                                prefWidth="250.0" text="Back" textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="30.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button layoutX="40.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleSettingsBtn"
+                                prefHeight="55.0" prefWidth="115.0" text="Voice" textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets top="18.0"/>
+                    </padding>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </HBox>
+                <HBox layoutX="490.0" layoutY="400.0" prefHeight="90.0" prefWidth="275.0" GridPane.rowIndex="3">
+                    <padding>
+                        <Insets top="18.0"/>
+                    </padding>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleEnterWordBtn" prefHeight="50.0"
+                                prefWidth="250.0" text="Enter" textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="200.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </HBox>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>

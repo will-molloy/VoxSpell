@@ -7,7 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jwktl-1.0.1" level="project" />
-    <orderEntry type="library" name="edu.mit.jwi_2.4.0" level="project" />
   </component>
 </module>

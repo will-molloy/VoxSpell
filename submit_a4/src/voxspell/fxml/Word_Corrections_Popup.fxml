@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
           minWidth="-Infinity"
           prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102-ea"
-          fx:controller="voxspell.SettingsController">
+          fx:controller="voxspell.reportCard.WordCorrectionsPopup">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
@@ -20,22 +20,13 @@
         <GridPane GridPane.rowIndex="1">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Button mnemonicParsing="false" onAction="#handleConfirmBtn" prefWidth="150.0" text="Confirm">
-                    <font>
-                        <Font size="28.0"/>
-                    </font>
-                    <GridPane.margin>
-                        <Insets left="120.0"/>
-                    </GridPane.margin>
-                </Button>
-                <Button layoutX="10.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleCancelBtn"
-                        prefWidth="150.0" text="Cancel" GridPane.columnIndex="1">
+                <Button contentDisplay="CENTER" layoutX="10.0" layoutY="97.0" mnemonicParsing="false"
+                        onAction="#handleDoneBtn" prefWidth="150.0" text="Done" textAlignment="CENTER">
                     <font>
                         <Font size="28.0"/>
                     </font>
@@ -43,15 +34,18 @@
                         <Insets/>
                     </opaqueInsets>
                     <GridPane.margin>
-                        <Insets left="30.0"/>
+                        <Insets left="225.0"/>
                     </GridPane.margin>
                 </Button>
             </children>
         </GridPane>
-        <ComboBox fx:id="voiceDropDown" minHeight="68.0" minWidth="300.0" prefWidth="150.0" promptText="Select a Voice">
+        <ScrollPane fx:id="scrollPane" prefHeight="300.0" prefWidth="500.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+            </content>
             <GridPane.margin>
-                <Insets left="150.0"/>
+                <Insets left="50.0" right="50.0"/>
             </GridPane.margin>
-        </ComboBox>
+        </ScrollPane>
     </children>
 </GridPane>

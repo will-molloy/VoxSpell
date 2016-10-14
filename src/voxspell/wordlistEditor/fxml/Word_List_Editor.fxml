@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.wordlistEditor.WordListEditorController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.0" minWidth="10.0" prefWidth="341.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="527.0" minHeight="10.0" prefHeight="507.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <GridPane prefHeight="481.0" prefWidth="360.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="236.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox prefHeight="22.0" prefWidth="360.0" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+               <children>
+                      <Button fx:id="importFileBtn" mnemonicParsing="false" onAction="#handleImportFileBtn" prefHeight="42.0" prefWidth="160.0" text="Import File">
+                          <tooltip>
+                              <Tooltip text="Empty Tooltip" />
+                          </tooltip>
+                          <font>
+                              <Font size="22.0" />
+                          </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                      </Button>
+                      <Button mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="42.0" prefWidth="160.0" text="Back">
+                          <font>
+                              <Font size="22.0" />
+                          </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                      </Button>
+               </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+               <children>
+                        <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#handleRmvBtn" prefWidth="160.0" text="Remove">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                        </Button>
+                        <Button fx:id="removeAllBtn" mnemonicParsing="false" onAction="#handleRmvAllBtn" prefWidth="160.0" text="Remove All">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                        </Button>
+               </children>
+                </HBox>
+                <ImageView fx:id="imageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                    <GridPane.margin>
+                        <Insets left="55.0" />
+                    </GridPane.margin>
+                </ImageView>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                        <Button fx:id="addBtn" mnemonicParsing="false" onAction="#handleAddBtn" prefWidth="160.0" text="Create" textAlignment="CENTER">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </HBox.margin>
+                        </Button>
+                        <Button fx:id="modifyBtn" mnemonicParsing="false" onAction="#handleModifyBtn" prefHeight="42.0" prefWidth="160.0" text="Modify">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </HBox.margin>
+                        </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                      <Button fx:id="generateDefBtn" mnemonicParsing="false" onAction="#handleGenerateDefBtn" prefWidth="270.0" text="Generate Definitions">
+                          <font>
+                              <Font size="22.0" />
+                          </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                      </Button>
+                  <Button mnemonicParsing="false" onAction="#handleHelpBtn" prefWidth="40.0" text="?">
+                     <HBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            </children>
+        </GridPane>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <content>
+                <Accordion fx:id="wordListsView" prefHeight="540.0" prefWidth="640.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Accordion>
+            </content>
+        </ScrollPane>
+      <Text fx:id="categoriesTextField" strokeType="OUTSIDE" strokeWidth="0.0" text="VoxSpell has loaded these categories:" textAlignment="CENTER" wrappingWidth="600.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+    </children>
+</GridPane>

@@ -12,6 +12,7 @@ import voxspell.Main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -19,29 +20,29 @@ import java.util.ResourceBundle;
  *
  * @author Will Molloy
  */
-public class AddWordListPopupController implements Initializable {
+public class AddWordListPopupController extends WordListEditorController implements Initializable  {
 
     private static WordListEditorController wordListEditorInstance;
     private ObservableList<Word> data;
     @FXML
-    private TextField wordField;
-    @FXML
-    private TextField definitionField;
-    @FXML
-    private TextField categoryNameField;
+    private TextField categoryNameField, wordField, definitionField;
     @FXML
     private TableView<Word> wordListTableView;
+    private boolean modify;
 
     static void setWordListEditorInstance(WordListEditorController wordListEditorInstance) {
         AddWordListPopupController.wordListEditorInstance = wordListEditorInstance;
     }
 
     public void setData(TitledPane expandedPane, boolean modify) {
+        this.modify = modify;
         TableView selectedTable = (TableView) expandedPane.getContent();
         List<Word> tableData = new ArrayList<>(selectedTable.getItems());
         categoryNameField.setText(expandedPane.getText());
         categoryNameField.setEditable(!modify);
         data.addAll(tableData);
+        categoryNameField.requestFocus();
+        
     }
 
     /**
@@ -70,12 +71,16 @@ public class AddWordListPopupController implements Initializable {
         String category = categoryNameField.getText().trim();
         if (category.equals("")) {
             showCategoryFieldIsEmptyPopup();
-            return;
+        } else {
+            if (!categoryIsValid(category) && !modify){
+                showCategoryAlreadyExistsPopup(category);
+            } else {
+                List<Word> words = new ArrayList<>(data);
+                wordListEditorInstance.addCategory(category, words);
+                // ERROR if no words in list OR category name is blank
+                Main.hidePopup();
+            }
         }
-        List<Word> words = new ArrayList<>(data);
-        wordListEditorInstance.addCategory(category, words);
-        // ERROR if no words in list OR category name is blank
-        Main.hidePopup();
     }
 
     private void showCategoryFieldIsEmptyPopup() {
@@ -85,24 +90,35 @@ public class AddWordListPopupController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void handleCancelBtn(ActionEvent actionEvent) {
-        Main.hidePopup();
+    /**
+     * Determines if a given category is valid.
+     * A category is valid if it doesn't already exist.
+     */
+    private boolean categoryIsValid(String candidate) {
+        for (WordList wordList : WordListEditorController.getWordLists()){
+            if (wordList.toString().equals(candidate)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void showCategoryAlreadyExistsPopup(String category) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Category Already Exists");
+        alert.setHeaderText(category + " already exists as a word category.");
+        alert.setContentText("Overwrite " + category + "?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            modify = true; // switch to modifying mode
+            handleAddListBtn(null);
+        }
     }
 
     @FXML
-    private void handleAddWordBtn(ActionEvent actionEvent) {
-        String name = wordField.getText().trim();
-        if (name.equals("")) {
-            showWordFieldIsEmptyPopup();
-            return;
-        } else {
-            String definition = definitionField.getText().trim();
-            Word word = new Word(name, definition);
-            data.add(word);
-        }
-        wordField.clear();
-        definitionField.clear();
+    private void handleCancelBtn(ActionEvent actionEvent) {
+        Main.hidePopup();
     }
 
     private void showWordFieldIsEmptyPopup() {
@@ -113,10 +129,47 @@ public class AddWordListPopupController implements Initializable {
     }
 
     @FXML
-    private void handleRemoveWordBtn(ActionEvent actionEvent) {
+    private void handleCategoryNameField(ActionEvent actionEvent) {
+        if (categoryNameField.getText().trim().equals("")) {
+            showCategoryFieldIsEmptyPopup();
+        } else {
+            wordField.requestFocus();
+        }
+    }
+
+    @FXML
+    private  void handleWordField(ActionEvent actionEvent) {
+        if (wordFieldIsValid()) {
+            definitionField.requestFocus();
+        } else {
+            showWordFieldIsEmptyPopup();
+        }
+    }
+
+    private boolean wordFieldIsValid(){
+        return !wordField.getText().trim().equals("");
+    }
+
+    @FXML
+    private void handleDefField(ActionEvent actionEvent) {
+        if (wordFieldIsValid()) {
+            String wordName = wordField.getText().trim();
+            String wordDef = definitionField.getText().trim();
+            Word word = new Word(wordName, wordDef);
+            data.add(word);
+
+            wordField.clear();
+            definitionField.clear();
+
+            wordField.requestFocus();
+        } else {
+            showWordFieldIsEmptyPopup();
+        }
+    }
+
+    @FXML
+    private void handleDelBtn(ActionEvent actionEvent) {
         Word highlightedWord = wordListTableView.getSelectionModel().getSelectedItem();
         data.remove(highlightedWord);
     }
-
-
 }
