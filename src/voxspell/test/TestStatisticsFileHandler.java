@@ -22,8 +22,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestStatisticsFileHandler {
 
-    private StatisticsFileHandler statisticsFileHandler;
     private static final String ACTUAL_FILE_NAME = ".ACTUAL";
+    private StatisticsFileHandler statisticsFileHandler;
     private File actualFile = new File(ACTUAL_FILE_NAME);
     private String currentDate;
     private BufferedWriter bufferedWriter;
@@ -54,7 +54,7 @@ public class TestStatisticsFileHandler {
         return strings;
     }
 
-    private void appendToActualFile(String s){
+    private void appendToActualFile(String s) {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(actualFile, true));
             bufferedWriter.write(s);
@@ -154,7 +154,7 @@ public class TestStatisticsFileHandler {
 
 
     @Test
-    public void noStatsForToday(){
+    public void noStatsForToday() {
         // ADD some stats to actual file
         appendToActualFile("date\t1990-02-02");
         appendToActualFile("old word\t10000\t3\told category");
@@ -173,7 +173,7 @@ public class TestStatisticsFileHandler {
     }
 
     @Test
-    public void getCategoryStats(){
+    public void getCategoryStats() {
         // ADD some stats to actual file
         appendToActualFile("date\t2000-02-02");
         appendToActualFile("word0\t3\t2\tfish");
@@ -183,18 +183,18 @@ public class TestStatisticsFileHandler {
         appendToActualFile("apple\t12\t10\tfruit");
 
         int[] actual = statisticsFileHandler.getStatsForCategory("fish");
-        assertEquals("1014 5", actual[0] + " "+ actual[1] + "");
+        assertEquals("1014 5", actual[0] + " " + actual[1] + "");
     }
 
     @Test
-    public void prev12DaysMoreThan12Days(){
+    public void prev12DaysMoreThan12Days() {
         // ADD some stats to actual file
         List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
 
-            expected.add(new int[] {3,2});
+            expected.add(new int[]{3, 2});
         }
 
         expected.remove(expected.get(12)); // remove 13th entry
@@ -206,14 +206,14 @@ public class TestStatisticsFileHandler {
     }
 
     @Test
-    public void prev12DaysLessThan12Days(){
+    public void prev12DaysLessThan12Days() {
         // ADD some stats to actual file
         List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
 
-            expected.add(new int[] {3,2});
+            expected.add(new int[]{3, 2});
         }
 
         List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
@@ -223,14 +223,14 @@ public class TestStatisticsFileHandler {
     }
 
     @Test
-    public void prev12DaysExactly12Days(){
+    public void prev12DaysExactly12Days() {
         // ADD some stats to actual file
         List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
 
-            expected.add(new int[] {3,2});
+            expected.add(new int[]{3, 2});
         }
 
         List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
@@ -240,8 +240,8 @@ public class TestStatisticsFileHandler {
     }
 
     @Test
-    public void zzz(){
-        appendToActualFile("date\t" +currentDate);
+    public void zzz() {
+        appendToActualFile("date\t" + currentDate);
         appendToActualFile("of\t1\t0\tLevel 2");
         appendToActualFile("had\t1\t0\tLevel 2");
         appendToActualFile("there\t1\t0\tLevel 2");
@@ -255,7 +255,7 @@ public class TestStatisticsFileHandler {
         appendToActualFile("he\t1\t0\tLevel 2");
 
         List<String> expected = new ArrayList<>();
-        expected.add("date	" +currentDate);
+        expected.add("date	" + currentDate);
         expected.add("of\t1\t0\tLevel 2");
         expected.add("had\t1\t0\tLevel 2");
         expected.add("there	1	0	Level 2");

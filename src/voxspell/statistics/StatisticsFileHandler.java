@@ -99,7 +99,7 @@ public class StatisticsFileHandler extends CustomFileReader {
                                 return;
                             }
                         }
-                        // ???? different category ????
+                        // EOF reached without finding word
                         recordNewWordForToday();
                     } else {
                         /* no stats for today */
@@ -137,17 +137,17 @@ public class StatisticsFileHandler extends CustomFileReader {
     }
 
     private String getNewStatistic() {
-        int correct = this.correct? 1:0;
-        int incorrect = !this.correct? 1:0;
+        int correct = this.correct ? 1 : 0;
+        int incorrect = !this.correct ? 1 : 0;
         return getStatisticFileFormat(word, correct, incorrect, category);
     }
 
     private String getStatisticFileFormat(String word, int correct, int incorrect, String category) {
-        return word + "\t" + correct + "\t" + incorrect + "\t" + category +"\n";
+        return word + "\t" + correct + "\t" + incorrect + "\t" + category + "\n";
     }
 
     private String getDateFormatForFile() {
-        return "date\t" + todaysDate +"\n";
+        return "date\t" + todaysDate + "\n";
     }
 
     private void writeRestOfFile() throws IOException {
@@ -220,53 +220,55 @@ public class StatisticsFileHandler extends CustomFileReader {
 
     /**
      * Returns the statistics for the given category.
+     *
      * @return an integer array with 2 elements: [ correctCount, incorrectCount ] for the given category
      */
-    public int[] getStatsForCategory(String category){
+    public int[] getStatsForCategory(String category) {
         scanner = getScannerForStatFile();
         int correct = 0;
         int incorrect = 0;
 
-        while ((line = scannerReadLine()) != null){
+        while ((line = scannerReadLine()) != null) {
             String[] tokens = line.split("\\t");
             // Tokens: word (tab) correctCount (tab) incorrectCount (tab) category
-            if (tokens.length == 4 && tokens[3].equals(category)){
+            if (tokens.length == 4 && tokens[3].equals(category)) {
                 correct += parseInt(tokens[1]);
                 incorrect += parseInt(tokens[2]);
             }
         }
-        return new int[] {correct, incorrect};
+        return new int[]{correct, incorrect};
     }
 
-    private int parseInt(String s){
+    private int parseInt(String s) {
         return Integer.parseInt(s);
     }
 
     /**
      * Returns the previous 12 days of statistics (or all statistics if less than 12 days..)
-     * @return  a List of 2 element integer arrays: [ correctCount, incorrectCount] for each day of statistics
-     *          the List is ordered with the earliest day in index 0.
+     *
+     * @return a List of 2 element integer arrays: [ correctCount, incorrectCount] for each day of statistics
+     * the List is ordered with the earliest day in index 0.
      */
-    public List<int[]> get12PrevDayStats(){
+    public List<int[]> get12PrevDayStats() {
         List<int[]> stats = new ArrayList<>();
         scanner = getScannerForStatFile();
         scannerReadLine(); // skip over first date
         int correct = 0;
         int incorrect = 0;
 
-        while((line = scannerReadLine()) != null) {
+        while ((line = scannerReadLine()) != null) {
             String[] tokens = line.split("\\t");
 
-            if (stats.size() == 12){
+            if (stats.size() == 12) {
                 break;
             }
 
-            if (tokens.length == 4){
+            if (tokens.length == 4) {
                 correct += parseInt(tokens[1]);
                 incorrect += parseInt(tokens[2]);
             }
 
-            if (tokens.length == 2 && tokens[0].equals(DATE_ID) || !scanner.hasNextLine()){ // stop at next date or EOF
+            if (tokens.length == 2 && tokens[0].equals(DATE_ID) || !scanner.hasNextLine()) { // stop at next date or EOF
                 stats.add(new int[]{correct, incorrect});
                 correct = 0;
                 incorrect = 0;
@@ -275,7 +277,6 @@ public class StatisticsFileHandler extends CustomFileReader {
 
         return stats;
     }
-
 
 
 }
