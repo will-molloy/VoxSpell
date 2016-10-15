@@ -23,7 +23,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz,  wordListEditor, statistics;
+    private static Scene mainMenu, spellingQuiz,  wordListEditor, statistics, dailyChallenges;
     // Overall window
     private static Stage window;
     // Popup window
@@ -87,6 +87,9 @@ public class Main extends Application {
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
         wordListEditor = new Scene(wordListRoot);
 
+        Parent dailyChallengeRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
+        dailyChallenges = new Scene(dailyChallengeRoot);
+
         Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
         statistics = new Scene(statsRoot);
 
@@ -126,5 +129,6 @@ public class Main extends Application {
 
     @FXML
     private void handleDailyChallengeBtn(ActionEvent actionEvent) {
+        window.setScene(dailyChallenges);
     }
 }

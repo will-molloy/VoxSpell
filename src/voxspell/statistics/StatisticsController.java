@@ -35,11 +35,7 @@ public class StatisticsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        generateAndShowLifeTimeStatistics();
-        loadSubScenes();
-        categoryStatsIsShown = true;
-        updateStatisticsView(categoryStatsRoot);
-        changeViewBtn.setText(VIEW_PLOT);
+
     }
 
     private void generateAndShowLifeTimeStatistics() {

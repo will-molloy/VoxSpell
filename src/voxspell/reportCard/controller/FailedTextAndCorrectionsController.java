@@ -80,7 +80,7 @@ public class FailedTextAndCorrectionsController implements Initializable {
             Text wrongDelta = getWrongDeltaText();
             wrongDelta.setText(wrongDifference);
 
-            // Set users attempt with their spelling
+            // Add the texts to the text flow in the i'th row of the word attempts hbox
             wordAttemptsTexts.get(i).getChildren().addAll(prefix, wrongDelta, suffix);
 
 
@@ -107,6 +107,7 @@ public class FailedTextAndCorrectionsController implements Initializable {
             Text extraMsg = new Text(message);
             extraMsg.setFont(new Font(18));
 
+            // Add the texts to the text flow in the i'th row of the word corrections hbox
             wordCorrectionsTexts.get(i).getChildren().addAll(prefix2, correctDelta, suffix2, extraMsg);
         }
     }
