@@ -239,4 +239,39 @@ public class TestStatisticsFileHandler {
         }
     }
 
+    @Test
+    public void zzz(){
+        appendToActualFile("date\t" +currentDate);
+        appendToActualFile("of\t1\t0\tLevel 2");
+        appendToActualFile("had\t1\t0\tLevel 2");
+        appendToActualFile("there\t1\t0\tLevel 2");
+        appendToActualFile("at\t1\t0\tLevel 2");
+        appendToActualFile("on\t1\t0\tLevel 2");
+        appendToActualFile("that\t1\t0\tLevel 2");
+        appendToActualFile("then\t1\t0\tLevel 2");
+        appendToActualFile("up\t1\t0\tLevel 2");
+        appendToActualFile("for\t1\t0\tLevel 2");
+        appendToActualFile("me\t1\t0\tLevel 2");
+        appendToActualFile("he\t1\t0\tLevel 2");
+
+        List<String> expected = new ArrayList<>();
+        expected.add("date	" +currentDate);
+        expected.add("of\t1\t0\tLevel 2");
+        expected.add("had\t1\t0\tLevel 2");
+        expected.add("there	1	0	Level 2");
+        expected.add("at	1	0	Level 2");
+        expected.add("on	1	0	Level 2");
+        expected.add("that	1	0	Level 2");
+        expected.add("then	2	0	Level 2");
+        expected.add("up	1	0	Level 2");
+        expected.add("for	1	0	Level 2");
+        expected.add("me	1	0	Level 2");
+        expected.add("he	1	0	Level 2");
+
+        statisticsFileHandler.writeStatistic("then", true, "Level 2");
+        assertEquals(expected, readFileLinesIntoList(actualFile));
+
+
+    }
+
 }

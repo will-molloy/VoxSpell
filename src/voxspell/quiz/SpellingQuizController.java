@@ -42,8 +42,10 @@ public class SpellingQuizController {
     // Game logic
     private static List<WordList> wordLists;
     private static WordList categoryWordList;
+
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
+
     // StatisticsFileHandler object for saving stats
     private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler(".statistics");
     @FXML

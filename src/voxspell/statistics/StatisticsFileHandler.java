@@ -72,6 +72,7 @@ public class StatisticsFileHandler extends CustomFileReader {
 
         scanner = getScannerForStatFile();
         makeHiddenFile(tempFile);
+        tempFile.deleteOnExit();
 
         if ((line = scannerReadLine()) == null) {
             /* statistic file has just been created */
@@ -87,26 +88,29 @@ public class StatisticsFileHandler extends CustomFileReader {
                         while ((line = scannerReadLine()) != null) {
                             tokens = line.split("\\t");
 
-                            // found end of this sections stat, word has not been recorded today
+                            // found end of this days stats, word has not been recorded today
                             if (tokens[0].equals(DATE_ID)) {
                                 recordNewWordForToday();
-                                break;
+                                return;
+
                                 // found word update its statistic
                             } else if (tokens[0].equals(word) && tokens[3].equals(category)) {
                                 updateStatistic();
-                                break;
+                                return;
                             }
-                            recordNewWordForToday();
                         }
-                    } else { /* no stats for today */
+                        // ???? different category ????
+                        recordNewWordForToday();
+                    } else {
+                        /* no stats for today */
                         recordNewStatForToday();
                     }
-                } else { /* statistic file is empty - didn't begin with a date*/
+                } else {
+                    /* statistic file is empty - didn't begin with a date*/
                     recordNewStatForToday();
                 }
             } while ((line = scannerReadLine()) != null);
         }
-        tempFile.delete();
     }
 
     private void recordNewWordForToday() {
