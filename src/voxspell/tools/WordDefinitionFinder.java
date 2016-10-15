@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Will Molloy
  */
-@Deprecated
 public class WordDefinitionFinder {
 
     private static final String definitionFileName = ".definition";

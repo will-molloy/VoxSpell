@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -14,14 +15,20 @@ import java.io.IOException;
  * @author Will Molloy
  */
 public class FailedQuizReportCardController extends ReportCardController {
+
+    @FXML
+    private Button viewMistakesBtn;
     @FXML
     private Pane failurePane;
     private Node textOnlyRoot, textAndCorrectionsRoot;
+
+    private boolean textOnlyView;
 
     @Override
     public void createGUI() {
         loadSubScenes();
         failurePane.getChildren().add(textOnlyRoot);
+        textOnlyView = true;
     }
 
     private void loadSubScenes() {
@@ -46,7 +53,14 @@ public class FailedQuizReportCardController extends ReportCardController {
     @FXML
     private void handleMistakesBtn(ActionEvent actionEvent) {
         failurePane.getChildren().removeAll(failurePane.getChildren());
-        failurePane.getChildren().add(textAndCorrectionsRoot);
+        if (textOnlyView) {
+            failurePane.getChildren().add(textAndCorrectionsRoot);
+            viewMistakesBtn.setText("Hide Mistakes");
+        } else {
+            failurePane.getChildren().add(textOnlyRoot);
+            viewMistakesBtn.setText("View Mistakes");
+        }
+        textOnlyView = !textOnlyView;
     }
 
 

@@ -1,5 +1,6 @@
 package voxspell.wordlistEditor;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,11 +19,15 @@ import java.util.ResourceBundle;
 /**
  * Controller for the popup view when the user wants to add a word list in the word list editor.
  *
+ * Extends WordListEditorController for access to @FXML components. (The Help Btn)
+ *
  * @author Will Molloy
  */
 public class AddWordListPopupController extends WordListEditorController implements Initializable {
 
     private static WordListEditorController wordListEditorInstance;
+    @FXML
+    private Button addOrUpdateListBtn;
     private ObservableList<Word> data;
     @FXML
     private TextField categoryNameField, wordField, definitionField;
@@ -41,8 +46,15 @@ public class AddWordListPopupController extends WordListEditorController impleme
         categoryNameField.setText(expandedPane.getText());
         categoryNameField.setEditable(!modify);
         data.addAll(tableData);
-        categoryNameField.requestFocus();
 
+        if (modify){
+            addOrUpdateListBtn.setText("Update List");
+            categoryNameField.setEditable(false);
+            Platform.runLater(() -> wordField.requestFocus()); // Need to run requestFocus() after controller initialises
+        } else {
+            addOrUpdateListBtn.setText("Add List");
+            categoryNameField.requestFocus();
+        }
     }
 
     /**

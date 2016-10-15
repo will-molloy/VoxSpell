@@ -18,18 +18,20 @@ public class StringDifferenceFinder {
     public StringDifferenceFinder(String correctString, String incorrectString){
         this.correctString = correctString;
         this.incorrectString = incorrectString;
-    }
-
-    public String[] getPrefixSuffixAndDelta(){
-        if (stringsArentEqual()){
+        if (stringsAreNotEqual()) {
             findCommonPrefixAndSuffix();
-        } else {
-            return new String[] {correctString};
         }
-        return extractPrefixSuffixAndDelta();
     }
 
-    private boolean stringsArentEqual() {
+    public String[] getPrefixSuffixAndDelta(boolean correctDelta){
+        if (correctDelta){
+            return extractPrefixSuffixAndDelta(correctString);
+        } else{
+            return extractPrefixSuffixAndDelta(incorrectString);
+        }
+    }
+
+    private boolean stringsAreNotEqual() {
         return !correctString.equals(incorrectString);
     }
 
@@ -61,12 +63,14 @@ public class StringDifferenceFinder {
         return string.charAt(string.length() - length - 1);
     }
 
-    private String[] extractPrefixSuffixAndDelta(){
+    private String[] extractPrefixSuffixAndDelta(String s){
         String prefix = correctString.substring(0, prefixLength); // common prefix, doesn't matter what string
-        String delta = incorrectString.substring(prefixLength, incorrectString.length()-suffixLength); // difference
+        String delta = s.substring(prefixLength, s.length()-suffixLength); // difference
         String suffix = correctString.substring(correctString.length() - suffixLength, correctString.length()); // common suffix
 
         return new String[] {prefix, suffix, delta};
     }
+
+
 
 }
