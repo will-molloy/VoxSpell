@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 /**
  * Created by will on 14/10/16.
  */
-public class FailedTextController implements Initializable {
+public class FailedTextController extends FailedQuizReportCardController implements Initializable {
 
     @FXML
     private Text failedTextView;
@@ -30,5 +30,9 @@ public class FailedTextController implements Initializable {
 
     public String getText() {
         return failedTextView.getText();
+    }
+
+    public List<String[]> getIncorrectWords() {
+        return incorrectWords;
     }
 }

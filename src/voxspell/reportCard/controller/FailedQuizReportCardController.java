@@ -29,7 +29,7 @@ public class FailedQuizReportCardController extends ReportCardController {
             // Load 'text only' view initially displayed
             FXMLLoader textLoader = new FXMLLoader(getClass().getResource("../fxml/Failed_Text.fxml"));
             textOnlyRoot = textLoader.load();
-            FailedTextController failedTextControllerInstance = textLoader.getController();
+            FailedTextController failedTextController = textLoader.getController();
 
             // Load 'corrections' view displayed if user presses 'view mistakes' btn
             FXMLLoader correctionsLoader = new FXMLLoader(getClass().getResource("../fxml/Failed_Text_And_Corrections.fxml"));
@@ -37,7 +37,7 @@ public class FailedQuizReportCardController extends ReportCardController {
             FailedTextAndCorrectionsController failedTextAndCorrectionsController = correctionsLoader.getController();
 
             // Ensure both views have the same text
-            failedTextAndCorrectionsController.setTextViewText(failedTextControllerInstance.getText());
+            failedTextAndCorrectionsController.setDataAndShowGUI(failedTextController);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -25,11 +25,11 @@ public abstract class ReportCardController {
     @FXML
     protected WordList wordList;
     protected List<String> words;
-    int mastered;
+    private int mastered;
     @FXML
     private Text accuracyTextView;
     private List<String> wordFirstAttempts;
-    private List<String[]> incorrectWords = new ArrayList<>();
+    protected static List<String[]> incorrectWords;
 
     public final void setValues(List<String> words, List<String> wordFirstAttempts, WordList wordList) {
         this.words = words;
@@ -39,13 +39,14 @@ public abstract class ReportCardController {
 
     public final void generateScene() {
         Platform.runLater(() -> {
-            createGUI();
             generateAccuracy();
+            createGUI();
             retryLevelBtn.setText("Retry " + wordList.toString());
         });
     }
 
     private void generateAccuracy() {
+        incorrectWords = new ArrayList<>();
         for (int i = 0; i < words.size(); i++) {
             if (words.get(i).equals(wordFirstAttempts.get(i))) {
                 mastered++;
