@@ -18,6 +18,7 @@ import voxspell.reportCard.FailedQuizReportCardFactory;
 import voxspell.reportCard.PassedQuizReportCardFactory;
 import voxspell.reportCard.ReportCardFactory;
 import voxspell.reportCard.controller.ReportCardController;
+import voxspell.statistics.StatisticsFileHandler;
 import voxspell.tools.TextToSpeech;
 import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
@@ -43,6 +44,8 @@ public class SpellingQuizController {
     private static WordList categoryWordList;
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
+    // StatisticsFileHandler object for saving stats
+    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler(".statistics");
     @FXML
     private ProgressBar quizProgressBar;
     private List<Word> quizWordList;

@@ -2,7 +2,7 @@ package voxspell.tools;
 
 /**
  * Given two strings: generates an object containing the 'common' prefix, suffix and difference between the two strings.
- *
+ * <p>
  * Based on the JUnit ComparisonCompactor code: https://searchcode.com/codesearch/view/2593422/
  *
  * @author Will Molloy.
@@ -15,7 +15,7 @@ public class StringDifferenceFinder {
     private int prefixLength;
     private int suffixLength;
 
-    public StringDifferenceFinder(String correctString, String incorrectString){
+    public StringDifferenceFinder(String correctString, String incorrectString) {
         this.correctString = correctString;
         this.incorrectString = incorrectString;
         if (stringsAreNotEqual()) {
@@ -23,10 +23,10 @@ public class StringDifferenceFinder {
         }
     }
 
-    public String[] getPrefixSuffixAndDelta(boolean correctDelta){
-        if (correctDelta){
+    public String[] getPrefixSuffixAndDelta(boolean correctDelta) {
+        if (correctDelta) {
             return extractPrefixSuffixAndDelta(correctString);
-        } else{
+        } else {
             return extractPrefixSuffixAndDelta(incorrectString);
         }
     }
@@ -38,8 +38,8 @@ public class StringDifferenceFinder {
     private void findCommonPrefixAndSuffix() {
         findCommonPrefix(); // must find prefix length before suffix length
         suffixLength = 0;
-        for (; !suffixOverlapsPrefix(); suffixLength++){
-            if (charFromEnd(correctString, suffixLength) != charFromEnd(incorrectString, suffixLength)){
+        for (; !suffixOverlapsPrefix(); suffixLength++) {
+            if (charFromEnd(correctString, suffixLength) != charFromEnd(incorrectString, suffixLength)) {
                 break;
             }
         }
@@ -48,8 +48,8 @@ public class StringDifferenceFinder {
     private void findCommonPrefix() {
         prefixLength = 0;
         int end = Math.min(correctString.length(), incorrectString.length());
-        for (; prefixLength < end; prefixLength++){
-            if (correctString.charAt(prefixLength) != incorrectString.charAt(prefixLength)){
+        for (; prefixLength < end; prefixLength++) {
+            if (correctString.charAt(prefixLength) != incorrectString.charAt(prefixLength)) {
                 break;
             }
         }
@@ -63,14 +63,13 @@ public class StringDifferenceFinder {
         return string.charAt(string.length() - length - 1);
     }
 
-    private String[] extractPrefixSuffixAndDelta(String s){
+    private String[] extractPrefixSuffixAndDelta(String s) {
         String prefix = correctString.substring(0, prefixLength); // common prefix, doesn't matter what string
-        String delta = s.substring(prefixLength, s.length()-suffixLength); // difference
+        String delta = s.substring(prefixLength, s.length() - suffixLength); // difference
         String suffix = correctString.substring(correctString.length() - suffixLength, correctString.length()); // common suffix
 
-        return new String[] {prefix, suffix, delta};
+        return new String[]{prefix, suffix, delta};
     }
-
 
 
 }

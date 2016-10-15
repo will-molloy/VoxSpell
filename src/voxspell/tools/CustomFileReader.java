@@ -16,8 +16,8 @@ import java.util.Scanner;
  */
 public class CustomFileReader {
 
-    private Scanner scanner;
-    private BufferedWriter bufferedWriter;
+    protected Scanner scanner;
+    protected BufferedWriter bufferedWriter;
 
     public List<WordList> readWordListFileIntoList(File file) {
         List<WordList> wordLists = new ArrayList<>();
@@ -58,7 +58,7 @@ public class CustomFileReader {
         return word;
     }
 
-    private String scannerReadLine() {
+    protected String scannerReadLine() {
         if (scanner.hasNextLine()) {
             return scanner.nextLine();
         }

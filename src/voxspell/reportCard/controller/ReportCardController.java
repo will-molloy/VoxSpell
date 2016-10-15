@@ -20,6 +20,7 @@ import java.util.List;
  */
 public abstract class ReportCardController {
 
+    protected static List<String[]> incorrectWords;
     @FXML
     protected Button retryLevelBtn;
     @FXML
@@ -29,7 +30,6 @@ public abstract class ReportCardController {
     @FXML
     private Text accuracyTextView;
     private List<String> wordFirstAttempts;
-    protected static List<String[]> incorrectWords;
 
     public final void setValues(List<String> words, List<String> wordFirstAttempts, WordList wordList) {
         this.words = words;

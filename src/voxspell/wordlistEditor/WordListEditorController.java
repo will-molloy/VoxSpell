@@ -234,7 +234,7 @@ public class WordListEditorController implements Initializable {
         getAddOrModifyListPopup(true);
     }
 
-    private void getAddOrModifyListPopup(boolean modify){
+    private void getAddOrModifyListPopup(boolean modify) {
         TitledPane expandedPane = null;
         if (modify) {
             expandedPane = wordListsView.getExpandedPane();

@@ -23,7 +23,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz,  wordListEditor, statistics, dailyChallenges;
+    private static Scene mainMenu, spellingQuiz, wordListEditor, statistics, dailyChallenges;
     // Overall window
     private static Stage window;
     // Popup window

@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller for the popup view when the user wants to add a word list in the word list editor.
- *
+ * <p>
  * Extends WordListEditorController for access to @FXML components. (The Help Btn)
  *
  * @author Will Molloy
@@ -50,7 +50,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
         }
         // Components are only available after the controller initialises, need runLater() for this code
         Platform.runLater(() -> {
-            if (modify){
+            if (modify) {
                 addOrUpdateListBtn.setText("Update List");
                 categoryNameField.setEditable(false);
                 wordField.requestFocus();

@@ -15,13 +15,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller for the Statistics Screen.
+ * Controller for the StatisticsFileHandler Screen.
  *
  * @author Will Molloy
  */
 public class StatisticsController implements Initializable {
 
-    private static final String VIEW_CATEGORY = "View Category Statistics", VIEW_PLOT = "View Overtime Graph";
+    private static final String VIEW_CATEGORY = "View Category StatisticsFileHandler", VIEW_PLOT = "View Overtime Graph";
     @FXML
     private Pane statisticsViewPane;
     private boolean categoryStatsIsShown;
@@ -63,7 +63,7 @@ public class StatisticsController implements Initializable {
 
     @FXML
     private void handleChangeViewBtn(ActionEvent actionEvent) {
-        if (categoryStatsIsShown){
+        if (categoryStatsIsShown) {
             updateStatisticsView(overtimeGraphRoot);
             changeViewBtn.setText(VIEW_CATEGORY);
         } else {
@@ -72,9 +72,11 @@ public class StatisticsController implements Initializable {
         }
         categoryStatsIsShown = !categoryStatsIsShown;
     }
+
     @FXML
     private void handleClearStatsBtn(ActionEvent actionEvent) {
     }
+
     @FXML
     private void handleBackToMainMenuBtn(ActionEvent actionEvent) {
         Main.showMainMenu();

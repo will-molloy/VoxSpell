@@ -59,7 +59,7 @@ public class FailedTextAndCorrectionsController implements Initializable {
         removePlaceHolderTexts();
 
         List<String[]> incorrectWords = failedTextController.getIncorrectWords();
-        for (int i = 0; i < incorrectWords.size(); i++){
+        for (int i = 0; i < incorrectWords.size(); i++) {
             String[] incorrectWord = incorrectWords.get(i);
             String correctSpelling = incorrectWord[0].trim();
             String usersAttempt = incorrectWord[1].trim();
@@ -99,9 +99,9 @@ public class FailedTextAndCorrectionsController implements Initializable {
 
             // Extra message if user spelt word correctly but incorrect grammar/case
             String message = "\t";
-            if (removeSymbolsFromString(correctSpelling).equals(removeSymbolsFromString(usersAttempt))){
+            if (removeSymbolsFromString(correctSpelling).equals(removeSymbolsFromString(usersAttempt))) {
                 message += "- Close! Correct grammar required.";
-            } else if (correctSpelling.toLowerCase().equals(usersAttempt.toLowerCase())){
+            } else if (correctSpelling.toLowerCase().equals(usersAttempt.toLowerCase())) {
                 message += "- Close! Correct case required.";
             }
             Text extraMsg = new Text(message);
@@ -118,19 +118,19 @@ public class FailedTextAndCorrectionsController implements Initializable {
     }
 
     private void removePlaceHolderTextsFor(List<TextFlow> textFlows) {
-        for (TextFlow textFlow : textFlows){
+        for (TextFlow textFlow : textFlows) {
             textFlow.getChildren().removeAll(textFlow.getChildren());
         }
     }
 
     private Text getPrefixOrSuffixText(String commonPrefixOrSuffix) {
         Text text = new Text();
-        text.setText(commonPrefixOrSuffix != null? commonPrefixOrSuffix : "");
+        text.setText(commonPrefixOrSuffix != null ? commonPrefixOrSuffix : "");
         text.setFont(new Font(22));
         return text;
     }
 
-    private Text getWrongDeltaText(){
+    private Text getWrongDeltaText() {
         Text text = new Text();
         text.setUnderline(true);
         text.setFill(Color.RED);
@@ -138,7 +138,7 @@ public class FailedTextAndCorrectionsController implements Initializable {
         return text;
     }
 
-    private Text getCorrectDeltaText(){
+    private Text getCorrectDeltaText() {
         Text text = new Text();
         text.setUnderline(true);
         text.setFill(Color.GREEN);
@@ -146,10 +146,9 @@ public class FailedTextAndCorrectionsController implements Initializable {
         return text;
     }
 
-    private String removeSymbolsFromString(String s){
-        return s.replaceAll("[-+.^:,'`\"]","");
+    private String removeSymbolsFromString(String s) {
+        return s.replaceAll("[-+.^:,'`\"]", "");
     }
-
 
 
 }
