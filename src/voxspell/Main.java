@@ -23,7 +23,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz, wordListEditor;
+    private static Scene mainMenu, spellingQuiz,  wordListEditor, statistics;
     // Overall window
     private static Stage window;
     // Popup window
@@ -87,6 +87,9 @@ public class Main extends Application {
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
         wordListEditor = new Scene(wordListRoot);
 
+        Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
+        statistics = new Scene(statsRoot);
+
         window.setTitle("VoxSpell");
         window.setScene(mainMenu);
         window.setResizable(false);
@@ -118,6 +121,7 @@ public class Main extends Application {
 
     @FXML
     private void handleStatisticsButton(ActionEvent actionEvent) {
+        window.setScene(statistics);
     }
 
     @FXML
