@@ -4,7 +4,9 @@ import voxspell.tools.CustomFileReader;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,11 +14,11 @@ import java.util.Scanner;
  * writes statistics for a word: correct/incorrect count, associated category and todaysDate.
  * <p>
  * The statistic file format works as follows:
- * date: 2016-10-15 (earliest date)
+ * date (tab) 2016-10-15 (earliest date)
  * word (tab) correctSpellings (tab) incorrectSpellings (tab) category
  * word ..
  * ..
- * date: 2016-10-14 (next date)
+ * date (tab) 2016-10-14 (next date)
  * word ..
  * ..
  *
@@ -33,6 +35,7 @@ public class StatisticsFileHandler extends CustomFileReader {
     private String word;
     private boolean correct;
     private String category;
+    private BufferedReader bufferedReader;
 
     public StatisticsFileHandler(String statsFileName) {
         STATS_FILE_NAME = statsFileName;
@@ -77,7 +80,7 @@ public class StatisticsFileHandler extends CustomFileReader {
             do {
                 String[] tokens = line.split("\\t");
                 // read the stats file until a date is found
-                if (tokens[0].equals(DATE_ID)) {
+                if (tokens.length == 2 && tokens[0].equals(DATE_ID)) {
 
                     // if the date is today, find word
                     if (tokens[1].equals(todaysDate)) {
@@ -177,8 +180,8 @@ public class StatisticsFileHandler extends CustomFileReader {
                 if (tokens[0].equals(word) && tokens[3].equals(category)) { // found word, update it
 
                     // extract existing statistic
-                    int correct = Integer.parseInt(tokens[1]);
-                    int incorrect = Integer.parseInt(tokens[2]);
+                    int correct = parseInt(tokens[1]);
+                    int incorrect = parseInt(tokens[2]);
                     if (this.correct) {
                         correct++;
                     } else {
@@ -210,6 +213,65 @@ public class StatisticsFileHandler extends CustomFileReader {
         }
         return null;
     }
+
+    /**
+     * Returns the statistics for the given category.
+     * @return an integer array with 2 elements: [ correctCount, incorrectCount ] for the given category
+     */
+    public int[] getStatsForCategory(String category){
+        scanner = getScannerForStatFile();
+        int correct = 0;
+        int incorrect = 0;
+
+        while ((line = scannerReadLine()) != null){
+            String[] tokens = line.split("\\t");
+            // Tokens: word (tab) correctCount (tab) incorrectCount (tab) category
+            if (tokens.length == 4 && tokens[3].equals(category)){
+                correct += parseInt(tokens[1]);
+                incorrect += parseInt(tokens[2]);
+            }
+        }
+        return new int[] {correct, incorrect};
+    }
+
+    private int parseInt(String s){
+        return Integer.parseInt(s);
+    }
+
+    /**
+     * Returns the previous 12 days of statistics (or all statistics if less than 12 days..)
+     * @return  a List of 2 element integer arrays: [ correctCount, incorrectCount] for each day of statistics
+     *          the List is ordered with the earliest day in index 0.
+     */
+    public List<int[]> get12PrevDayStats(){
+        List<int[]> stats = new ArrayList<>();
+        scanner = getScannerForStatFile();
+        scannerReadLine(); // skip over first date
+        int correct = 0;
+        int incorrect = 0;
+
+        while((line = scannerReadLine()) != null) {
+            String[] tokens = line.split("\\t");
+
+            if (stats.size() == 12){
+                break;
+            }
+
+            if (tokens.length == 4){
+                correct += parseInt(tokens[1]);
+                incorrect += parseInt(tokens[2]);
+            }
+
+            if (tokens.length == 2 && tokens[0].equals(DATE_ID) || !scanner.hasNextLine()){ // stop at next date or EOF
+                stats.add(new int[]{correct, incorrect});
+                correct = 0;
+                incorrect = 0;
+            }
+        }
+
+        return stats;
+    }
+
 
 
 }

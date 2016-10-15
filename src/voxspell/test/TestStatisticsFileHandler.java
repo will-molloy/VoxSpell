@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Will Molloy
  */
-public class TestWritingStatistics {
+public class TestStatisticsFileHandler {
 
     private StatisticsFileHandler statisticsFileHandler;
     private static final String ACTUAL_FILE_NAME = ".ACTUAL";
@@ -170,6 +170,73 @@ public class TestWritingStatistics {
         statisticsFileHandler.writeStatistic("word", true, "category");
         statisticsFileHandler.writeStatistic("old word", false, "old category");
         assertEquals(expected, readFileLinesIntoList(actualFile));
+    }
+
+    @Test
+    public void getCategoryStats(){
+        // ADD some stats to actual file
+        appendToActualFile("date\t2000-02-02");
+        appendToActualFile("word0\t3\t2\tfish");
+        appendToActualFile("date\t1990-02-02");
+        appendToActualFile("word\t1000\t3\tfish");
+        appendToActualFile("word2\t11\t0\tfish");
+        appendToActualFile("apple\t12\t10\tfruit");
+
+        int[] actual = statisticsFileHandler.getStatsForCategory("fish");
+        assertEquals("1014 5", actual[0] + " "+ actual[1] + "");
+    }
+
+    @Test
+    public void prev12DaysMoreThan12Days(){
+        // ADD some stats to actual file
+        List<int[]> expected = new ArrayList<>();
+        for (int i = 0; i < 13; i++) {
+            appendToActualFile("date\t2000-02-02");
+            appendToActualFile("word0\t3\t2\tfish");
+
+            expected.add(new int[] {3,2});
+        }
+
+        expected.remove(expected.get(12)); // remove 13th entry
+
+        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+        }
+    }
+
+    @Test
+    public void prev12DaysLessThan12Days(){
+        // ADD some stats to actual file
+        List<int[]> expected = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            appendToActualFile("date\t2000-02-02");
+            appendToActualFile("word0\t3\t2\tfish");
+
+            expected.add(new int[] {3,2});
+        }
+
+        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+        }
+    }
+
+    @Test
+    public void prev12DaysExactly12Days(){
+        // ADD some stats to actual file
+        List<int[]> expected = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            appendToActualFile("date\t2000-02-02");
+            appendToActualFile("word0\t3\t2\tfish");
+
+            expected.add(new int[] {3,2});
+        }
+
+        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+        }
     }
 
 }

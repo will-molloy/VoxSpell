@@ -208,10 +208,14 @@ public class SpellingQuizController {
 
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
+                statisticsFileHandler.writeStatistic(word.toString(), true, categoryText.getText());
+
             } else { /* Incorrect */
                 wordFirstAttempts.add(attempt);
                 images.get(imageIndex).setImage(wordIncorrect);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
+
+                statisticsFileHandler.writeStatistic(word.toString(), false, categoryText.getText());
             }
             quizProgressBar.setProgress(wordNumber * 1.0 / quizSize);
             quizWordList.remove(word);
