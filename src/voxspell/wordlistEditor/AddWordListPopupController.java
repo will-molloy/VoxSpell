@@ -41,20 +41,24 @@ public class AddWordListPopupController extends WordListEditorController impleme
 
     public void setData(TitledPane expandedPane, boolean modify) {
         this.modify = modify;
-        TableView selectedTable = (TableView) expandedPane.getContent();
-        List<Word> tableData = new ArrayList<>(selectedTable.getItems());
-        categoryNameField.setText(expandedPane.getText());
-        categoryNameField.setEditable(!modify);
-        data.addAll(tableData);
-
-        if (modify){
-            addOrUpdateListBtn.setText("Update List");
-            categoryNameField.setEditable(false);
-            Platform.runLater(() -> wordField.requestFocus()); // Need to run requestFocus() after controller initialises
-        } else {
-            addOrUpdateListBtn.setText("Add List");
-            categoryNameField.requestFocus();
+        if (expandedPane != null) {
+            TableView selectedTable = (TableView) expandedPane.getContent();
+            List<Word> tableData = new ArrayList<>(selectedTable.getItems());
+            categoryNameField.setText(expandedPane.getText());
+            categoryNameField.setEditable(!modify);
+            data.addAll(tableData);
         }
+        // Components are only available after the controller initialises, need runLater() for this code
+        Platform.runLater(() -> {
+            if (modify){
+                addOrUpdateListBtn.setText("Update List");
+                categoryNameField.setEditable(false);
+                wordField.requestFocus();
+            } else {
+                addOrUpdateListBtn.setText("Add List");
+                categoryNameField.requestFocus();
+            }
+        });
     }
 
     /**

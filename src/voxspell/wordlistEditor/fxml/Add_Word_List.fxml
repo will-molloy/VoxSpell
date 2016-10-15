@@ -61,20 +61,20 @@
         </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
             <children>
-                <Button fx:id="addOrUpdateListBtn" mnemonicParsing="false" onAction="#handleAddListBtn" prefWidth="100.0" text="Add List">
+                <Button fx:id="addOrUpdateListBtn" mnemonicParsing="false" onAction="#handleAddListBtn" prefWidth="120.0" text="Update List">
                     <font>
                         <Font size="16.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets left="50.0" />
                     </HBox.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#handleCancelBtn" prefWidth="100.0" text="Cancel">
+                <Button mnemonicParsing="false" onAction="#handleCancelBtn" prefWidth="120.0" text="Cancel">
                     <font>
                         <Font size="16.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets left="80.0" />
                     </HBox.margin>
                 </Button>
             </children>
