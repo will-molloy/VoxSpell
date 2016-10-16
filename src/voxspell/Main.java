@@ -22,12 +22,13 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
-    // Scenes accessed by the main menu
-    private static Scene mainMenu, spellingQuiz, wordListEditor, statistics, dailyChallenges;
+    // Scenes that will be loaded once for better performance
+    private static Scene mainMenu, spellingQuiz, wordListEditor, dailyChallenges;
     // Overall window
     private static Stage window;
     // Popup window
     private static Stage popup;
+    // Spelling quiz controller to initialise spelling quiz
     private static SpellingQuizController spellingQuizControllerInstance;
 
     public static void main(String[] args) {
@@ -90,9 +91,6 @@ public class Main extends Application {
         Parent dailyChallengeRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
         dailyChallenges = new Scene(dailyChallengeRoot);
 
-        Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
-        statistics = new Scene(statsRoot);
-
         window.setTitle("VoxSpell");
         window.setScene(mainMenu);
         window.setResizable(false);
@@ -122,9 +120,18 @@ public class Main extends Application {
         window.setScene(wordListEditor);
     }
 
+    /**
+     * Want to reload the statistics screen each time to update statistics within the program
+     */
     @FXML
     private void handleStatisticsButton(ActionEvent actionEvent) {
-        window.setScene(statistics);
+        try {
+            Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
+            Scene statistics = new Scene(statsRoot);
+            window.setScene(statistics);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

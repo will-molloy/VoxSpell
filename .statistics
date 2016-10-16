@@ -1,26 +1,50 @@
 date	2016-10-16
-of	1	0	Level 2
-had	1	0	Level 2
-there	1	0	Level 2
-at	1	0	Level 2
-on	1	0	Level 2
-that	1	0	Level 2
-then	1	0	Level 2
-up	1	0	Level 2
-for	1	0	Level 2
-me	1	0	Level 2
-he	1	0	Level 2
+orange	1	0	fruits
+grape	0	1	fruits
+strawberry	1	0	fruits
+banana	1	0	fruits
+apple	1	0	fruits
+potato	1	0	fruits
+that's	0	2	QuizFeedBackTest
+simple	2	0	QuizFeedBackTest
+New Zealand	0	2	QuizFeedBackTest
+he	8	0	Level 2
 date	2016-10-15
-for	1	0	Level 2
+for	1	2	Level 2
+went	5	0	Level 2
+date	2016-10-14
+for	1	1	Level 2
+went	10	0	Level 3
+date	2016-10-13
+for	1	1	Level 2
+went	9	0	Level 1
+date	2016-10-12
+for	1	1	Level 2
+went	8	0	Level 1
+date	2016-10-11
+for	1	1	Level 2
+University	15	4	Level 9
+date	2016-10-10
+for	1	1	Level 2
+went	5	0	Level 1
+date	2016-10-9
+for	1	1	Level 2
+went	5	0	Level 2
+date	2016-10-8
+for	1	1	Level 2
+went	5	0	Level 2
+date	2016-10-7
+for	1	1	Level 2
+went	5	0	Level 2
+date	2016-10-6
+for	1	1	Level 2
+went	5	0	Level 2
+date	2016-10-5
+for	1	1	Level 2
+went	3	0	Level 2
+date	2016-10-4
+for	1	1	Level 2
+went	2	0	Level 2
+date	2016-10-3
+for	1	1	Level 2
 went	1	0	Level 2
-so	1	0	Level 2
-up	1	0	Level 2
-then	1	0	Level 2
-is	1	0	Level 2
-you	1	0	Level 2
-on	1	0	Level 2
-of	1	0	Level 2
-at	1	0	Level 2
-that's	0	1	QuizFeedBackTest
-simple	0	1	QuizFeedBackTest
-New Zealand	0	1	QuizFeedBackTest

@@ -12,6 +12,7 @@ import voxspell.Main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
  */
 public class StatisticsController implements Initializable {
 
-    private static final String VIEW_CATEGORY = "View Category StatisticsFileHandler", VIEW_PLOT = "View Overtime Graph";
+    private static final String VIEW_CATEGORY = "View Category Statistics", VIEW_PLOT = "View Overtime Graph";
     @FXML
     private Pane statisticsViewPane;
     private boolean categoryStatsIsShown;
@@ -32,13 +33,23 @@ public class StatisticsController implements Initializable {
     private Text lifeTimeAccuracyText;
     @FXML
     private Button changeViewBtn;
+    private StatisticsFileHandler statisticsFileHanlder = new StatisticsFileHandler(".statistics"); // TODO remove file name , just keep constant
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadSubScenes();
+        showCategoryView();
+        generateAndShowLifeTimeStatistics();
     }
 
     private void generateAndShowLifeTimeStatistics() {
+        int[] lifeTimeStats = statisticsFileHanlder.getLifeTimeStats();
+        int correct = lifeTimeStats[0];
+        int incorrect = lifeTimeStats[1];
+        double accuracy = (correct * 100.0) / (incorrect + correct);
+
+        totalWordsSpeltText.setText("Total words spelt: " + (correct + incorrect));
+        lifeTimeAccuracyText.setText("Lifetime accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
     }
 
     private void updateStatisticsView(Node newView) {
@@ -64,13 +75,22 @@ public class StatisticsController implements Initializable {
     @FXML
     private void handleChangeViewBtn(ActionEvent actionEvent) {
         if (categoryStatsIsShown) {
-            updateStatisticsView(overtimeGraphRoot);
-            changeViewBtn.setText(VIEW_CATEGORY);
+            showOverTimeGraph();
         } else {
-            updateStatisticsView(categoryStatsRoot);
-            changeViewBtn.setText(VIEW_PLOT);
+            showCategoryView();
         }
-        categoryStatsIsShown = !categoryStatsIsShown;
+    }
+
+    private void showCategoryView() {
+        updateStatisticsView(categoryStatsRoot);
+        changeViewBtn.setText(VIEW_PLOT);
+        categoryStatsIsShown = true;
+    }
+
+    private void showOverTimeGraph() {
+        updateStatisticsView(overtimeGraphRoot);
+        changeViewBtn.setText(VIEW_CATEGORY);
+        categoryStatsIsShown = false;
     }
 
     @FXML

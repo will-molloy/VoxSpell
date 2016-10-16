@@ -28,7 +28,6 @@ public class StatisticsFileHandler extends CustomFileReader {
 
     private static final String TEMP_FILE_NAME = ".tempStats", DATE_ID = "date";
     private static String todaysDate;
-    private static String STATS_FILE_NAME;
     private static File statsFile;
     private File tempFile = new File(TEMP_FILE_NAME);
     private String line;
@@ -38,8 +37,7 @@ public class StatisticsFileHandler extends CustomFileReader {
     private BufferedReader bufferedReader;
 
     public StatisticsFileHandler(String statsFileName) {
-        STATS_FILE_NAME = statsFileName;
-        statsFile = new File(STATS_FILE_NAME);
+        statsFile = new File(statsFileName);
         if (!statsFile.exists()) {
             makeHiddenFile(statsFile);
         }
@@ -244,39 +242,61 @@ public class StatisticsFileHandler extends CustomFileReader {
     }
 
     /**
-     * Returns the previous 12 days of statistics (or all statistics if less than 12 days..)
+     * Returns the previous days of statistics (or all statistics if less than the given days..)
      *
      * @return a List of 2 element integer arrays: [ correctCount, incorrectCount] for each day of statistics
      * the List is ordered with the earliest day in index 0.
+     * <p>
+     * TODO: change so it gets previous days only if they preceed the dates by 1 day
      */
-    public List<int[]> get12PrevDayStats() {
-        List<int[]> stats = new ArrayList<>();
+    public List<String[]> getPrevDayStats(int days) {
+        List<String[]> stats = new ArrayList<>();
         scanner = getScannerForStatFile();
-        scannerReadLine(); // skip over first date
         int correct = 0;
         int incorrect = 0;
+        String date;
+        String[] tokens = scannerReadLine().split("\\t");
+        if (tokens.length > 0) {
+            date = tokens[1]; // get first date
+            while ((line = scannerReadLine()) != null) {
+                if (stats.size() == days) {
+                    break; // request number of stats found
+                }
 
-        while ((line = scannerReadLine()) != null) {
-            String[] tokens = line.split("\\t");
-
-            if (stats.size() == 12) {
-                break;
+                tokens = line.split("\\t");
+                if (tokens.length == 4) {
+                    correct += parseInt(tokens[1]);
+                    incorrect += parseInt(tokens[2]);
+                } else if (tokens.length == 2) {
+                    stats.add(new String[]{correct + "", incorrect + "", date});    // record stat
+                    correct = 0;
+                    incorrect = 0;
+                    date = tokens[1]; // get next date
+                }
+                if (!scanner.hasNextLine()) {
+                    stats.add(new String[]{correct + "", incorrect + "", date});    // record stat
+                    break; // EOF
+                }
             }
 
-            if (tokens.length == 4) {
-                correct += parseInt(tokens[1]);
-                incorrect += parseInt(tokens[2]);
-            }
-
-            if (tokens.length == 2 && tokens[0].equals(DATE_ID) || !scanner.hasNextLine()) { // stop at next date or EOF
-                stats.add(new int[]{correct, incorrect});
-                correct = 0;
-                incorrect = 0;
-            }
         }
 
         return stats;
     }
 
 
+    public int[] getLifeTimeStats() {
+        int correct = 0;
+        int incorrect = 0;
+        scanner = getScannerForStatFile();
+        while ((line = scannerReadLine()) != null) {
+            String[] tokens = line.split("\\t");
+
+            if (tokens.length == 4) {
+                correct += parseInt(tokens[1]);
+                incorrect += parseInt(tokens[2]);
+            }
+        }
+        return new int[]{correct, incorrect};
+    }
 }

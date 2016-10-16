@@ -9,6 +9,7 @@ import voxspell.Main;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +56,7 @@ public abstract class ReportCardController {
             }
         }
         double accuracy = mastered * 100.0 / words.size();
-        accuracyTextView.setText("Accuracy: " + accuracy + "%");
+        accuracyTextView.setText("Accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
     }
 
     protected abstract void createGUI();

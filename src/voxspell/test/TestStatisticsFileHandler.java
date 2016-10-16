@@ -189,53 +189,42 @@ public class TestStatisticsFileHandler {
     @Test
     public void prev12DaysMoreThan12Days() {
         // ADD some stats to actual file
-        List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
-
-            expected.add(new int[]{3, 2});
         }
 
-        expected.remove(expected.get(12)); // remove 13th entry
-
-        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
         for (int i = 0; i < actual.size(); i++) {
-            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
         }
     }
 
     @Test
     public void prev12DaysLessThan12Days() {
         // ADD some stats to actual file
-        List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
-
-            expected.add(new int[]{3, 2});
         }
 
-        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
         for (int i = 0; i < actual.size(); i++) {
-            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
         }
     }
 
     @Test
     public void prev12DaysExactly12Days() {
         // ADD some stats to actual file
-        List<int[]> expected = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             appendToActualFile("date\t2000-02-02");
             appendToActualFile("word0\t3\t2\tfish");
-
-            expected.add(new int[]{3, 2});
         }
 
-        List<int[]> actual = statisticsFileHandler.get12PrevDayStats();
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
         for (int i = 0; i < actual.size(); i++) {
-            assertEquals(expected.get(i)[0] + " " + expected.get(i)[1], actual.get(i)[0] + " " + actual.get(i)[1]);
+            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
         }
     }
 
@@ -270,8 +259,18 @@ public class TestStatisticsFileHandler {
 
         statisticsFileHandler.writeStatistic("then", true, "Level 2");
         assertEquals(expected, readFileLinesIntoList(actualFile));
+    }
 
+    @Test
+    public void lifeTimeStats() {
+        // ADD some stats to actual file
+        for (int i = 0; i < 12; i++) {
+            appendToActualFile("date\t2000-02-02");
+            appendToActualFile("word0\t3\t2\tfish");
+        }
 
+        int[] actual = statisticsFileHandler.getLifeTimeStats();
+        assertEquals("36 24", actual[0] + " " + actual[1]);
     }
 
 }

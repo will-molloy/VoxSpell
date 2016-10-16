@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="380.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.102-ea"
           fx:controller="voxspell.statistics.OverTimeGraphController">
     <columnConstraints>
@@ -13,8 +13,19 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints/>
+        <RowConstraints/>
     </rowConstraints>
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LINE PLOT!"/>
+        <LineChart fx:id="linePlot" GridPane.rowIndex="1">
+            <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT"/>
+            </yAxis>
+            <GridPane.margin>
+                <Insets left="40.0" right="40.0"/>
+            </GridPane.margin>
+        </LineChart>
     </children>
 </GridPane>
