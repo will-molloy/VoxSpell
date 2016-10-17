@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.dailyChallenges.DailyChallengeGUIController;
 import voxspell.reportCard.FailedQuizReportCardFactory;
 import voxspell.reportCard.PassedQuizReportCardFactory;
 import voxspell.reportCard.ReportCardFactory;
@@ -48,6 +49,8 @@ public class SpellingQuizController {
 
     // StatisticsFileHandler object for saving stats
     private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler(".statistics");
+    // DailyChallenge - for updating any challenges
+    private DailyChallengeGUIController dailyChallengeGUIController = new DailyChallengeGUIController();
     @FXML
     private ProgressBar quizProgressBar;
     private List<Word> quizWordList;
@@ -184,6 +187,7 @@ public class SpellingQuizController {
                 controller.generateScene();
             });
             clearGUI();
+            dailyChallengeGUIController.updateChallenge(1,1);
         }
     }
 

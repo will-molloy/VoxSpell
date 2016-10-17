@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import voxspell.Main;
+import voxspell.dailyChallenges.DailyChallengeGUIController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -93,6 +94,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
             } else {
                 List<Word> words = new ArrayList<>(data);
                 wordListEditorInstance.addCategory(category, words);
+                DailyChallengeGUIController d = new DailyChallengeGUIController();
+                d.updateChallenge(3,1);
                 // ERROR if no words in list OR category name is blank
                 Main.hidePopup();
             }

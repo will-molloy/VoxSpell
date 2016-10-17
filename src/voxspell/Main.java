@@ -23,7 +23,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Scenes that will be loaded once for better performance
-    private static Scene mainMenu, spellingQuiz, wordListEditor, dailyChallenges;
+    private static Scene mainMenu, spellingQuiz, wordListEditor;
     // Overall window
     private static Stage window;
     // Popup window
@@ -88,9 +88,6 @@ public class Main extends Application {
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
         wordListEditor = new Scene(wordListRoot);
 
-        Parent dailyChallengeRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
-        dailyChallenges = new Scene(dailyChallengeRoot);
-
         window.setTitle("VoxSpell");
         window.setScene(mainMenu);
         window.setResizable(false);
@@ -134,8 +131,17 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Want to reload this scene each time to update challenge progress.
+     */
     @FXML
     private void handleDailyChallengeBtn(ActionEvent actionEvent) {
-        window.setScene(dailyChallenges);
+        try {
+            Parent challengesRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
+            Scene dailyChallenges = new Scene(challengesRoot);
+            window.setScene(dailyChallenges);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
