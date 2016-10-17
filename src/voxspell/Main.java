@@ -5,8 +5,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,13 +18,15 @@ import voxspell.quiz.SpellingQuizController;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Launches the application, also controller for the Main Menu.
  *
  * @author Will Molloy
  */
-public class Main extends Application {
+public class Main extends Application implements Initializable{
 
     // Scenes that will be loaded once for better performance
     private static Scene mainMenu, spellingQuiz, wordListEditor;
@@ -30,6 +36,16 @@ public class Main extends Application {
     private static Stage popup;
     // Spelling quiz controller to initialise spelling quiz
     private static SpellingQuizController spellingQuizControllerInstance;
+    @FXML
+    private Button quizBtn, statBtn, challengeBtn, editorBtn;
+
+    private String backgroundImage = Main.class.getResource("media/images/light_background-wallpaper-960x540.jpg").toExternalForm();
+    private Image
+            quizIcon = new Image(getClass().getResourceAsStream("media/images/abc.png")),
+            statIcon = new Image(getClass().getResourceAsStream("media/images/stats.png")),
+            challengeIcon = new Image(getClass().getResourceAsStream("media/images/checked.png")),
+            editorIcon = new Image(getClass().getResourceAsStream("media/images/agenda.png"));
+
 
     public static void main(String[] args) {
         launch(args);
@@ -79,6 +95,7 @@ public class Main extends Application {
 
         Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
+        setBackgroundForRoot(mainMenuRoot);
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
@@ -99,6 +116,7 @@ public class Main extends Application {
         hidePopup();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.initOwner(window.getScene().getWindow());
+
     }
 
     @FXML
@@ -143,5 +161,31 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void setBackgroundForRoot(Parent root){
+        root.setStyle("-fx-background-backgroundImage: url('" + backgroundImage + "'); " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadBtnImages();
+    }
+
+    private void loadBtnImages() {
+        loadImageForBtn(quizBtn,quizIcon);
+        loadImageForBtn(statBtn,statIcon);
+        loadImageForBtn(challengeBtn,challengeIcon);
+        loadImageForBtn(editorBtn,editorIcon);
+    }
+
+    private void loadImageForBtn(Button button, Image image){
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        button.setGraphic(imageView);
     }
 }

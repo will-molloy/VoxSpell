@@ -126,7 +126,10 @@ public class WordListEditorController implements Initializable {
     }
 
     private void resizeWordListView() {
-        int minSize = wordListsView.getPanes().size() * 48 + 30; //  number of headers * 2 * font size + header size
+        int minSize = wordListsView.getPanes().size() * 48 + 30;
+        if (minSize < 300){
+            minSize = 300;      //  number of headers * 2 * font size + header size
+        }
         wordListsView.setPrefHeight(minSize);
     }
 

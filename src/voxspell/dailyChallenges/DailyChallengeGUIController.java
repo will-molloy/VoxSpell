@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import voxspell.Main;
 
@@ -22,6 +24,11 @@ import java.util.ResourceBundle;
 public class DailyChallengeGUIController implements Initializable {
 
     private final String fileName = ".dailyChallenges", tempFileName = ".dailyTemp";
+    @FXML
+    private ImageView image1, image2, image3;
+    private Image
+            unchecked = new Image(Main.class.getResourceAsStream("media/images/unchecked_box.png")),
+            checked = new Image(Main.class.getResourceAsStream("media/images/checked_box.png"));
     @FXML
     private Text totalChallengesText;
     @FXML
@@ -43,8 +50,25 @@ public class DailyChallengeGUIController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        image1.setImage(unchecked);
+        image2.setImage(unchecked);
+        image3.setImage(unchecked);
         createFiles();
         getDailyChallenges();
+    }
+
+    private void checkImage(int x){
+        switch (x){
+            case 1:
+                image1.setImage(checked);
+                break;
+            case 2:
+                image2.setImage(checked);
+                break;
+            case 3:
+                image3.setImage(checked);
+                break;
+        }
     }
 
     private void createFiles() {
@@ -129,6 +153,9 @@ public class DailyChallengeGUIController implements Initializable {
             while((line = bufferedReader.readLine())!=null){
                 String[] tokens = line.split("\\t");
                 double progress = Double.parseDouble(tokens[1])/Double.parseDouble(tokens[2]);
+                if (progress >=1){
+                    checkImage(i);
+                }
                 updateChallengeProgress(i++,progress);
             }
         } catch (IOException e) {
@@ -240,6 +267,9 @@ public class DailyChallengeGUIController implements Initializable {
         for (int i = 1; i <= 3; i++) {
             updateChallengeProgress(i, 0);
         }
+        image1.setImage(unchecked);
+        image2.setImage(unchecked);
+        image3.setImage(unchecked);
     }
 
     public void updateChallenge(int challenge, int progressDone) {

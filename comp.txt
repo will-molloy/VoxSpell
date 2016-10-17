@@ -1,0 +1,6 @@
+%quiz_fail
+got	
+monoid	a set that is closed under an associative binary operation and has an identity element
+New Zealand	
+software	
+that's

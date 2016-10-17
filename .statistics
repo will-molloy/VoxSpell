@@ -1,4 +1,30 @@
+date	2016-10-18
+New Zealand	0	2	quiz_fail
+apple	2	0	fruits
+orange	2	0	fruits
+new zealand	1	0	quiz_fail
+that's	0	3	quiz_fail
+got	1	2	quiz_fail
+software	3	0	quiz_fail
+monoid	3	0	quiz_fail
+grape	3	0	fruits
+banana	3	0	fruits
+tomato	3	0	fruits
+oranges	1	0	fruits
+apples	1	0	fruits
+pear	3	0	fruits
 date	2016-10-17
+grape	1	0	fruits
+banana	1	0	fruits
+tomato	1	0	fruits
+apples	1	0	fruits
+oranges	1	0	fruits
+pear	1	0	fruits
+that's	0	2	quiz_feed_back
+New Zealand	0	2	quiz_feed_back
+monoid	2	0	quiz_feed_back
+software	2	0	quiz_feed_back
+got	2	0	quiz_feed_back
 that's	1	1	quiz feed back
 New Zealand	1	1	quiz feed back
 got	2	0	quiz feed back
