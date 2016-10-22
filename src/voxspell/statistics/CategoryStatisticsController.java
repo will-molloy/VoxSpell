@@ -29,14 +29,14 @@ public class CategoryStatisticsController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
     // Object to read stats file
-    private StatisticsFileHandler statisticsFileHandler;
     // Object to get information on wordlists/categories
     private List<WordList> wordlists;
+    private StatisticsRetriever statisticsRetriever;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         wordlists = WordListEditorController.getWordLists();
-        statisticsFileHandler = new StatisticsFileHandler();
+        statisticsRetriever = new StatisticsRetriever();
 
         generateAndShowStatsInScrollPane();
         scrollPane.setFitToHeight(true);
@@ -47,7 +47,7 @@ public class CategoryStatisticsController implements Initializable {
         ObservableList<CategoryStat> data = FXCollections.observableArrayList();
         for (WordList wl : wordlists) {
             String category = wl.toString();
-            int[] extractedStat = statisticsFileHandler.getStatsForCategory(category);
+            int[] extractedStat = statisticsRetriever.getStatsForCategory(category);
             int totalSpelt = extractedStat[0] + extractedStat[1];
             double accuracy = extractedStat[0] * 100.0 / totalSpelt;
             if (totalSpelt > 0) {

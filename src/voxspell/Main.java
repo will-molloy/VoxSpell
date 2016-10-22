@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  *
  * @author Will Molloy
  */
-public class Main extends Application implements Initializable{
+public class Main extends Application implements Initializable {
 
     // Scenes that will be loaded once for better performance
     private static Scene mainMenu, spellingQuiz, wordListEditor;
@@ -164,7 +164,7 @@ public class Main extends Application implements Initializable{
     }
 
 
-    private void setBackgroundForRoot(Parent root){
+    private void setBackgroundForRoot(Parent root) {
         root.setStyle("-fx-background-backgroundImage: url('" + backgroundImage + "'); " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: stretch;");
@@ -176,13 +176,13 @@ public class Main extends Application implements Initializable{
     }
 
     private void loadBtnImages() {
-        loadImageForBtn(quizBtn,quizIcon);
-        loadImageForBtn(statBtn,statIcon);
-        loadImageForBtn(challengeBtn,challengeIcon);
-        loadImageForBtn(editorBtn,editorIcon);
+        loadImageForBtn(quizBtn, quizIcon);
+        loadImageForBtn(statBtn, statIcon);
+        loadImageForBtn(challengeBtn, challengeIcon);
+        loadImageForBtn(editorBtn, editorIcon);
     }
 
-    private void loadImageForBtn(Button button, Image image){
+    private void loadImageForBtn(Button button, Image image) {
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(40);
         imageView.setFitWidth(40);

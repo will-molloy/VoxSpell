@@ -57,9 +57,9 @@ public abstract class ReportCardController {
             }
         }
         double accuracy = mastered * 100.0 / words.size();
-        if (accuracy==100){
+        if (accuracy == 100) {
             DailyChallengeGUIController d = new DailyChallengeGUIController();
-            d.updateChallenge(2,100);
+            d.updateChallenge(2, 100);
         }
         accuracyTextView.setText("Accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
     }

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="CalendarDate">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/additional_libraries/CalendarDate.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/additional_libraries/CalendarDate.jar!/" />
+    </SOURCES>
+  </library>
+</component>

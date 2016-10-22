@@ -10,8 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import voxspell.Main;
 import voxspell.dailyChallenges.DailyChallengeGUIController;
@@ -71,9 +69,9 @@ public class SpellingQuizController {
 
     // Images
     @FXML
-  //  private Parent imageHBox;
+    //  private Parent imageHBox;
 
-  //  private List<ImageView> images = new ArrayList<>();
+    //  private List<ImageView> images = new ArrayList<>();
 
     public String promptUserForInitialLevel() {
         // Get word lists from editor.
@@ -143,11 +141,11 @@ public class SpellingQuizController {
 
     private void clearGUI() {
         // Add ImageViews inside imageHBox to the ArrayList of images
-      //  images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
+        //  images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
         // Blank out all images
-      //  for (ImageView imageView : images) {
-      //      imageView.setImage(null);
-      //  }
+        //  for (ImageView imageView : images) {
+        //      imageView.setImage(null);
+        //  }
         // Reset text views
         categoryText.setText("");
         quizProgressBar.setProgress(0);
@@ -185,7 +183,7 @@ public class SpellingQuizController {
                 controller.generateScene();
             });
             clearGUI();
-            dailyChallengeGUIController.updateChallenge(1,1);
+            dailyChallengeGUIController.updateChallenge(1, 1);
         }
     }
 
@@ -208,7 +206,7 @@ public class SpellingQuizController {
 
                 wordFirstAttempts.add(attempt);
                 wordsCorrectFirstAttempt++;
-            //    images.get(imageIndex).setImage(wordCorrect);
+                //    images.get(imageIndex).setImage(wordCorrect);
 
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
@@ -216,7 +214,7 @@ public class SpellingQuizController {
 
             } else { /* Incorrect */
                 wordFirstAttempts.add(attempt);
-             //   images.get(imageIndex).setImage(wordIncorrect);
+                //   images.get(imageIndex).setImage(wordIncorrect);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
 
                 statisticsFileHandler.writeStatistic(word.toString(), false, categoryText.getText());

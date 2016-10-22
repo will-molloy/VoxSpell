@@ -4,14 +4,12 @@ import voxspell.tools.CustomFileReader;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 /**
- * Represents a statistics object,
- * writes statistics for a word: correct/incorrect count, associated category and todaysDate.
+ * Contains methods for writing to the hidden statistics file.
+ * Writes statistics for a word: correct/incorrect count, associated category and today's date.
  * <p>
  * The statistic file format works as follows:
  * date (tab) 2016-10-15 (earliest date)
@@ -27,31 +25,15 @@ import java.util.Scanner;
 public class StatisticsFileHandler extends CustomFileReader {
 
     private static final String TEMP_FILE_NAME = ".tempStats", DATE_ID = "date";
-    private static String todaysDate;
+    protected static String todaysDate;
     private static File statsFile;
+    // default file name
+    private final String statsFileName = ".statistics";
+    protected String line;
     private File tempFile = new File(TEMP_FILE_NAME);
-    private String line;
     private String word;
     private boolean correct;
     private String category;
-    private BufferedReader bufferedReader;
-    // default file name
-    private final String statsFileName = ".statistics";
-
-    /**
-     * Method to change the hidden statistics file name - for testing
-     */
-    public void setFileName(String fileName){
-        statsFile = new File(fileName);
-        makeHiddenFile(statsFile);
-    }
-
-    /**
-     * Method to change the date - for testing
-     */
-    public void setDate(String date){
-        todaysDate = date;
-    }
 
     /**
      * Instantiates the statistics file handler - loading the hidden file and current date
@@ -64,12 +46,27 @@ public class StatisticsFileHandler extends CustomFileReader {
         todaysDate = getCurrentDate();
     }
 
+    /**
+     * Method to change the hidden statistics file name - for testing
+     */
+    public void setFileName(String fileName) {
+        statsFile = new File(fileName);
+        makeHiddenFile(statsFile);
+    }
+
     private void makeHiddenFile(File file) {
         try {
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method to change the date - for testing
+     */
+    public void setDate(String date) {
+        todaysDate = date;
     }
 
     private String getCurrentDate() {
@@ -131,6 +128,67 @@ public class StatisticsFileHandler extends CustomFileReader {
         }
     }
 
+    /**
+     * Records a new word that hasn't been tested today.
+     */
+    private void recordNewStatForToday() {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
+            scanner = getScannerForStatFile();
+
+            // Write new statistic
+            writeNewStatisticAndRestOfFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Updates a word that has already been tested today.
+     */
+    private void updateStatistic() {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
+            scanner = getScannerForStatFile();
+
+            while ((line = scannerReadLine()) != null) {
+                String[] tokens = line.split("\\t");
+                if (tokens[0].equals(word) && tokens[3].equals(category)) { // found word, update it
+
+                    // extract existing statistic
+                    int correct = parseInt(tokens[1]);
+                    int incorrect = parseInt(tokens[2]);
+                    if (this.correct) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+
+                    // update statistic
+                    bufferedWriter.write(getStatisticFileFormat(word, correct, incorrect, category));
+                    break;
+                } else {
+                    // write top of file
+                    bufferedWriter.write(line);
+                    bufferedWriter.newLine();
+                }
+            }
+            writeRestOfFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    protected Scanner getScannerForStatFile() {
+        try {
+            return new Scanner(new FileReader(statsFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private void recordNewWordForToday() {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
@@ -168,6 +226,9 @@ public class StatisticsFileHandler extends CustomFileReader {
         return "date\t" + todaysDate + "\n";
     }
 
+    /**
+     * Writes what's left in the bufferedWriter
+     */
     private void writeRestOfFile() throws IOException {
         while ((line = scannerReadLine()) != null) {
             bufferedWriter.write(line);
@@ -177,150 +238,5 @@ public class StatisticsFileHandler extends CustomFileReader {
 
         // Rename file
         tempFile.renameTo(statsFile);
-    }
-
-    private void recordNewStatForToday() {
-        try {
-            bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
-            scanner = getScannerForStatFile();
-
-            // Write new statistic
-            writeNewStatisticAndRestOfFile();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateStatistic() {
-        try {
-            bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
-            scanner = getScannerForStatFile();
-
-            while ((line = scannerReadLine()) != null) {
-                String[] tokens = line.split("\\t");
-                if (tokens[0].equals(word) && tokens[3].equals(category)) { // found word, update it
-
-                    // extract existing statistic
-                    int correct = parseInt(tokens[1]);
-                    int incorrect = parseInt(tokens[2]);
-                    if (this.correct) {
-                        correct++;
-                    } else {
-                        incorrect++;
-                    }
-
-                    // update statistic
-                    bufferedWriter.write(getStatisticFileFormat(word, correct, incorrect, category));
-                    break;
-                } else {
-                    // write top of file
-                    bufferedWriter.write(line);
-                    bufferedWriter.newLine();
-                }
-            }
-            writeRestOfFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    private Scanner getScannerForStatFile() {
-        try {
-            return new Scanner(new FileReader(statsFile));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * Returns the statistics for the given category.
-     *
-     * @return an integer array with 2 elements: [ correctCount, incorrectCount ] for the given category
-     */
-    public int[] getStatsForCategory(String category) {
-        scanner = getScannerForStatFile();
-        int correct = 0;
-        int incorrect = 0;
-
-        while ((line = scannerReadLine()) != null) {
-            String[] tokens = line.split("\\t");
-            // Tokens: word (tab) correctCount (tab) incorrectCount (tab) category
-            if (tokens.length == 4 && tokens[3].equals(category)) {
-                correct += parseInt(tokens[1]);
-                incorrect += parseInt(tokens[2]);
-            }
-        }
-        return new int[]{correct, incorrect};
-    }
-
-    private int parseInt(String s) {
-        return Integer.parseInt(s);
-    }
-
-    /**
-     * Returns the previous days of statistics (or all statistics if less than the given days..)
-     *
-     * @return a List of 2 element integer arrays: [ correctCount, incorrectCount] for each day of statistics
-     * the List is ordered with the earliest day in index 0.
-     * <p>
-     * TODO: change so it gets previous days only if they preceed the dates by 1 day
-     */
-    public List<String[]> getPrevDayStats(int days) {
-        List<String[]> stats = new ArrayList<>();
-        scanner = getScannerForStatFile();
-        int correct = 0;
-        int incorrect = 0;
-        String date;
-        String[] tokens = scannerReadLine().split("\\t");
-        if (tokens.length > 0) {
-            date = tokens[1]; // get first date
-            while ((line = scannerReadLine()) != null) {
-                if (stats.size() == days) {
-                    break; // request number of stats found
-                }
-
-                tokens = line.split("\\t");
-                if (tokens.length == 4) {
-                    correct += parseInt(tokens[1]);
-                    incorrect += parseInt(tokens[2]);
-                } else if (tokens.length == 2) {
-                    stats.add(new String[]{correct + "", incorrect + "", date});    // record stat
-                    correct = 0;
-                    incorrect = 0;
-                    date = tokens[1]; // get next date
-                }
-                if (!scanner.hasNextLine()) {
-                    stats.add(new String[]{correct + "", incorrect + "", date});    // record stat
-                    break; // EOF
-                }
-            }
-
-        }
-
-        return stats;
-    }
-
-
-    /**
-     * Retrieves all of the statistics -
-     * a 2d array of [ totalCorrect, totalIncorrect ] for all words/days/categories stored.
-     */
-    public int[] getLifeTimeStats() {
-        int correct = 0;
-        int incorrect = 0;
-        scanner = getScannerForStatFile();
-        while ((line = scannerReadLine()) != null) {
-            String[] tokens = line.split("\\t");
-
-            if (tokens.length == 4) {
-                correct += parseInt(tokens[1]);
-                incorrect += parseInt(tokens[2]);
-            }
-        }
-        return new int[]{correct, incorrect};
     }
 }

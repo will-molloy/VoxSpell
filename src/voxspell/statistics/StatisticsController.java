@@ -33,7 +33,7 @@ public class StatisticsController implements Initializable {
     private Text lifeTimeAccuracyText;
     @FXML
     private Button changeViewBtn;
-    private StatisticsFileHandler statisticsFileHanlder = new StatisticsFileHandler();
+    private StatisticsRetriever statisticsFileHanlder = new StatisticsRetriever();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

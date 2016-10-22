@@ -133,4 +133,9 @@ public class CustomFileReader {
             e.printStackTrace();
         }
     }
+
+    protected int parseInt(String s) {
+        return Integer.parseInt(s);
+    }
+
 }

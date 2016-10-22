@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -57,8 +56,8 @@ public class DailyChallengeGUIController implements Initializable {
         getDailyChallenges();
     }
 
-    private void checkImage(int x){
-        switch (x){
+    private void checkImage(int x) {
+        switch (x) {
             case 1:
                 image1.setImage(checked);
                 break;
@@ -149,13 +148,13 @@ public class DailyChallengeGUIController implements Initializable {
         String line;
         int i = 1;
         try {
-            while((line = bufferedReader.readLine())!=null){
+            while ((line = bufferedReader.readLine()) != null) {
                 String[] tokens = line.split("\\t");
-                double progress = Double.parseDouble(tokens[1])/Double.parseDouble(tokens[2]);
-                if (progress >=1){
+                double progress = Double.parseDouble(tokens[1]) / Double.parseDouble(tokens[2]);
+                if (progress >= 1) {
                     checkImage(i);
                 }
-                updateChallengeProgress(i++,progress);
+                updateChallengeProgress(i++, progress);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -201,7 +200,7 @@ public class DailyChallengeGUIController implements Initializable {
             rewriteRestOfFile();
             bufferedWriter.flush();
             tempFile.renameTo(dailyChallengeFile);
-            if (progressDone+currentProgress>=Integer.parseInt(tokens[2])){
+            if (progressDone + currentProgress >= Integer.parseInt(tokens[2])) {
                 challengeComplete(x);
             }
         } catch (IOException e) {
@@ -218,9 +217,9 @@ public class DailyChallengeGUIController implements Initializable {
         bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
         String line;
         reWriteXLinesInFileToTempFile(1);
-        line=bufferedReader.readLine();
+        line = bufferedReader.readLine();
         String[] tokens = line.split("\\t");
-        bufferedWriter.write("total_challenges\t"+(1+Integer.parseInt(tokens[1])));
+        bufferedWriter.write("total_challenges\t" + (1 + Integer.parseInt(tokens[1])));
         bufferedWriter.newLine();
         rewriteRestOfFile();
         bufferedWriter.flush();

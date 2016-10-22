@@ -95,7 +95,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
                 List<Word> words = new ArrayList<>(data);
                 wordListEditorInstance.addCategory(category, words);
                 DailyChallengeGUIController d = new DailyChallengeGUIController();
-                d.updateChallenge(3,1);
+                d.updateChallenge(3, 1);
                 // ERROR if no words in list OR category name is blank
                 Main.hidePopup();
             }

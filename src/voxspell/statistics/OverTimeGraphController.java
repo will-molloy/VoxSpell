@@ -18,12 +18,12 @@ public class OverTimeGraphController implements Initializable {
     @FXML
     private LineChart linePlot;
 
-    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler();
+    private StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<String[]> prev12DaysStats = statisticsFileHandler.getPrevDayStats(12);
+        List<String[]> prev12DaysStats = statisticsRetriever.getPrevDayStats(12);
         linePlot.getXAxis().setLabel("Date");
         linePlot.getYAxis().setLabel("Accuracy");
         linePlot.setTitle("Accuracy For The Previous " + prev12DaysStats.size() + " Days");
