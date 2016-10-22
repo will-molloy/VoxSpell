@@ -33,7 +33,7 @@ public class StatisticsController implements Initializable {
     private Text lifeTimeAccuracyText;
     @FXML
     private Button changeViewBtn;
-    private StatisticsRetriever statisticsFileHanlder = new StatisticsRetriever();
+    protected StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,13 +43,17 @@ public class StatisticsController implements Initializable {
     }
 
     private void generateAndShowLifeTimeStatistics() {
-        int[] lifeTimeStats = statisticsFileHanlder.getLifeTimeStats();
+        int[] lifeTimeStats = statisticsRetriever.getLifeTimeStats();
         int correct = lifeTimeStats[0];
         int incorrect = lifeTimeStats[1];
         double accuracy = (correct * 100.0) / (incorrect + correct);
 
         totalWordsSpeltText.setText("Total words spelt: " + (correct + incorrect));
-        lifeTimeAccuracyText.setText("Lifetime accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
+        lifeTimeAccuracyText.setText("Lifetime accuracy: " + formatAccuracy(accuracy));
+    }
+
+    protected String formatAccuracy(double accuracy) {
+        return new DecimalFormat("####0.00").format(accuracy) + "%";
     }
 
     private void updateStatisticsView(Node newView) {

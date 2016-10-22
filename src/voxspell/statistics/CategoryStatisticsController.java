@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  *
  * @author Will Molloy
  */
-public class CategoryStatisticsController implements Initializable {
+public class CategoryStatisticsController extends StatisticsController implements Initializable {
 
     @FXML
     private TableView tableView;
@@ -31,7 +31,6 @@ public class CategoryStatisticsController implements Initializable {
     // Object to read stats file
     // Object to get information on wordlists/categories
     private List<WordList> wordlists;
-    private StatisticsRetriever statisticsRetriever;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +50,7 @@ public class CategoryStatisticsController implements Initializable {
             int totalSpelt = extractedStat[0] + extractedStat[1];
             double accuracy = extractedStat[0] * 100.0 / totalSpelt;
             if (totalSpelt > 0) {
-                CategoryStat stat = new CategoryStat(category, totalSpelt + "", new DecimalFormat("####0.00").format(accuracy) + "%"); // TODO CONSTANT method to get this format?
+                CategoryStat stat = new CategoryStat(category, totalSpelt + "", formatAccuracy(accuracy));
                 data.add(stat);
             }
         }

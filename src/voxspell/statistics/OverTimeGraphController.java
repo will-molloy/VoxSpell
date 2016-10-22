@@ -4,22 +4,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Controller for the line graph of over time statistics.
+ *
+ * @author Will Molloy
  */
-public class OverTimeGraphController implements Initializable {
+public class OverTimeGraphController extends StatisticsController implements Initializable  {
 
     @FXML
     private LineChart linePlot;
-
-    private StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,12 +36,16 @@ public class OverTimeGraphController implements Initializable {
         for (String[] dayStats : prev12DaysStats) {
             int correct = Integer.parseInt(dayStats[0]);
             int incorrect = Integer.parseInt(dayStats[1]);
+            int totalWords = correct+incorrect;
             String date = dayStats[2].substring(5);
-
-            double accuracy = (correct * 100.0) / (incorrect + correct);
-            accuracySeries.getData().add(new XYChart.Data(date, accuracy));
+            double accuracy = totalWords > 0 ? (correct * 100.0) / (incorrect + correct) : 0; // if no words spelt, 0% accuracy
+            XYChart.Data data = new XYChart.Data<>(date, accuracy);
+            data.setNode(new LineGraphNodeHoverPane("Worlds spelt: " + totalWords +"\nAccuracy: " + formatAccuracy(accuracy)));
+            accuracySeries.getData().add(data);
         }
         linePlot.getData().add(accuracySeries);
 
     }
+
+
 }
