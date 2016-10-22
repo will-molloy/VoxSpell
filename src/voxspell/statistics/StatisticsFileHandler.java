@@ -35,8 +35,28 @@ public class StatisticsFileHandler extends CustomFileReader {
     private boolean correct;
     private String category;
     private BufferedReader bufferedReader;
+    // default file name
+    private final String statsFileName = ".statistics";
 
-    public StatisticsFileHandler(String statsFileName) {
+    /**
+     * Method to change the hidden statistics file name - for testing
+     */
+    public void setFileName(String fileName){
+        statsFile = new File(fileName);
+        makeHiddenFile(statsFile);
+    }
+
+    /**
+     * Method to change the date - for testing
+     */
+    public void setDate(String date){
+        todaysDate = date;
+    }
+
+    /**
+     * Instantiates the statistics file handler - loading the hidden file and current date
+     */
+    public StatisticsFileHandler() {
         statsFile = new File(statsFileName);
         if (!statsFile.exists()) {
             makeHiddenFile(statsFile);
@@ -285,6 +305,10 @@ public class StatisticsFileHandler extends CustomFileReader {
     }
 
 
+    /**
+     * Retrieves all of the statistics -
+     * a 2d array of [ totalCorrect, totalIncorrect ] for all words/days/categories stored.
+     */
     public int[] getLifeTimeStats() {
         int correct = 0;
         int incorrect = 0;

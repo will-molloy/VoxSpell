@@ -48,7 +48,7 @@ public class SpellingQuizController {
     private static ReportCardFactory reportCardFactory;
 
     // StatisticsFileHandler object for saving stats
-    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler(".statistics");
+    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler();
     // DailyChallenge - for updating any challenges
     private DailyChallengeGUIController dailyChallengeGUIController = new DailyChallengeGUIController();
     @FXML

@@ -18,7 +18,7 @@ public class OverTimeGraphController implements Initializable {
     @FXML
     private LineChart linePlot;
 
-    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler(".statistics");
+    private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler();
 
 
     @Override

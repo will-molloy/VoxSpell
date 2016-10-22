@@ -121,7 +121,6 @@ public class DailyChallengeGUIController implements Initializable {
             bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
             bufferedWriter.write("date\t" + currentDate);
             bufferedWriter.newLine();
-            bufferedReader.readLine(); // skip first line
             rewriteRestOfFile();
             bufferedWriter.flush();
             tempFile.renameTo(dailyChallengeFile);

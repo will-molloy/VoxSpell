@@ -7,25 +7,25 @@ import voxspell.statistics.StatisticsFileHandler;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 /**
  * Tests the StatisticsFileHandler class and whether it writes statistics to files correctly or not.
  * <p>
- * Problem with these tests: asserts the current date so assuming Date class is correct.
- *
  * @author Will Molloy
  */
 public class TestStatisticsFileHandler {
 
     private static final String ACTUAL_FILE_NAME = ".ACTUAL";
+    private static final String TEST_DATE = "2016-10-18";
     private StatisticsFileHandler statisticsFileHandler;
     private File actualFile = new File(ACTUAL_FILE_NAME);
-    private String currentDate;
     private BufferedWriter bufferedWriter;
 
     @Before
@@ -36,8 +36,9 @@ public class TestStatisticsFileHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        statisticsFileHandler = new StatisticsFileHandler(ACTUAL_FILE_NAME);
+        statisticsFileHandler = new StatisticsFileHandler();
+        statisticsFileHandler.setDate(TEST_DATE);         // Static date so tests work in the future
+        statisticsFileHandler.setFileName(ACTUAL_FILE_NAME); // different file, so tests don't mess with actual statistics
     }
 
     private List<String> readFileLinesIntoList(File file) {
@@ -65,11 +66,24 @@ public class TestStatisticsFileHandler {
         }
     }
 
+    private void appendToActualFile(List<String> fileOutput) {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(actualFile, true));
+            for (String s : fileOutput) {
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void testNoStatisticsCorrectWord() {
         // ACTUAL file is empty
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("word\t1\t0\tcategory");
 
         statisticsFileHandler.writeStatistic("word", true, "category");
@@ -80,7 +94,7 @@ public class TestStatisticsFileHandler {
     public void testNoStatisticsIncorrectWord() {
         // ACTUAL file is empty
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("word\t0\t1\tcategory");
 
         statisticsFileHandler.writeStatistic("word", false, "category");
@@ -90,11 +104,11 @@ public class TestStatisticsFileHandler {
     @Test
     public void updateStatisticCorrectWord() {
         // ADD some stats to actual file
-        appendToActualFile("date\t" + currentDate);
+        appendToActualFile("date\t" + TEST_DATE);
         appendToActualFile("word\t100\t2\tcategory");
 
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("word\t101\t2\tcategory");
 
         statisticsFileHandler.writeStatistic("word", true, "category");
@@ -104,11 +118,11 @@ public class TestStatisticsFileHandler {
     @Test
     public void updateStatisticIncorrectWord() {
         // ADD some stats to actual file
-        appendToActualFile("date\t" + currentDate);
+        appendToActualFile("date\t" + TEST_DATE);
         appendToActualFile("word\t100\t2\tcategory");
 
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("word\t100\t3\tcategory");
 
         statisticsFileHandler.writeStatistic("word", false, "category");
@@ -118,11 +132,11 @@ public class TestStatisticsFileHandler {
     @Test
     public void wordHasBeenRecordedButDifCategory() {
         // ADD some stats to actual file
-        appendToActualFile("date\t" + currentDate);
+        appendToActualFile("date\t" + TEST_DATE);
         appendToActualFile("word\t100\t2\tcategory");
 
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("word\t1\t0\tnewCategory"); // insert of word with new category
         expected.add("word\t100\t2\tcategory");
 
@@ -133,7 +147,7 @@ public class TestStatisticsFileHandler {
     @Test
     public void wordHasBeenRecordedButDifDay() {
         // ADD some stats to actual file
-        appendToActualFile("date\t" + currentDate);
+        appendToActualFile("date\t" + TEST_DATE);
         appendToActualFile("word\t100\t2\tcategory");
 
         appendToActualFile("date\t1990-02-02");
@@ -141,7 +155,7 @@ public class TestStatisticsFileHandler {
 
 
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("old word\t1\t0\told category"); // insert same word from previous date
         expected.add("word\t100\t2\tcategory");
 
@@ -160,7 +174,7 @@ public class TestStatisticsFileHandler {
         appendToActualFile("old word\t10000\t3\told category");
 
         List<String> expected = new ArrayList<>();
-        expected.add("date\t" + currentDate);
+        expected.add("date\t" + TEST_DATE);
         expected.add("old word\t0\t1\told category"); // insert same word from previous date
         expected.add("word\t1\t0\tcategory");
 
@@ -187,81 +201,6 @@ public class TestStatisticsFileHandler {
     }
 
     @Test
-    public void prev12DaysMoreThan12Days() {
-        // ADD some stats to actual file
-        for (int i = 0; i < 13; i++) {
-            appendToActualFile("date\t2000-02-02");
-            appendToActualFile("word0\t3\t2\tfish");
-        }
-
-        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
-        for (int i = 0; i < actual.size(); i++) {
-            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
-        }
-    }
-
-    @Test
-    public void prev12DaysLessThan12Days() {
-        // ADD some stats to actual file
-        for (int i = 0; i < 5; i++) {
-            appendToActualFile("date\t2000-02-02");
-            appendToActualFile("word0\t3\t2\tfish");
-        }
-
-        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
-        for (int i = 0; i < actual.size(); i++) {
-            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
-        }
-    }
-
-    @Test
-    public void prev12DaysExactly12Days() {
-        // ADD some stats to actual file
-        for (int i = 0; i < 12; i++) {
-            appendToActualFile("date\t2000-02-02");
-            appendToActualFile("word0\t3\t2\tfish");
-        }
-
-        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
-        for (int i = 0; i < actual.size(); i++) {
-            assertEquals("3 2 2000-02-02", actual.get(i)[0] + " " + actual.get(i)[1] + " " + actual.get(i)[2]);
-        }
-    }
-
-    @Test
-    public void zzz() {
-        appendToActualFile("date\t" + currentDate);
-        appendToActualFile("of\t1\t0\tLevel 2");
-        appendToActualFile("had\t1\t0\tLevel 2");
-        appendToActualFile("there\t1\t0\tLevel 2");
-        appendToActualFile("at\t1\t0\tLevel 2");
-        appendToActualFile("on\t1\t0\tLevel 2");
-        appendToActualFile("that\t1\t0\tLevel 2");
-        appendToActualFile("then\t1\t0\tLevel 2");
-        appendToActualFile("up\t1\t0\tLevel 2");
-        appendToActualFile("for\t1\t0\tLevel 2");
-        appendToActualFile("me\t1\t0\tLevel 2");
-        appendToActualFile("he\t1\t0\tLevel 2");
-
-        List<String> expected = new ArrayList<>();
-        expected.add("date	" + currentDate);
-        expected.add("of\t1\t0\tLevel 2");
-        expected.add("had\t1\t0\tLevel 2");
-        expected.add("there	1	0	Level 2");
-        expected.add("at	1	0	Level 2");
-        expected.add("on	1	0	Level 2");
-        expected.add("that	1	0	Level 2");
-        expected.add("then	2	0	Level 2");
-        expected.add("up	1	0	Level 2");
-        expected.add("for	1	0	Level 2");
-        expected.add("me	1	0	Level 2");
-        expected.add("he	1	0	Level 2");
-
-        statisticsFileHandler.writeStatistic("then", true, "Level 2");
-        assertEquals(expected, readFileLinesIntoList(actualFile));
-    }
-
-    @Test
     public void lifeTimeStats() {
         // ADD some stats to actual file
         for (int i = 0; i < 12; i++) {
@@ -273,4 +212,126 @@ public class TestStatisticsFileHandler {
         assertEquals("36 24", actual[0] + " " + actual[1]);
     }
 
+    @Test
+    public void getPrev12DaysExactly12DaysNoGaps(){
+        int x = 18;
+        List<String> fileOutput = new ArrayList<>();
+        for (int i = 0; i < 12; i++){
+            String day = x<10?"0"+x:x+"";
+            fileOutput.add("date\t2016-10-"+ day);
+            fileOutput.add("word\t3\t2\tfish");
+            x--;
+        }
+        appendToActualFile(fileOutput);
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
+        List<String> expected = new ArrayList<>();
+        int day = 18;
+        for (int i = 0; i < 12; i++){
+            String dayFormatted = day<10?"0"+day:day+"";
+            day--;
+            expected.add("3\t2\t2016-10-"+dayFormatted);
+        }
+        assertEquals(expected, stringArraysToString(actual));
+    }
+
+    private List<String> stringArraysToString(List<String[]> expected) {
+        List<String> output = new ArrayList<>();
+        for (String[] old : expected){
+            String temp = "";
+            for (int i = 0; i < old.length; i++){
+                temp += old[i] + "\t";
+            }
+            temp = temp.substring(0,temp.length()-1);
+            output.add(temp);
+        }
+        return output;
+    }
+
+    @Test
+    public void getPrev12DaysAllGaps(){
+        int x = 18;
+        List<String> fileOutput = new ArrayList<>();
+        for (int i = 0; i < 12; i++){
+            String day = x<10?"0"+x:x+"";
+            fileOutput.add("date\t2016-10-"+ day);
+            fileOutput.add("word\t3\t2\tfish");
+            x--;
+        }
+        appendToActualFile(fileOutput);
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
+        List<String> expected = new ArrayList<>();
+        int day = 18;
+        for (int i = 0; i < 12; i++){
+            String dayFormatted = day<10?"0"+day:day+"";
+            day--;
+            expected.add("3\t2\t2016-10-"+dayFormatted);
+        }
+        assertEquals(expected, stringArraysToString(actual));
+    }
+
+    @Test
+    public void getEndGaps(){
+        int x = 18;
+        List<String> fileOutput = new ArrayList<>();
+        for (int i = 0; i < 12; i++){
+            String day = x<10?"0"+x:x+"";
+            fileOutput.add("date\t2016-10-"+ day);
+            fileOutput.add("word\t3\t2\tfish");
+            x--;
+        }
+        appendToActualFile(fileOutput);
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
+        List<String> expected = new ArrayList<>();
+        int day = 18;
+        for (int i = 0; i < 12; i++){
+            String dayFormatted = day<10?"0"+day:day+"";
+            day--;
+            expected.add("3\t2\t2016-10-"+dayFormatted);
+        }
+        assertEquals(expected, stringArraysToString(actual));
+    }
+
+    @Test
+    public void getStartGaps(){
+        int x = 18;
+        List<String> fileOutput = new ArrayList<>();
+        for (int i = 0; i < 12; i++){
+            String day = x<10?"0"+x:x+"";
+            fileOutput.add("date\t2016-10-"+ day);
+            fileOutput.add("word\t3\t2\tfish");
+            x--;
+        }
+        appendToActualFile(fileOutput);
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
+        List<String> expected = new ArrayList<>();
+        int day = 18;
+        for (int i = 0; i < 12; i++){
+            String dayFormatted = day<10?"0"+day:day+"";
+            day--;
+            expected.add("3\t2\t2016-10-"+dayFormatted);
+        }
+        assertEquals(expected, stringArraysToString(actual));
+    }
+
+    @Test
+    public void getMiddleGaps(){
+        int x = 18;
+        List<String> fileOutput = new ArrayList<>();
+        for (int i = 0; i < 12; i++){
+            String day = x<10?"0"+x:x+"";
+            fileOutput.add("date\t2016-10-"+ day);
+            fileOutput.add("word\t3\t2\tfish");
+            x--;
+        }
+        appendToActualFile(fileOutput);
+        List<String[]> actual = statisticsFileHandler.getPrevDayStats(12);
+        List<String> expected = new ArrayList<>();
+        int day = 18;
+        for (int i = 0; i < 12; i++){
+            String dayFormatted = day<10?"0"+day:day+"";
+            day--;
+            expected.add("3\t2\t2016-10-"+dayFormatted);
+        }
+        assertEquals(expected, stringArraysToString(actual));
+    }
 }

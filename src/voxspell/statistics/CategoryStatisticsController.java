@@ -36,7 +36,7 @@ public class CategoryStatisticsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         wordlists = WordListEditorController.getWordLists();
-        statisticsFileHandler = new StatisticsFileHandler(".statistics");   // TODO make FILENAME constant somewhere
+        statisticsFileHandler = new StatisticsFileHandler();
 
         generateAndShowStatsInScrollPane();
         scrollPane.setFitToHeight(true);
