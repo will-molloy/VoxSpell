@@ -12,7 +12,6 @@ import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class StatisticsController implements Initializable {
 
     private static final String VIEW_CATEGORY = "View Category Statistics", VIEW_PLOT = "View Overtime Graph";
+    protected StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
     @FXML
     private Pane statisticsViewPane;
     private boolean categoryStatsIsShown;
@@ -33,7 +34,6 @@ public class StatisticsController implements Initializable {
     private Text lifeTimeAccuracyText;
     @FXML
     private Button changeViewBtn;
-    protected StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

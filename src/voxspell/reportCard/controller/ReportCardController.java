@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.dailyChallenges.ChallengeType;
 import voxspell.dailyChallenges.DailyChallengeGUIController;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
@@ -59,7 +60,7 @@ public abstract class ReportCardController {
         double accuracy = mastered * 100.0 / words.size();
         if (accuracy == 100) {
             DailyChallengeGUIController d = new DailyChallengeGUIController();
-            d.updateChallenge(2, 100);
+            d.updateChallenge(ChallengeType.QUIZ_ACCURACY, 100);
         }
         accuracyTextView.setText("Accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
     }

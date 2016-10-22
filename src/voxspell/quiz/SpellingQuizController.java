@@ -12,6 +12,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.dailyChallenges.ChallengeType;
 import voxspell.dailyChallenges.DailyChallengeGUIController;
 import voxspell.reportCard.FailedQuizReportCardFactory;
 import voxspell.reportCard.PassedQuizReportCardFactory;
@@ -183,7 +184,7 @@ public class SpellingQuizController {
                 controller.generateScene();
             });
             clearGUI();
-            dailyChallengeGUIController.updateChallenge(1, 1);
+            dailyChallengeGUIController.updateChallenge(ChallengeType.QUIZES_COMPLETED, 1);
         }
     }
 
