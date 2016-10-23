@@ -1,4 +1,4 @@
-package voxspell.quiz.reportCard;
+package voxspell.reportCard;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

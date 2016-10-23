@@ -7,7 +7,7 @@
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="340.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.102-ea"
-      fx:controller="voxspell.quiz.reportCard.controller.FailedTextAndCorrectionsController">
+      fx:controller="voxspell.reportCard.controller.FailedTextAndCorrectionsController">
     <children>
         <Text fx:id="failedTextView" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="You Have Been Unsuccessful" textAlignment="CENTER" wrappingWidth="960.0">

@@ -3,28 +3,26 @@ package voxspell.quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import voxspell.Main;
 import voxspell.dailyChallenges.ChallengeType;
 import voxspell.dailyChallenges.DailyChallengeGUIController;
-import voxspell.quiz.reportCard.FailedQuizReportCardFactory;
-import voxspell.quiz.reportCard.PassedQuizReportCardFactory;
-import voxspell.quiz.reportCard.ReportCardFactory;
-import voxspell.quiz.reportCard.controller.ReportCardController;
+import voxspell.reportCard.FailedQuizReportCardFactory;
+import voxspell.reportCard.PassedQuizReportCardFactory;
+import voxspell.reportCard.ReportCardFactory;
+import voxspell.reportCard.controller.ReportCardController;
 import voxspell.statistics.StatisticsFileHandler;
+import voxspell.tools.ImageLoader;
 import voxspell.tools.TextToSpeech;
 import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.net.URL;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +31,7 @@ import java.util.stream.Collectors;
  * @author Karim Cisse - implemented Spelling Quiz logic
  * @author Will Molloy - convert to JavaFX, adding ImageViews, using WordList/Word object.
  */
-public class SpellingQuizController {
+public class SpellingQuizController implements Initializable{
 
     // Game logic
     private static List<WordList> wordLists;
@@ -41,6 +39,8 @@ public class SpellingQuizController {
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
     private final double QUIZ_PASS_THRESHOLD = 0.8; // % required to pass quiz
+    @FXML
+    private Button definitionBtn, repeatBtn, backBtn, settingsBtn;
     private int currentStreak;
     private int bestStreak;
     private long startTime;
@@ -66,6 +66,11 @@ public class SpellingQuizController {
     private TextField wordEntryField;
     private List<String> quizWordListCopy;
     private List<String> wordFirstAttempts;
+    private Image
+            settingsIcon = new Image(Main.class.getResourceAsStream("media/images/main_menu/settings_icon.png")),
+            definitionIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/definition_icon.png")),
+            repeatIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/repeat_icon.png")),
+            backIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/back_icon.png"));
 
     public String promptUserForInitialLevel() {
         // Get word lists from editor.
@@ -118,12 +123,6 @@ public class SpellingQuizController {
 
         categoryText.setText(categoryWordList.toString());
         continueSpellingQuiz();
-    }
-
-    public void nextQuiz() {
-        if (categoryWordList.hasNext()) {
-            newQuiz(categoryWordList.next().toString());
-        }
     }
 
     private void resetFields() {
@@ -198,6 +197,7 @@ public class SpellingQuizController {
                 wordFirstAttempts.add(attempt);
                 wordsCorrect++;
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
+                Main.setSpellingQuizCssId("green-progress");
 
                 statisticsFileHandler.writeStatistic(word.toString(), true, categoryText.getText());
 
@@ -208,6 +208,7 @@ public class SpellingQuizController {
                 currentStreak = 0;
                 wordFirstAttempts.add(attempt);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
+                Main.setSpellingQuizCssId("red-progress");
 
                 statisticsFileHandler.writeStatistic(word.toString(), false, categoryText.getText());
             }
@@ -218,7 +219,14 @@ public class SpellingQuizController {
 
     @FXML
     private void handleBackBtn(ActionEvent actionEvent) {
-        Main.showMainMenu();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Abort Quiz");
+        alert.setHeaderText("Return to the Main Menu?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Main.showMainMenu();
+        }
     }
 
     @FXML
@@ -236,5 +244,14 @@ public class SpellingQuizController {
 
     public void handleSettingsBtn(ActionEvent actionEvent) {
         Main.showSettingsPopup();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ImageLoader imageLoader = new ImageLoader();
+        imageLoader.load40x40ImageForBtn(backBtn, backIcon);
+        imageLoader.load40x40ImageForBtn(repeatBtn, repeatIcon);
+        imageLoader.load40x40ImageForBtn(definitionBtn, definitionIcon);
+        imageLoader.load40x40ImageForBtn(settingsBtn, settingsIcon);
     }
 }

@@ -1,4 +1,4 @@
-package voxspell.quiz.reportCard.controller;
+package voxspell.reportCard.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

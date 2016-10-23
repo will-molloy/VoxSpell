@@ -4,6 +4,9 @@ import voxspell.quiz.SpellingQuizController;
 import voxspell.settings.Voice;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -18,7 +21,6 @@ public class TextToSpeech {
 
     // voice
     private static String voice = "voice_kal_diphone";
-    private FestivalWorker festivalWorker;
     private boolean _continueSpellingQuiz = false;
     private boolean _slowerVoice = false;
     private SpellingQuizController _spellingQuizController;
@@ -36,7 +38,7 @@ public class TextToSpeech {
      * E.g. "(voice_kal_diphone)" or "(voice_rab_diphone)"
      */
     public static void setVoice(Voice newVoice) {
-        voice = newVoice.getCode();
+        voice = newVoice.getScmCode();
     }
 
     /**
@@ -53,7 +55,7 @@ public class TextToSpeech {
      */
     public void readSentence(String sentence) {
         // Use the festival worker class to read the sentence on a background thread
-        festivalWorker = new FestivalWorker(sentence);
+        FestivalWorker festivalWorker = new FestivalWorker(sentence);
         festivalWorker.execute();
     }
 
@@ -86,39 +88,43 @@ public class TextToSpeech {
     private class FestivalWorker extends SwingWorker<Void, Void> {
 
         // hidden scm file to run festival - needed to change voice
-        private static final String hiddenScmFile = ".ttsScript.scm";
+        private static final String TEMP_FILE = ".ttsScript.scm";
+        private File hiddenScmFile = new File(TEMP_FILE);
         private ProcessBuilder _processBuilder;
         private Process _process;
         private String _sentence;
 
-        public FestivalWorker(String sentence) {
+        FestivalWorker(String sentence) {
             _sentence = sentence;
         }
 
         @Override
         protected Void doInBackground() throws Exception {
-
-            // delete scm file - if the program crashed while this thread was running it will contain previous words
-            String deleteScmFile = "rm -f " + hiddenScmFile;
-            runBashCommand(deleteScmFile);
-
-            String appendVoiceToScmFile = "echo \"" + voice + "\" >> " + hiddenScmFile;
-            runBashCommand(appendVoiceToScmFile);
-
-            if (_slowerVoice) {
-                String slowDown = "echo \"(Parameter.set 'Duration_Stretch 2.2)\" >> " + hiddenScmFile;
-                runBashCommand(slowDown);
-                _slowerVoice = false;
-            }
-
-            String sayText = "echo \"(SayText \\\"" + _sentence + "\\\")\" >> " + hiddenScmFile;
-            runBashCommand(sayText);
-
+            loadFile();
             String runScmFile = "festival -b " + hiddenScmFile;
             runBashCommand(runScmFile);
-
-            runBashCommand(deleteScmFile);
             return null;
+        }
+
+        private void loadFile() {
+            try {
+                hiddenScmFile.delete();
+                hiddenScmFile.createNewFile();
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(hiddenScmFile, false));
+                writer.write(voice);
+                writer.newLine();
+                if (_slowerVoice) {
+                    writer.write("(Parameter.set 'Duration_Stretch 2.2)");
+                    writer.newLine();
+                    _slowerVoice = false;
+                }
+                writer.write("(SayText \"" + _sentence + "\")");
+                writer.newLine();
+                writer.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         private void runBashCommand(String command) throws IOException, InterruptedException {
@@ -136,6 +142,7 @@ public class TextToSpeech {
                 _spellingQuizController.continueSpellingQuiz();
                 _continueSpellingQuiz = false;
             }
+            hiddenScmFile.delete();
         }
     }
 

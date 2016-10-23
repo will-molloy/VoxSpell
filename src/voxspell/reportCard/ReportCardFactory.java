@@ -1,10 +1,10 @@
-package voxspell.quiz.reportCard;
+package voxspell.reportCard;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import voxspell.Main;
-import voxspell.quiz.reportCard.controller.ReportCardController;
+import voxspell.reportCard.controller.ReportCardController;
 
 import java.io.IOException;
 

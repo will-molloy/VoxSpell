@@ -26,7 +26,7 @@ public enum Voice {
     /**
      * Returns the festival code associated with the voice.
      */
-    public String getCode() {
+    public String getScmCode() {
         return code;
     }
 }

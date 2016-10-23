@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="540.0" prefWidth="960.0"
             xmlns="http://javafx.com/javafx/8.0.102-ea"
-            fx:controller="voxspell.quiz.reportCard.controller.PassedQuizReportCardController">
+            fx:controller="voxspell.reportCard.controller.PassedQuizReportCardController">
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>

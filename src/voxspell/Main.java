@@ -10,13 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import voxspell.quiz.SpellingQuizController;
 import voxspell.settings.MainMenuBackground;
 import voxspell.settings.SettingsFileHandler;
+import voxspell.tools.ImageLoader;
 import voxspell.tools.TextToSpeech;
 import voxspell.tools.VideoPlayer;
 
@@ -40,8 +40,9 @@ public class Main extends Application implements Initializable {
     private static Stage popup;
     // Spelling quiz controller to initialise spelling quiz
     private static SpellingQuizController spellingQuizControllerInstance;
-    private static Parent mainMenuRoot;
+    private static Parent mainMenuRoot, spellingQuizRoot;
     private SettingsFileHandler settingsFileHandler = new SettingsFileHandler();
+    private ImageLoader imageLoader = new ImageLoader();
     @FXML
     private Button quizBtn, statBtn, challengeBtn, editorBtn, settingsBtn;
 
@@ -108,7 +109,7 @@ public class Main extends Application implements Initializable {
     }
 
     public static void setBackground(MainMenuBackground background) {
-        mainMenuRoot.setId(background.getId());
+        mainMenuRoot.setId(background.getCssId());
     }
 
     @Override
@@ -117,18 +118,11 @@ public class Main extends Application implements Initializable {
     }
 
     private void loadBtnImages() {
-        loadImageForBtn(quizBtn, quizIcon);
-        loadImageForBtn(statBtn, statIcon);
-        loadImageForBtn(challengeBtn, challengeIcon);
-        loadImageForBtn(editorBtn, editorIcon);
-        loadImageForBtn(settingsBtn, settingsIcon);
-    }
-
-    private void loadImageForBtn(Button button, Image image) {
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        button.setGraphic(imageView);
+        imageLoader.load40x40ImageForBtn(quizBtn, quizIcon);
+        imageLoader.load40x40ImageForBtn(statBtn, statIcon);
+        imageLoader.load40x40ImageForBtn(challengeBtn, challengeIcon);
+        imageLoader.load40x40ImageForBtn(editorBtn, editorIcon);
+        imageLoader.load40x40ImageForBtn(settingsBtn, settingsIcon);
     }
 
     @Override
@@ -140,8 +134,10 @@ public class Main extends Application implements Initializable {
         mainMenu.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
-        Parent spellingQuizRoot = spellingQuizLoader.load();
+        spellingQuizRoot = spellingQuizLoader.load();
+        spellingQuizRoot.setId("green-progress");
         spellingQuizControllerInstance = spellingQuizLoader.getController();
+        spellingQuizRoot.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         spellingQuiz = new Scene(spellingQuizRoot);
 
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
@@ -231,5 +227,9 @@ public class Main extends Application implements Initializable {
     @FXML
     private void handleSettingsBtn(ActionEvent actionEvent) {
         showSettingsPopup();
+    }
+
+    public static void setSpellingQuizCssId(String id){
+        spellingQuizRoot.setId(id);
     }
 }

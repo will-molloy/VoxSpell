@@ -29,3 +29,31 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
+
+#red-progress{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+
+    -fx-accent: #F94923;
+}
+
+#green-progress{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+
+    -fx-accent: #53FF0E;
+}
+
+#gradient_background{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}

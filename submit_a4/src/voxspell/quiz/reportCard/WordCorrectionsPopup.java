@@ -1,4 +1,4 @@
-package voxspell.quiz.reportCard;
+package voxspell.reportCard;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

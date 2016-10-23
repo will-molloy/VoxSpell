@@ -22,7 +22,7 @@ public enum MainMenuBackground {
     /**
      * Returns the .css id associated with the background.
      */
-    public String getId() {
+    public String getCssId() {
         return id;
     }
 
