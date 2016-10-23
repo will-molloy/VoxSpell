@@ -1,19 +1,15 @@
 package voxspell.reportCard.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import voxspell.tools.StringDifferenceFinder;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 /**
  * Displayed when the user presses the 'View mistakes button'
@@ -22,27 +18,17 @@ import java.util.stream.Collectors;
  *
  * @author Will Molloy
  */
-public class FailedTextAndCorrectionsController implements Initializable {
+public class FailedTextAndCorrectionsController{
 
     @FXML
-    private Parent wordAttemptsBox, wordCorrectionsBox;
+    private VBox correctionsVBox;
     @FXML
     private Text failedTextView;
     private FailedTextController failedTextController;
-    private List<TextFlow> wordAttemptsTexts, wordCorrectionsTexts;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        wordAttemptsTexts = new ArrayList<>();
-        wordCorrectionsTexts = new ArrayList<>();
-
-        // Add all text flows from the FXML hBox 'wordAttemptsBox' to the list 'wordAttemptsText'
-        wordAttemptsTexts.addAll(wordAttemptsBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof TextFlow).map(node -> (TextFlow) node).collect(Collectors.toList()));
-
-        // Add all text flows from the FXML hBox 'wordCorrectionsBox' to the list 'wordCorrectionsTexts'
-        wordCorrectionsTexts.addAll(wordCorrectionsBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof TextFlow).map(node -> (TextFlow) node).collect(Collectors.toList()));
+    private void clearGUI() {
+        correctionsVBox.getChildren().removeAll(correctionsVBox.getChildren());
     }
-
 
     public void setDataAndShowGUI(FailedTextController failedTextController) {
         this.failedTextController = failedTextController;
@@ -55,11 +41,15 @@ public class FailedTextAndCorrectionsController implements Initializable {
     }
 
     private void generateAndShowCorrections() {
-        // Need to remove the placeholder text I used to help position textflows within scene builder
-        removePlaceHolderTexts();
+        // Clear existing text within the VBox
+        clearGUI();
 
         List<String[]> incorrectWords = failedTextController.getIncorrectWords();
         for (int i = 0; i < incorrectWords.size(); i++) {
+            HBox hBox = new HBox();
+            hBox.setPrefHeight(40);
+            hBox.setPrefWidth(878);
+
             String[] incorrectWord = incorrectWords.get(i);
             String correctSpelling = incorrectWord[0].trim();
             String usersAttempt = incorrectWord[1].trim();
@@ -81,8 +71,10 @@ public class FailedTextAndCorrectionsController implements Initializable {
             wrongDelta.setText(wrongDifference);
 
             // Add the texts to the text flow in the i'th row of the word attempts hbox
-            wordAttemptsTexts.get(i).getChildren().addAll(prefix, wrongDelta, suffix);
-
+            TextFlow usersAttemptTxt = new TextFlow();
+            usersAttemptTxt.getChildren().addAll(prefix, wrongDelta, suffix);
+            usersAttemptTxt.setPrefWidth(439);
+            usersAttemptTxt.setPrefHeight(40);
 
             // Extract correct difference (what user should have spelt)
             String[] correctStrings = stringDifferenceFinder.getPrefixSuffixAndDelta(true);
@@ -96,7 +88,6 @@ public class FailedTextAndCorrectionsController implements Initializable {
             Text correctDelta = getCorrectDeltaText();
             correctDelta.setText(correctDifference);
 
-
             // Extra message if user spelt word correctly but incorrect grammar/case
             String message = "\t";
             if (removeSymbolsFromString(correctSpelling).equals(removeSymbolsFromString(usersAttempt))) {
@@ -108,18 +99,14 @@ public class FailedTextAndCorrectionsController implements Initializable {
             extraMsg.setFont(new Font(18));
 
             // Add the texts to the text flow in the i'th row of the word corrections hbox
-            wordCorrectionsTexts.get(i).getChildren().addAll(prefix2, correctDelta, suffix2, extraMsg);
-        }
-    }
+            TextFlow correctSpellingTxt = new TextFlow();
+            correctSpellingTxt.getChildren().addAll(prefix2, correctDelta, suffix2, extraMsg);
+            correctSpellingTxt.setPrefWidth(439);
+            correctSpellingTxt.setPrefHeight(40);
 
-    private void removePlaceHolderTexts() {
-        removePlaceHolderTextsFor(wordAttemptsTexts);
-        removePlaceHolderTextsFor(wordCorrectionsTexts);
-    }
+            hBox.getChildren().addAll(usersAttemptTxt, correctSpellingTxt);
 
-    private void removePlaceHolderTextsFor(List<TextFlow> textFlows) {
-        for (TextFlow textFlow : textFlows) {
-            textFlow.getChildren().removeAll(textFlow.getChildren());
+            correctionsVBox.getChildren().add(hBox);
         }
     }
 

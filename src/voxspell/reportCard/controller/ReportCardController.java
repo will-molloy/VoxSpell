@@ -46,7 +46,7 @@ public abstract class ReportCardController {
     private int bestStreak;
     private int mastered;
     @FXML
-    private Text accuracyTextView;
+    protected Text accuracyTextView;
     private List<String> wordFirstAttempts;
 
     protected ImageLoader imageLoader = new ImageLoader();

@@ -1,9 +1,5 @@
 package voxspell.settings;
 
-/**
- * Created by will on 24/10/16.
- */
-
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
