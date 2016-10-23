@@ -244,7 +244,7 @@ public class WordListEditorController implements Initializable {
         }
         try {
             FXMLLoader loader = new FXMLLoader();
-            Parent addWordListPopupRoot = loader.load(getClass().getResource("main_menu_fxml/Add_Word_List.main_menu_fxml").openStream());
+            Parent addWordListPopupRoot = loader.load(getClass().getResource("fxml/Add_Word_List.fxml").openStream());
             AddWordListPopupController controller = loader.getController();
             controller.setData(expandedPane, modify);
             AddWordListPopupController.setWordListEditorInstance(this);

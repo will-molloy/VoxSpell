@@ -43,14 +43,14 @@ public class Main extends Application implements Initializable {
     private static Parent mainMenuRoot;
     private SettingsFileHandler settingsFileHandler = new SettingsFileHandler();
     @FXML
-    private Button quizBtn, statBtn, challengeBtn, editorBtn;
+    private Button quizBtn, statBtn, challengeBtn, editorBtn, settingsBtn;
 
-    private String backgroundImage = Main.class.getResource("media/images/light_background-wallpaper-960x540.jpg").toExternalForm();
     private Image
-            quizIcon = new Image(getClass().getResourceAsStream("media/images/abc.png")),
-            statIcon = new Image(getClass().getResourceAsStream("media/images/stats.png")),
-            challengeIcon = new Image(getClass().getResourceAsStream("media/images/checked.png")),
-            editorIcon = new Image(getClass().getResourceAsStream("media/images/agenda.png"));
+            quizIcon = new Image(getClass().getResourceAsStream("media/images/main_menu/abc_block_icon.png")),
+            statIcon = new Image(getClass().getResourceAsStream("media/images/main_menu/stats_icon.png")),
+            challengeIcon = new Image(getClass().getResourceAsStream("media/images/main_menu/trophy_icon.png")),
+            editorIcon = new Image(getClass().getResourceAsStream("media/images/main_menu/book_icon.png")),
+            settingsIcon = new Image(getClass().getResourceAsStream("media/images/main_menu/settings_icon.png"));
 
     public static void main(String[] args) {
         launch(args);
@@ -121,6 +121,7 @@ public class Main extends Application implements Initializable {
         loadImageForBtn(statBtn, statIcon);
         loadImageForBtn(challengeBtn, challengeIcon);
         loadImageForBtn(editorBtn, editorIcon);
+        loadImageForBtn(settingsBtn, settingsIcon);
     }
 
     private void loadImageForBtn(Button button, Image image) {
@@ -136,7 +137,7 @@ public class Main extends Application implements Initializable {
 
         mainMenuRoot = FXMLLoader.load(getClass().getResource("main_menu_fxml/Main_Menu.fxml"));
         mainMenu = new Scene(mainMenuRoot);
-        mainMenu.getStylesheets().addAll(getClass().getResource("main_menu_style.css").toExternalForm());
+        mainMenu.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();

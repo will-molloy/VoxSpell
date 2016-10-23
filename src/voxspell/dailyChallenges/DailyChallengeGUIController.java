@@ -70,6 +70,7 @@ public class DailyChallengeGUIController implements Initializable {
         if (!tempFile.exists()) {
             makeHiddenFile(tempFile);
         }
+        tempFile.deleteOnExit();
     }
 
     private void makeHiddenFile(File file) {
