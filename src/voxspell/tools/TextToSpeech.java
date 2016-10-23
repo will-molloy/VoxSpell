@@ -1,5 +1,6 @@
 package voxspell.tools;
 
+import voxspell.settings.Voice;
 import voxspell.quiz.SpellingQuizController;
 
 import javax.swing.*;
@@ -34,23 +35,8 @@ public class TextToSpeech {
      * Must be in the form "(voice_)"
      * E.g. "(voice_kal_diphone)" or "(voice_rab_diphone)"
      */
-    public static void setVoice(String newVoice) {
-        String scmFileVoice;
-        switch (newVoice) {
-            case "US English":
-                scmFileVoice = "(voice_kal_diphone)";
-                break;
-            case "UK English":
-                scmFileVoice = "(voice_rab_diphone)";
-                break;
-            case "NZ English":
-                scmFileVoice = "(voice_akl_nz_jdt_diphone)";
-                break;
-            default:
-                scmFileVoice = "(voice_rab_diphone)";
-                break;
-        }
-        voice = scmFileVoice;
+    public static void setVoice(Voice newVoice) {
+        voice = newVoice.getCode();
     }
 
     /**

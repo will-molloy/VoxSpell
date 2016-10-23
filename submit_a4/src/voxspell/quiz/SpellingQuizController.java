@@ -255,7 +255,7 @@ public class SpellingQuizController {
 
     public void handleSettingsBtn(ActionEvent actionEvent) {
         try {
-            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("fxml/Settings.fxml"));
+            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("main_menu_fxml/Settings.main_menu_fxml"));
             Scene scene = new Scene(settingsRoot);
             Main.showPopup(scene);
         } catch (IOException e) {

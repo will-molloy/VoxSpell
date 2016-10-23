@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import voxspell.quiz.SpellingQuizController;
+import voxspell.settings.MainMenuBackground;
 import voxspell.tools.VideoPlayer;
 
 import java.io.File;
@@ -113,7 +114,7 @@ public class Main extends Application implements Initializable {
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
 
-        mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
+        mainMenuRoot = FXMLLoader.load(getClass().getResource("main_menu_fxml/Main_Menu.fxml"));
         mainMenuRoot.setId("winter"); // WHATEVER IS IN FILE
         mainMenu = new Scene(mainMenuRoot);
         mainMenu.getStylesheets().addAll(getClass().getResource("main_menu_style.css").toExternalForm());
@@ -209,7 +210,7 @@ public class Main extends Application implements Initializable {
      */
     public static void showSettingsPopup() {
         try {
-            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("fxml/Settings.fxml"));
+            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("settings/fxml/Settings.fxml"));
             Scene scene = new Scene(settingsRoot);
             showPopup(scene);
         } catch (IOException e) {

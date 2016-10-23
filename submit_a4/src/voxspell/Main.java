@@ -76,15 +76,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
 
-        Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
+        Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("main_menu_fxml/Main_Menu.main_menu_fxml"));
         mainMenu = new Scene(mainMenuRoot);
 
-        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("fxml/Spelling_Quiz.fxml"));
+        FXMLLoader spellingQuizLoader = new FXMLLoader(this.getClass().getResource("main_menu_fxml/Spelling_Quiz.main_menu_fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
         spellingQuizControllerInstance = spellingQuizLoader.getController();
         spellingQuiz = new Scene(spellingQuizRoot);
 
-        Parent wordListRoot = FXMLLoader.load(getClass().getResource("fxml/Word_List_Editor.fxml"));
+        Parent wordListRoot = FXMLLoader.load(getClass().getResource("main_menu_fxml/Word_List_Editor.main_menu_fxml"));
         wordListEditor = new Scene(wordListRoot);
 
         window.setTitle("VoxSpell");

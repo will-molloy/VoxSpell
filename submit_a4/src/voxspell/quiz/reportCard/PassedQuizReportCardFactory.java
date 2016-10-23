@@ -7,6 +7,6 @@ public class PassedQuizReportCardFactory extends ReportCardFactory {
 
     @Override
     String getFXML() {
-        return "Passed_Quiz_Report.fxml";
+        return "Passed_Quiz_Report.main_menu_fxml";
     }
 }

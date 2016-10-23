@@ -105,7 +105,7 @@ public abstract class ReportCardController {
     private void showCorrectionDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            Parent wordCorrectionsRoot = loader.load(Main.class.getResource("fxml/Word_Corrections_Popup.fxml").openStream());
+            Parent wordCorrectionsRoot = loader.load(Main.class.getResource("main_menu_fxml/Word_Corrections_Popup.main_menu_fxml").openStream());
             Scene scene = new Scene(wordCorrectionsRoot);
             WordCorrectionsPopup controller = loader.getController();
             controller.createTable(corrections);

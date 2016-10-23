@@ -203,7 +203,7 @@ public class WordListEditorController implements Initializable {
     @FXML
     private void handleAddBtn(ActionEvent actionEvent) {
         try {
-            Parent addWordListPopupRoot = FXMLLoader.load(Main.class.getResource("fxml/Add_Word_List.fxml"));
+            Parent addWordListPopupRoot = FXMLLoader.load(Main.class.getResource("main_menu_fxml/Add_Word_List.main_menu_fxml"));
             AddWordListPopupController.setWordListEditorInstance(this);
             Scene scene = new Scene(addWordListPopupRoot);
             Main.showPopup(scene);
@@ -218,7 +218,7 @@ public class WordListEditorController implements Initializable {
         TitledPane expandedPane = wordListsView.getExpandedPane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            Parent addWordListPopupRoot = loader.load(Main.class.getResource("fxml/Add_Word_List.fxml").openStream());
+            Parent addWordListPopupRoot = loader.load(Main.class.getResource("main_menu_fxml/Add_Word_List.main_menu_fxml").openStream());
             AddWordListPopupController controller = loader.getController();
             controller.setData(expandedPane, true);
             AddWordListPopupController.setWordListEditorInstance(this);
