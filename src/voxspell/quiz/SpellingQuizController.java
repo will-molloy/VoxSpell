@@ -249,9 +249,9 @@ public class SpellingQuizController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ImageLoader imageLoader = new ImageLoader();
-        imageLoader.load40x40ImageForBtn(backBtn, backIcon);
-        imageLoader.load40x40ImageForBtn(repeatBtn, repeatIcon);
-        imageLoader.load40x40ImageForBtn(definitionBtn, definitionIcon);
-        imageLoader.load40x40ImageForBtn(settingsBtn, settingsIcon);
+        imageLoader.loadSquareImageForBtn(backBtn, backIcon, 40);
+        imageLoader.loadSquareImageForBtn(repeatBtn, repeatIcon, 40);
+        imageLoader.loadSquareImageForBtn(definitionBtn, definitionIcon, 40);
+        imageLoader.loadSquareImageForBtn(settingsBtn, settingsIcon, 40);
     }
 }

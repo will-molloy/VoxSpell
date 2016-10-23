@@ -24,7 +24,7 @@ public class FailedQuizReportCardController extends ReportCardController {
     private boolean textOnlyView;
 
     @Override
-    public void createGUI() {
+    public void createSubClassGUI() {
         loadSubScenes();
         failurePane.getChildren().add(textOnlyRoot);
         retryLevelBtn.setText("Retry " + wordList.toString());

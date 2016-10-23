@@ -47,10 +47,10 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 
-    -fx-accent: #53FF0E;
+    -fx-accent: #9fe89f;
 }
 
-#gradient_background{
+#gradient-background{
 -fx-background-image: url("media/images/gradient_background.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: 960 540;

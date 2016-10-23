@@ -19,11 +19,13 @@ public class PassedQuizReportCardController extends ReportCardController {
     @FXML
     private Text wellDoneTextView;
     @FXML
-    private Button proceedToNxtLevelBtn;
+    private Button proceedToNxtLevelBtn, rewardVideoBtn;
 
-    public void createGUI() {
+    public void createSubClassGUI() {
         showWellDoneText();
         setProceedToLevelTextForBtn();
+        imageLoader.loadSquareImageForBtn(rewardVideoBtn, videoIcon, 40);
+        imageLoader.loadSquareImageForBtn(proceedToNxtLevelBtn, nextIcon, 40);
     }
 
     private void showWellDoneText() {

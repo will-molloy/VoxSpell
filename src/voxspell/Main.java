@@ -118,11 +118,11 @@ public class Main extends Application implements Initializable {
     }
 
     private void loadBtnImages() {
-        imageLoader.load40x40ImageForBtn(quizBtn, quizIcon);
-        imageLoader.load40x40ImageForBtn(statBtn, statIcon);
-        imageLoader.load40x40ImageForBtn(challengeBtn, challengeIcon);
-        imageLoader.load40x40ImageForBtn(editorBtn, editorIcon);
-        imageLoader.load40x40ImageForBtn(settingsBtn, settingsIcon);
+        imageLoader.loadSquareImageForBtn(quizBtn, quizIcon, 40);
+        imageLoader.loadSquareImageForBtn(statBtn, statIcon, 40);
+        imageLoader.loadSquareImageForBtn(challengeBtn, challengeIcon, 40);
+        imageLoader.loadSquareImageForBtn(editorBtn, editorIcon, 40);
+        imageLoader.loadSquareImageForBtn(settingsBtn, settingsIcon, 40);
     }
 
     @Override

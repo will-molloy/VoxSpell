@@ -26,6 +26,8 @@ public abstract class ReportCardFactory {
         Parent root = null;
         try {
             root = loader.load(getClass().getResource(fxmlFileName).openStream());
+            root.getStylesheets().addAll(Main.class.getResource("style.css").toExternalForm());
+            root.setId("gradient-background");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,10 +11,10 @@ import javafx.scene.image.ImageView;
  */
 public class ImageLoader {
 
-    public void load40x40ImageForBtn(Button button, Image image) {
+    public void loadSquareImageForBtn(Button button, Image image, int size) {
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
+        imageView.setFitHeight(size);
+        imageView.setFitWidth(size);
         button.setGraphic(imageView);
     }
 }
