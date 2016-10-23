@@ -10,27 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/settings/BackgroundDropDownListCell.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/settings/Voice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.dailyTemp" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/MainMenuBackground.java" afterPath="$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/SettingsController.java" afterPath="$PROJECT_DIR$/src/voxspell/settings/SettingsController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/fxml/Main_Menu.fxml" afterPath="$PROJECT_DIR$/src/voxspell/main_menu_fxml/Main_Menu.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/fxml/Settings.fxml" afterPath="$PROJECT_DIR$/src/voxspell/settings/fxml/Settings.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dailyChallenges" afterPath="$PROJECT_DIR$/.dailyChallenges" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/voxspell/settings/BackgroundDropDownListCell.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.statistics" afterPath="$PROJECT_DIR$/.statistics" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/Main.java" afterPath="$PROJECT_DIR$/src/voxspell/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/main_menu_fxml/Main_Menu.fxml" afterPath="$PROJECT_DIR$/src/voxspell/main_menu_fxml/Main_Menu.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java" afterPath="$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/settings/SettingsController.java" afterPath="$PROJECT_DIR$/src/voxspell/settings/SettingsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/settings/Voice.java" afterPath="$PROJECT_DIR$/src/voxspell/settings/Voice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/settings/fxml/Settings.fxml" afterPath="$PROJECT_DIR$/src/voxspell/settings/fxml/Settings.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" afterPath="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" afterPath="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/Main.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/fxml/Settings.fxml" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/fxml/Settings.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/SpellingQuizController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/SpellingQuizController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/wordlistEditor/WordListEditorController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/wordlistEditor/WordListEditorController.java" />
     </list>
     <ignored path="VoxSpell.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,11 +49,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VoiceDropDownListCell.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java">
+      <file leaf-file-name="SettingsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/settings/SettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="342">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,11 +61,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/settings/SettingsController.java">
+      <file leaf-file-name="SettingsFileHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="582">
+              <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
+              <folding>
+                <element signature="e#434#435#0" expanded="true" />
+                <element signature="e#477#478#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".settings" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.settings">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="140" column="41" selection-start-line="140" selection-start-column="41" selection-end-line="140" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -102,8 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/AccuracyChallenge.java" />
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/CompleteQuizesChallenge.java" />
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/CreateWordListChallenge.java" />
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallenge.java" />
@@ -140,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/voxspell/main_menu_style.css" />
         <option value="$PROJECT_DIR$/src/voxspell/main/MainMenuBackground.java" />
         <option value="$PROJECT_DIR$/src/voxspell/main/SettingsController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
         <option value="$PROJECT_DIR$/src/voxspell/Voices.java" />
         <option value="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" />
         <option value="$PROJECT_DIR$/src/voxspell/MainMenuBackground.java" />
@@ -148,11 +158,14 @@
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
         <option value="$PROJECT_DIR$/src/voxspell/SettingsController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/settings/Voice.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/settings/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/settings/BackgroundDropDownListCell.java" />
         <option value="$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/settings/Voice.java" />
         <option value="$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/settings/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
+        <option value="$PROJECT_DIR$/.settings" />
+        <option value="$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java" />
       </list>
     </option>
   </component>
@@ -803,7 +816,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -817,7 +830,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29832572" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20782003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20782003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32721713" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -859,6 +872,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.settings" />
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -885,11 +901,41 @@
           <properties class="voxspell.tools.VideoPlayer" method="createPlayerGUI" />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java</url>
+          <line>68</line>
+          <properties class="voxspell.settings.SettingsFileHandler" method="saveSettings" />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/Main.java</url>
+          <line>177</line>
+          <properties class="voxspell.Main" method="loadSettings" />
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/Main.java</url>
+          <line>133</line>
+          <properties class="voxspell.Main" method="start" />
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java</url>
+          <line>16</line>
+          <properties class="voxspell.settings.SettingsFileHandler" method="&lt;init&gt;" />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java</url>
+          <line>17</line>
+          <properties />
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="85" />
+      <option name="time" value="91" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -898,20 +944,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/control/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="2494" column="0" selection-start-line="2494" selection-start-column="0" selection-end-line="2494" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/event/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
@@ -997,13 +1029,6 @@
         <state relative-caret-position="744">
           <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.statistics">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1215,19 +1240,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1219">
-          <caret line="120" column="25" selection-start-line="120" selection-start-column="25" selection-end-line="120" selection-end-column="25" />
-          <folding>
-            <element signature="e#6801#6802#0" expanded="true" />
-            <element signature="e#6836#6837#0" expanded="true" />
-            <element signature="e#7296#7297#0" expanded="true" />
-            <element signature="e#7350#7351#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
@@ -1271,50 +1283,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/Voice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding>
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-          <folding>
-            <element signature="e#711#712#0" expanded="true" />
-            <element signature="e#741#742#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/BackgroundDropDownListCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/ChallengeType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1331,11 +1299,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.statistics">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/BackgroundDropDownListCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/VoiceDropDownListCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/Voice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/MainMenuBackground.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="140" column="41" selection-start-line="140" selection-start-column="41" selection-end-line="140" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/settings/SettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="342">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.settings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/settings/SettingsFileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
+          <folding>
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -14,7 +14,7 @@ public enum MainMenuBackground {
     private final String id;
     private final String display;
 
-    MainMenuBackground(String id, String display){
+    MainMenuBackground(String id, String display) {
         this.id = id;
         this.display = display;
     }
@@ -29,8 +29,7 @@ public enum MainMenuBackground {
     /**
      * Returns the display text with the associated background.
      */
-    @Override
-    public String toString() {
+    public String getDisplay() {
         return display;
     }
 }

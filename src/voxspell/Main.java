@@ -16,6 +16,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import voxspell.quiz.SpellingQuizController;
 import voxspell.settings.MainMenuBackground;
+import voxspell.settings.SettingsFileHandler;
+import voxspell.tools.TextToSpeech;
 import voxspell.tools.VideoPlayer;
 
 import java.io.File;
@@ -39,6 +41,7 @@ public class Main extends Application implements Initializable {
     // Spelling quiz controller to initialise spelling quiz
     private static SpellingQuizController spellingQuizControllerInstance;
     private static Parent mainMenuRoot;
+    private SettingsFileHandler settingsFileHandler = new SettingsFileHandler();
     @FXML
     private Button quizBtn, statBtn, challengeBtn, editorBtn;
 
@@ -91,6 +94,23 @@ public class Main extends Application implements Initializable {
         window.setScene(spellingQuiz);
     }
 
+    /**
+     * Loads and shows the settings popup.
+     */
+    public static void showSettingsPopup() {
+        try {
+            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("settings/fxml/Settings.fxml"));
+            Scene scene = new Scene(settingsRoot);
+            showPopup(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setBackground(MainMenuBackground background) {
+        mainMenuRoot.setId(background.getId());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadBtnImages();
@@ -115,7 +135,6 @@ public class Main extends Application implements Initializable {
         window = primaryStage;
 
         mainMenuRoot = FXMLLoader.load(getClass().getResource("main_menu_fxml/Main_Menu.fxml"));
-        mainMenuRoot.setId("winter"); // WHATEVER IS IN FILE
         mainMenu = new Scene(mainMenuRoot);
         mainMenu.getStylesheets().addAll(getClass().getResource("main_menu_style.css").toExternalForm());
 
@@ -139,6 +158,9 @@ public class Main extends Application implements Initializable {
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.initOwner(window.getScene().getWindow());
         setPopupCloseRequest();
+
+        // Load any saved settings - voice/background etc
+        loadSettings();
     }
 
     /**
@@ -151,6 +173,11 @@ public class Main extends Application implements Initializable {
             } catch (Exception ignored) {
             }
         });
+    }
+
+    private void loadSettings() {
+        TextToSpeech.setVoice(settingsFileHandler.getSettingsVoice());
+        setBackground(settingsFileHandler.getSettingsBackGround());
     }
 
     @FXML
@@ -203,22 +230,5 @@ public class Main extends Application implements Initializable {
     @FXML
     private void handleSettingsBtn(ActionEvent actionEvent) {
         showSettingsPopup();
-    }
-
-    /**
-     * Loads and shows the settings popup.
-     */
-    public static void showSettingsPopup() {
-        try {
-            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("settings/fxml/Settings.fxml"));
-            Scene scene = new Scene(settingsRoot);
-            showPopup(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setBackground(MainMenuBackground background) {
-        mainMenuRoot.setId(background.getId());
     }
 }

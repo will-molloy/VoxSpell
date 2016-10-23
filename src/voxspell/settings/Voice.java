@@ -11,7 +11,7 @@ public enum Voice {
     private final String display;
     private final String code;
 
-    Voice(String display, String code){
+    Voice(String display, String code) {
         this.display = display;
         this.code = code;
     }
@@ -19,8 +19,7 @@ public enum Voice {
     /**
      * Returns the display version of the associated voice.
      */
-    @Override
-    public String toString() {
+    public String getDisplay() {
         return display;
     }
 
