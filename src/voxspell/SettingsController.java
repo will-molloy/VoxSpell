@@ -23,6 +23,7 @@ public class SettingsController implements Initializable {
 
     private Image UK_Icon = new Image(Main.class.getResourceAsStream("media/images/Gbr_Flag.png"));
     private Image US_Icon = new Image(Main.class.getResourceAsStream("media/images/US_Flag.png"));
+    private Image NZ_Icon = new Image(Main.class.getResourceAsStream("media/images/US_Flag.png"));
 
     @FXML
     private ComboBox<String> voiceDropDown;
@@ -44,7 +45,8 @@ public class SettingsController implements Initializable {
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "US English",
-                        "UK English"
+                        "UK English",
+                        "NZ English"
                 );
         voiceDropDown.setItems(options);
         voiceDropDown.getSelectionModel().select(0);
@@ -59,8 +61,10 @@ public class SettingsController implements Initializable {
                 return US_Icon;
             case "UK English":
                 return UK_Icon;
+            case "NZ English":
+                return NZ_Icon;
         }
-        return null; //?
+        return null;
     }
 
     class DropDownListcell extends ListCell<String> {

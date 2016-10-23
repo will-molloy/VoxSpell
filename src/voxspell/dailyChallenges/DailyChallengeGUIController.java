@@ -202,13 +202,13 @@ public class DailyChallengeGUIController implements Initializable {
     private void updateChallengeProgress(ChallengeType challenge, double progressDone) {
         switch (challenge) {
             case QUIZES_COMPLETED:
-                challengeProgress1.setProgress(progressDone); // 10 spelling quizes
+                challengeProgress1.setProgress(progressDone);
                 break;
             case QUIZ_ACCURACY:
-                challengeProgress2.setProgress(progressDone); // accuracy
+                challengeProgress2.setProgress(progressDone);
                 break;
             case WORD_LISTS_CREATED:
-                challengeProgress3.setProgress(progressDone); // one word list
+                challengeProgress3.setProgress(progressDone);
                 break;
         }
     }
@@ -311,8 +311,8 @@ public class DailyChallengeGUIController implements Initializable {
             bufferedWriter.flush();
             tempFile.renameTo(dailyChallengeFile);
 
-            // Check if the now incremented challenge is completed or not
-            if (progressDone + currentProgress >= Integer.parseInt(tokens[2])) {
+            // Check if the now incremented challenge is completed or not (== otherwise challenge will be achieved multiple times)
+            if (progressDone + currentProgress == Integer.parseInt(tokens[2])) {
                 incrementTotalChallenges(); // if it is add to the total challenges
             }
         } catch (IOException e) {
@@ -327,13 +327,21 @@ public class DailyChallengeGUIController implements Initializable {
         resetBufferedReaderAndWriter();
         bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
         String line;
+
+        // Rewrite the date
         reWriteXLinesInFileToTempFile(1);
+
         line = bufferedReader.readLine();
         String[] tokens = line.split("\\t");
+
+        // Increment total challenges
         bufferedWriter.write("total_challenges\t" + (1 + Integer.parseInt(tokens[1])));
         bufferedWriter.newLine();
+
+        // Write the other challenges (rest of file)
         rewriteRestOfFile();
         bufferedWriter.flush();
+
         tempFile.renameTo(dailyChallengeFile);
     }
 }

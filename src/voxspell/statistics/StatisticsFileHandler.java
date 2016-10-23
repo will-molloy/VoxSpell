@@ -180,6 +180,9 @@ public class StatisticsFileHandler extends CustomFileReader {
 
     }
 
+    /**
+     * Returns a scanner for the hidden statistics file
+     */
     protected Scanner getScannerForStatFile() {
         try {
             return new Scanner(new FileReader(statsFile));
@@ -189,6 +192,9 @@ public class StatisticsFileHandler extends CustomFileReader {
         return null;
     }
 
+    /**
+     * Writes the statistics for a word that hasn't been tested yet today.
+     */
     private void recordNewWordForToday() {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(tempFile, false));
@@ -212,6 +218,10 @@ public class StatisticsFileHandler extends CustomFileReader {
         writeRestOfFile();
     }
 
+    private String getDateFormatForFile() {
+        return "date\t" + todaysDate + "\n";
+    }
+
     private String getNewStatistic() {
         int correct = this.correct ? 1 : 0;
         int incorrect = !this.correct ? 1 : 0;
@@ -222,12 +232,8 @@ public class StatisticsFileHandler extends CustomFileReader {
         return word + "\t" + correct + "\t" + incorrect + "\t" + category + "\n";
     }
 
-    private String getDateFormatForFile() {
-        return "date\t" + todaysDate + "\n";
-    }
-
     /**
-     * Writes what's left in the bufferedWriter
+     * Writes what's left in the bufferedReader - i.e. rest of the statistics file
      */
     private void writeRestOfFile() throws IOException {
         while ((line = scannerReadLine()) != null) {

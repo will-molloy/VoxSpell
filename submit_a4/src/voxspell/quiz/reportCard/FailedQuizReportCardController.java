@@ -1,4 +1,4 @@
-package voxspell.reportCard;
+package voxspell.quiz.reportCard;
 
 /**
  * Controller for the report card shown when the user fails a quiz.

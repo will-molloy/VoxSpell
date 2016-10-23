@@ -10,20 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/dailyChallenges/ChallengeType.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.dailyTemp" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/tools/VideoPlayer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/FailedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/PassedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/ReportCardFactory.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/FailedQuizReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/FailedQuizReportCardController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/FailedTextAndCorrectionsController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/FailedTextAndCorrectionsController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/FailedTextController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/FailedTextController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/PassedQuizReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/PassedQuizReportCardController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/ReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/ReportCardController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Failed_Quiz_Report.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Text.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Failed_Text.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Text_And_Corrections.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Failed_Text_And_Corrections.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Passed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Passed_Quiz_Report.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/voxspell/test/TestStatisticsFileHandler.java" afterPath="$PROJECT_DIR$/src/voxspell/test/TestStatisticsFileHandlerAndRetriever.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dailyChallenges" afterPath="$PROJECT_DIR$/.dailyChallenges" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.statistics" afterPath="$PROJECT_DIR$/.statistics" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/Main.java" afterPath="$PROJECT_DIR$/src/voxspell/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/SettingsController.java" afterPath="$PROJECT_DIR$/src/voxspell/SettingsController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java" afterPath="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/dailyChallenges/fxml/Daily_Challenges.fxml" afterPath="$PROJECT_DIR$/src/voxspell/dailyChallenges/fxml/Daily_Challenges.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" afterPath="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/reportCard/controller/ReportCardController.java" afterPath="$PROJECT_DIR$/src/voxspell/reportCard/controller/ReportCardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/CategoryStatisticsController.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/CategoryStatisticsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/LineGraphNodeHoverPane.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/LineGraphNodeHoverPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/OverTimeGraphController.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/OverTimeGraphController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsController.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" afterPath="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java" afterPath="$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" afterPath="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/fxml/Word_Corrections_Popup.fxml" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/fxml/Word_Corrections_Popup.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/SpellingQuizController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/SpellingQuizController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/FailedQuizReportCardFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/Failed_Quiz_Report.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/PassedQuizReportCardFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/Passed_Quiz_Report.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardController.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardFactory.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/ReportCardFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/WordCorrection.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/WordCorrection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/WordCorrectionsPopup.java" afterPath="$PROJECT_DIR$/submit_a4/src/voxspell/quiz/reportCard/WordCorrectionsPopup.java" />
     </list>
     <ignored path="VoxSpell.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,11 +74,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DailyChallengeGUIController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java">
+      <file leaf-file-name="VideoPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/tools/VideoPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="280" column="11" selection-start-line="280" selection-start-column="4" selection-end-line="280" selection-end-column="11" />
+            <state relative-caret-position="-433">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+              <folding>
+                <element signature="e#1778#1779#0" expanded="true" />
+                <element signature="e#1812#1813#0" expanded="true" />
+                <element signature="method#createPlayerGUI#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#createEventHandlers#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#createPlayBtnEvenHandler#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#createMediaPlayerEventHandler#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#addControlsToMediaPlayer#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#updateValues#0;class#VideoPlayer#0" expanded="false" />
+                <element signature="method#formatTime#0;class#VideoPlayer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PassedQuizReportCardController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/PassedQuizReportCardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+              <folding>
+                <element signature="e#1371#1372#0" expanded="true" />
+                <element signature="e#1410#1411#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1608">
+              <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -67,8 +122,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,13 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/fxml/Word_List_Editor.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Passed_Quiz_Report.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/reportCard/controller/PassedQuizReportCardController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Text.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/reportCard/controller/FailedTextController.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/tools/StringComparisonCompactor.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/tools/TextFactory.java" />
         <option value="$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Text_And_Corrections.fxml" />
         <option value="$PROJECT_DIR$/src/voxspell/reportCard/controller/TextFactory.java" />
         <option value="$PROJECT_DIR$/src/voxspell/tools/StringDifferenceFinder.java" />
@@ -115,15 +163,12 @@
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeFileHandler.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/fxml/Spelling_Quiz.fxml" />
         <option value="$PROJECT_DIR$/src/voxspell/fxml/Main_Menu.fxml" />
-        <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/fxml/Daily_Challenges.fxml" />
         <option value="$PROJECT_DIR$/comp.txt" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/WordListEditorController.java" />
         <option value="$PROJECT_DIR$/.ACTUAL" />
         <option value="$PROJECT_DIR$/src/voxspell/tools/CustomFileReader.java" />
         <option value="$PROJECT_DIR$/src/voxspell/test/TestStatisticsFileHandler.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java" />
-        <option value="$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java" />
         <option value="$PROJECT_DIR$/src/voxspell/statistics/LineGraphNodeHoverPane.java" />
         <option value="$PROJECT_DIR$/src/voxspell/statistics/CategoryStatisticsController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/statistics/StatisticsController.java" />
@@ -132,8 +177,18 @@
         <option value="$PROJECT_DIR$/src/voxspell/reportCard/controller/ReportCardController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/wordlistEditor/AddWordListPopupController.java" />
         <option value="$PROJECT_DIR$/src/voxspell/quiz/SpellingQuizController.java" />
-        <option value="$PROJECT_DIR$/.dailyChallenges" />
+        <option value="$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java" />
         <option value="$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Passed_Quiz_Report.fxml" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/ReportCardController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/FailedQuizReportCardController.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/PassedQuizReportCardController.java" />
+        <option value="$PROJECT_DIR$/.dailyChallenges" />
+        <option value="$PROJECT_DIR$/src/voxspell/tools/VideoPlayer.java" />
+        <option value="$PROJECT_DIR$/src/voxspell/Main.java" />
       </list>
     </option>
   </component>
@@ -168,6 +223,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -226,7 +284,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dailyChallenges" />
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoxSpell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoxSpell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="voxspell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoxSpell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoxSpell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="voxspell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -244,25 +350,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VoxSpell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VoxSpell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,6 +363,14 @@
     <property name="full.screen.before.presentation.mode" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="voxspell.dailyChallenges" />
+      <recent name="voxspell.tools" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/voxspell/media/images" />
+      <recent name="$PROJECT_DIR$/libraries" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml" />
@@ -281,17 +378,9 @@
       <recent name="$PROJECT_DIR$/src/voxspell/wordlistEditor/fxml" />
       <recent name="$PROJECT_DIR$/src/voxspell/fxml" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/voxspell/media/images" />
-      <recent name="$PROJECT_DIR$/libraries" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="voxspell.dailyChallenges" />
-      <recent name="voxspell.tools" />
-    </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration default="false" name="TestStatisticsFileHandler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestStatisticsFileHandlerAndRetriever" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="voxspell.test.*" />
@@ -302,7 +391,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="voxspell.test" />
-      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandler" />
+      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandlerAndRetriever" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -317,7 +406,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestStatisticsFileHandler.getPrev12DaysExactly12DaysNoGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestStatisticsFileHandlerAndRetriever.getPrev12DaysExactly12DaysNoGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="voxspell.test.*" />
@@ -328,7 +417,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="voxspell.test" />
-      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandler" />
+      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandlerAndRetriever" />
       <option name="METHOD_NAME" value="getPrev12DaysExactly12DaysNoGaps" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -343,7 +432,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestStatisticsFileHandler.getStartGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestStatisticsFileHandlerAndRetriever.getStartGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="voxspell.test.*" />
@@ -354,7 +443,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="voxspell.test" />
-      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandler" />
+      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandlerAndRetriever" />
       <option name="METHOD_NAME" value="getStartGaps" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -369,7 +458,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestStatisticsFileHandler.getEndGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestStatisticsFileHandlerAndRetriever.getEndGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="voxspell.test.*" />
@@ -380,7 +469,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="voxspell.test" />
-      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandler" />
+      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandlerAndRetriever" />
       <option name="METHOD_NAME" value="getEndGaps" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -395,7 +484,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestStatisticsFileHandler.getMiddleGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestStatisticsFileHandlerAndRetriever.getMiddleGaps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="voxspell.test.*" />
@@ -406,7 +495,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="voxspell.test" />
-      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandler" />
+      <option name="MAIN_CLASS_NAME" value="voxspell.test.TestStatisticsFileHandlerAndRetriever" />
       <option name="METHOD_NAME" value="getMiddleGaps" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -681,7 +770,7 @@
     <configuration default="false" name="WordDefinitionFinder" type="Application" factoryName="Application" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="voxspell.reportCard.controller.*" />
+          <option name="PATTERN" value="voxspell.quiz.reportCard.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -721,19 +810,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.WordDefinitionFinder" />
       <item index="1" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getPrev12DaysExactly12DaysNoGaps" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getStartGaps" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getEndGaps" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getMiddleGaps" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getPrev12DaysExactly12DaysNoGaps" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getStartGaps" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getEndGaps" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getMiddleGaps" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getMiddleGaps" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getEndGaps" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getStartGaps" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandler.getPrev12DaysExactly12DaysNoGaps" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getMiddleGaps" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getEndGaps" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getStartGaps" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestStatisticsFileHandlerAndRetriever.getPrev12DaysExactly12DaysNoGaps" />
       </list>
     </recent_temporary>
   </component>
@@ -754,9 +843,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestStatisticsFileHandler - 2016.10.22 at 23h 10m 04s.xml">
-      <configuration name="TestStatisticsFileHandler" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestStatisticsFileHandler - 2016.10.22 at 23h 10m 56s.xml">
       <configuration name="TestStatisticsFileHandler" configurationId="JUnit" />
     </history-entry>
@@ -781,6 +867,9 @@
     <history-entry file="TestStatisticsFileHandler - 2016.10.22 at 23h 58m 24s.xml">
       <configuration name="TestStatisticsFileHandler" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestStatisticsFileHandlerAndRetriever - 2016.10.23 at 11h 15m 36s.xml">
+      <configuration name="TestStatisticsFileHandlerAndRetriever" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="TestStatisticsFileHandler_getMiddleGaps - 2016.10.22 at 23h 13m 29s.xml">
       <configuration name="TestStatisticsFileHandler.getMiddleGaps" configurationId="JUnit" />
     </history-entry>
@@ -796,7 +885,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -810,8 +899,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29832572" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20782003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32763532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20782003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -823,6 +911,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299411" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32763532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -872,11 +961,17 @@
           <properties class="voxspell.dailyChallenges.DailyChallengeGUIController" method="initialize" />
           <option name="timeStamp" value="80" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/voxspell/tools/VideoPlayer.java</url>
+          <line>68</line>
+          <properties class="voxspell.tools.VideoPlayer" method="createPlayerGUI" />
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="81" />
+      <option name="time" value="85" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -885,44 +980,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/RunBefores.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/fxml/Statistics_Skeleton.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/fxml/Category_Stats.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -940,7 +997,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/reportCard/ReportCardFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/ReportCardFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
@@ -990,13 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/reportCard/controller/PassedQuizReportCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.dailyTemp" />
     <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/fxml/Spelling_Quiz.fxml">
       <provider editor-type-id="text-editor">
@@ -1008,17 +1058,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Quiz_Report.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/reportCard/fxml/Failed_Text_And_Corrections.fxml">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Failed_Text_And_Corrections.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1073,7 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
           <caret line="45" column="7" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8548">
           <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1096,7 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="744">
           <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,26 +1141,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/test/TestStatisticsFileHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/test/TestStatisticsFileHandlerAndRetriever.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1880#1881#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1131,7 +1155,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1139,7 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="179" column="31" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,62 +1169,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/LineGraphNodeHoverPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-          <folding>
-            <element signature="e#1742#1743#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/CategoryStatisticsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/OverTimeGraphController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="40" column="65" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,17 +1176,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="113" column="45" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="45" />
-          <folding>
-            <element signature="e#3205#3216#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/ChallengeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1228,7 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
           <caret line="190" column="6" selection-start-line="190" selection-start-column="6" selection-end-line="190" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1240,12 +1194,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/reportCard/controller/ReportCardController.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/ChallengeType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
+        <state relative-caret-position="180">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/CategoryStatisticsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/LineGraphNodeHoverPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/OverTimeGraphController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="40" column="65" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-222">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsRetriever.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1734">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/statistics/StatisticsFileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/TextToSpeech.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Failed_Quiz_Report.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/ReportCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/FailedQuizReportCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/SettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="25" column="98" selection-start-line="25" selection-start-column="98" selection-end-line="25" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/fxml/Passed_Quiz_Report.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.dailyChallenges">
@@ -1256,10 +1311,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/voxspell/dailyChallenges/DailyChallengeGUIController.java">
+    <entry file="file://$PROJECT_DIR$/src/voxspell/quiz/reportCard/controller/PassedQuizReportCardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="280" column="11" selection-start-line="280" selection-start-column="4" selection-end-line="280" selection-end-column="11" />
+        <state relative-caret-position="433">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding>
+            <element signature="e#1371#1372#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/tools/VideoPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-433">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding>
+            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="e#1812#1813#0" expanded="true" />
+            <element signature="method#createPlayerGUI#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#createEventHandlers#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#createPlayBtnEvenHandler#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#createMediaPlayerEventHandler#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#addControlsToMediaPlayer#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#updateValues#0;class#VideoPlayer#0" expanded="false" />
+            <element signature="method#formatTime#0;class#VideoPlayer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/voxspell/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1608">
+          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
           <folding />
         </state>
       </provider>

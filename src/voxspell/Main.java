@@ -3,6 +3,7 @@ package voxspell;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import voxspell.quiz.SpellingQuizController;
+import voxspell.tools.VideoPlayer;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +49,25 @@ public class Main extends Application implements Initializable {
             challengeIcon = new Image(getClass().getResourceAsStream("media/images/checked.png")),
             editorIcon = new Image(getClass().getResourceAsStream("media/images/agenda.png"));
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadBtnImages();
+    }
+
+    private void loadBtnImages() {
+        loadImageForBtn(quizBtn, quizIcon);
+        loadImageForBtn(statBtn, statIcon);
+        loadImageForBtn(challengeBtn, challengeIcon);
+        loadImageForBtn(editorBtn, editorIcon);
+    }
+
+    private void loadImageForBtn(Button button, Image image) {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        button.setGraphic(imageView);
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -110,17 +132,19 @@ public class Main extends Application implements Initializable {
         window.setResizable(false);
         window.show();
 
-        // Popups to be used later
+        // Popup screen that will have the scene loaded by other controllers
         popup = new Stage();
         popup.setResizable(false);
         hidePopup();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.initOwner(window.getScene().getWindow());
 
+        // In case the popup loaded is the video player - stop the video on exit
+        popup.setOnCloseRequest(event -> VideoPlayer.stopVideo());
     }
 
     @FXML
-    private void handleQuizButton(ActionEvent actionEvent) {
+    public void handleQuizButton(ActionEvent actionEvent) {
         window.setScene(spellingQuiz);
         String category = spellingQuizControllerInstance.promptUserForInitialLevel();
         if (category == null) {
@@ -163,29 +187,9 @@ public class Main extends Application implements Initializable {
         }
     }
 
-
     private void setBackgroundForRoot(Parent root) {
         root.setStyle("-fx-background-backgroundImage: url('" + backgroundImage + "'); " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: stretch;");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        loadBtnImages();
-    }
-
-    private void loadBtnImages() {
-        loadImageForBtn(quizBtn, quizIcon);
-        loadImageForBtn(statBtn, statIcon);
-        loadImageForBtn(challengeBtn, challengeIcon);
-        loadImageForBtn(editorBtn, editorIcon);
-    }
-
-    private void loadImageForBtn(Button button, Image image) {
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        button.setGraphic(imageView);
     }
 }

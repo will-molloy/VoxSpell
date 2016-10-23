@@ -43,11 +43,13 @@ public class TextToSpeech {
             case "UK English":
                 scmFileVoice = "(voice_rab_diphone)";
                 break;
+            case "NZ English":
+                scmFileVoice = "(voice_akl_nz_jdt_diphone)";
+                break;
             default:
                 scmFileVoice = "(voice_rab_diphone)";
                 break;
         }
-
         voice = scmFileVoice;
     }
 

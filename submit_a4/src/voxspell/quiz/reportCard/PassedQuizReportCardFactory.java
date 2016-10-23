@@ -1,4 +1,4 @@
-package voxspell.reportCard;
+package voxspell.quiz.reportCard;
 
 /**
  * Returns the PassedQuizReport FXML.

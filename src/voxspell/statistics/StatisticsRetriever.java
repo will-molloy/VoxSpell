@@ -44,7 +44,7 @@ public class StatisticsRetriever extends StatisticsFileHandler {
         while ((line = scannerReadLine()) != null) {
             String[] tokens = line.split("\\t");
 
-            if (tokens.length == 4) {
+            if (tokens.length == 4) {   // skip over any dates
                 correct += parseInt(tokens[1]);
                 incorrect += parseInt(tokens[2]);
             }
@@ -59,7 +59,7 @@ public class StatisticsRetriever extends StatisticsFileHandler {
      * the List is ordered with the earliest day in index 0.
      * <p>
      */
-    public List<String[]> getPrevDayStats(int days) {
+    public List<String[]> getPrevDayStats(int daysOfStatsToRetrieve) {
         List<String[]> stats = new ArrayList<>();
         scanner = getScannerForStatFile();
         int correct = 0;
@@ -68,16 +68,16 @@ public class StatisticsRetriever extends StatisticsFileHandler {
         String[] tokens = scannerReadLine().split("\\t");
         if (tokens.length > 0) {
             date = tokens[1]; // get first date
-            String todaysDate = StatisticsFileHandler.todaysDate; // cache todays date
+            String todaysDate = StatisticsFileHandler.todaysDate; // cache today's date
 
             // add in empty statistics to sync todays date with the last recorded date
-            while (!todaysDate.equals(date) && stats.size() < days) {
+            while (!todaysDate.equals(date) && stats.size() < daysOfStatsToRetrieve) {
                 stats.add(new String[]{0 + "", 0 + "", todaysDate});
                 todaysDate = getPrevDate(todaysDate); // adding in one 'empty' day at a time
             }
 
             while ((line = scannerReadLine()) != null) {
-                if (stats.size() == days) {
+                if (stats.size() == daysOfStatsToRetrieve) {
                     break; // requested number of stats found
                 }
 
@@ -90,26 +90,26 @@ public class StatisticsRetriever extends StatisticsFileHandler {
                     correct = 0;
                     incorrect = 0;
                     String prevDate = getPrevDate(date);
-                    date = tokens[1]; // get next date
+                    date = tokens[1]; // get next date in file (the way the file is ordered this is the previous date time wise)
 
-                    // sync the next day with its previous date by adding in empty statistics
-                    while (!prevDate.equals(date) && stats.size() < days) {
+                    // sync the next date with its previous date by adding in empty statistics
+                    while (!prevDate.equals(date) && stats.size() < daysOfStatsToRetrieve) {
                         stats.add(new String[]{0 + "", 0 + "", prevDate});
                         prevDate = getPrevDate(prevDate);
                     }
 
                 }
                 if (!scanner.hasNextLine()) {
-                    stats.add(new String[]{correct + "", incorrect + "", date});    // record stat
+                    stats.add(new String[]{correct + "", incorrect + "", date});// record stat
                     break; // EOF
                 }
             }
         }
 
-        // Ensure returned stats matches number of days by adding in empty statistics
-        if (stats.size() != days) {
+        // Ensure returned stats matches number of requested days by adding in empty statistics
+        if (stats.size() != daysOfStatsToRetrieve) {
             String lastRecDate = stats.get(stats.size() - 1)[2];
-            stats.addAll(addEmptyStats(lastRecDate, days - stats.size()));
+            stats.addAll(addEmptyStats(lastRecDate, daysOfStatsToRetrieve - stats.size()));
         }
 
         return stats;
@@ -142,6 +142,9 @@ public class StatisticsRetriever extends StatisticsFileHandler {
         return formatCalendarDate(calendarDate);
     }
 
+    /**
+     * Formats a CalendarDate object to be yyyy-MM-dd
+     */
     private String formatCalendarDate(CalendarDate calendarDate) {
         String newYear = calendarDate.getYear() + "";
         String newMonth = calendarDate.getMonth() + "";
