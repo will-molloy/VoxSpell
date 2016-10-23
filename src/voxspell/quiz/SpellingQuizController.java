@@ -3,9 +3,6 @@ package voxspell.quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ProgressBar;
@@ -24,7 +21,6 @@ import voxspell.wordlistEditor.Word;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,9 +38,12 @@ public class SpellingQuizController {
     // Game logic
     private static List<WordList> wordLists;
     private static WordList categoryWordList;
-
     // Reportcard shown after quiz
     private static ReportCardFactory reportCardFactory;
+    private final double QUIZ_PASS_THRESHOLD = 0.8; // % required to pass quiz
+    private int currentStreak;
+    private int bestStreak;
+    private long startTime;
 
     // StatisticsFileHandler object for saving stats
     private StatisticsFileHandler statisticsFileHandler = new StatisticsFileHandler();
@@ -54,7 +53,7 @@ public class SpellingQuizController {
     private ProgressBar quizProgressBar;
     private List<Word> quizWordList;
     private int wordNumber;
-    private int wordsCorrectFirstAttempt;
+    private int wordsCorrect;
     private int quizSize;
     private Word word;
     // Tools
@@ -67,12 +66,6 @@ public class SpellingQuizController {
     private TextField wordEntryField;
     private List<String> quizWordListCopy;
     private List<String> wordFirstAttempts;
-
-    // Images
-    @FXML
-    //  private Parent imageHBox;
-
-    //  private List<ImageView> images = new ArrayList<>();
 
     public String promptUserForInitialLevel() {
         // Get word lists from editor.
@@ -130,31 +123,26 @@ public class SpellingQuizController {
     public void nextQuiz() {
         if (categoryWordList.hasNext()) {
             newQuiz(categoryWordList.next().toString());
-        } else {
-            /* final quiz  */
         }
     }
 
     private void resetFields() {
         clearGUI();
         resetGameLogic();
+        startTime = System.currentTimeMillis();
     }
 
     private void clearGUI() {
-        // Add ImageViews inside imageHBox to the ArrayList of images
-        //  images.addAll(imageHBox.getChildrenUnmodifiable().stream().filter(node -> node instanceof ImageView).map(node -> (ImageView) node).collect(Collectors.toList()));
-        // Blank out all images
-        //  for (ImageView imageView : images) {
-        //      imageView.setImage(null);
-        //  }
         // Reset text views
         categoryText.setText("");
         quizProgressBar.setProgress(0);
     }
 
     private void resetGameLogic() {
-        wordsCorrectFirstAttempt = 0;
+        wordsCorrect = 0;
         wordFirstAttempts = new ArrayList<>();
+        bestStreak = 0;
+        currentStreak = 0;
     }
 
     public void continueSpellingQuiz() {
@@ -167,7 +155,7 @@ public class SpellingQuizController {
             textToSpeech.readSentence("Please spell ... " + word);
 
         } else { /* Quiz Completed */
-            if (wordsCorrectFirstAttempt >= 9 || wordsCorrectFirstAttempt == quizSize) {
+            if (wordsCorrect >= QUIZ_PASS_THRESHOLD * quizSize) {
                 /* Passed */
                 reportCardFactory = new PassedQuizReportCardFactory();
             } else {
@@ -180,10 +168,12 @@ public class SpellingQuizController {
              */
             Platform.runLater(() -> {
                 ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-                controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList);
+                final long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
+                controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList, elapsedTime, Math.max(currentStreak, bestStreak));
                 controller.generateScene();
             });
             clearGUI();
+            // Update the 'quiz completed' challenge
             dailyChallengeGUIController.updateChallenge(ChallengeType.QUIZES_COMPLETED, 1);
         }
     }
@@ -197,7 +187,6 @@ public class SpellingQuizController {
     }
 
     private void checkInputWord() {
-        int imageIndex = wordNumber - 1;
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
@@ -205,17 +194,19 @@ public class SpellingQuizController {
 
             if (attempt.equals(word.toString())) { /* Correct */
 
+                currentStreak++;
                 wordFirstAttempts.add(attempt);
-                wordsCorrectFirstAttempt++;
-                //    images.get(imageIndex).setImage(wordCorrect);
-
+                wordsCorrect++;
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Correct", this);
 
                 statisticsFileHandler.writeStatistic(word.toString(), true, categoryText.getText());
 
             } else { /* Incorrect */
+                if (currentStreak > bestStreak) {
+                    bestStreak = currentStreak;
+                }
+                currentStreak = 0;
                 wordFirstAttempts.add(attempt);
-                //   images.get(imageIndex).setImage(wordIncorrect);
                 textToSpeech.readSentenceAndContinueSpellingQuiz("Incorrect", this);
 
                 statisticsFileHandler.writeStatistic(word.toString(), false, categoryText.getText());
@@ -244,12 +235,6 @@ public class SpellingQuizController {
 
 
     public void handleSettingsBtn(ActionEvent actionEvent) {
-        try {
-            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("fxml/Settings.fxml"));
-            Scene scene = new Scene(settingsRoot);
-            Main.showPopup(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Main.showSettingsPopup();
     }
 }

@@ -3,7 +3,6 @@ package voxspell;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import voxspell.quiz.SpellingQuizController;
 import voxspell.tools.VideoPlayer;
 
@@ -39,6 +37,7 @@ public class Main extends Application implements Initializable {
     private static Stage popup;
     // Spelling quiz controller to initialise spelling quiz
     private static SpellingQuizController spellingQuizControllerInstance;
+    private static Parent mainMenuRoot;
     @FXML
     private Button quizBtn, statBtn, challengeBtn, editorBtn;
 
@@ -48,26 +47,6 @@ public class Main extends Application implements Initializable {
             statIcon = new Image(getClass().getResourceAsStream("media/images/stats.png")),
             challengeIcon = new Image(getClass().getResourceAsStream("media/images/checked.png")),
             editorIcon = new Image(getClass().getResourceAsStream("media/images/agenda.png"));
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        loadBtnImages();
-    }
-
-    private void loadBtnImages() {
-        loadImageForBtn(quizBtn, quizIcon);
-        loadImageForBtn(statBtn, statIcon);
-        loadImageForBtn(challengeBtn, challengeIcon);
-        loadImageForBtn(editorBtn, editorIcon);
-    }
-
-    private void loadImageForBtn(Button button, Image image) {
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        button.setGraphic(imageView);
-    }
 
     public static void main(String[] args) {
         launch(args);
@@ -112,12 +91,32 @@ public class Main extends Application implements Initializable {
     }
 
     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadBtnImages();
+    }
+
+    private void loadBtnImages() {
+        loadImageForBtn(quizBtn, quizIcon);
+        loadImageForBtn(statBtn, statIcon);
+        loadImageForBtn(challengeBtn, challengeIcon);
+        loadImageForBtn(editorBtn, editorIcon);
+    }
+
+    private void loadImageForBtn(Button button, Image image) {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        button.setGraphic(imageView);
+    }
+
+    @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
 
-        Parent mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
+        mainMenuRoot = FXMLLoader.load(getClass().getResource("fxml/Main_Menu.fxml"));
+        mainMenuRoot.setId("winter"); // WHATEVER IS IN FILE
         mainMenu = new Scene(mainMenuRoot);
-        setBackgroundForRoot(mainMenuRoot);
+        mainMenu.getStylesheets().addAll(getClass().getResource("main_menu_style.css").toExternalForm());
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
         Parent spellingQuizRoot = spellingQuizLoader.load();
@@ -138,9 +137,19 @@ public class Main extends Application implements Initializable {
         hidePopup();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.initOwner(window.getScene().getWindow());
+        setPopupCloseRequest();
+    }
 
-        // In case the popup loaded is the video player - stop the video on exit
-        popup.setOnCloseRequest(event -> VideoPlayer.stopVideo());
+    /**
+     * In case the popup loaded is the video player - stop the video on exit
+     */
+    private void setPopupCloseRequest() {
+        popup.setOnCloseRequest(event -> {
+            try {
+                VideoPlayer.stopVideo();
+            } catch (Exception ignored) {
+            }
+        });
     }
 
     @FXML
@@ -187,9 +196,28 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    private void setBackgroundForRoot(Parent root) {
-        root.setStyle("-fx-background-backgroundImage: url('" + backgroundImage + "'); " +
-                "-fx-background-position: center center; " +
-                "-fx-background-repeat: stretch;");
+    /**
+     * Shows the settings popup.
+     */
+    @FXML
+    private void handleSettingsBtn(ActionEvent actionEvent) {
+        showSettingsPopup();
+    }
+
+    /**
+     * Loads and shows the settings popup.
+     */
+    public static void showSettingsPopup() {
+        try {
+            Parent settingsRoot = FXMLLoader.load(Main.class.getResource("fxml/Settings.fxml"));
+            Scene scene = new Scene(settingsRoot);
+            showPopup(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setBackground(MainMenuBackground background) {
+        mainMenuRoot.setId(background.getId());
     }
 }

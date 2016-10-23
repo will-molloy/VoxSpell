@@ -19,7 +19,7 @@ import java.io.File;
 
 /**
  * Plays the big buck bunny video in a popup pane.
- *
+ * <p>
  * Base code found here: http://docs.oracle.com/javafx/2/media/playercontrol.htm
  * I've simply modified it to use big_buck_bunny and custom images for play/pause.
  *
@@ -40,7 +40,16 @@ public class VideoPlayer extends BorderPane {
     private Label playTime;
     private Slider volumeSlider;
 
-    public static void showVideo(){
+    private VideoPlayer(final MediaPlayer mediaPlayer) {
+        VideoPlayer.mediaPlayer = mediaPlayer;
+        createPlayerGUI();
+        createEventHandlers();
+
+        addControlsToMediaPlayer();
+        setBottom(mediaBar);
+    }
+
+    public static void showVideo() {
         Group root = new Group();
         Scene scene = new Scene(root, 854, 515);
 
@@ -57,13 +66,43 @@ public class VideoPlayer extends BorderPane {
         mediaPlayer.stop();
     }
 
-    private VideoPlayer(final MediaPlayer mediaPlayer) {
-        VideoPlayer.mediaPlayer = mediaPlayer;
-        createPlayerGUI();
-        createEventHandlers();
+    private static String formatTime(Duration elapsed, Duration duration) {
+        int intElapsed = (int) Math.floor(elapsed.toSeconds());
+        int elapsedHours = intElapsed / (60 * 60);
+        if (elapsedHours > 0) {
+            intElapsed -= elapsedHours * 60 * 60;
+        }
+        int elapsedMinutes = intElapsed / 60;
+        int elapsedSeconds = intElapsed - elapsedHours * 60 * 60
+                - elapsedMinutes * 60;
 
-        addControlsToMediaPlayer();
-        setBottom(mediaBar);
+        if (duration.greaterThan(Duration.ZERO)) {
+            int intDuration = (int) Math.floor(duration.toSeconds());
+            int durationHours = intDuration / (60 * 60);
+            if (durationHours > 0) {
+                intDuration -= durationHours * 60 * 60;
+            }
+            int durationMinutes = intDuration / 60;
+            int durationSeconds = intDuration - durationHours * 60 * 60
+                    - durationMinutes * 60;
+            if (durationHours > 0) {
+                return String.format("%d:%02d:%02d/%d:%02d:%02d",
+                        elapsedHours, elapsedMinutes, elapsedSeconds,
+                        durationHours, durationMinutes, durationSeconds);
+            } else {
+                return String.format("%02d:%02d/%02d:%02d",
+                        elapsedMinutes, elapsedSeconds, durationMinutes,
+                        durationSeconds);
+            }
+        } else {
+            if (elapsedHours > 0) {
+                return String.format("%d:%02d:%02d", elapsedHours,
+                        elapsedMinutes, elapsedSeconds);
+            } else {
+                return String.format("%02d:%02d", elapsedMinutes,
+                        elapsedSeconds);
+            }
+        }
     }
 
     private void createPlayerGUI() {
@@ -205,45 +244,6 @@ public class VideoPlayer extends BorderPane {
                             * 100));
                 }
             });
-        }
-    }
-
-    private static String formatTime(Duration elapsed, Duration duration) {
-        int intElapsed = (int) Math.floor(elapsed.toSeconds());
-        int elapsedHours = intElapsed / (60 * 60);
-        if (elapsedHours > 0) {
-            intElapsed -= elapsedHours * 60 * 60;
-        }
-        int elapsedMinutes = intElapsed / 60;
-        int elapsedSeconds = intElapsed - elapsedHours * 60 * 60
-                - elapsedMinutes * 60;
-
-        if (duration.greaterThan(Duration.ZERO)) {
-            int intDuration = (int) Math.floor(duration.toSeconds());
-            int durationHours = intDuration / (60 * 60);
-            if (durationHours > 0) {
-                intDuration -= durationHours * 60 * 60;
-            }
-            int durationMinutes = intDuration / 60;
-            int durationSeconds = intDuration - durationHours * 60 * 60
-                    - durationMinutes * 60;
-            if (durationHours > 0) {
-                return String.format("%d:%02d:%02d/%d:%02d:%02d",
-                        elapsedHours, elapsedMinutes, elapsedSeconds,
-                        durationHours, durationMinutes, durationSeconds);
-            } else {
-                return String.format("%02d:%02d/%02d:%02d",
-                        elapsedMinutes, elapsedSeconds, durationMinutes,
-                        durationSeconds);
-            }
-        } else {
-            if (elapsedHours > 0) {
-                return String.format("%d:%02d:%02d", elapsedHours,
-                        elapsedMinutes, elapsedSeconds);
-            } else {
-                return String.format("%02d:%02d", elapsedMinutes,
-                        elapsedSeconds);
-            }
         }
     }
 }
