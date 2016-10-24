@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -15,6 +17,7 @@ import voxspell.tools.NumberFormatter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -29,7 +32,7 @@ public class StatisticsController implements Initializable {
     protected StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
     @FXML
     private Pane statisticsViewPane;
-    private boolean categoryStatsIsShown;
+    private static boolean categoryStatsIsShown = true;
     private Node categoryStatsRoot, overtimeGraphRoot;
     @FXML
     private Text totalWordsSpeltText;
@@ -48,7 +51,14 @@ public class StatisticsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadSubScenes();
-        showCategoryView();
+
+        // SHOW the same view the user left this scene on (also needed for clearing stats)
+        if (categoryStatsIsShown){
+            showCategoryView();
+        } else {
+            showOverTimeGraph();
+        }
+
         generateAndShowLifeTimeStatistics();
         loadBtnIcons();
     }
@@ -59,8 +69,8 @@ public class StatisticsController implements Initializable {
         int incorrect = lifeTimeStats[1];
         double accuracy = (correct * 100.0) / (incorrect + correct);
 
-        totalWordsSpeltText.setText("Total words spelt: " + (correct + incorrect));
-        lifeTimeAccuracyText.setText("Lifetime accuracy: " + numberFormatter.formatAccuracy(accuracy));
+        totalWordsSpeltText.setText("Total Words Spelt: " + (correct + incorrect));
+        lifeTimeAccuracyText.setText("Lifetime Accuracy: " + numberFormatter.formatAccuracy(accuracy));
     }
 
     private void loadBtnIcons() {
@@ -113,8 +123,16 @@ public class StatisticsController implements Initializable {
 
     @FXML
     private void handleClearStatsBtn(ActionEvent actionEvent) {
-        statisticsRetriever.deleteStatistics();
-        initialize(null,null);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Clear Statistics");
+        alert.setHeaderText("WARNING!\n" +
+                "Clear All Statistics?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            statisticsRetriever.deleteStatistics();
+            initialize(null,null); // reload scene
+        }
     }
 
     @FXML

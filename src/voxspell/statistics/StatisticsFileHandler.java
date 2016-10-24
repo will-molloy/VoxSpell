@@ -274,7 +274,7 @@ public class StatisticsFileHandler extends CustomFileReader {
                     }
 
                     // Check if better time is found
-                    if (currentTime.equals("dnf") || parseInt(timeInSeconds) < parseInt(currentTime)) {
+                    if (parseInt(timeInSeconds) < parseInt(currentTime)) {
                         updateTime(category, timeInSeconds);
                     }
                     break;

@@ -3,11 +3,13 @@ package voxspell.dailyChallenges;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import voxspell.Main;
+import voxspell.tools.ImageLoader;
 
 import java.io.*;
 import java.net.URL;
@@ -25,10 +27,14 @@ public class DailyChallengeGUIController implements Initializable {
 
     private final String fileName = ".dailyChallenges", tempFileName = ".dailyTemp";
     @FXML
+    private Button resetBtn, backBtn;
+    @FXML
     private ImageView image1, image2, image3;
     private Image
             uncheckedBoxImg = new Image(Main.class.getResourceAsStream("media/images/unchecked_box.png")),
-            checkedBoxImg = new Image(Main.class.getResourceAsStream("media/images/checked_box.png"));
+            checkedBoxImg = new Image(Main.class.getResourceAsStream("media/images/checked_box.png")),
+            backIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/logout_icon.png")),
+            resetIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/repeat_icon.png"));
     @FXML
     private Text totalChallengesText;
     @FXML
@@ -37,6 +43,8 @@ public class DailyChallengeGUIController implements Initializable {
     private File tempFile;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+
+    private ImageLoader imageLoader = new ImageLoader();
 
     @FXML
     private void handleBackBtn(ActionEvent actionEvent) {
@@ -53,6 +61,9 @@ public class DailyChallengeGUIController implements Initializable {
         image1.setImage(uncheckedBoxImg);
         image2.setImage(uncheckedBoxImg);
         image3.setImage(uncheckedBoxImg);
+        imageLoader.loadSquareImageForBtn(backBtn, backIcon, 40);
+        imageLoader.loadSquareImageForBtn(resetBtn, resetIcon, 40);
+
         createFiles();
         getDailyChallenges();
     }

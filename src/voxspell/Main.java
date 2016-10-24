@@ -145,7 +145,7 @@ public class Main extends Application implements Initializable {
         spellingQuiz = new Scene(spellingQuizRoot);
 
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
-        loadGraidentBackgroundForRoot(wordListRoot);
+        loadGradientBackgroundForRoot(wordListRoot);
         wordListEditor = new Scene(wordListRoot);
 
         window.setTitle("VoxSpell");
@@ -205,7 +205,7 @@ public class Main extends Application implements Initializable {
     private void handleStatisticsButton(ActionEvent actionEvent) {
         try {
             Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
-            loadGraidentBackgroundForRoot(statsRoot);
+            loadGradientBackgroundForRoot(statsRoot);
             Scene statistics = new Scene(statsRoot);
             window.setScene(statistics);
         } catch (IOException e) {
@@ -220,7 +220,7 @@ public class Main extends Application implements Initializable {
     private void handleDailyChallengeBtn(ActionEvent actionEvent) {
         try {
             Parent challengesRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
-            loadGraidentBackgroundForRoot(challengesRoot);
+            loadGradientBackgroundForRoot(challengesRoot);
             Scene dailyChallenges = new Scene(challengesRoot);
             window.setScene(dailyChallenges);
         } catch (IOException e) {
@@ -236,7 +236,7 @@ public class Main extends Application implements Initializable {
         showSettingsPopup();
     }
 
-    private void loadGraidentBackgroundForRoot(Parent root){
+    private void loadGradientBackgroundForRoot(Parent root){
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         root.setId("gradient-background");
     }

@@ -90,7 +90,12 @@ public class StatisticsRetriever extends StatisticsFileHandler {
         int correct = 0;
         int incorrect = 0;
         String date;
-        String[] tokens = scannerReadLine().split("\\t");
+        String[] tokens;
+        if (scanner.hasNextLine()) {
+            tokens = scannerReadLine().split("\\t");
+        } else {
+            return stats; // NO STATISTICS
+        }
         if (tokens.length > 0) {
             date = tokens[1]; // get first date
             String todaysDate = StatisticsFileHandler.todaysDate; // cache today's date

@@ -164,7 +164,7 @@ public class SpellingQuizController implements Initializable {
                 /* Failed */
                 reportCardFactory = new FailedQuizReportCardFactory();
                 // Elapsed time is only updated on completing a quiz - otherwise can be cheated
-                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", "dnf");
+                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", Integer.MAX_VALUE + "");
             }
             /*
              * ContinueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
