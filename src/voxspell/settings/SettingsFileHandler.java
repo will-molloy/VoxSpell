@@ -9,8 +9,8 @@ import java.io.*;
  */
 public class SettingsFileHandler {
 
-    private File settingsFile = new File(".settings");
     private final String VOICE_ID = "voice", BACKGROUND_ID = "background";
+    private File settingsFile = new File(".settings");
     private BufferedReader reader;
     private BufferedWriter writer;
 
@@ -70,9 +70,9 @@ public class SettingsFileHandler {
         settingsFile.delete(); // delete file contents
         createFileReaderAndWriter();
         try {
-            writer.write(VOICE_ID+"\t"+voice);
+            writer.write(VOICE_ID + "\t" + voice);
             writer.newLine();
-            writer.write(BACKGROUND_ID+"\t"+background);
+            writer.write(BACKGROUND_ID + "\t" + background);
             writer.newLine();
             writer.flush();
         } catch (IOException e) {

@@ -7,12 +7,19 @@ import javafx.beans.property.SimpleStringProperty;
  * Category stats have a category name, total words spelt (correct+incorrect) and accuracy.
  */
 public class CategoryStat implements Comparable<CategoryStat> {
-    private SimpleStringProperty category, totalSpelt, accuracy;
 
-    public CategoryStat(String category, String totalSpelt, String accuracy) {
+    private SimpleStringProperty category;
+    private SimpleStringProperty totalSpelt;
+    private SimpleStringProperty accuracy;
+    private SimpleStringProperty bestStreak;
+    private SimpleStringProperty bestTime;
+
+    public CategoryStat(String category, String totalSpelt, String accuracy, String bestStreak, String bestTime) {
         this.category = new SimpleStringProperty(category);
         this.totalSpelt = new SimpleStringProperty(totalSpelt);
         this.accuracy = new SimpleStringProperty(accuracy);
+        this.bestStreak = new SimpleStringProperty(bestStreak);
+        this.bestTime = new SimpleStringProperty(bestTime);
     }
 
     // Getter and setters for observable array list
@@ -39,6 +46,22 @@ public class CategoryStat implements Comparable<CategoryStat> {
 
     public void setAccuracy(String accuracy) {
         this.accuracy.set(accuracy);
+    }
+
+    public String getBestStreak() {
+        return bestStreak.get();
+    }
+
+    public void setBestStreak(String bestStreak) {
+        this.bestStreak.set(bestStreak);
+    }
+
+    public String getBestTime() {
+        return bestTime.get();
+    }
+
+    public void setBestTime(String bestTime) {
+        this.bestTime.set(bestTime);
     }
 
     /**

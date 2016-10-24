@@ -6,10 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 import voxspell.Main;
 import voxspell.tools.TextToSpeech;
 
@@ -81,9 +77,6 @@ public class SettingsController implements Initializable {
         mainMenuBackgroundDropDown.setCellFactory(c -> new BackgroundDropDownListCell());
         mainMenuBackgroundDropDown.setButtonCell(new BackgroundDropDownListCell());
     }
-
-
-
 
 
 }

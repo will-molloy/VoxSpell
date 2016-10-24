@@ -2,8 +2,12 @@ package voxspell.statistics;
 
 import net.sourceforge.calendardate.CalendarDate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Retrieves various statistics from the hidden statistics file.
@@ -30,7 +34,28 @@ public class StatisticsRetriever extends StatisticsFileHandler {
                 incorrect += parseInt(tokens[2]);
             }
         }
-        return new int[]{correct, incorrect};
+
+        int bestStreak = 0;
+        int bestTimeSeconds = 0;
+        try {
+            scanner = new Scanner(new FileReader(quizStatsFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while ((line = scannerReadLine()) != null){
+            String[] tokens = line.split("\\t");
+            // Tokens: word (tab) correctCount (tab) incorrectCount (tab) category
+            if (tokens.length == 3 && tokens[0].equals(category)) {
+                bestStreak = parseInt(tokens[1]);
+                String bestTime = tokens[2];
+                if (bestTime.equals("dnf")){
+                    bestTimeSeconds = Integer.MAX_VALUE;
+                } else {
+                    bestTimeSeconds = parseInt(tokens[2]);
+                }
+            }
+        }
+        return new int[]{correct, incorrect, bestStreak, bestTimeSeconds};
     }
 
     /**

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,7 +34,7 @@ public class CategoryStatisticsController extends StatisticsController implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        wordlists = WordListEditorController.getWordLists();
+        wordlists = WordListEditorController.getWordLists(); // ONLY gets wordlists that exist - not everything from stats
         statisticsRetriever = new StatisticsRetriever();
 
         generateAndShowStatsInScrollPane();
@@ -48,33 +49,47 @@ public class CategoryStatisticsController extends StatisticsController implement
             int[] extractedStat = statisticsRetriever.getStatsForCategory(category);
             int totalSpelt = extractedStat[0] + extractedStat[1];
             double accuracy = extractedStat[0] * 100.0 / totalSpelt;
+            String bestStreak = extractedStat[2] + "";
+            int bestTime = extractedStat[3];
+            String formatBestTime;
+            if (bestTime == Integer.MAX_VALUE){
+                formatBestTime = "DNF";
+            } else {
+                formatBestTime = numberFormatter.formatTime(extractedStat[3]);
+            }
+
+            // Only adding in categories that the user has attempted.
             if (totalSpelt > 0) {
-                CategoryStat stat = new CategoryStat(category, totalSpelt + "", formatAccuracy(accuracy));
+                CategoryStat stat = new CategoryStat(category, totalSpelt + "", numberFormatter.formatAccuracy(accuracy), bestStreak, formatBestTime);
                 data.add(stat);
             }
         }
 
         TableColumn<CategoryStat, String> categoryCol = new TableColumn<>("Category");
-        categoryCol.setStyle("-fx-font-size: 18");
-        categoryCol.setSortable(false);
-        categoryCol.setMinWidth(200);
-        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        formatTableColumn(categoryCol, "category");
 
         TableColumn<CategoryStat, String> totalSpeltCol = new TableColumn<>("Words Spelt");
-        totalSpeltCol.setStyle("-fx-font-size: 18");
-        totalSpeltCol.setSortable(false);
-        totalSpeltCol.setMinWidth(200);
-        totalSpeltCol.setCellValueFactory(new PropertyValueFactory<>("totalSpelt"));
+        formatTableColumn(totalSpeltCol, "totalSpelt");
 
         TableColumn<CategoryStat, String> accuracyCol = new TableColumn<>("Accuracy");
-        accuracyCol.setStyle("-fx-font-size: 18");
-        accuracyCol.setSortable(false);
-        accuracyCol.setMinWidth(200);
-        accuracyCol.setCellValueFactory(new PropertyValueFactory<>("accuracy"));
+        formatTableColumn(accuracyCol, "accuracy");
+
+        TableColumn<CategoryStat, String> streakCol = new TableColumn<>("Best Streak");
+        formatTableColumn(streakCol, "bestStreak");
+
+        TableColumn<CategoryStat, String> timeCol = new TableColumn<>("Best Time");
+        formatTableColumn(timeCol, "bestTime");
 
         Collections.sort(data);
 
         tableView.setItems(data);
-        tableView.getColumns().addAll(categoryCol, totalSpeltCol, accuracyCol);
+        tableView.getColumns().addAll(categoryCol, totalSpeltCol, accuracyCol, streakCol, timeCol);
+    }
+
+    private void formatTableColumn(TableColumn<CategoryStat, String> column, String propertyValue) {
+        column.setStyle("-fx-font-size: 18");
+        column.setSortable(false);
+        column.setMinWidth(175);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyValue));
     }
 }

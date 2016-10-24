@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author Will Molloy
  */
-public class FailedTextAndCorrectionsController{
+public class FailedTextAndCorrectionsController {
 
     @FXML
     private VBox correctionsVBox;

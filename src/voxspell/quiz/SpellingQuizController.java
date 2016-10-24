@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * @author Karim Cisse - implemented Spelling Quiz logic
  * @author Will Molloy - convert to JavaFX, adding ImageViews, using WordList/Word object.
  */
-public class SpellingQuizController implements Initializable{
+public class SpellingQuizController implements Initializable {
 
     // Game logic
     private static List<WordList> wordLists;
@@ -154,12 +154,17 @@ public class SpellingQuizController implements Initializable{
             textToSpeech.readSentence("Please spell ... " + word);
 
         } else { /* Quiz Completed */
+            bestStreak = Math.max(currentStreak, bestStreak);
+            final long elapsedTimeSeconds = (System.currentTimeMillis() - startTime) / 1000;
             if (wordsCorrect >= QUIZ_PASS_THRESHOLD * quizSize) {
                 /* Passed */
                 reportCardFactory = new PassedQuizReportCardFactory();
+                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", elapsedTimeSeconds +"");
             } else {
                 /* Failed */
                 reportCardFactory = new FailedQuizReportCardFactory();
+                // Elapsed time is only updated on completing a quiz - otherwise can be cheated
+                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", "dnf");
             }
             /*
              * ContinueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
@@ -167,8 +172,7 @@ public class SpellingQuizController implements Initializable{
              */
             Platform.runLater(() -> {
                 ReportCardController controller = reportCardFactory.getControllerAndShowScene();
-                final long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-                controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList, elapsedTime, Math.max(currentStreak, bestStreak));
+                controller.setValues(quizWordListCopy, wordFirstAttempts, categoryWordList, elapsedTimeSeconds, bestStreak);
                 controller.generateScene();
             });
             clearGUI();

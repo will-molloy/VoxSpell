@@ -19,16 +19,20 @@ import java.util.Scanner;
  * date (tab) 2016-10-14 (next date)
  * word ..
  * ..
+ * <p>
+ * The quiz stats file works as follows:
+ * category (tab) best streak (tab) best elapsed time
  *
  * @author Will Molloy
  */
 public class StatisticsFileHandler extends CustomFileReader {
 
     private static final String TEMP_FILE_NAME = ".tempStats", DATE_ID = "date";
-    protected static String todaysDate;
-    private static File statsFile;
     // default file name
-    private final String statsFileName = ".statistics";
+    private static final String wordStatsFileName = ".wordStats", quizStatsFileName = ".quizStats";
+    protected static String todaysDate;
+    private static File wordStatsFile;
+    protected static File quizStatsFile;
     protected String line;
     private File tempFile = new File(TEMP_FILE_NAME);
     private String word;
@@ -39,9 +43,13 @@ public class StatisticsFileHandler extends CustomFileReader {
      * Instantiates the statistics file handler - loading the hidden file and current date
      */
     public StatisticsFileHandler() {
-        statsFile = new File(statsFileName);
-        if (!statsFile.exists()) {
-            makeHiddenFile(statsFile);
+        wordStatsFile = new File(wordStatsFileName);
+        quizStatsFile = new File(quizStatsFileName);
+        if (!wordStatsFile.exists()) {
+            makeHiddenFile(wordStatsFile);
+        }
+        if (!quizStatsFile.exists()) {
+            makeHiddenFile(quizStatsFile);
         }
         todaysDate = getCurrentDate();
     }
@@ -50,8 +58,8 @@ public class StatisticsFileHandler extends CustomFileReader {
      * Method to change the hidden statistics file name - for testing
      */
     public void setFileName(String fileName) {
-        statsFile = new File(fileName);
-        makeHiddenFile(statsFile);
+        wordStatsFile = new File(fileName);
+        makeHiddenFile(wordStatsFile);
     }
 
     private void makeHiddenFile(File file) {
@@ -185,7 +193,7 @@ public class StatisticsFileHandler extends CustomFileReader {
      */
     protected Scanner getScannerForStatFile() {
         try {
-            return new Scanner(new FileReader(statsFile));
+            return new Scanner(new FileReader(wordStatsFile));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -243,6 +251,116 @@ public class StatisticsFileHandler extends CustomFileReader {
         bufferedWriter.flush();
 
         // Rename file
-        tempFile.renameTo(statsFile);
+        tempFile.renameTo(wordStatsFile);
+    }
+
+    /**
+     * Writes the statistics for a quiz i.e. best elapsed time and best streak.
+     */
+    public void writeQuizStatistic(String category, String streak, String timeInSeconds) {
+        boolean categoryExists = false;
+        try {
+            scanner = new Scanner(new FileReader(quizStatsFile));
+            while ((line = scannerReadLine()) != null) {
+                String[] tokens = line.split("\\t");
+                if (tokens.length == 3 && tokens[0].equals(category)) {
+                    categoryExists = true;
+                    String currentStreak = tokens[1];
+                    String currentTime = tokens[2];
+
+                    // Check if better streak is found
+                    if (parseInt(currentStreak) < parseInt(streak)) {
+                        updateStreak(category, streak);
+                    }
+
+                    // Check if better time is found
+                    if (currentTime.equals("dnf") || parseInt(timeInSeconds) < parseInt(currentTime)) {
+                        updateTime(category, timeInSeconds);
+                    }
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (!categoryExists){
+            createStatisticsForNewCategory(category, streak, timeInSeconds);
+        }
+    }
+
+    /**
+     * Updates the best streak for a given category within the hidden quiz stats file.
+     */
+    private void updateStreak(String category, String streak) {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
+            scanner = new Scanner(new FileReader(quizStatsFile));
+            while ((line = scannerReadLine()) != null) {
+                String[] tokens = line.split("\\t");
+                if (tokens.length == 3 && tokens[0].equals(category)) {
+                    bufferedWriter.write(category + "\t" + streak + "\t" + tokens[2]);
+                } else {
+                    bufferedWriter.write(line);
+                }
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+            tempFile.renameTo(quizStatsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Updates the best time for a given category within the hidden quiz stats file.
+     */
+    private void updateTime(String category, String timeInSeconds) {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
+            scanner = new Scanner(new FileReader(quizStatsFile));
+            while ((line = scannerReadLine()) != null) {
+                String[] tokens = line.split("\\t");
+                if (tokens.length == 3 && tokens[0].equals(category)) {
+                    bufferedWriter.write(category + "\t" + tokens[1] + "\t" + timeInSeconds);
+                } else {
+                    bufferedWriter.write(line);
+                }
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+            tempFile.renameTo(quizStatsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a new statistic for a category that hasn't been recorded yet.
+     */
+    private void createStatisticsForNewCategory(String category, String streak, String timeInSeconds) {
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
+            scanner = new Scanner(new FileReader(quizStatsFile));
+            bufferedWriter.write(category+"\t"+streak+"\t"+timeInSeconds);
+            bufferedWriter.newLine();
+            while ((line = scannerReadLine()) != null) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+            tempFile.renameTo(quizStatsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Clears the hidden statistic files
+     */
+    public void deleteStatistics() {
+        quizStatsFile.delete();
+        wordStatsFile.delete();
+        makeHiddenFile(quizStatsFile);
+        makeHiddenFile(wordStatsFile);
     }
 }

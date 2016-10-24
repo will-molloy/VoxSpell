@@ -66,12 +66,12 @@ public class FailedQuizReportCardController extends ReportCardController {
             failurePane.getChildren().add(textAndCorrectionsRoot);
             viewMistakesBtn.setText("Hide Mistakes");
             accuracyTextView.setVisible(false);
-            imageLoader.loadSquareImageForBtn(viewMistakesBtn,hideIcon,40);
+            imageLoader.loadSquareImageForBtn(viewMistakesBtn, hideIcon, 40);
         } else {
             failurePane.getChildren().add(textOnlyRoot);
             viewMistakesBtn.setText("View Mistakes");
             accuracyTextView.setVisible(true);
-            imageLoader.loadSquareImageForBtn(viewMistakesBtn,viewIcon,40);
+            imageLoader.loadSquareImageForBtn(viewMistakesBtn, viewIcon, 40);
         }
         textOnlyView = !textOnlyView;
     }

@@ -112,6 +112,10 @@ public class Main extends Application implements Initializable {
         mainMenuRoot.setId(background.getCssId());
     }
 
+    public static void setSpellingQuizCssId(String id) {
+        spellingQuizRoot.setId(id);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadBtnImages();
@@ -135,12 +139,13 @@ public class Main extends Application implements Initializable {
 
         FXMLLoader spellingQuizLoader = new FXMLLoader(getClass().getResource("quiz/fxml/Spelling_Quiz.fxml"));
         spellingQuizRoot = spellingQuizLoader.load();
+        spellingQuizRoot.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         spellingQuizRoot.setId("green-progress");
         spellingQuizControllerInstance = spellingQuizLoader.getController();
-        spellingQuizRoot.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         spellingQuiz = new Scene(spellingQuizRoot);
 
         Parent wordListRoot = FXMLLoader.load(getClass().getResource("wordlistEditor/fxml/Word_List_Editor.fxml"));
+        loadGraidentBackgroundForRoot(wordListRoot);
         wordListEditor = new Scene(wordListRoot);
 
         window.setTitle("VoxSpell");
@@ -200,6 +205,7 @@ public class Main extends Application implements Initializable {
     private void handleStatisticsButton(ActionEvent actionEvent) {
         try {
             Parent statsRoot = FXMLLoader.load(getClass().getResource("statistics/fxml/Statistics_Skeleton.fxml"));
+            loadGraidentBackgroundForRoot(statsRoot);
             Scene statistics = new Scene(statsRoot);
             window.setScene(statistics);
         } catch (IOException e) {
@@ -214,6 +220,7 @@ public class Main extends Application implements Initializable {
     private void handleDailyChallengeBtn(ActionEvent actionEvent) {
         try {
             Parent challengesRoot = FXMLLoader.load(getClass().getResource("dailyChallenges/fxml/Daily_Challenges.fxml"));
+            loadGraidentBackgroundForRoot(challengesRoot);
             Scene dailyChallenges = new Scene(challengesRoot);
             window.setScene(dailyChallenges);
         } catch (IOException e) {
@@ -229,7 +236,8 @@ public class Main extends Application implements Initializable {
         showSettingsPopup();
     }
 
-    public static void setSpellingQuizCssId(String id){
-        spellingQuizRoot.setId(id);
+    private void loadGraidentBackgroundForRoot(Parent root){
+        root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+        root.setId("gradient-background");
     }
 }

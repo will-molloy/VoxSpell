@@ -5,35 +5,39 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.reportCard.controller.FailedTextAndCorrectionsController">
+<?import javafx.scene.text.*?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="330.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea"
+      fx:controller="voxspell.reportCard.controller.FailedTextAndCorrectionsController">
     <children>
-        <Text fx:id="failedTextView" fill="#b8effc" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have Been Unsuccessful" textAlignment="CENTER" wrappingWidth="960.0">
+        <Text fx:id="failedTextView" fill="#b8effc" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="You Have Been Unsuccessful" textAlignment="CENTER" wrappingWidth="960.0">
             <font>
-                <Font name="Laksaman Bold" size="60.0" />
+                <Font name="Laksaman Bold" size="60.0"/>
             </font>
             <rotationAxis>
-                <Point3D />
+                <Point3D/>
             </rotationAxis>
-         <effect>
-            <DropShadow />
-         </effect>
+            <effect>
+                <DropShadow/>
+            </effect>
         </Text>
-        <Text layoutX="45.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Attempt:" wrappingWidth="255.0">
+        <Text layoutX="45.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Attempt:"
+              wrappingWidth="255.0">
             <font>
-                <Font name="Laksaman Bold" size="28.0" />
+                <Font name="Laksaman Bold" size="28.0"/>
             </font>
         </Text>
-        <Text layoutX="485.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct Spelling:" wrappingWidth="255.0">
+        <Text layoutX="485.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct Spelling:"
+              wrappingWidth="255.0">
             <font>
-                <Font name="Laksaman Bold" size="28.0" />
+                <Font name="Laksaman Bold" size="28.0"/>
             </font>
         </Text>
-      <ScrollPane hbarPolicy="NEVER" layoutX="45.0" layoutY="104.0" prefHeight="225.0" prefWidth="880.0">
-         <content>
-            <VBox fx:id="correctionsVBox" prefHeight="220.0" prefWidth="878.0" />
-         </content></ScrollPane>
+        <ScrollPane hbarPolicy="NEVER" layoutX="45.0" layoutY="104.0" prefHeight="225.0" prefWidth="880.0">
+            <content>
+                <VBox fx:id="correctionsVBox" prefHeight="220.0" prefWidth="878.0"/>
+            </content>
+        </ScrollPane>
     </children>
 </Pane>

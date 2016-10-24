@@ -11,6 +11,7 @@ import voxspell.Main;
 import voxspell.dailyChallenges.ChallengeType;
 import voxspell.dailyChallenges.DailyChallengeGUIController;
 import voxspell.tools.ImageLoader;
+import voxspell.tools.NumberFormatter;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
@@ -26,37 +27,32 @@ import java.util.List;
  */
 public abstract class ReportCardController {
 
-    protected static List<String[]> incorrectWords;
-
-    @FXML
-    protected Button mainMenuBtn, randomBtn;
-
     private static final Paint
             GREEN = Paint.valueOf("#9fe89f"),
             ORANGE = Paint.valueOf("#ffd569"),
             RED = Paint.valueOf("#F94923");
-
+    protected static List<String[]> incorrectWords;
+    @FXML
+    protected Button mainMenuBtn, randomBtn;
     @FXML
     protected Text elapsedTimeTxt, bestStreakTxt;
+    private NumberFormatter numberFormatter = new NumberFormatter();
 
     @FXML
     protected WordList wordList;
     protected List<String> words;
-    private long elapsedTimeSeconds;
-    private int bestStreak;
-    private int mastered;
     @FXML
     protected Text accuracyTextView;
-    private List<String> wordFirstAttempts;
-
     protected ImageLoader imageLoader = new ImageLoader();
-
     protected Image
             backIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/logout_icon.png")),
             randomIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/random_icon.png")),
             nextIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/next_level_icon.png")),
             videoIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/video_icon.png"));
-
+    private long elapsedTimeSeconds;
+    private int bestStreak;
+    private int mastered;
+    private List<String> wordFirstAttempts;
 
     public final void setValues(List<String> words, List<String> wordFirstAttempts, WordList wordList, long elapsedTime, int bestStreak) {
         this.words = words;
@@ -96,12 +92,12 @@ public abstract class ReportCardController {
             DailyChallengeGUIController d = new DailyChallengeGUIController();
             d.updateChallenge(ChallengeType.QUIZ_ACCURACY, 100);
         }
-        accuracyTextView.setText("Accuracy: " + new DecimalFormat("####0.00").format(accuracy) + "%");
+        accuracyTextView.setText("Accuracy: " + numberFormatter.formatAccuracy(accuracy));
 
         Paint color;
-        if (accuracy >= 90){
+        if (accuracy >= 90) {
             color = GREEN;
-        } else if (accuracy >= 50){
+        } else if (accuracy >= 50) {
             color = ORANGE;
         } else {
             color = RED;
@@ -114,24 +110,12 @@ public abstract class ReportCardController {
     }
 
     private void showElapsedTime() {
-        int mins = (int) (elapsedTimeSeconds / 60);
-        int seconds = (int) (elapsedTimeSeconds % 60);
-        String formatMins;
-        if (mins == 0) {
-            formatMins = "00";
-        } else if (mins < 10) {
-            formatMins = "0" + mins;
-        } else {
-            formatMins = mins + "";
-        }
-
-        String formatSecs = seconds < 10 ? "0" + seconds : seconds + "";
-        elapsedTimeTxt.setText("Elapsed Time: " + formatMins + ":" + formatSecs);
+        elapsedTimeTxt.setText("Elapsed Time: " + numberFormatter.formatTime((int)elapsedTimeSeconds));
 
         Paint color;
-        if (elapsedTimeSeconds <= words.size()*5){          // 5 seconds per word = green
+        if (elapsedTimeSeconds <= words.size() * 5) {          // 5 seconds per word = green
             color = GREEN;
-        } else if (elapsedTimeSeconds <= words.size()*8){   // 8 seconds per word = orange
+        } else if (elapsedTimeSeconds <= words.size() * 8) {   // 8 seconds per word = orange
             color = ORANGE;
         } else {
             color = RED;
@@ -142,12 +126,12 @@ public abstract class ReportCardController {
     private void showBestStreak() {
         bestStreakTxt.setText("Best Streak: " + bestStreak);
         Paint color;
-        if (bestStreak >= words.size()*0.8){          // 80% streak = green
+        if (bestStreak >= words.size() * 0.8) {          // 80% streak = green
             color = GREEN;
-        } else if (bestStreak >= words.size()*0.6){   // 60% streak = orange
+        } else if (bestStreak >= words.size() * 0.6) {   // 60% streak = orange
             color = ORANGE;
         } else {
-           color = RED;
+            color = RED;
         }
         setTextColour(bestStreakTxt, color);
     }
