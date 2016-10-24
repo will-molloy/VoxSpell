@@ -21,13 +21,13 @@ import java.io.File;
  * Plays the big buck bunny video in a popup pane.
  * <p>
  * Base code found here: http://docs.oracle.com/javafx/2/media/playercontrol.htm
- * I've simply modified it to use big_buck_bunny and custom images for play/pause.
+ * I've simply modified it to use big_buck_bunny.
  *
  * @author Will Molloy
  */
 public class VideoPlayer extends BorderPane {
 
-    private static File videoFile = new File("src/voxspell/media/video/big_buck_bunny.mp4");
+    private static File videoFile = new File("media/video/big_buck_bunny.mp4");
     private static final String MEDIA_URL = videoFile.toURI().toString();
     private static MediaPlayer mediaPlayer;
     private final boolean repeat = false;

@@ -3,7 +3,9 @@ package voxspell.dailyChallenges;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +17,7 @@ import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -54,6 +57,11 @@ public class DailyChallengeGUIController implements Initializable {
     @FXML
     private void handleResetBtn(ActionEvent actionEvent) {
         resetChallenges();
+        resetBtn.setDisable(true);
+    }
+
+    private boolean allChallengesAreComplete() {
+        return challengeProgress1.getProgress() >= 1 && challengeProgress2.getProgress() >= 1 && challengeProgress3.getProgress() >= 1;
     }
 
     @Override
@@ -66,6 +74,12 @@ public class DailyChallengeGUIController implements Initializable {
 
         createFiles();
         getDailyChallenges();
+
+        if (allChallengesAreComplete()){
+            resetBtn.setDisable(false);
+        } else {
+            resetBtn.setDisable(true);
+        }
     }
 
     /**
@@ -75,6 +89,7 @@ public class DailyChallengeGUIController implements Initializable {
         dailyChallengeFile = new File(fileName);
         if (!dailyChallengeFile.exists()) {
             makeHiddenFile(dailyChallengeFile);
+            createChallenges();
         }
 
         tempFile = new File(tempFileName);
@@ -82,6 +97,21 @@ public class DailyChallengeGUIController implements Initializable {
             makeHiddenFile(tempFile);
         }
         tempFile.deleteOnExit();
+    }
+
+    private void createChallenges() {
+    resetBufferedReaderAndWriter();
+        try {
+            bufferedWriter.write("date\t" + getCurrentDate() + "\n"+
+                    "total_challenges\t0\n"+
+                    "quizes_complete\t0\t10\n" +
+                    "quiz_accuracy\t0\t100\n" +
+                    "editor_create_list\t0\t1\n"
+            );
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void makeHiddenFile(File file) {

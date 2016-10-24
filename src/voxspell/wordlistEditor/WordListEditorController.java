@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import voxspell.Main;
 import voxspell.tools.CustomFileReader;
+import voxspell.tools.ImageLoader;
 import voxspell.tools.WordDefinitionFinder;
 
 import java.io.File;
@@ -40,13 +41,22 @@ public class WordListEditorController implements Initializable {
     private Text categoriesTextField;
     private CustomFileReader fileReader = new CustomFileReader();
     @FXML
-    private ImageView imageView;
-    private Image imageOfAScroll = new Image(Main.class.getResourceAsStream("media/images/scroll.png"));
-    @FXML
-    private Button importFileBtn, generateDefBtn;
+    private Button importFileBtn, generateDefBtn, backBtn, removeBtn, removeAllBtn, addBtn, modifyBtn, helpBtn;
     @FXML
     private Accordion wordListsView;
     private Thread thread;
+
+    protected static Image
+            importIcon = new Image(Main.class.getResourceAsStream("media/images/editor/folder.png")),
+            removeIcon = new Image(Main.class.getResourceAsStream("media/images/editor/minus-symbol.png")),
+            removeAllIcon = new Image(Main.class.getResourceAsStream("media/images/editor/subtract.png")),
+            modifyIcon = new Image(Main.class.getResourceAsStream("media/images/editor/modify-pen.png")),
+            addIcon = new Image(Main.class.getResourceAsStream("media/images/editor/plus-black-symbol.png")),
+            helpIcon = new Image(Main.class.getResourceAsStream("media/images/editor/question.png")),
+            generateIcon = new Image(Main.class.getResourceAsStream("media/images/editor/refresh-button.png")),
+            backIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/logout_icon.png"));
+    protected ImageLoader imageLoader = new ImageLoader();
+
 
     public static List<WordList> getWordLists() {
         return wordLists;
@@ -69,16 +79,17 @@ public class WordListEditorController implements Initializable {
         } else {
             setNoWordListsText();
         }
-        imageView.setImage(imageOfAScroll);
         addButtonToolTips();
+
+        loadBtnIcons();
     }
 
     private void setNoWordListsText() {
-        categoriesTextField.setText("VoxSpell currently has no categories.");
+        categoriesTextField.setText("VoxSpell Currently Has No Categories.");
     }
 
     private void setThereAreWordListsText() {
-        categoriesTextField.setText("VoxSpell has loaded these categories:");
+        categoriesTextField.setText("VoxSpell Has Loaded These Categories:");
     }
 
     private void addButtonToolTips() {
@@ -262,11 +273,13 @@ public class WordListEditorController implements Initializable {
         File chosenFile = Main.showFileChooserAndReturnChosenFile(fileChooser);
 
         // Read in new lists
-        List<WordList> newLists = fileReader.readWordListFileIntoList(chosenFile);
+        if (chosenFile != null) {
+            List<WordList> newLists = fileReader.readWordListFileIntoList(chosenFile);
 
-        // Append to file
-        newLists.forEach(this::addWordListToDataGUIAndFile);
-        resizeWordListView();
+            // Append to file
+            newLists.forEach(this::addWordListToDataGUIAndFile);
+            resizeWordListView();
+        }
     }
 
     @FXML
@@ -373,5 +386,17 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleHelpBtn(ActionEvent actionEvent) {
+    }
+
+
+    private void loadBtnIcons() {
+        imageLoader.loadSquareImageForBtn(backBtn, backIcon, 40);
+        imageLoader.loadSquareImageForBtn(helpBtn, helpIcon, 40);
+        imageLoader.loadSquareImageForBtn(importFileBtn, importIcon, 40);
+        imageLoader.loadSquareImageForBtn(addBtn, addIcon, 40);
+        imageLoader.loadSquareImageForBtn(removeBtn, removeIcon, 40);
+        imageLoader.loadSquareImageForBtn(removeAllBtn, removeAllIcon, 40);
+        imageLoader.loadSquareImageForBtn(generateDefBtn, generateIcon, 40);
+        imageLoader.loadSquareImageForBtn(modifyBtn, modifyIcon, 40);
     }
 }

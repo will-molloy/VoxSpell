@@ -29,6 +29,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
 
     private static WordListEditorController wordListEditorInstance;
     @FXML
+    private Button helpBtnPU, addBtnPU, removeBtnPU;
+    @FXML
     private Button addOrUpdateListBtn;
     private ObservableList<Word> data;
     @FXML
@@ -82,6 +84,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
 
         wordListTableView.setItems(data);
         wordListTableView.getColumns().addAll(wordCol, defCol);
+
+        loadBtnIcons();
     }
 
     @FXML
@@ -191,5 +195,11 @@ public class AddWordListPopupController extends WordListEditorController impleme
     private void handleDelBtn(ActionEvent actionEvent) {
         Word highlightedWord = wordListTableView.getSelectionModel().getSelectedItem();
         data.remove(highlightedWord);
+    }
+
+    private void loadBtnIcons(){
+        imageLoader.loadSquareImageForBtn(addBtnPU, addIcon, 30);
+        imageLoader.loadSquareImageForBtn(removeBtnPU, removeIcon, 30);
+        imageLoader.loadSquareImageForBtn(helpBtnPU, helpIcon, 30);
     }
 }
