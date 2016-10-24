@@ -8,10 +8,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * Contains methods for writing to the hidden statistics file.
+ * Contains methods for writing to the hidden statistics files.
  * Writes statistics for a word: correct/incorrect count, associated category and today's date.
+ * for a quiz: category/wordlist name, best streak, elapsed time (seconds).
  * <p>
- * The statistic file format works as follows:
+ * The word stat file format works as follows:
  * date (tab) 2016-10-15 (earliest date)
  * word (tab) correctSpellings (tab) incorrectSpellings (tab) category
  * word ..
@@ -31,8 +32,8 @@ public class StatisticsFileHandler extends CustomFileReader {
     // default file name
     private static final String wordStatsFileName = ".wordStats", quizStatsFileName = ".quizStats";
     protected static String todaysDate;
-    private static File wordStatsFile;
     protected static File quizStatsFile;
+    private static File wordStatsFile;
     protected String line;
     private File tempFile = new File(TEMP_FILE_NAME);
     private String word;
@@ -46,10 +47,10 @@ public class StatisticsFileHandler extends CustomFileReader {
         wordStatsFile = new File(wordStatsFileName);
         quizStatsFile = new File(quizStatsFileName);
         if (!wordStatsFile.exists()) {
-            makeHiddenFile(wordStatsFile);
+            makeFile(wordStatsFile);
         }
         if (!quizStatsFile.exists()) {
-            makeHiddenFile(quizStatsFile);
+            makeFile(quizStatsFile);
         }
         todaysDate = getCurrentDate();
     }
@@ -59,10 +60,10 @@ public class StatisticsFileHandler extends CustomFileReader {
      */
     public void setFileName(String fileName) {
         wordStatsFile = new File(fileName);
-        makeHiddenFile(wordStatsFile);
+        makeFile(wordStatsFile);
     }
 
-    private void makeHiddenFile(File file) {
+    private void makeFile(File file) {
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -94,7 +95,7 @@ public class StatisticsFileHandler extends CustomFileReader {
         this.category = category;
 
         scanner = getScannerForStatFile();
-        makeHiddenFile(tempFile);
+        makeFile(tempFile);
         tempFile.deleteOnExit();
 
         if ((line = scannerReadLine()) == null) {
@@ -283,7 +284,7 @@ public class StatisticsFileHandler extends CustomFileReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!categoryExists){
+        if (!categoryExists) {
             createStatisticsForNewCategory(category, streak, timeInSeconds);
         }
     }
@@ -341,7 +342,7 @@ public class StatisticsFileHandler extends CustomFileReader {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
             scanner = new Scanner(new FileReader(quizStatsFile));
-            bufferedWriter.write(category+"\t"+streak+"\t"+timeInSeconds);
+            bufferedWriter.write(category + "\t" + streak + "\t" + timeInSeconds);
             bufferedWriter.newLine();
             while ((line = scannerReadLine()) != null) {
                 bufferedWriter.write(line);
@@ -360,7 +361,7 @@ public class StatisticsFileHandler extends CustomFileReader {
     public void deleteStatistics() {
         quizStatsFile.delete();
         wordStatsFile.delete();
-        makeHiddenFile(quizStatsFile);
-        makeHiddenFile(wordStatsFile);
+        makeFile(quizStatsFile);
+        makeFile(wordStatsFile);
     }
 }

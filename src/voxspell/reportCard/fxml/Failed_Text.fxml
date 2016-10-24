@@ -4,15 +4,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.reportCard.controller.FailedTextController">
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="340.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea"
+      fx:controller="voxspell.reportCard.controller.FailedTextController">
     <children>
-        <Text fx:id="failedTextView" fill="#f2f2f2" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have Been Unsuccessful" textAlignment="CENTER" wrappingWidth="960.0">
+        <Text fx:id="failedTextView" fill="#f2f2f2" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="You Have Been Unsuccessful" textAlignment="CENTER" wrappingWidth="960.0">
             <font>
-                <Font name="Laksaman Bold" size="68.0" />
+                <Font name="Laksaman Bold" size="68.0"/>
             </font>
             <effect>
-                <DropShadow />
+                <DropShadow/>
             </effect>
         </Text>
     </children>

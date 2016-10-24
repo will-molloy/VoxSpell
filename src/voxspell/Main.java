@@ -236,7 +236,7 @@ public class Main extends Application implements Initializable {
         showSettingsPopup();
     }
 
-    private void loadGradientBackgroundForRoot(Parent root){
+    private void loadGradientBackgroundForRoot(Parent root) {
         root.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
         root.setId("gradient-background");
     }

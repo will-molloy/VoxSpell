@@ -18,6 +18,9 @@ public class SettingsFileHandler {
         createFileReaderAndWriter();
     }
 
+    /**
+     * Creates the buffered reader and writer for the settings file.
+     */
     private void createFileReaderAndWriter() {
         if (!settingsFile.exists()) {
             try {
@@ -34,6 +37,9 @@ public class SettingsFileHandler {
         }
     }
 
+    /**
+     * Retrieves the saved voice.
+     */
     public Voice getSettingsVoice() {
         createFileReaderAndWriter();
         String line;
@@ -50,6 +56,9 @@ public class SettingsFileHandler {
         return Voice.US; // DEFAULT
     }
 
+    /**
+     * Retrieves the saved background
+     */
     public MainMenuBackground getSettingsBackGround() {
         createFileReaderAndWriter();
         String line;
@@ -66,6 +75,9 @@ public class SettingsFileHandler {
         return MainMenuBackground.AUTUMN; // DEFAULT
     }
 
+    /**
+     * Saves the settings within the hidden settings file.
+     */
     public void saveSettings(Voice voice, MainMenuBackground background) {
         settingsFile.delete(); // delete file contents
         createFileReaderAndWriter();

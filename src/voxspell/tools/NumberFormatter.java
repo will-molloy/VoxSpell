@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
  */
 public class NumberFormatter {
 
-    public String formatTime(int seconds){
+    public String formatTime(int seconds) {
         int mins = seconds / 60;
         seconds = (seconds % 60);
         String formatMins;
@@ -25,8 +25,8 @@ public class NumberFormatter {
         return formatMins + ":" + formatSecs;
     }
 
-    public String formatAccuracy(double accuracy){
-       return new DecimalFormat("####0.00").format(accuracy) + "%";
+    public String formatAccuracy(double accuracy) {
+        return new DecimalFormat("####0.00").format(accuracy) + "%";
     }
 
 }

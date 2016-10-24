@@ -10,10 +10,14 @@ import java.util.Scanner;
 
 /**
  * Contains a few methods to read word list / statistic files.
+ * <p>
+ * NOTE: This file was used for the VoxSpell prototype however, has been replaced by dedicated statistic file and wordlist
+ * file handlers. However, due to time constraints some of this code is still called.
  *
  * @author Karim Cisse
  * @author Will Molloy
  */
+@Deprecated
 public class CustomFileReader {
 
     protected Scanner scanner;

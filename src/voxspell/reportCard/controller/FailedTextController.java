@@ -11,13 +11,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by will on 14/10/16.
+ * Controller for the Failed Text Phrase shown within the Failed Quiz ReporCard
+ *
+ * @author Will Molloy
  */
 public class FailedTextController extends FailedQuizReportCardController implements Initializable {
 
     @FXML
     private Text failedTextView;
 
+    /**
+     * Generates the failed text phrase.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<String> failed = new ArrayList<>();
@@ -28,10 +33,16 @@ public class FailedTextController extends FailedQuizReportCardController impleme
         failedTextView.setText(failed.get(0));
     }
 
+    /**
+     * Returns the text phrase, required to sync with the view mistakes scene.
+     */
     public String getText() {
         return failedTextView.getText();
     }
 
+    /**
+     * Returns the incorrectWords, required to sync with the view mistakes scene.
+     */
     public List<String[]> getIncorrectWords() {
         return incorrectWords;
     }

@@ -10,8 +10,8 @@ import javafx.scene.paint.Color;
  * Uses mouse listeners to display a 'HoverPane' when the user places their mouse over a node on a linegraph.
  * <p>
  * Base code from here: https://gist.github.com/jewelsea/4681797
- *
- * Has been edited so corner nodes are visible.
+ * <p>
+ * I've edited the above code so corner nodes are visible.
  *
  * @author Will Molloy
  */
@@ -26,7 +26,7 @@ public class LineGraphNodeHoverPane extends StackPane {
             getChildren().setAll(label);
             setCursor(Cursor.NONE);
             toFront();
-            setMargin(label, new Insets(topMargin,sideMargin,0,0)); // Margin added to label to make 'corner' nodes visible
+            setMargin(label, new Insets(topMargin, sideMargin, 0, 0)); // Margin added to label to make 'corner' nodes visible
         });
         setOnMouseExited(mouseEvent -> {
             getChildren().clear();

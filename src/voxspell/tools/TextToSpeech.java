@@ -106,19 +106,24 @@ public class TextToSpeech {
             return null;
         }
 
+        /**
+         * Loads the scm file for festival to run using the appropriate settings.
+         */
         private void loadFile() {
             try {
                 hiddenScmFile.delete();
                 hiddenScmFile.createNewFile();
 
                 BufferedWriter writer = new BufferedWriter(new FileWriter(hiddenScmFile, false));
-                writer.write(voice);
+                writer.write(voice); // set voice - from settings
                 writer.newLine();
+
                 if (_slowerVoice) {
                     writer.write("(Parameter.set 'Duration_Stretch 2.2)");
                     writer.newLine();
                     _slowerVoice = false;
                 }
+
                 writer.write("(SayText \"" + _sentence + "\")");
                 writer.newLine();
                 writer.flush();

@@ -26,6 +26,9 @@ public class SettingsController implements Initializable {
 
     private SettingsFileHandler settingsFileHandler = new SettingsFileHandler();
 
+    /**
+     * Save the users settings on confirmation and set the new settings.
+     */
     @FXML
     private void handleConfirmBtn(ActionEvent actionEvent) {
         Voice voice = voiceDropDown.getSelectionModel().getSelectedItem();
@@ -43,12 +46,18 @@ public class SettingsController implements Initializable {
         Main.hidePopup();
     }
 
+    /**
+     * Init the scene - create the dropdowns.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createVoiceDropDown();
         createBackgroundDropDown();
     }
 
+    /**
+     * Creates the voice drop down using the enumerated Voice type along with Voice list cell to display country flags.
+     */
     private void createVoiceDropDown() {
         ObservableList<Voice> options =
                 FXCollections.observableArrayList(
@@ -63,6 +72,9 @@ public class SettingsController implements Initializable {
         voiceDropDown.setButtonCell(new VoiceDropDownListCell());
     }
 
+    /**
+     * Creates the background drop down using the background enumerated type and list cell for larger font size.
+     */
     private void createBackgroundDropDown() {
         ObservableList<MainMenuBackground> options =
                 FXCollections.observableArrayList(

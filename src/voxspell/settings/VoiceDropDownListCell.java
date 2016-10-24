@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 import voxspell.Main;
 
 /**
- * The ListCell for the voice drop down within the settings scene.
+ * The ListCell for the voice drop down within the settings scene - allows for country flags to be displayed.
  *
  * @author Will Molloy
  */
@@ -17,6 +17,9 @@ public class VoiceDropDownListCell extends ListCell<Voice> {
     private Image US_Icon = new Image(Main.class.getResourceAsStream("media/images/settings/US_Flag.png"));
     private Image NZ_Icon = new Image(Main.class.getResourceAsStream("media/images/settings/Nz_Flag.png"));
 
+    /**
+     * Adds the icon for the associated voice - and sets the font size.
+     */
     protected void updateItem(Voice item, boolean empty) {
         super.updateItem(item, empty);
         setGraphic(null);

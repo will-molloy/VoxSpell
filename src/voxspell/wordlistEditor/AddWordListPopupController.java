@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * Controller for the popup view when the user wants to add a word list in the word list editor.
  * <p>
- * Extends WordListEditorController for access to @FXML components. (The Help Btn)
+ * Extends WordListEditorController for access to @FXML components.
  *
  * @author Will Molloy
  */
@@ -29,7 +29,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
 
     private static WordListEditorController wordListEditorInstance;
     @FXML
-    private Button helpBtnPU, addBtnPU, removeBtnPU;
+    private Button addBtnPU, removeBtnPU;
     @FXML
     private Button addOrUpdateListBtn;
     private ObservableList<Word> data;
@@ -39,10 +39,16 @@ public class AddWordListPopupController extends WordListEditorController impleme
     private TableView<Word> wordListTableView;
     private boolean modify;
 
+    /**
+     * Sets the wordlist editor controller instance to save word lists from this popup.
+     */
     static void setWordListEditorInstance(WordListEditorController wordListEditorInstance) {
         AddWordListPopupController.wordListEditorInstance = wordListEditorInstance;
     }
 
+    /**
+     * Sets the data of the expanded pane within the word list editor scene.
+     */
     public void setData(TitledPane expandedPane, boolean modify) {
         this.modify = modify;
         if (expandedPane != null) {
@@ -93,6 +99,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
         String category = categoryNameField.getText().trim();
         if (category.equals("")) {
             showCategoryFieldIsEmptyPopup();
+        } else if (data.size() == 0) {
+            showEmptyListPopup();
         } else {
             if (!categoryIsValid(category) && !modify) {
                 showCategoryAlreadyExistsPopup(category);
@@ -101,7 +109,7 @@ public class AddWordListPopupController extends WordListEditorController impleme
                 wordListEditorInstance.addCategory(category, words);
                 DailyChallengeGUIController d = new DailyChallengeGUIController();
                 d.updateChallenge(ChallengeType.WORD_LISTS_CREATED, 1);
-                // ERROR if no words in list OR category name is blank
+
                 Main.hidePopup();
             }
         }
@@ -111,6 +119,13 @@ public class AddWordListPopupController extends WordListEditorController impleme
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Category Name Not Set");
         alert.setHeaderText("Please set a category name.");
+        alert.showAndWait();
+    }
+
+    private void showEmptyListPopup() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Empty List");
+        alert.setHeaderText("Cannot add an empty list.");
         alert.showAndWait();
     }
 
@@ -197,9 +212,8 @@ public class AddWordListPopupController extends WordListEditorController impleme
         data.remove(highlightedWord);
     }
 
-    private void loadBtnIcons(){
+    private void loadBtnIcons() {
         imageLoader.loadSquareImageForBtn(addBtnPU, addIcon, 30);
         imageLoader.loadSquareImageForBtn(removeBtnPU, removeIcon, 30);
-        imageLoader.loadSquareImageForBtn(helpBtnPU, helpIcon, 30);
     }
 }

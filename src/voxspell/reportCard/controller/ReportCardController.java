@@ -15,7 +15,6 @@ import voxspell.tools.NumberFormatter;
 import voxspell.wordlistEditor.WordList;
 import voxspell.wordlistEditor.WordListEditorController;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +35,6 @@ public abstract class ReportCardController {
     protected Button mainMenuBtn, randomBtn;
     @FXML
     protected Text elapsedTimeTxt, bestStreakTxt;
-    private NumberFormatter numberFormatter = new NumberFormatter();
-
     @FXML
     protected WordList wordList;
     protected List<String> words;
@@ -49,11 +46,15 @@ public abstract class ReportCardController {
             randomIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/random_icon.png")),
             nextIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/next_level_icon.png")),
             videoIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/video_icon.png"));
+    private NumberFormatter numberFormatter = new NumberFormatter();
     private long elapsedTimeSeconds;
     private int bestStreak;
     private int mastered;
     private List<String> wordFirstAttempts;
 
+    /**
+     * Sets the values for this scene in order to generate the various elements.
+     */
     public final void setValues(List<String> words, List<String> wordFirstAttempts, WordList wordList, long elapsedTime, int bestStreak) {
         this.words = words;
         this.wordFirstAttempts = wordFirstAttempts;
@@ -62,6 +63,9 @@ public abstract class ReportCardController {
         this.bestStreak = bestStreak;
     }
 
+    /**
+     * Generates the various feedback shown to the user.
+     */
     public final void generateScene() {
         Platform.runLater(() -> {
             generateAccuracy();
@@ -72,12 +76,19 @@ public abstract class ReportCardController {
         });
     }
 
+    /**
+     * Creates the base gui, common elements in both passed and failed report cards.
+     */
     private final void createBaseGUI() {
         imageLoader.loadSquareImageForBtn(mainMenuBtn, backIcon, 40);
         imageLoader.loadSquareImageForBtn(randomBtn, randomIcon, 40);
     }
 
 
+    /**
+     * Generates the accuracy text view by first calculating the accuracy using the provided information.
+     * Then colours the accuracy text appropriately.
+     */
     private void generateAccuracy() {
         incorrectWords = new ArrayList<>();
         for (int i = 0; i < words.size(); i++) {
@@ -95,22 +106,28 @@ public abstract class ReportCardController {
         accuracyTextView.setText("Accuracy: " + numberFormatter.formatAccuracy(accuracy));
 
         Paint color;
-        if (accuracy >= 90) {
+        if (accuracy >= 90) {               // 90% = green
             color = GREEN;
-        } else if (accuracy >= 50) {
+        } else if (accuracy >= 50) {        // 50% = orange
             color = ORANGE;
         } else {
-            color = RED;
+            color = RED;                    // otherwise red
         }
         setTextColour(accuracyTextView, color);
     }
 
+    /**
+     * Sets the text colour for the given text view.
+     */
     private void setTextColour(Text textView, Paint colour) {
         textView.setFill(colour);
     }
 
+    /**
+     * Shows the elapsed time by first formatting it and then colouring it appropriately.
+     */
     private void showElapsedTime() {
-        elapsedTimeTxt.setText("Elapsed Time: " + numberFormatter.formatTime((int)elapsedTimeSeconds));
+        elapsedTimeTxt.setText("Elapsed Time: " + numberFormatter.formatTime((int) elapsedTimeSeconds));
 
         Paint color;
         if (elapsedTimeSeconds <= words.size() * 5) {          // 5 seconds per word = green
@@ -123,6 +140,9 @@ public abstract class ReportCardController {
         setTextColour(elapsedTimeTxt, color);
     }
 
+    /**
+     * Shows the best streak within the spelling quiz by colouring it appropriately.
+     */
     private void showBestStreak() {
         bestStreakTxt.setText("Best Streak: " + bestStreak);
         Paint color;
@@ -136,6 +156,9 @@ public abstract class ReportCardController {
         setTextColour(bestStreakTxt, color);
     }
 
+    /**
+     * Hook method to be implemented by subclasses - loads the subclass specific elements.
+     */
     protected abstract void createSubClassGUI();
 
     @FXML

@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  * Controller for the SpellingQuizController.
  *
  * @author Karim Cisse - implemented Spelling Quiz logic
- * @author Will Molloy - convert to JavaFX, adding ImageViews, using WordList/Word object.
+ * @author Will Molloy - convert to JavaFX, adding progress bar, using WordList/Word object.
  */
 public class SpellingQuizController implements Initializable {
 
@@ -72,6 +72,10 @@ public class SpellingQuizController implements Initializable {
             repeatIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/repeat_icon.png")),
             backIcon = new Image(Main.class.getResourceAsStream("media/images/quiz/back_icon.png"));
 
+    /**
+     * Loads a popup prompt for selecting a category/word list.
+     * Returns the name of the chosen word list or null if cancelled.
+     */
     public String promptUserForInitialLevel() {
         // Get word lists from editor.
         wordLists = WordListEditorController.getWordLists();
@@ -105,6 +109,11 @@ public class SpellingQuizController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Begins a new quiz with the given category:
+     * Loads a quiz of the categories size or size of 10 if the category size exceeds 10.
+     * Generates random words and begins the quiz.
+     */
     public void newQuiz(String category) {
         resetFields();
         // Get chosen word list
@@ -144,11 +153,15 @@ public class SpellingQuizController implements Initializable {
         currentStreak = 0;
     }
 
+    /**
+     * Continues the spelling quiz:
+     * Determines if the quiz is completed or not: if it is loads the appropriate report card
+     * otherwise prompts the user to spell the next word.
+     */
     public void continueSpellingQuiz() {
         // Quiz is finished when the quizWordList is empty
         if (quizWordList.size() > 0) {
             word = quizWordList.get(0);
-            System.out.println(word);
             wordNumber = quizSize + 1 - quizWordList.size();
 
             textToSpeech.readSentence("Please spell ... " + word);
@@ -159,12 +172,12 @@ public class SpellingQuizController implements Initializable {
             if (wordsCorrect >= QUIZ_PASS_THRESHOLD * quizSize) {
                 /* Passed */
                 reportCardFactory = new PassedQuizReportCardFactory();
-                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", elapsedTimeSeconds +"");
+                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak + "", elapsedTimeSeconds + "");
             } else {
                 /* Failed */
                 reportCardFactory = new FailedQuizReportCardFactory();
                 // Elapsed time is only updated on completing a quiz - otherwise can be cheated
-                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak+"", Integer.MAX_VALUE + "");
+                statisticsFileHandler.writeQuizStatistic(categoryText.getText(), bestStreak + "", Integer.MAX_VALUE + "");
             }
             /*
              * ContinueSpellingQuiz() is called by a SwingWorker (not from a JavaFX thread)
@@ -181,22 +194,26 @@ public class SpellingQuizController implements Initializable {
         }
     }
 
-    /*
-    * Handles both the enter word button AND pressing 'enter' within the word entry field.
-    */
+    /**
+     * Handles both the enter word button AND pressing 'enter' within the word entry field.
+     */
     @FXML
     private void handleEnterWordBtn(ActionEvent actionEvent) {
         checkInputWord();
     }
 
+    /**
+     * Checks the input of the users attempt versus the actual word.
+     * Based on this updates the progress bar/texttospeech/statistics appropriately.
+     */
     private void checkInputWord() {
         String attempt = wordEntryField.getText();
         wordEntryField.setText("");
 
         if (quizWordList.size() > 0) {
 
-            if (attempt.equals(word.toString())) { /* Correct */
-
+            if (attempt.equals(word.toString())) {
+                /* Correct */
                 currentStreak++;
                 wordFirstAttempts.add(attempt);
                 wordsCorrect++;
@@ -205,7 +222,8 @@ public class SpellingQuizController implements Initializable {
 
                 statisticsFileHandler.writeStatistic(word.toString(), true, categoryText.getText());
 
-            } else { /* Incorrect */
+            } else {
+                /* Incorrect */
                 if (currentStreak > bestStreak) {
                     bestStreak = currentStreak;
                 }
@@ -229,6 +247,7 @@ public class SpellingQuizController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            clearGUI();
             Main.showMainMenu();
         }
     }
@@ -236,7 +255,6 @@ public class SpellingQuizController implements Initializable {
     @FXML
     private void handleDefinitionBtn(ActionEvent actionEvent) {
         String definition = word.getDefinition();
-        System.out.println(definition);
         textToSpeech.readSentence(definition);
     }
 
@@ -245,11 +263,15 @@ public class SpellingQuizController implements Initializable {
         textToSpeech.readSentenceSlowly(word.toString());
     }
 
-
-    public void handleSettingsBtn(ActionEvent actionEvent) {
+    @FXML
+    private void handleSettingsBtn(ActionEvent actionEvent) {
         Main.showSettingsPopup();
     }
 
+    /**
+     * Initialises the scene:
+     * loads icons for the buttons.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ImageLoader imageLoader = new ImageLoader();

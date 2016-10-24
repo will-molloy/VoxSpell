@@ -9,7 +9,8 @@ import voxspell.reportCard.controller.ReportCardController;
 import java.io.IOException;
 
 /**
- * Loads the FXML for the ReportCard shown after completing a quiz, also retrieves the controller from the FXML.
+ * Loads the FXML for the ReportCard shown after completing a quiz,
+ * also retrieves the controller from the FXML, required to inject values into the controller.
  *
  * @author Will Molloy
  */
@@ -35,6 +36,9 @@ public abstract class ReportCardFactory {
         Main.setAndShowScene(reportCard);
     }
 
+    /**
+     * Hook method to be implemented by subclasses - get the appropriate reportcard model (FXML file)
+     */
     abstract String getFXML();
 
 }

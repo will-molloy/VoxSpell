@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +31,10 @@ public class CategoryStatisticsController extends StatisticsController implement
     // Object to get information on wordlists/categories
     private List<WordList> wordlists;
 
+    /**
+     * Init the scene:
+     * get the word lists and retrieve their statistics then generate and show the table.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         wordlists = WordListEditorController.getWordLists(); // ONLY gets wordlists that exist - not everything from stats
@@ -42,17 +45,24 @@ public class CategoryStatisticsController extends StatisticsController implement
         scrollPane.setFitToWidth(true);
     }
 
+    /**
+     * Retrieves and shows the category stats within the table.
+     */
     private void generateAndShowStatsInScrollPane() {
         ObservableList<CategoryStat> data = FXCollections.observableArrayList();
         for (WordList wl : wordlists) {
             String category = wl.toString();
             int[] extractedStat = statisticsRetriever.getStatsForCategory(category);
+
             int totalSpelt = extractedStat[0] + extractedStat[1];
+
             double accuracy = extractedStat[0] * 100.0 / totalSpelt;
+
             String bestStreak = extractedStat[2] + "";
+
             int bestTime = extractedStat[3];
             String formatBestTime;
-            if (bestTime == Integer.MAX_VALUE){
+            if (bestTime == Integer.MAX_VALUE) {
                 formatBestTime = "DNF";
             } else {
                 formatBestTime = numberFormatter.formatTime(extractedStat[3]);
@@ -64,6 +74,8 @@ public class CategoryStatisticsController extends StatisticsController implement
                 data.add(stat);
             }
         }
+
+        // Create the table columns
 
         TableColumn<CategoryStat, String> categoryCol = new TableColumn<>("Category");
         formatTableColumn(categoryCol, "category");
@@ -82,10 +94,14 @@ public class CategoryStatisticsController extends StatisticsController implement
 
         Collections.sort(data);
 
+        // Add columns to table view and scroll pane
         tableView.setItems(data);
         tableView.getColumns().addAll(categoryCol, totalSpeltCol, accuracyCol, streakCol, timeCol);
     }
 
+    /**
+     * Formats the given table column to use consistent font and size
+     */
     private void formatTableColumn(TableColumn<CategoryStat, String> column, String propertyValue) {
         column.setStyle("-fx-font-size: 18");
         column.setSortable(false);

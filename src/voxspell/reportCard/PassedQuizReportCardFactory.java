@@ -2,6 +2,8 @@ package voxspell.reportCard;
 
 /**
  * Returns the PassedQuizReport FXML.
+ *
+ * @author Will Molloy
  */
 public class PassedQuizReportCardFactory extends ReportCardFactory {
 

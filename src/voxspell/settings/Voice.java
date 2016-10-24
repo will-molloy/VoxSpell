@@ -2,6 +2,8 @@ package voxspell.settings;
 
 /**
  * Different types of Festival voices supported.
+ *
+ * @author Will Molloy
  */
 public enum Voice {
     US("US English", "(voice_kal_diphone)"),

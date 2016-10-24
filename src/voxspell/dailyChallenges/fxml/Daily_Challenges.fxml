@@ -1,132 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressBar?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.dailyChallenges.DailyChallengeGUIController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea"
+          fx:controller="voxspell.dailyChallenges.DailyChallengeGUIController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="960.0" minWidth="10.0" prefWidth="960.0" />
-        <ColumnConstraints />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="960.0" minWidth="10.0" prefWidth="960.0"/>
+        <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="160.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="160.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Todays Challenges" textAlignment="CENTER" wrappingWidth="960.0">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Todays Challenges" textAlignment="CENTER"
+              wrappingWidth="960.0">
             <font>
-                <Font name="Laksaman Bold" size="80.0" />
+                <Font name="Laksaman Bold" size="80.0"/>
             </font>
-         <effect>
-            <DropShadow />
-         </effect>
+            <effect>
+                <DropShadow/>
+            </effect>
         </Text>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
             <children>
-                <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#handleResetBtn" prefHeight="56.0" prefWidth="180.0" text="Reset">
+                <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#handleResetBtn" prefHeight="56.0"
+                        prefWidth="180.0" text="Reset">
                     <font>
-                        <Font size="30.0" />
+                        <Font size="30.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="242.0" top="20.0" />
+                        <Insets left="242.0" top="20.0"/>
                     </HBox.margin>
                 </Button>
-                <Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="56.0" prefWidth="180.0" text="Back">
+                <Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="56.0"
+                        prefWidth="180.0" text="Back">
                     <font>
-                        <Font size="30.0" />
+                        <Font size="30.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="120.0" top="20.0" />
+                        <Insets left="120.0" top="20.0"/>
                     </HBox.margin>
                 </Button>
             </children>
         </HBox>
         <GridPane GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="750.0" prefWidth="750.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="210.0" prefWidth="160.0" />
-                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="750.0" prefWidth="750.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="210.0" prefWidth="160.0"/>
+                <ColumnConstraints/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="100.0" minHeight="60.0" prefHeight="150.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="106.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="100.0" minHeight="60.0" prefHeight="150.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="106.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text fx:id="totalChallengesText" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Challenges Completed: 0" textAlignment="CENTER" wrappingWidth="960.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Text fx:id="totalChallengesText" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Total Challenges Completed: 0" textAlignment="CENTER" wrappingWidth="960.0"
+                      GridPane.columnSpan="2" GridPane.rowIndex="3">
                     <font>
-                        <Font size="38.0" />
+                        <Font size="38.0"/>
                     </font>
                 </Text>
                 <ProgressBar fx:id="challengeProgress1" prefHeight="50.0" prefWidth="560.0" progress="0.0">
                     <GridPane.margin>
-                        <Insets left="200.0" />
+                        <Insets left="200.0"/>
                     </GridPane.margin>
                 </ProgressBar>
-                <Text fx:id="challengeText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Complete 10 Spelling Quizes" textAlignment="CENTER" wrappingWidth="476.0">
+                <Text fx:id="challengeText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Complete 10 Spelling Quizes"
+                      textAlignment="CENTER" wrappingWidth="476.0">
                     <GridPane.margin>
-                        <Insets left="220.0" />
+                        <Insets left="220.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font size="32.0" />
+                        <Font size="32.0"/>
                     </font>
                 </Text>
-                <ProgressBar fx:id="challengeProgress2" layoutX="290.0" layoutY="129.0" prefHeight="50.0" prefWidth="550.0" progress="0.0" GridPane.rowIndex="1">
+                <ProgressBar fx:id="challengeProgress2" layoutX="290.0" layoutY="129.0" prefHeight="50.0"
+                             prefWidth="550.0" progress="0.0" GridPane.rowIndex="1">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                     <GridPane.margin>
-                        <Insets left="200.0" />
+                        <Insets left="200.0"/>
                     </GridPane.margin>
                 </ProgressBar>
-                <Text fx:id="challengeText2" layoutX="290.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Complete a Quiz With 100% Accuracy" textAlignment="CENTER" wrappingWidth="627.0" GridPane.rowIndex="1">
+                <Text fx:id="challengeText2" layoutX="290.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Complete a Quiz With 100% Accuracy" textAlignment="CENTER" wrappingWidth="627.0"
+                      GridPane.rowIndex="1">
                     <font>
-                        <Font size="28.0" />
+                        <Font size="28.0"/>
                     </font>
                     <GridPane.margin>
-                        <Insets left="165.0" />
+                        <Insets left="165.0"/>
                     </GridPane.margin>
                 </Text>
-                <ProgressBar fx:id="challengeProgress3" layoutX="240.0" layoutY="179.0" prefHeight="50.0" prefWidth="550.0" progress="0.0" stylesheets="@../../style.css" GridPane.rowIndex="2">
+                <ProgressBar fx:id="challengeProgress3" layoutX="240.0" layoutY="179.0" prefHeight="50.0"
+                             prefWidth="550.0" progress="0.0" stylesheets="@../../style.css" GridPane.rowIndex="2">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                     <GridPane.margin>
-                        <Insets left="200.0" />
+                        <Insets left="200.0"/>
                     </GridPane.margin>
                 </ProgressBar>
-                <Text fx:id="challengeText3" layoutX="240.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a New Word List" textAlignment="CENTER" wrappingWidth="500.0" GridPane.rowIndex="2">
+                <Text fx:id="challengeText3" layoutX="240.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Create a New Word List" textAlignment="CENTER" wrappingWidth="500.0" GridPane.rowIndex="2">
                     <font>
-                        <Font size="32.0" />
+                        <Font size="32.0"/>
                     </font>
                     <GridPane.margin>
-                        <Insets left="230.0" />
+                        <Insets left="230.0"/>
                     </GridPane.margin>
                 </Text>
-                <ImageView fx:id="image1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></ImageView>
-                <ImageView fx:id="image2" fitHeight="50.0" fitWidth="50.0" layoutX="760.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></ImageView>
-                <ImageView fx:id="image3" fitHeight="50.0" fitWidth="50.0" layoutX="760.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></ImageView>
+                <ImageView fx:id="image1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true"
+                           GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </ImageView>
+                <ImageView fx:id="image2" fitHeight="50.0" fitWidth="50.0" layoutX="760.0" layoutY="130.0"
+                           pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </ImageView>
+                <ImageView fx:id="image3" fitHeight="50.0" fitWidth="50.0" layoutX="760.0" layoutY="185.0"
+                           pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </ImageView>
             </children>
         </GridPane>
     </children>

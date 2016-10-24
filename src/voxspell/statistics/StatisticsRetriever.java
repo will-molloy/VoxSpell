@@ -2,7 +2,6 @@ package voxspell.statistics;
 
 import net.sourceforge.calendardate.CalendarDate;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -42,13 +41,13 @@ public class StatisticsRetriever extends StatisticsFileHandler {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        while ((line = scannerReadLine()) != null){
+        while ((line = scannerReadLine()) != null) {
             String[] tokens = line.split("\\t");
             // Tokens: word (tab) correctCount (tab) incorrectCount (tab) category
             if (tokens.length == 3 && tokens[0].equals(category)) {
                 bestStreak = parseInt(tokens[1]);
                 String bestTime = tokens[2];
-                if (bestTime.equals("dnf")){
+                if (bestTime.equals("dnf")) {
                     bestTimeSeconds = Integer.MAX_VALUE;
                 } else {
                     bestTimeSeconds = parseInt(tokens[2]);

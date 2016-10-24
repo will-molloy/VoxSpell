@@ -21,18 +21,19 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * Controller for the StatisticsFileHandler Screen.
+ * Controller for the Statistics Scene.
  *
  * @author Will Molloy
  */
 public class StatisticsController implements Initializable {
 
     private static final String VIEW_CATEGORY = "View Category Statistics", VIEW_PLOT = "View Overtime Graph";
-    private ImageLoader imageLoader = new ImageLoader();
+    private static boolean categoryStatsIsShown = true;
     protected StatisticsRetriever statisticsRetriever = new StatisticsRetriever();
+    protected NumberFormatter numberFormatter = new NumberFormatter();
+    private ImageLoader imageLoader = new ImageLoader();
     @FXML
     private Pane statisticsViewPane;
-    private static boolean categoryStatsIsShown = true;
     private Node categoryStatsRoot, overtimeGraphRoot;
     @FXML
     private Text totalWordsSpeltText;
@@ -46,14 +47,18 @@ public class StatisticsController implements Initializable {
             backIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/logout_icon.png")),
             clearStatsIcon = new Image(Main.class.getResourceAsStream("media/images/stats/clear.png"));
 
-    protected NumberFormatter numberFormatter = new NumberFormatter();
-
+    /**
+     * Loads the scene: first loads sub scenes avaiable by the toggle button:
+     * category table and line graph stats.
+     * Then generates and shows life time stats.
+     * Then loads icons for buttons.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadSubScenes();
 
         // SHOW the same view the user left this scene on (also needed for clearing stats)
-        if (categoryStatsIsShown){
+        if (categoryStatsIsShown) {
             showCategoryView();
         } else {
             showOverTimeGraph();
@@ -98,6 +103,9 @@ public class StatisticsController implements Initializable {
         }
     }
 
+    /**
+     * Handles the toggle button
+     */
     @FXML
     private void handleChangeViewBtn(ActionEvent actionEvent) {
         if (categoryStatsIsShown) {
@@ -121,6 +129,9 @@ public class StatisticsController implements Initializable {
         categoryStatsIsShown = false;
     }
 
+    /**
+     * Prompts the user on clearing stats and clears the hidden file.
+     */
     @FXML
     private void handleClearStatsBtn(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -131,7 +142,7 @@ public class StatisticsController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             statisticsRetriever.deleteStatistics();
-            initialize(null,null); // reload scene
+            initialize(null, null); // reload scene
         }
     }
 

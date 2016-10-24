@@ -29,7 +29,7 @@ public class Word implements Comparable<Word> {
         return name.get();
     }
 
-    /* Getters and Setters are for adapting to the Tables shown in the Word List Editor */
+    /* Getters and Setters are for adapting to the Tables shown in the Word List Editor via Observable array list */
 
     public String getName() {
         return name.get();
@@ -47,6 +47,9 @@ public class Word implements Comparable<Word> {
         this.definition.set(definition);
     }
 
+    /**
+     * Compare words alphabetically ignoring case.
+     */
     @Override
     public int compareTo(Word o) {
         return name.get().toLowerCase().compareTo(o.name.get().toLowerCase());

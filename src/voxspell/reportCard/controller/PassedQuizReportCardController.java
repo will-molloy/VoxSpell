@@ -13,6 +13,11 @@ import java.util.List;
 
 /**
  * Controller for the report card shown when the user passes a spelling quiz.
+ * <p>
+ * Extends the abstract report card controller class for implementation of the common elements between
+ * failed and passed report cards.
+ *
+ * @author Will Molloy
  */
 public class PassedQuizReportCardController extends ReportCardController {
 
@@ -21,6 +26,9 @@ public class PassedQuizReportCardController extends ReportCardController {
     @FXML
     private Button proceedToNxtLevelBtn, rewardVideoBtn;
 
+    /**
+     * Implemented hook method: loads the images specific to this report card scene.
+     */
     public void createSubClassGUI() {
         showWellDoneText();
         setProceedToLevelTextForBtn();

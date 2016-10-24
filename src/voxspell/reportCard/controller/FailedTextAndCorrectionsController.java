@@ -30,6 +30,10 @@ public class FailedTextAndCorrectionsController {
         correctionsVBox.getChildren().removeAll(correctionsVBox.getChildren());
     }
 
+    /**
+     * Sets the data for the scene:
+     * REQUIRED to sync the 'text only' view with this one.
+     */
     public void setDataAndShowGUI(FailedTextController failedTextController) {
         this.failedTextController = failedTextController;
         setTextViewText();
@@ -40,6 +44,9 @@ public class FailedTextAndCorrectionsController {
         failedTextView.setText(failedTextController.getText());
     }
 
+    /**
+     * Generates and shows the table of corrections to the user.
+     */
     private void generateAndShowCorrections() {
         // Clear existing text within the VBox
         clearGUI();
@@ -70,7 +77,7 @@ public class FailedTextAndCorrectionsController {
             Text wrongDelta = getWrongDeltaText();
             wrongDelta.setText(wrongDifference);
 
-            // Add the texts to the text flow in the i'th row of the word attempts hbox
+            // Add the texts to the text flow
             TextFlow usersAttemptTxt = new TextFlow();
             usersAttemptTxt.getChildren().addAll(prefix, wrongDelta, suffix);
             usersAttemptTxt.setPrefWidth(439);
@@ -98,14 +105,15 @@ public class FailedTextAndCorrectionsController {
             Text extraMsg = new Text(message);
             extraMsg.setFont(new Font(18));
 
-            // Add the texts to the text flow in the i'th row of the word corrections hbox
+            // Add the texts to the text flow
             TextFlow correctSpellingTxt = new TextFlow();
             correctSpellingTxt.getChildren().addAll(prefix2, correctDelta, suffix2, extraMsg);
             correctSpellingTxt.setPrefWidth(439);
             correctSpellingTxt.setPrefHeight(40);
 
+            // Lastly add the two text flows to the hbox side by side
             hBox.getChildren().addAll(usersAttemptTxt, correctSpellingTxt);
-
+            // Then add the hbox to the vbox, so hboxes will be stacked on top of each other within the scroll pane.
             correctionsVBox.getChildren().add(hBox);
         }
     }

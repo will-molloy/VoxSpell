@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import voxspell.Main;
@@ -35,17 +35,6 @@ public class WordListEditorController implements Initializable {
 
     private static final String WORD_LIST_NAME = ".wordList";
     private static final File wordListFile = new File(WORD_LIST_NAME);
-    private static List<WordList> wordLists = new ArrayList<>();
-
-    @FXML
-    private Text categoriesTextField;
-    private CustomFileReader fileReader = new CustomFileReader();
-    @FXML
-    private Button importFileBtn, generateDefBtn, backBtn, removeBtn, removeAllBtn, addBtn, modifyBtn, helpBtn;
-    @FXML
-    private Accordion wordListsView;
-    private Thread thread;
-
     protected static Image
             importIcon = new Image(Main.class.getResourceAsStream("media/images/editor/folder.png")),
             removeIcon = new Image(Main.class.getResourceAsStream("media/images/editor/minus-symbol.png")),
@@ -55,8 +44,16 @@ public class WordListEditorController implements Initializable {
             helpIcon = new Image(Main.class.getResourceAsStream("media/images/editor/question.png")),
             generateIcon = new Image(Main.class.getResourceAsStream("media/images/editor/refresh-button.png")),
             backIcon = new Image(Main.class.getResourceAsStream("media/images/report_card/logout_icon.png"));
+    private static List<WordList> wordLists = new ArrayList<>();
     protected ImageLoader imageLoader = new ImageLoader();
-
+    @FXML
+    private Text categoriesTextField;
+    private CustomFileReader fileReader = new CustomFileReader();
+    @FXML
+    private Button importFileBtn, generateDefBtn, backBtn, removeBtn, removeAllBtn, addBtn, modifyBtn, helpBtn;
+    @FXML
+    private Accordion wordListsView;
+    private Thread thread;
 
     public static List<WordList> getWordLists() {
         return wordLists;
@@ -64,6 +61,7 @@ public class WordListEditorController implements Initializable {
 
     /**
      * Parse hidden wordList file and add words to view.
+     * Then loads the GUI.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -372,9 +370,7 @@ public class WordListEditorController implements Initializable {
 
         progressBar.activateProgressBar(task);
 
-        task.setOnSucceeded(event -> {
-            progressBar.getPopup().close();
-        });
+        task.setOnSucceeded(event -> progressBar.getPopup().close());
         progressBar.getPopup().show();
 
         thread = new Thread(task);
@@ -386,6 +382,21 @@ public class WordListEditorController implements Initializable {
 
     @FXML
     private void handleHelpBtn(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText("How to use the word list editor");
+        alert.setContentText("Create and modify lists via the top two buttons.\n" +
+                "Remove and remove all lists via the next two buttons.\n" +
+                "Generate definitions for all words via the dictionary icon\n" +
+                "This only works if you have sdcv installed.\n" +
+                "You may import a file adhering to the correct format.\n" +
+                "By pressing the file icon.\n" +
+                "For more information see the user manual.");
+
+        // resize alert to correct size - code found here: http://stackoverflow.com/a/33905734/6122976
+        alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
+
+        alert.showAndWait();
     }
 
 

@@ -49,6 +49,9 @@ public class VideoPlayer extends BorderPane {
         setBottom(mediaBar);
     }
 
+    /**
+     * Shows the media player and big buck bunny video.
+     */
     public static void showVideo() {
         Group root = new Group();
         Scene scene = new Scene(root, 854, 515);

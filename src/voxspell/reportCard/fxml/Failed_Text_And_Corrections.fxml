@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity"
       prefHeight="330.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea"
       fx:controller="voxspell.reportCard.controller.FailedTextAndCorrectionsController">
     <children>

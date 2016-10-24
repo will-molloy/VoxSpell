@@ -5,6 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Represents a category stat:
  * Category stats have a category name, total words spelt (correct+incorrect) and accuracy.
+ * <p>
+ * implements Comparable for quick sorting.
+ *
+ * @author Will Molloy
  */
 public class CategoryStat implements Comparable<CategoryStat> {
 
