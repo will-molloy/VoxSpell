@@ -10,6 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3ee1816-c2e3-4e05-8c01-ab0664a18a74" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/media/images/stats/clear.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/media/images/stats/line-chart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/media/images/stats/table-grid.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.quizStats" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/voxspell/tools/NumberFormatter.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/.statistics" afterPath="$PROJECT_DIR$/.wordStats" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dailyChallenges" afterPath="$PROJECT_DIR$/.dailyChallenges" />
