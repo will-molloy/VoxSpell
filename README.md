@@ -1,81 +1,50 @@
 # VoxSpell
 
-
-
-Disclaimer
-----------
-This program is incomplete.
-
-The Daily Challenges and Statistics have not yet been implemented,
-I'm still not sure on how I want to do these.
-
-The GUI look and feel is still a work in progress and most of the 
-current images are placeholders.
-
-I have decided to use categories for word lists over the leveling system however,
-the list provided still follows the leveling system.
-
-I'm thinking about removing the second attempt given in the spelling quiz.
-
-I have plans to include where the user went wrong for the popup shown
-when comparing the users attempts to the actual spelling. 
-
-Some of the code is still a mess and the .fxml files are all over the place
-because I had issues when locating them.
-
-
-
 Running Voxspell
 ----------------
+
+Download the zip file containing jar, user manual and install script here .
+
+You will need Java 1.8 and Bash (linux).
+
 You need the following files in your current directory:
 	VoxSpell.jar 
 	run.sh
+	media (directory)
 
-You will need to run the run.sh script. 
+Run the install script, this will install: 
+	festival, a command line text to speech tool
+	sdcv, a command line dictionary (approx 35.5MB download).
 Type:
-	chmod +x run.sh
-	./run.sh
+	chmod +x install.sh
+	./install.sh
 
-	
-If you want the VoxSpell program to include definition generation within the
-Word List Editor you need to run the install_dict.sh script. 
-This will install sdcv a command line dictionary on your system (35.5MB download).
-You will need super user and internet access to run this script. 
-Type:
-	chmod +x install_dict.sh
-	./install_dict.sh
-I don't think this works in UG4 because you can't use 'apt-get'
+Finally run VoxSpell: java -jar VoxSpell.jar
 
+
+About
+-----
+For information on how to use VoxSpell view the USER_MANUAL.pdf file.
 
 
 Authors
 -------
-Will Molloy - wmol664
+Will Molloy - wmol664  
 Karim Cisse
 
 
-
-Copyright
----------
+Acknowledgements
+---------------
 Festival - http://www.cstr.ed.ac.uk/
 sdcv - http://dushistov.github.io/sdcv/
-images used:
-https://pixabay.com/en/tick-asterisk-cross-red-green-40678/
-https://pixabay.com/en/flags-russia-usa-germany-china-1722052/
-https://pixabay.com/en/certificate-paper-parchment-roll-154169/
+JavaFX - http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
 
+All images and icons used are free for commericial use without the need to attribution and
+sourced from the following sites:
 
-ICONS:
-<div>Icons made by <a href="http://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+https://pixabay.com/
+http://www.flaticon.com/
+http://www.freeimages.com/
 
-<div>Icons made by <a href="http://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+A few images were modified to fit into the program - i.e. resized/backgrounds stripped.
 
-
-<div>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-
-<div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-
-<div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-
-
-<div>Icons made by <a href="http://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

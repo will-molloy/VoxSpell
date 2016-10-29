@@ -17,6 +17,19 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="CalendarDate" level="project" />
+    <orderEntry type="library" exported="" name="CalendarDate" level="project" />
+    <orderEntry type="module-library">
+      <library name="lib">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/src/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/src/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/src/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>

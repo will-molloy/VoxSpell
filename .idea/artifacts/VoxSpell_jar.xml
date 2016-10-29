@@ -3,6 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/VoxSpell_jar</output-path>
     <root id="archive" name="VoxSpell.jar">
       <element id="module-output" name="VoxSpell" />
+      <element id="library" level="project" name="CalendarDate" />
+      <element id="library" level="module" name="JUnit4" module-name="VoxSpell" />
+      <element id="library" level="module" name="lib" module-name="VoxSpell" />
     </root>
   </artifact>
 </component>
