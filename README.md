@@ -3,7 +3,7 @@
 Running Voxspell  
 ----------------
 
-Download the zip file containing jar, user manual and install script [here](VoxSpell_package_Will_Molloy.zip) .
+Download the zip file containing source code, jar, user manual and install script [here](VoxSpell_package_Will_Molloy.zip) .
 
 You will need Java 1.8 and Bash (linux).
 

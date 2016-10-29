@@ -1,8 +1,6 @@
 *.class
 /Dictionary/
 /out/
-.wordList
-.definition
 *.scm
-.ACTUAL
+.*
 
