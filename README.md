@@ -8,23 +8,29 @@ Download the zip file containing jar, user manual and install script [here](VoxS
 You will need Java 1.8 and Bash (linux).  
 
 You need the following files in your current directory:  
-	VoxSpell.jar   
-	run.sh  
-	media (directory)  
+	* VoxSpell.jar   
+	* install.sh
+	* media (directory)  
 
 Run the install script, this will install:   
-	festival, a command line text to speech tool  
-	sdcv, a command line dictionary (approx 35.5MB download).  
+	* festival, a command line text to speech tool  
+	* sdcv, a command line dictionary (approx 35.5MB download).  
 Type:  
-	chmod +x install.sh  
-	./install.sh  
-
-
-About
------------
+	* chmod +x install.sh  
+	* ./install.sh  
+	
 Finally run VoxSpell: java -jar VoxSpell.jar  
 
-Will Molloy - wmol664 Karim Cis
+Using VoxSpell
+--------------
+* Refer to the user manual: USER_MANUAL_voxspell_wmol664.pdf
+* A spelling list has been included: NZCER-spelling-lists.txt
+
+Authors
+--------
+Will Molloy - wmol664  
+Karim Cisse  
+
 Acknowledgements
 ---------------
 Festival - http://www.cstr.ed.ac.uk/  
