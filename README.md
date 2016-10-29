@@ -1,9 +1,9 @@
 # VoxSpell  
 
-Running Voxspell  
+Running Voxspell
 ----------------
 
-Download the zip file containing source code, jar, user manual and install script [here](VoxSpell_package_Will_Molloy.zip) .
+Download the zip file containing source code, jar, user manual and install script [here](VoxSpell_package_Will_Molloy.zip).
 
 You will need Java 1.8 and Bash (linux).
 
@@ -13,7 +13,7 @@ You need the following files in your current directory:
 * media (directory)
 
 Run the install script, this will install: 
-* festival, a command line text to speech tool
+* Festival, a command line text to speech tool
 * sdcv, a command line dictionary (approx 35.5MB download).
 
 Type:
@@ -35,16 +35,15 @@ Authors
 
 Acknowledgements
 ---------------
-Festival - http://www.cstr.ed.ac.uk/  
-sdcv - http://dushistov.github.io/sdcv/  
-JavaFX - http://docs.oracle.com/javase/8/javase-clienttechnologies.htm  
+* Festival - http://www.cstr.ed.ac.uk/
+* sdcv - http://dushistov.github.io/sdcv/
+* JavaFX - http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
 
 All images and icons used are free for commericial use without the need to attribution and
-sourced from the following sites:  
+sourced from the following sites:
+* https://pixabay.com/
+* http://www.flaticon.com/
+* http://www.freeimages.com/
 
-https://pixabay.com/  
-http://www.flaticon.com/  
-http://www.freeimages.com/  
-
-A few images were modified to fit into the program - i.e. resized/backgrounds stripped.  
+A few images were modified to fit into the program - i.e. resized/backgrounds stripped.
 
