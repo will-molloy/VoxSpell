@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="360.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.112-ea"
+          fx:controller="voxspell.statistics.CategoryStatisticsController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="380.0"/>
+    </rowConstraints>
+    <children>
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+            <GridPane.margin>
+                <Insets left="40.0" right="40.0"/>
+            </GridPane.margin>
+            <content>
+                <TableView fx:id="tableView" prefHeight="380.0" prefWidth="880.0"/>
+            </content>
+        </ScrollPane>
+    </children>
+</GridPane>

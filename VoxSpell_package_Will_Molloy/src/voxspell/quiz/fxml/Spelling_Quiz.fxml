@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="540.0" prefWidth="960.0"
+            xmlns="http://javafx.com/javafx/8.0.112-ea" fx:controller="voxspell.quiz.SpellingQuizController">
+    <top>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+        </GridPane>
+    </top>
+    <center>
+        <GridPane alignment="CENTER" prefHeight="300.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="900.0" minWidth="50.0" prefWidth="480.0"/>
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="492.0" minWidth="10.0"
+                                   prefWidth="480.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextField fx:id="wordEntryField" alignment="CENTER" maxWidth="540.0" onAction="#handleEnterWordBtn"
+                           prefHeight="85.0" prefWidth="550.0" promptText="Enter the words here."
+                           GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="45.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets left="200.0" right="50.0"/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets left="80.0" right="300.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <HBox prefHeight="95.0" prefWidth="761.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <children>
+                        <Button fx:id="definitionBtn" minWidth="250.0" mnemonicParsing="false"
+                                onAction="#handleDefinitionBtn" prefHeight="55.0" prefWidth="247.0" text="Definition"
+                                textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="80.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="repeatBtn" minWidth="250.0" mnemonicParsing="false"
+                                onAction="#handleRepeatWordBtn" prefHeight="50.0" prefWidth="250.0" text="Repeat"
+                                textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <HBox.margin>
+                                <Insets left="40.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="settingsBtn" layoutX="40.0" layoutY="28.0" maxHeight="55.0" maxWidth="55.0"
+                                mnemonicParsing="false" onAction="#handleSettingsBtn" prefHeight="55.0" prefWidth="55.0"
+                                textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="backBtn" maxHeight="55.0" maxWidth="55.0" mnemonicParsing="false"
+                                onAction="#handleBackBtn" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets left="55.0"/>
+                            </HBox.margin>
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets top="18.0"/>
+                    </padding>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </HBox>
+                <ProgressBar fx:id="quizProgressBar" prefHeight="25.0" prefWidth="960.0" progress="0.0"
+                             GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                <Text fx:id="categoryText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER"
+                      wrappingWidth="960.0" GridPane.columnSpan="2">
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Laksaman Bold" size="80.0"/>
+                    </font>
+                    <effect>
+                        <DropShadow/>
+                    </effect>
+                </Text>
+                <Button mnemonicParsing="false" onAction="#handleEnterWordBtn" prefHeight="85.0" prefWidth="210.0"
+                        text="Enter" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="45.0"/>
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="190.0"/>
+                    </GridPane.margin>
+                </Button>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>

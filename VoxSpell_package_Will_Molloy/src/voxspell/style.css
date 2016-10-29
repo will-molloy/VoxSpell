@@ -1,0 +1,62 @@
+#winter{
+-fx-background-image: url("media/images/main_menu/voxspell_main_winter.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#summer{
+-fx-background-image: url("media/images/main_menu/voxspell_main_summer.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#spring{
+-fx-background-image: url("media/images/main_menu/voxspell_main_spring.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#autumn{
+-fx-background-image: url("media/images/main_menu/voxspell_main_autumn.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#red-progress{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+
+    -fx-accent: #F94923;
+}
+
+#green-progress{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+
+    -fx-accent: #9fe89f;
+}
+
+#gradient-background{
+-fx-background-image: url("media/images/gradient_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 960 540;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+
+    -fx-accent: #b8effc;
+}
+
